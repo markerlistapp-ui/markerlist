@@ -4,22 +4,22 @@
 
 /* Variables de couleurs - Harmonie moderne et douce */
 :root {
-    --quantum-blue: #1a4fd6;       /* Un bleu légèrement plus profond et chaleureux */
-    --quantum-blue-hover: #123fb8;
+    --quantum-blue: #2457FF;
+    --quantum-blue-hover: #1a45db;
     
     /* Backgrounds doux (Anti-fatigue visuelle) */
     --bg-dark: #f4f6fb;           /* Fond général gris-bleu très clair et reposant */
-    --bg-card: #ffffff;           /* Les cartes restent bien blanches pour contraster subtilement */
+    --bg-card: #ffffff;           /* Les cartes restent bien blanches */
     --bg-card-hover: #ffffff;
     
     /* Bordures & Accents fins */
-    --border-color: rgba(26, 79, 214, 0.1);
-    --border-highlight: rgba(26, 79, 214, 0.35);
+    --border-color: rgba(36, 87, 255, 0.1);
+    --border-highlight: rgba(36, 87, 255, 0.35);
     
     /* Textes optimisés pour le confort de lecture */
-    --text-white: #0f172a;        /* Texte principal presque noir / bleu très sombre (lisibilité parfaite) */
-    --text-iceberg: #1a4fd6;
-    --text-muted: #64748b;        /* Gris élégant pour les sous-titres et descriptions */
+    --text-white: #0f172a;        /* Texte principal presque noir / bleu très sombre */
+    --text-iceberg: #2457FF;
+    --text-muted: #64748b;        /* Gris élégant pour les descriptions */
 }
 
 /* Base */
@@ -72,7 +72,7 @@ body {
     height: 38px !important;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(26, 79, 214, 0.15);
+    box-shadow: 0 4px 12px rgba(36, 87, 255, 0.15);
 }
 
 .nav-links {
@@ -105,14 +105,14 @@ body {
 .btn-primary {
     background: var(--quantum-blue);
     color: #ffffff;
-    box-shadow: 0 4px 20px rgba(26, 79, 214, 0.25);
+    box-shadow: 0 4px 20px rgba(36, 87, 255, 0.25);
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
     background: var(--quantum-blue-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(26, 79, 214, 0.35);
+    box-shadow: 0 6px 25px rgba(36, 87, 255, 0.35);
 }
 
 .btn-secondary {
@@ -125,7 +125,7 @@ body {
 .btn-secondary:hover {
     background: #ffffff;
     border-color: var(--border-highlight);
-    box-shadow: 0 4px 12px rgba(26, 79, 214, 0.1);
+    box-shadow: 0 4px 12px rgba(36, 87, 255, 0.1);
 }
 
 .btn-small {
@@ -160,7 +160,7 @@ body {
     padding: 6px 16px;
     background: #e6edff;
     color: var(--quantum-blue);
-    border: 1px solid rgba(26, 79, 214, 0.15);
+    border: 1px solid rgba(36, 87, 255, 0.15);
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
@@ -211,15 +211,15 @@ body {
     background: #ffffff;
     border: 1px solid var(--border-color);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 
-                0 0 0 8px rgba(26, 79, 214, 0.03);
+                0 0 0 8px rgba(36, 87, 255, 0.03);
     padding: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-logo:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(26, 79, 214, 0.12), 
-                0 0 0 12px rgba(26, 79, 214, 0.05);
+    box-shadow: 0 15px 35px rgba(36, 87, 255, 0.12), 
+                0 0 0 12px rgba(36, 87, 255, 0.05);
 }
 
 /* --- Lecteur Vidéo Principal --- */
@@ -228,7 +228,7 @@ body {
     margin: 0 auto;
     border-radius: 20px;
     padding: 2px;
-    background: linear-gradient(135deg, rgba(26, 79, 214, 0.2) 0%, rgba(26, 79, 214, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(36, 87, 255, 0.2) 0%, rgba(36, 87, 255, 0.05) 100%);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
@@ -267,7 +267,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 25px rgba(26, 79, 214, 0.4);
+    box-shadow: 0 0 25px rgba(36, 87, 255, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -280,7 +280,7 @@ body {
 
 .video-placeholder:hover .play-button {
     transform: scale(1.1);
-    box-shadow: 0 0 35px rgba(26, 79, 214, 0.6);
+    box-shadow: 0 0 35px rgba(36, 87, 255, 0.6);
 }
 
 /* --- Section Proposition de Valeur --- */
@@ -321,7 +321,7 @@ body {
     background: #ffffff;
     border-color: var(--border-highlight);
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(26, 79, 214, 0.08);
+    box-shadow: 0 12px 30px rgba(36, 87, 255, 0.08);
 }
 
 .value-card .icon {
@@ -378,7 +378,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 1px solid rgba(26, 79, 214, 0.15);
+    border: 1px solid rgba(36, 87, 255, 0.15);
 }
 
 .feature-text h3 {
