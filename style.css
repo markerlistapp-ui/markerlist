@@ -1,27 +1,120 @@
-/* Réinitialisation de base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ableton OSC Auto-Stop | Précision Chirurgicale</title>
+    <!-- Import d'une police moderne -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f1117;
+            --card-bg: #161b22;
+            --accent-color: #0070f3;
+            --accent-hover: #3291ff;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --border-color: #30363d;
+        }
 
-/* Corps de la page avec fond noir */
-body {
-    background-color: #121212; /* Un gris extrêmement foncé, plus élégant qu'un noir pur */
-    color: #ffffff;
-    font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Conteneur principal */
-.container {
-    max-width: 600px;
-    padding: 2rem;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            background: linear-gradient(90deg, #fff, #8b949e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 14px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 14px rgba(0, 112, 243, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 40px auto 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: var(--text-muted);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
 
 /* Style du logo */
 .logo {
@@ -31,34 +124,39 @@ body {
     margin-bottom: 2rem;
     box-shadow: 0 10px 30px rgba(255, 136, 0, 0.2); /* Léger halo orange autour du logo */
 }
+    <header>
+        <h1>Pilotez Ableton Live sans compromis</h1>
+        <p class="subtitle">Une solution open-source de synchronisation et d'auto-stop par OSC pour positionner votre tête de lecture pile sur vos markers, sans décalage.</p>
+        <a href="https://github.com/VOTRE-PSEUDO/VOTRE-PROJET" class="target-blank cta-button" id="github-link">Voir le projet sur GitHub</a>
+    </header>
 
-/* Typographie */
-.title {
-    font-size: 2.5rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-}
+    <div class="container">
+        <div class="card">
+            <h3>🎯 Précision Chirurgicale</h3>
+            <p>Contournez la latence réseau et le moteur d'Ableton grâce à un système d'anticipation temporelle (Lookahead) intelligent.</p>
+        </div>
+        <div class="card">
+            <h3>⚡ Commandes OSC Rapides</h3>
+            <p>Exploitez directement les flux de transport et les marqueurs de Live pour un contrôle fluide, stable et réactif.</p>
+        </div>
+        <div class="card">
+            <h3>🛠️ 100% Open Source</h3>
+            <p>Gratuit, transparent et adaptable à vos besoins spécifiques. Installez-le, configurez-le et adaptez-le à votre setup.</p>
+        </div>
+    </div>
 
-.description {
-    font-size: 1.1rem;
-    color: #a0a0a0;
-    margin-bottom: 2.5rem;
-    line-height: 1.5;
-}
+    <footer>
+        <p>&copy; 2026 Votre Nom / Projet • Propulsé par GitHub Pages</p>
+    </footer>
 
-/* Bouton d'action */
-.btn {
-    display: inline-block;
-    background-color: #ff8800; /* Rappel du orange du logo */
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
+    <script>
+        // Pensez à remplacer l'URL ci-dessous par le lien direct vers votre dépôt GitHub si besoin
+        // Le lien actuel récupère dynamiquement votre page si elle est configurée
+    </script>
+</body>
+</html>
 
-.btn:hover {
-    background-color: #e67a00;
-}
+
+
+
+
