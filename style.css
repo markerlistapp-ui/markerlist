@@ -1,4 +1,19 @@
-/* --- Variables & Styles de base --- */
+/* ==========================================
+   STYLE CORRIGÉ ET STABLE POUR MARKERLIST
+   ========================================== */
+
+/* Sécurité d'affichage globale */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 :root {
     --bg-dark: #0f0f11;
     --bg-card: #18181c;
@@ -9,32 +24,29 @@
     --text-muted: #a0a0ab;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* Le body reste en affichage standard pour empiler les sections verticalement */
 body {
     background-color: var(--bg-dark);
     color: var(--text-white);
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
-    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
 }
 
-/* --- Barre de Navigation --- */
+/* --- Navigation --- */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 8%;
-    background: rgba(15, 15, 17, 0.8);
+    background: rgba(15, 15, 17, 0.9);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 100;
     border-bottom: 1px solid var(--border-color);
+    width: 100%;
 }
 
 .nav-brand {
@@ -45,9 +57,11 @@ body {
     font-size: 1.2rem;
 }
 
+/* Redimensionnement strict de l'image du logo dans le menu */
 .nav-logo {
-    width: 36px;
-    height: 36px;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -114,8 +128,8 @@ body {
 /* --- Header / Hero --- */
 .hero {
     text-align: center;
-    padding: 5rem 1rem 3rem 1rem;
-    max-width: 1000px;
+    padding: 4rem 1.5rem 3rem 1.5rem;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -132,7 +146,7 @@ body {
 }
 
 .hero-title {
-    font-size: 3.2rem;
+    font-size: 3rem;
     font-weight: 900;
     line-height: 1.2;
     margin-bottom: 1.5rem;
@@ -140,7 +154,7 @@ body {
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     color: var(--text-muted);
     max-width: 700px;
     margin: 0 auto 2.5rem auto;
@@ -154,12 +168,13 @@ body {
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3.5rem;
+    flex-wrap: wrap;
 }
 
-/* --- Placeholders Vidéo (Design Pro) --- */
+/* --- Lecteur Vidéo Principal --- */
 .video-hero-container {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
     border-radius: 16px;
     padding: 8px;
@@ -225,6 +240,7 @@ body {
     text-align: center;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
+    width: 100%;
 }
 
 .value-prop h2 {
@@ -234,9 +250,9 @@ body {
 
 .value-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -264,9 +280,10 @@ body {
 
 /* --- Sous-sections Démo Vidéo --- */
 .features {
-    padding: 6rem 8%;
-    max-width: 1100px;
+    padding: 5rem 8%;
+    max-width: 1000px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .section-title {
@@ -278,7 +295,7 @@ body {
 .feature-row {
     display: flex;
     align-items: center;
-    gap: 4rem;
+    gap: 3rem;
     margin-bottom: 5rem;
 }
 
@@ -305,11 +322,11 @@ body {
 
 .feature-text p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1rem;
 }
 
 .feature-video {
-    flex: 12px;
+    flex: 1;
     width: 100%;
 }
 
@@ -332,13 +349,14 @@ body {
 /* --- Section CTA Final --- */
 .cta-section {
     text-align: center;
-    padding: 6rem 1rem;
+    padding: 5rem 1.5rem;
     background: linear-gradient(180deg, #121215 0%, #0f0f11 100%);
     border-top: 1px solid var(--border-color);
+    width: 100%;
 }
 
 .cta-section h2 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
 }
 
@@ -354,9 +372,10 @@ footer {
     color: var(--text-muted);
     font-size: 0.85rem;
     border-top: 1px solid var(--border-color);
+    width: 100%;
 }
 
-/* --- Responsive --- */
+/* --- Responsive Mobile --- */
 @media (max-width: 768px) {
     .hero-title { font-size: 2.2rem; }
     .feature-row, .feature-row.reverse { flex-direction: column; gap: 2rem; }
