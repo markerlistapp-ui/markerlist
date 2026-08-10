@@ -1,0 +1,64 @@
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corps de la page avec fond noir */
+body {
+    background-color: #121212; /* Un gris extrêmement foncé, plus élégant qu'un noir pur */
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 600px;
+    padding: 2rem;
+}
+
+/* Style du logo */
+.logo {
+    width: 150px;
+    height: auto;
+    border-radius: 20px; /* Adaptez selon l'arrondi souhaité */
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 30px rgba(255, 136, 0, 0.2); /* Léger halo orange autour du logo */
+}
+
+/* Typographie */
+.title {
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
+
+/* Bouton d'action */
+.btn {
+    display: inline-block;
+    background-color: #ff8800; /* Rappel du orange du logo */
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #e67a00;
+}
