@@ -1,26 +1,25 @@
 /* ==========================================================
-   MARKERLIST - THÈME CLAIR : FOND BLANC & TEXTE #2457FF
+   MARKERLIST - MODERN LIGHT & CLEAN THEME
    ========================================================== */
 
-/* Variables de couleurs mises à jour */
+/* Variables de couleurs - Harmonie moderne et douce */
 :root {
-    --quantum-blue: #2457FF;
-    --quantum-blue-hover: #1a45db;
-    --iceberg-glass: #2457FF;
+    --quantum-blue: #1a4fd6;       /* Un bleu légèrement plus profond et chaleureux */
+    --quantum-blue-hover: #123fb8;
     
-    /* Backgrounds blancs et clairs */
-    --bg-dark: #ffffff;
-    --bg-card: #f4f7ff;
-    --bg-card-hover: #e8ecff;
+    /* Backgrounds doux (Anti-fatigue visuelle) */
+    --bg-dark: #f4f6fb;           /* Fond général gris-bleu très clair et reposant */
+    --bg-card: #ffffff;           /* Les cartes restent bien blanches pour contraster subtilement */
+    --bg-card-hover: #ffffff;
     
-    /* Bordures & Accents */
-    --border-color: rgba(36, 87, 255, 0.15);
-    --border-highlight: rgba(36, 87, 255, 0.5);
+    /* Bordures & Accents fins */
+    --border-color: rgba(26, 79, 214, 0.1);
+    --border-highlight: rgba(26, 79, 214, 0.35);
     
-    /* Textes en HEX #2457FF et nuances harmonisées */
-    --text-white: #2457FF;
-    --text-iceberg: #2457FF;
-    --text-muted: #4c6ef5;
+    /* Textes optimisés pour le confort de lecture */
+    --text-white: #0f172a;        /* Texte principal presque noir / bleu très sombre (lisibilité parfaite) */
+    --text-iceberg: #1a4fd6;
+    --text-muted: #64748b;        /* Gris élégant pour les sous-titres et descriptions */
 }
 
 /* Base */
@@ -50,7 +49,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1.2rem 8%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(244, 246, 251, 0.85);
     backdrop-filter: blur(12px);
     position: sticky;
     top: 0;
@@ -73,7 +72,7 @@ body {
     height: 38px !important;
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(36, 87, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(26, 79, 214, 0.15);
 }
 
 .nav-links {
@@ -97,34 +96,36 @@ body {
 .btn {
     display: inline-block;
     padding: 14px 28px;
-    border-radius: 10px;
+    border-radius: 12px;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--quantum-blue) 0%, #1742d4 100%);
+    background: var(--quantum-blue);
     color: #ffffff;
-    box-shadow: 0 4px 25px rgba(36, 87, 255, 0.3);
-    border: 1px solid rgba(223, 247, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(26, 79, 214, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, var(--quantum-blue-hover) 0%, #1234a8 100%);
+    background: var(--quantum-blue-hover);
     transform: translateY(-2px);
-    box-shadow: 0 6px 30px rgba(36, 87, 255, 0.5);
+    box-shadow: 0 6px 25px rgba(26, 79, 214, 0.35);
 }
 
 .btn-secondary {
-    background: rgba(36, 87, 255, 0.05);
+    background: #ffffff;
     color: var(--quantum-blue);
     border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .btn-secondary:hover {
-    background: rgba(36, 87, 255, 0.1);
+    background: #ffffff;
     border-color: var(--border-highlight);
+    box-shadow: 0 4px 12px rgba(26, 79, 214, 0.1);
 }
 
 .btn-small {
@@ -142,8 +143,8 @@ body {
 }
 
 .btn-large {
-    font-size: 1.1rem;
-    padding: 16px 36px;
+    font-size: 1.05rem;
+    padding: 15px 32px;
 }
 
 /* --- Hero / Header --- */
@@ -156,34 +157,34 @@ body {
 
 .hero-badge {
     display: inline-block;
-    padding: 6px 18px;
-    background: rgba(36, 87, 255, 0.08);
+    padding: 6px 16px;
+    background: #e6edff;
     color: var(--quantum-blue);
-    border: 1px solid rgba(36, 87, 255, 0.2);
+    border: 1px solid rgba(26, 79, 214, 0.15);
     border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 1.5rem;
 }
 
 .hero-title {
     font-size: 3.2rem;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 1.2;
     margin-bottom: 1.5rem;
     letter-spacing: -1px;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
     max-width: 700px;
     margin: 0 auto 2.5rem auto;
 }
 
 .hero-subtitle strong {
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .hero-actions {
@@ -203,20 +204,22 @@ body {
 }
 
 .hero-logo {
-    width: 130px;
-    height: 130px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
     border-radius: 28px;
-    background: radial-gradient(circle, #f4f7ff 0%, #ffffff 100%);
-    border: 2px solid var(--border-highlight);
-    box-shadow: 0 0 35px rgba(36, 87, 255, 0.25);
-    padding: 18px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 
+                0 0 0 8px rgba(26, 79, 214, 0.03);
+    padding: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hero-logo:hover {
-    transform: scale(1.06);
-    box-shadow: 0 0 50px rgba(36, 87, 255, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(26, 79, 214, 0.12), 
+                0 0 0 12px rgba(26, 79, 214, 0.05);
 }
 
 /* --- Lecteur Vidéo Principal --- */
@@ -224,9 +227,9 @@ body {
     max-width: 850px;
     margin: 0 auto;
     border-radius: 20px;
-    padding: 1px;
-    background: linear-gradient(135deg, var(--quantum-blue) 0%, rgba(36, 87, 255, 0.2) 100%);
-    box-shadow: 0 20px 50px rgba(36, 87, 255, 0.15);
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(26, 79, 214, 0.2) 0%, rgba(26, 79, 214, 0.05) 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
 }
 
 .video-wrapper {
@@ -235,7 +238,7 @@ body {
     aspect-ratio: 16 / 9;
     border-radius: 19px;
     overflow: hidden;
-    background-color: var(--bg-card);
+    background-color: #0f172a;
 }
 
 .video-placeholder {
@@ -246,25 +249,25 @@ body {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    background: radial-gradient(circle, #f0f4ff 0%, #ffffff 100%);
-    color: var(--text-muted);
+    background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
+    color: #94a3b8;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .video-placeholder:hover {
-    color: var(--quantum-blue);
+    color: #ffffff;
 }
 
 .play-button {
     width: 68px;
     height: 68px;
-    background: linear-gradient(135deg, var(--quantum-blue) 0%, #4775ff 100%);
+    background: var(--quantum-blue);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 25px rgba(36, 87, 255, 0.4);
+    box-shadow: 0 0 25px rgba(26, 79, 214, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -277,13 +280,13 @@ body {
 
 .video-placeholder:hover .play-button {
     transform: scale(1.1);
-    box-shadow: 0 0 35px rgba(36, 87, 255, 0.6);
+    box-shadow: 0 0 35px rgba(26, 79, 214, 0.6);
 }
 
 /* --- Section Proposition de Valeur --- */
 .value-prop {
     padding: 5rem 8%;
-    background: #f8fafc;
+    background: #ffffff;
     text-align: center;
     border-top: 1px solid var(--border-color);
     border-bottom: 1px solid var(--border-color);
@@ -293,7 +296,7 @@ body {
 .value-prop h2 {
     font-size: 2rem;
     margin-bottom: 3rem;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .value-grid {
@@ -305,19 +308,20 @@ body {
 }
 
 .value-card {
-    background: var(--bg-card);
+    background: #f8fafc;
     padding: 2.2rem;
     border-radius: 16px;
     border: 1px solid var(--border-color);
     text-align: left;
     transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
 .value-card:hover {
-    background: var(--bg-card-hover);
+    background: #ffffff;
     border-color: var(--border-highlight);
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(36, 87, 255, 0.1);
+    box-shadow: 0 12px 30px rgba(26, 79, 214, 0.08);
 }
 
 .value-card .icon {
@@ -327,7 +331,7 @@ body {
 
 .value-card h3 {
     margin-bottom: 0.5rem;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .value-card p {
@@ -347,7 +351,7 @@ body {
     text-align: center;
     font-size: 2.2rem;
     margin-bottom: 4rem;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .feature-row {
@@ -367,20 +371,20 @@ body {
 
 .feature-tag {
     color: var(--quantum-blue);
-    background: rgba(36, 87, 255, 0.08);
+    background: #e6edff;
     padding: 4px 12px;
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border: 1px solid rgba(36, 87, 255, 0.15);
+    border: 1px solid rgba(26, 79, 214, 0.15);
 }
 
 .feature-text h3 {
     font-size: 1.8rem;
     margin: 1rem 0 1rem 0;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .feature-text p {
@@ -397,6 +401,7 @@ body {
     aspect-ratio: 16 / 9;
     border-radius: 14px;
     border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
 }
 
 .play-button.small {
@@ -413,7 +418,7 @@ body {
 .cta-section {
     text-align: center;
     padding: 6rem 1.5rem;
-    background: radial-gradient(circle at center, #f0f4ff 0%, #ffffff 100%);
+    background: #ffffff;
     border-top: 1px solid var(--border-color);
     width: 100%;
 }
@@ -421,7 +426,7 @@ body {
 .cta-section h2 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
-    color: var(--quantum-blue);
+    color: var(--text-white);
 }
 
 .cta-section p {
