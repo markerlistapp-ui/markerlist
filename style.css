@@ -1,162 +1,364 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ableton OSC Auto-Stop | Précision Chirurgicale</title>
-    <!-- Import d'une police moderne -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f1117;
-            --card-bg: #161b22;
-            --accent-color: #0070f3;
-            --accent-hover: #3291ff;
-            --text-main: #f0f6fc;
-            --text-muted: #8b949e;
-            --border-color: #30363d;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            padding: 0 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-            background: linear-gradient(90deg, #fff, #8b949e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p.subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: white;
-            padding: 14px 30px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-            box-shadow: 0 4px 14px rgba(0, 112, 243, 0.4);
-        }
-
-        .cta-button:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 40px auto 80px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 30px;
-            transition: border-color 0.2s;
-        }
-
-        .card:hover {
-            border-color: var(--text-muted);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid var(--border-color);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-
-/* Style du logo */
-.logo {
-    width: 150px;
-    height: auto;
-    border-radius: 20px; /* Adaptez selon l'arrondi souhaité */
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(255, 136, 0, 0.2); /* Léger halo orange autour du logo */
+/* --- Variables & Styles de base --- */
+:root {
+    --bg-dark: #0f0f11;
+    --bg-card: #18181c;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --primary-orange: #ff8800;
+    --primary-hover: #e67a00;
+    --text-white: #ffffff;
+    --text-muted: #a0a0ab;
 }
-    <header>
-        <h1>Pilotez Ableton Live sans compromis</h1>
-        <p class="subtitle">Une solution open-source de synchronisation et d'auto-stop par OSC pour positionner votre tête de lecture pile sur vos markers, sans décalage.</p>
-        <a href="https://github.com/VOTRE-PSEUDO/VOTRE-PROJET" class="target-blank cta-button" id="github-link">Voir le projet sur GitHub</a>
-    </header>
 
-    <div class="container">
-        <div class="card">
-            <h3>🎯 Précision Chirurgicale</h3>
-            <p>Contournez la latence réseau et le moteur d'Ableton grâce à un système d'anticipation temporelle (Lookahead) intelligent.</p>
-        </div>
-        <div class="card">
-            <h3>⚡ Commandes OSC Rapides</h3>
-            <p>Exploitez directement les flux de transport et les marqueurs de Live pour un contrôle fluide, stable et réactif.</p>
-        </div>
-        <div class="card">
-            <h3>🛠️ 100% Open Source</h3>
-            <p>Gratuit, transparent et adaptable à vos besoins spécifiques. Installez-le, configurez-le et adaptez-le à votre setup.</p>
-        </div>
-    </div>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <footer>
-        <p>&copy; 2026 Votre Nom / Projet • Propulsé par GitHub Pages</p>
-    </footer>
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
 
-    <script>
-        // Pensez à remplacer l'URL ci-dessous par le lien direct vers votre dépôt GitHub si besoin
-        // Le lien actuel récupère dynamiquement votre page si elle est configurée
-    </script>
-</body>
-</html>
+/* --- Barre de Navigation --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 8%;
+    background: rgba(15, 15, 17, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-color);
+}
 
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
 
+.nav-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+}
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
 
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
+.nav-links a:hover {
+    color: var(--text-white);
+}
+
+/* --- Boutons --- */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: var(--text-white);
+    box-shadow: 0 4px 20px rgba(255, 136, 0, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    background-color: var(--primary-orange);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.btn-large {
+    font-size: 1.1rem;
+    padding: 16px 36px;
+}
+
+/* --- Header / Hero --- */
+.hero {
+    text-align: center;
+    padding: 5rem 1rem 3rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.hero-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(255, 136, 0, 0.1);
+    color: var(--primary-orange);
+    border: 1px solid rgba(255, 136, 0, 0.3);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+}
+
+.hero-subtitle strong {
+    color: var(--text-white);
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+/* --- Placeholders Vidéo (Design Pro) --- */
+.video-hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: 8px;
+    background: linear-gradient(180deg, rgba(255, 136, 0, 0.2) 0%, rgba(255,255,255,0.02) 100%);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background: radial-gradient(circle, #25252e 0%, #121215 100%);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.video-placeholder:hover {
+    color: var(--text-white);
+}
+
+.play-button {
+    width: 64px;
+    height: 64px;
+    background: var(--primary-orange);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 25px rgba(255, 136, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.play-button svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+    margin-left: 3px;
+}
+
+.video-placeholder:hover .play-button {
+    transform: scale(1.1);
+}
+
+/* --- Section Proposition de Valeur --- */
+.value-prop {
+    padding: 5rem 8%;
+    background: #121215;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.value-prop h2 {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.value-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.value-card .icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.value-card h3 {
+    margin-bottom: 0.5rem;
+}
+
+.value-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* --- Sous-sections Démo Vidéo --- */
+.features {
+    padding: 6rem 8%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 4rem;
+}
+
+.feature-row {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-bottom: 5rem;
+}
+
+.feature-row.reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.feature-tag {
+    color: var(--primary-orange);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.feature-text h3 {
+    font-size: 1.8rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.feature-text p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+.feature-video {
+    flex: 12px;
+    width: 100%;
+}
+
+.sub-video {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.play-button.small {
+    width: 44px;
+    height: 44px;
+}
+
+.play-button.small svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* --- Section CTA Final --- */
+.cta-section {
+    text-align: center;
+    padding: 6rem 1rem;
+    background: linear-gradient(180deg, #121215 0%, #0f0f11 100%);
+    border-top: 1px solid var(--border-color);
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.cta-section p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.2rem; }
+    .feature-row, .feature-row.reverse { flex-direction: column; gap: 2rem; }
+    .nav-links { display: none; }
+}
