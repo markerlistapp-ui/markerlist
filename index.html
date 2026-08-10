@@ -3,21 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkerList</title>
-    <!-- Importation de la police Roboto -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>MarkerList — Marquez, organisez et retrouvez vos repères en un clic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Remplacez le chemin par l'emplacement réel de votre image -->
-        <img src="logo-markerlist.png" alt="Logo MarkerList" class="logo">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="logo-markerlist.png" alt="Logo MarkerList" class="nav-logo">
+            <span>MarkerList</span>
+        </div>
+        <div class="nav-links">
+            <a href="#fonctionnalites">Fonctionnalités</a>
+            <a href="#demo">Démo</a>
+            <a href="#telecharger" class="btn-small">Obtenir l'application</a>
+        </div>
+    </nav>
+
+    <!-- Section Héro (Accroche immédiate + Vidéo Principale) -->
+    <header class="hero">
+        <div class="hero-badge">⚡ La gestion de marqueurs nouvelle génération</div>
+        <h1 class="hero-title">Ne perdez plus jamais un repère important.</h1>
+        <p class="hero-subtitle">
+            <strong>MarkerList</strong> est l'outil ultime pour capturer, organiser et structurer vos marqueurs en temps réel. Simplifiez votre flux de travail et retrouvez n'importe quelle information en un instant.
+        </p>
         
-        <h1 class="title">MarkerList</h1>
-        <p class="description">Gérez vos marqueurs avec précision et fluidité.</p>
-        
-        <!-- Exemple de bouton d'action -->
-        <a href="lien-vers-votre-repo" class="btn">Voir sur GitHub</a>
-    </div>
+        <div class="hero-actions">
+            <a href="#telecharger" class="btn btn-primary">Essayer gratuitement</a>
+            <a href="#demo" class="btn btn-secondary">Voir la démo (1 min)</a>
+        </div>
+
+        <!-- Emplacement Vidéo de Présentation Principale -->
+        <div class="video-hero-container" id="demo">
+            <div class="video-wrapper">
+                <!-- Remplacez le bloc ci-dessous par votre balise <video> ou <iframe> YouTube/Vimeo -->
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Regarder la vidéo de présentation (À venir)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Présentation Flash (Clarification produit) -->
+    <section class="value-prop">
+        <h2>Pourquoi utiliser MarkerList ?</h2>
+        <div class="value-grid">
+            <div class="value-card">
+                <div class="icon">🎯</div>
+                <h3>Précision Chirurgicale</h3>
+                <p>Posez des repères temporels ou textuels à la volée sans interrompre votre travail.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">⚡</div>
+                <h3>Organisation Instantanée</h3>
+                <p>Classez automatiquement vos marqueurs par catégories, tags et niveaux de priorité.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">🔄</div>
+                <h3>Export & Intégration</h3>
+                <p>Exportez vos listes dans vos outils préférés en un clic (PDF, Markdown, JSON).</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sous-sections Démo Vidéo par Fonctionnalité -->
+    <section class="features" id="fonctionnalites">
+        <h2 class="section-title">Découvrez MarkerList en action</h2>
+
+        <!-- Fonctionnalité 1 -->
+        <div class="feature-row">
+            <div class="feature-text">
+                <span class="feature-tag">Fonctionnalité 01</span>
+                <h3>Marquage en un clic</h3>
+                <p>Créez des repères instantanés grâce à des raccourcis clavier personnalisables. Plus besoin de naviguer dans des menus complexes pendant vos sessions de travail.</p>
+            </div>
+            <div class="feature-video">
+                <div class="video-placeholder sub-video">
+                    <div class="play-button small">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Démo : Marquage instantané</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalité 2 -->
+        <div class="feature-row reverse">
+            <div class="feature-text">
+                <span class="feature-tag">Fonctionnalité 02</span>
+                <h3>Filtrage et Recherche Ultra-Rapide</h3>
+                <p>Retrouvez n'importe quel marqueur parmi des milliers en quelques millisecondes grâce à un moteur de recherche intelligent par mots-clés et filtres combinés.</p>
+            </div>
+            <div class="feature-video">
+                <div class="video-placeholder sub-video">
+                    <div class="play-button small">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Démo : Recherche & Filtres</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalité 3 -->
+        <div class="feature-row">
+            <div class="feature-text">
+                <span class="feature-tag">Fonctionnalité 03</span>
+                <h3>Exportation multi-formats</h3>
+                <p>Partagez vos rapports et vos listes de marqueurs sous forme de documents structurés prêts à être envoyés à vos équipes ou clients.</p>
+            </div>
+            <div class="feature-video">
+                <div class="video-placeholder sub-video">
+                    <div class="play-button small">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Démo : Export de données</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appel à l'action Final -->
+    <section class="cta-section" id="telecharger">
+        <h2>Prêt à optimiser votre gestion de marqueurs ?</h2>
+        <p>Rejoignez les utilisateurs qui gagnent du temps au quotidien avec MarkerList.</p>
+        <a href="#" class="btn btn-primary btn-large">Télécharger MarkerList</a>
+    </section>
+
+    <!-- Pied de page -->
+    <footer>
+        <p>© 2026 MarkerList. Tous droits réservés.</p>
+    </footer>
+
 </body>
 </html>
