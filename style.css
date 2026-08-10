@@ -422,3 +422,31 @@ footer {
     .feature-row, .feature-row.reverse { flex-direction: column; gap: 2rem; }
     .nav-links { display: none; }
 }
+
+/* --- Conteneur et style du logo principal en mode "Hero" --- */
+.hero-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.hero-logo {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+    border-radius: 28px;
+    background: radial-gradient(circle, rgba(15, 22, 41, 0.9) 0%, rgba(7, 10, 18, 0.95) 100%);
+    border: 2px solid var(--border-highlight);
+    box-shadow: 0 0 45px rgba(36, 87, 255, 0.45), 
+                inset 0 0 20px rgba(223, 247, 255, 0.15);
+    padding: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-logo:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 65px rgba(36, 87, 255, 0.75), 
+                inset 0 0 25px var(--iceberg-glass);
+    border-color: var(--iceberg-glass);
+}
