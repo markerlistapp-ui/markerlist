@@ -3,42 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarkerList — Marquez, organisez et retrouvez vos repères en un clic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <title>Markerlist - Contrôlez et réorganisez vos sessions en live</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- --- Navigation --- -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="logo-markerlist.png" alt="Logo MarkerList" class="nav-logo">
-            <span>MarkerList</span>
+            <img src="assets/images/logo.png" alt="Logo Markerlist" class="nav-logo">
+            <span>Markerlist</span>
         </div>
         <div class="nav-links">
-            <a href="#fonctionnalites">Fonctionnalités</a>
+            <a href="#features">Fonctionnalités</a>
             <a href="#demo">Démo</a>
-            <a href="#telecharger" class="btn-small">Obtenir l'application</a>
+            <a href="#download" class="btn-small">Obtenir l'application</a>
         </div>
     </nav>
 
-    <!-- Section Héro (Accroche immédiate + Vidéo Principale) -->
-    <header class="hero">
-        <div class="hero-badge">⚡ La gestion de marqueurs nouvelle génération</div>
-        <h1 class="hero-title">Ne perdez plus jamais un repère important.</h1>
-        <p class="hero-subtitle">
-            <strong>MarkerList</strong> est l'outil ultime pour capturer, organiser et structurer vos marqueurs en temps réel. Simplifiez votre flux de travail et retrouvez n'importe quelle information en un instant.
-        </p>
-        
-        <div class="hero-actions">
-            <a href="#telecharger" class="btn btn-primary">Essayer gratuitement</a>
-            <a href="#demo" class="btn btn-secondary">Voir la démo (1 min)</a>
+    <!-- --- Hero / Header --- -->
+    <section class="hero">
+        <!-- Logo principal mis en valeur au centre -->
+        <div class="hero-logo-container">
+            <img src="assets/images/logo.png" alt="Logo Markerlist" class="hero-logo">
         </div>
 
-        <!-- Emplacement Vidéo de Présentation Principale -->
+        <div class="hero-badge">⚡ La gestion de marqueurs nouvelle génération</div>
+        
+        <h1 class="hero-title">Ne perdez plus jamais un repère en live.</h1>
+        
+        <p class="hero-subtitle">
+            L'outil ultime pour les musiciens et les groupes. Contrôlez, réorganisez et structurez vos sessions en temps réel sur scène, <strong>en toute sécurité</strong>.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#download" class="btn btn-primary btn-large">Essayer gratuitement</a>
+            <a href="#demo" class="btn btn-secondary btn-large">Voir la démo (1 min)</a>
+        </div>
+
+        <!-- --- Lecteur Vidéo Principal --- -->
         <div class="video-hero-container" id="demo">
             <div class="video-wrapper">
-                <!-- Remplacez le bloc ci-dessous par votre balise <video> ou <iframe> YouTube/Vimeo -->
                 <div class="video-placeholder">
                     <div class="play-button">
                         <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -47,64 +53,73 @@
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Section Présentation Flash (Clarification produit) -->
+    <!-- --- Section Proposition de Valeur (3 Piliers) --- -->
     <section class="value-prop">
-        <h2>Pourquoi utiliser MarkerList ?</h2>
+        <h2>Pourquoi choisir Markerlist ?</h2>
         <div class="value-grid">
-            <div class="value-card">
-                <div class="icon">🎯</div>
-                <h3>Précision Chirurgicale</h3>
-                <p>Posez des repères temporels ou textuels à la volée sans interrompre votre travail.</p>
-            </div>
+            
+            <!-- Pilier 1 -->
             <div class="value-card">
                 <div class="icon">⚡</div>
-                <h3>Organisation Instantanée</h3>
-                <p>Classez automatiquement vos marqueurs par catégories, tags et niveaux de priorité.</p>
+                <h3>Maîtrise en temps réel</h3>
+                <p>Capturez et organisez vos marqueurs en plein set sans jamais rompre le flux de votre performance.</p>
             </div>
+
+            <!-- Pilier 2 -->
             <div class="value-card">
                 <div class="icon">🔄</div>
-                <h3>Export & Intégration</h3>
-                <p>Exportez vos listes dans vos outils préférés en un clic (PDF, Markdown, JSON).</p>
+                <h3>Lecture sur-mesure</h3>
+                <p>Activez la <strong>lecture continue</strong> pour enchaîner vos morceaux sans coupure, ou programmez un <strong>stop automatique</strong> précis entre chaque titre.</p>
             </div>
+
+            <!-- Pilier 3 -->
+            <div class="value-card">
+                <div class="icon">🛡️</div>
+                <h3>Sécurité Anti-Erreur</h3>
+                <p>Une interface sécurisée et pensée pour l'urgence du direct, qui élimine tout risque de fausse manœuvre en plein concert.</p>
+            </div>
+
         </div>
     </section>
 
-    <!-- Sous-sections Démo Vidéo par Fonctionnalité -->
-    <section class="features" id="fonctionnalites">
-        <h2 class="section-title">Découvrez MarkerList en action</h2>
+    <!-- --- Sous-sections Fonctionnalités / Démo --- -->
+    <section class="features" id="features">
+        <h2 class="section-title">Pensé pour la scène, sans compromis</h2>
 
         <!-- Fonctionnalité 1 -->
         <div class="feature-row">
             <div class="feature-text">
-                <span class="feature-tag">Fonctionnalité 01</span>
-                <h3>Marquage en un clic</h3>
-                <p>Créez des repères instantanés grâce à des raccourcis clavier personnalisables. Plus besoin de naviguer dans des menus complexes pendant vos sessions de travail.</p>
+                <span class="feature-tag">Glisser & Réorganiser</span>
+                <h3>Modifiez votre setlist à la volée</h3>
+                <p>Glissez, déposez et réorganisez vos repères en un clin d'œil, même lorsque la lecture est en cours.</p>
             </div>
             <div class="feature-video">
-                <div class="video-placeholder sub-video">
-                    <div class="play-button small">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <div class="video-wrapper sub-video">
+                    <div class="video-placeholder">
+                        <div class="play-button small">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
-                    <span>Démo : Marquage instantané</span>
                 </div>
             </div>
         </div>
 
-        <!-- Fonctionnalité 2 -->
+        <!-- Fonctionnalité 2 (Inversée) -->
         <div class="feature-row reverse">
             <div class="feature-text">
-                <span class="feature-tag">Fonctionnalité 02</span>
-                <h3>Filtrage et Recherche Ultra-Rapide</h3>
-                <p>Retrouvez n'importe quel marqueur parmi des milliers en quelques millisecondes grâce à un moteur de recherche intelligent par mots-clés et filtres combinés.</p>
+                <span class="feature-tag">Bibliothèque & Gestion</span>
+                <h3>Ajustez votre show en direct</h3>
+                <p>Piochez instantanément vos morceaux depuis votre onglet <strong>bibliothèque</strong> pour les ajouter à la setlist, ou retirez-les en un clic.</p>
             </div>
             <div class="feature-video">
-                <div class="video-placeholder sub-video">
-                    <div class="play-button small">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <div class="video-wrapper sub-video">
+                    <div class="video-placeholder">
+                        <div class="play-button small">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
-                    <span>Démo : Recherche & Filtres</span>
                 </div>
             </div>
         </div>
@@ -112,55 +127,60 @@
         <!-- Fonctionnalité 3 -->
         <div class="feature-row">
             <div class="feature-text">
-                <span class="feature-tag">Fonctionnalité 03</span>
-                <h3>Exportation multi-formats</h3>
-                <p>Partagez vos rapports et vos listes de marqueurs sous forme de documents structurés prêts à être envoyés à vos équipes ou clients.</p>
+                <span class="feature-tag">International & Confort</span>
+                <h3>Pour tous les groupes, partout</h3>
+                <p>Profitez d'une gestion multimédia flexible et d'une application entièrement disponible en <strong>français, anglais, espagnol et allemand</strong>.</p>
             </div>
             <div class="feature-video">
-                <div class="video-placeholder sub-video">
-                    <div class="play-button small">
-                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <div class="video-wrapper sub-video">
+                    <div class="video-placeholder">
+                        <div class="play-button small">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
-                    <span>Démo : Export de données</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Appel à l'action Final -->
-    <section class="cta-section" id="telecharger">
-        <h2>Prêt à optimiser votre gestion de marqueurs ?</h2>
-        <p>Rejoignez les utilisateurs qui gagnent du temps au quotidien avec MarkerList.</p>
-        <a href="#" class="btn btn-primary btn-large">Télécharger MarkerList</a>
+    <!-- --- Section Offres & Tarifs --- -->
+    <section class="cta-section" id="download">
+        <h2>Choisissez la formule adaptée à votre projet</h2>
+        <p>Propulsez vos performances live dès aujourd'hui.</p>
+        
+        <div class="value-grid" style="max-width: 800px; margin: 0 auto 3rem auto;">
+            
+            <!-- Licence Standard -->
+            <div class="value-card" style="text-align: center;">
+                <h3 style="color: var(--quantum-blue); font-size: 1.5rem; margin-bottom: 1rem;">Standard</h3>
+                <p style="margin-bottom: 1.5rem;">Parfait pour propulser vos performances solo ou configurations légères au niveau supérieur.</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;">
+                    ✔ Contrôle essentiel des marqueurs<br>
+                    ✔ Stop auto / Lecture continue<br>
+                    ✔ Support multimédia (<strong>jusqu'à 2 utilisateurs</strong>)
+                </p>
+                <a href="#" class="btn btn-secondary" style="width: 100%;">Choisir Standard</a>
+            </div>
+
+            <!-- Licence Pro -->
+            <div class="value-card" style="text-align: center; border-color: var(--quantum-blue);">
+                <h3 style="color: var(--quantum-blue); font-size: 1.5rem; margin-bottom: 1rem;">Pro</h3>
+                <p style="margin-bottom: 1.5rem;">La puissance absolue sans aucune limite pour toute votre équipe sur scène.</p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;">
+                    ✔ Fonctionnalités avancées & Multi-DAW<br>
+                    ✔ Sécurité maximale en live<br>
+                    ✔ Support multimédia (<strong>utilisateurs illimités</strong>)
+                </p>
+                <a href="#" class="btn btn-primary" style="width: 100%;">Choisir Pro</a>
+            </div>
+
+        </div>
     </section>
 
-    <section class="hero">
-    <!-- Logo principal mis en valeur -->
-    <div class="hero-logo-container">
-        <img src="assets/images/ton-logo.png" alt="Markerlist Logo" class="hero-logo">
-    </div>
-
-    <!-- Badge, Titre et sous-titre existants -->
-    <div class="hero-badge">Propulsé pour Ableton Live</div>
-    <h1 class="hero-title">Contrôlez et réorganisez vos sessions en live</h1>
-    <p class="hero-subtitle">
-        Optimisez votre flux de travail sur scène grâce à une interface pensée pour la performance.
-    </p>
-
-    <div class="hero-actions">
-        <a href="#download" class="btn btn-primary btn-large">Télécharger Markerlist</a>
-        <a href="#demo" class="btn btn-secondary btn-large">Voir la démo</a>
-    </div>
-</section>
-    
-    
-    <!-- Pied de page -->
+    <!-- --- Footer --- -->
     <footer>
-        <p>© 2026 MarkerList. Tous droits réservés.</p>
+        <p>&copy; 2026 Markerlist. Tous droits réservés. Propulsé pour la scène.</p>
     </footer>
 
 </body>
-
-
-    
 </html>
