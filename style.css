@@ -198,10 +198,14 @@ body {
 /* --- Logo Hero spécifique --- */
 .hero-logo-container {
     background: transparent !important;
+    background-color: transparent !important;
     box-shadow: none !important;
     border: none !important;
+    outline: none !important;
+    width: auto !important;
+    height: auto !important;
     padding: 0 !important;
-    display: inline-block; /* Pour qu'il ne prenne que la largeur du logo */
+    margin-bottom: 20px;
 }
 
 /* --- Nettoyage absolu des conteneurs de logos --- */
