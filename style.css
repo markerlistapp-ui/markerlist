@@ -97,8 +97,8 @@ body {
 
 .lang-selector select {
     background: transparent;
-    color: var(--text-white, #fff); /* Assurez-vous que c'est lisible */
-    border: 1px solid var(--border-color, #444);
+    color: var(--text-white);
+    border: 1px solid var(--border-color);
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
@@ -438,7 +438,7 @@ body {
     height: 20px;
 }
 
-/* --- Section CTA Final --- */
+/* --- Section CTA Final & Grille Tarifaire --- */
 .cta-section {
     text-align: center;
     padding: 6rem 1.5rem;
@@ -459,58 +459,58 @@ body {
 }
 
 .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Largeur minimale augmentée pour le confort */
-            gap: 1.5rem;
-            align-items: stretch;
-        }
-        
-        .pricing-card {
-            border: 1px solid var(--border-color, #e2e8f0);
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 2.5rem 1.5rem;
-            display: flex;
-            flex-direction: column; /* Aligne tout en colonne */
-            text-align: center;
-            height: 100%; /* Important pour l'alignement */
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+}
 
-        /* Hauteur fixe pour le prix pour éviter les décalages */
-        .price-container {
-            height: 80px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
+.pricing-card {
+    border: 1px solid var(--border-color);
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+}
 
-        .price-value {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #111827;
-            line-height: 1;
-        }
+/* Hauteur fixe pour le prix pour éviter les décalages */
+.price-container {
+    height: 80px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
 
-        .price-sub {
-            font-size: 0.8rem;
-            color: #6b7280;
-            margin-top: 5px;
-        }
+.price-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1;
+}
 
-        .pricing-card p {
-            flex-grow: 1; /* Pousse le bouton vers le bas */
-            color: #6b7280;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
+.price-sub {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
 
-        .pricing-card ul {
-            text-align: left;
-            margin-bottom: 2rem;
-            padding-left: 1.2rem;
-        }
+.pricing-card p {
+    flex-grow: 1;
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
 
+.pricing-card ul {
+    text-align: left;
+    margin-bottom: auto;
+    margin-top: 1rem;
+    padding-left: 1.2rem;
+}
 
 /* --- Footer --- */
 footer {
@@ -528,7 +528,6 @@ footer {
     color: #ffffff !important;
 }
 
-
 /* --- Responsive Mobile --- */
 @media (max-width: 768px) {
     .navbar {
@@ -537,7 +536,6 @@ footer {
         gap: 1rem;
     }
 
-    /* Réaffichage et adaptation de la barre de navigation sur mobile */
     .nav-links {
         display: flex;
         flex-direction: row;
@@ -565,7 +563,7 @@ footer {
     }
 
     .value-grid, 
-    section > div[style*="display: grid"] {
+    .pricing-grid {
         grid-template-columns: 1fr !important;
         gap: 1.5rem !important;
     }
