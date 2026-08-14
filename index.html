@@ -106,60 +106,50 @@
     </section>
 
 
-    <!-- --- Section Points Forts & Vidéos Démo --- -->
-    <section class="features-section" style="max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem;">
-        <h2 style="text-align: center; margin-bottom: 0.5rem;">Conçu pour la scène, pensé pour le live</h2>
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem;">Découvrez comment MarkerList simplifie la gestion de vos setlists en concert.</p>
+    <!-- --- Section Points Forts (Style Alterné / Zig-Zag) --- -->
+    <section class="features-section" style="max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;">
+        <h2 style="text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 4rem;">Pensé pour la scène, sans compromis</h2>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        <div style="display: flex; flex-direction: column; gap: 5rem;">
             
-            <!-- Point fort 1 -->
-            <div class="value-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Ligne 1 : Texte à gauche, Vidéo à droite -->
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
                 <div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.2rem; margin-bottom: 0.8rem;">Navigation instantanée</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">
-                        Pilotez vos marqueurs Ableton Live en temps réel depuis une tablette ou un smartphone sur scène sans quitter vos instruments des yeux.
-                    </p>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Glisser & Réorganiser</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Modifiez votre setlist à la volée</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Glissez, déposez et réorganisez vos repères en un clin d'œil, même lorsque la lecture est en cours sur votre session.</p>
                 </div>
-               <!-- Vidéo intégrée -->
-                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
-                    </video>
+                <!-- Encadré Vidéo / Remplacer par <video> si besoin -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
                 </div>
             </div>
 
-            <!-- Point fort 2 -->
-            <div class="value-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Ligne 2 : Vidéo à gauche, Texte à droite -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
+                <!-- Encadré Vidéo (Ordre inversé visuellement) -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
+                </div>
                 <div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.2rem; margin-bottom: 0.8rem;">Glisser & Réorganiser</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">
-                        Modifiez l'ordre de votre setlist à la volée entre deux morceaux. La synchronisation avec Ableton s'effectue instantanément.
-                    </p>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Bibliothèque & Gestion</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Ajustez votre show en direct</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Piochez instantanément vos morceaux depuis votre onglet <strong>bibliothèque</strong> pour les ajouter à la setlist, ou retirez-les en un clic.</p>
                 </div>
-           <!-- Vidéo intégrée -->
-                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
-                    </video>
-                </div>
-                
             </div>
 
-            <!-- Point fort 3 -->
-            <div class="value-card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <!-- Ligne 3 : Texte à gauche, Vidéo à droite -->
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
                 <div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.2rem; margin-bottom: 0.8rem;">Mode Live View</h3>
-                    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;">
-                        Un affichage scène épuré à fort contraste pour garder une visibilité parfaite, même sous les éclairages intenses des concerts.
-                    </p>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">International & Confort</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Pour tous les groupes, partout</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Profitez d'une gestion multimédia flexible et d'une application entièrement disponible en <strong>français, anglais, espagnol et allemand</strong>.</p>
                 </div>
-           <!-- Vidéo intégrée -->
-                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
-                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
-                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
-                    </video>
+                <!-- Encadré Vidéo -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
                 </div>
+            </div>
 
         </div>
     </section>
