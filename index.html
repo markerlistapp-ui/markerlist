@@ -155,119 +155,108 @@
     </section>
 
     
-<!-- --- Section Offres & Tarifs --- -->
-    <section class="cta-section" id="download">
-        <h2>Choisissez la formule adaptée à votre projet</h2>
-        <p>Testez gratuitement pendant 15 minutes ou profitez de nos offres compatibles Ableton Live 11 et Live 12.</p>
+<!-- Grilles tarifaires -->
+    <div class="pricing-container">
         
-        <div class="value-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); max-width: 1350px; margin: 0 auto 3rem auto; gap: 15px; align-items: stretch;">
+        <!-- 4 offres principales -->
+        <div class="main-offers">
             
-            <!-- Offre Découverte -->
-            <div class="value-card" style="text-align: center; border-color: rgba(36, 87, 255, 0.2); display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem 1rem;">
-                <div style="display: flex; flex-direction: column; height: 100%;">
-                    <!-- Espace Tag / Optionnel (pour garder l'alignement avec le Pass) -->
-                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; visibility: hidden;">Inclus</div>
-                    <!-- Titre -->
-                    <h3 style="color: var(--quantum-blue); font-size: 1.15rem; margin-bottom: 0.5rem; min-height: 2.3rem; display: flex; align-items: center; justify-content: center;">Découverte</h3>
-                    <!-- Prix -->
-                    <div style="min-height: 3rem; display: flex; align-items: center; justify-content: center;">
-                        <p style="font-size: 1.6rem; font-weight: 800; color: var(--text-white); margin: 0;">Gratuit</p>
-                    </div>
-                    <!-- Description courte -->
-                    <p style="margin: 0.8rem 0 1.2rem 0; font-size: 0.8rem; min-height: 2.4rem;">Idéal pour tester l'application en conditions réelles.</p>
-                    <!-- Liste de fonctionnalités -->
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; text-align: left; flex-grow: 1;">
-                        ✔ 1 Ordinateur hôte<br>
-                        ✔ 1 Périphérique<br>
-                        ✔ Fonctionnalités de l'offre Standard Solo<br>
-                        ✔ <strong>Session 15 min, toutes les 15 min</strong>
-                    </p>
-                </div>
-                <a href="#" class="btn btn-secondary" style="width: 100%; padding: 0.6rem 0.5rem; font-size: 0.85rem;">Essayer (15 min)</a>
+            <!-- Découverte -->
+            <div class="card">
+                <h2 class="card-title">Découverte</h2>
+                <div class="card-price">Gratuit</div>
+                <div class="card-price-period">&nbsp;</div>
+                <p class="card-desc">Idéal pour tester l'application en conditions réelles.</p>
+                <ul class="card-features">
+                    <li>1 Ordinateur hôte</li>
+                    <li>1 Périphérique</li>
+                    <li>Fonctionnalités de l'offre Standard Solo</li>
+                    <li>Session 15 min, toutes les 15 min</li>
+                </ul>
+                <a href="#" class="btn btn-secondary">Essayer (15 min)</a>
             </div>
 
-            <!-- Offre Access -->
-            <div class="value-card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem 1rem;">
-                <div style="display: flex; flex-direction: column; height: 100%;">
-                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; visibility: hidden;">Inclus</div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.15rem; margin-bottom: 0.5rem; min-height: 2.3rem; display: flex; align-items: center; justify-content: center;">Access</h3>
-                    <div style="min-height: 3rem; display: flex; align-items: center; justify-content: center;">
-                        <p style="font-size: 1.6rem; font-weight: 800; color: var(--text-white); margin: 0;">9,99 €</p>
-                    </div>
-                    <p style="margin: 0.8rem 0 1.2rem 0; font-size: 0.8rem; min-height: 2.4rem;">Idéal pour les musiciens solos s'équipant léger.</p>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; text-align: left; flex-grow: 1;">
-                        ✔ 1 Ordinateur hôte<br>
-                        ✔ 1 Périphérique<br>
-                        ✔ Stop auto / Continu
-                    </p>
-                </div>
-                <a href="#" class="btn btn-secondary" style="width: 100%; padding: 0.6rem 0.5rem; font-size: 0.85rem;">Choisir Access</a>
+            <!-- Access -->
+            <div class="card">
+                <h2 class="card-title">Access</h2>
+                <div class="card-price">9,99 €</div>
+                <div class="card-price-period">/ unique</div>
+                <p class="card-desc">Idéal pour les musiciens solos s'équipant léger.</p>
+                <ul class="card-features">
+                    <li>1 Ordinateur hôte</li>
+                    <li>1 Périphérique</li>
+                    <li>Stop auto / Continu</li>
+                </ul>
+                <a href="#" class="btn btn-secondary">Choisir Access</a>
             </div>
 
-            <!-- Licence Standard Solo -->
-            <div class="value-card" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem 1rem;">
-                <div style="display: flex; flex-direction: column; height: 100%;">
-                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; visibility: hidden;">Inclus</div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.15rem; margin-bottom: 0.5rem; min-height: 2.3rem; display: flex; align-items: center; justify-content: center;">Standard Solo</h3>
-                    <div style="min-height: 3rem; display: flex; align-items: center; justify-content: center;">
-                        <p style="font-size: 1.6rem; font-weight: 800; color: var(--text-white); margin: 0;">34,99 €</p>
-                    </div>
-                    <p style="margin: 0.8rem 0 1.2rem 0; font-size: 0.8rem; min-height: 2.4rem;">Parfait pour propulser duos et performances.</p>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; text-align: left; flex-grow: 1;">
-                        ✔ 1 Ordinateur hôte<br>
-                        ✔ 2 Périphériques<br>
-                        ✔ Glisser & Réorganiser<br>
-                        ✔ Export PDF Setlist
-                    </p>
-                </div>
-                <a href="#" class="btn btn-secondary" style="width: 100%; padding: 0.6rem 0.5rem; font-size: 0.85rem;">Choisir Solo</a>
+            <!-- Standard Solo -->
+            <div class="card">
+                <h2 class="card-title">Standard Solo</h2>
+                <div class="card-price">29,99 €</div>
+                <div class="card-price-period">/ unique</div>
+                <p class="card-desc">Parfait pour propulser duos et performances.</p>
+                <ul class="card-features">
+                    <li>1 Ordinateur hôte</li>
+                    <li>2 Périphériques</li>
+                    <li>Glisser & Réorganiser</li>
+                    <li>Export PDF Setlist</li>
+                </ul>
+                <a href="#" class="btn btn-secondary">Choisir Solo</a>
             </div>
 
-            <!-- Licence Standard Multi -->
-            <div class="value-card" style="text-align: center; border-color: var(--quantum-blue); display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem 1rem;">
-                <div style="display: flex; flex-direction: column; height: 100%;">
-                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.3rem; visibility: hidden;">Inclus</div>
-                    <h3 style="color: var(--quantum-blue); font-size: 1.15rem; margin-bottom: 0.5rem; min-height: 2.3rem; display: flex; align-items: center; justify-content: center;">Standard Multi</h3>
-                    <div style="min-height: 3rem; display: flex; align-items: center; justify-content: center;">
-                        <p style="font-size: 1.6rem; font-weight: 800; color: var(--text-white); margin: 0;">59,99 €</p>
-                    </div>
-                    <p style="margin: 0.8rem 0 1.2rem 0; font-size: 0.8rem; min-height: 2.4rem;">La puissance absolue pour toute votre équipe.</p>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; text-align: left; flex-grow: 1;">
-                        ✔ 1 Ordinateur hôte<br>
-                        ✔ 5 Périphériques<br>
-                        ✔ Glisser & Réorganiser<br>
-                        ✔ Export PDF Setlist<br>
-                        ✔ Mode Live View
-                    </p>
-                </div>
-                <a href="#" class="btn btn-primary" style="width: 100%; padding: 0.6rem 0.5rem; font-size: 0.85rem;">Choisir Multi</a>
-            </div>
-
-            <!-- Option Pass Évolution -->
-            <div class="value-card" style="text-align: center; border-color: rgba(36, 87, 255, 0.4); background: rgba(36, 87, 255, 0.03); display: flex; flex-direction: column; justify-content: space-between; padding: 1.5rem 1rem;">
-                <div style="display: flex; flex-direction: column; height: 100%;">
-                    <!-- Vraie mention Optionnel (alignée avec l'espace invisible des autres cartes) -->
-                    <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--quantum-blue); font-weight: 700; margin-bottom: 0.3rem;">Optionnel</div>
-                    <h3 style="color: var(--text-white); font-size: 1.15rem; margin-bottom: 0.5rem; min-height: 2.3rem; display: flex; align-items: center; justify-content: center;">Pass Évolution</h3>
-                    <div style="min-height: 3rem; display: flex; align-items: center; justify-content: center;">
-                        <p style="font-size: 1.6rem; font-weight: 800; color: var(--quantum-blue); margin: 0;">14,99 € <span style="font-size: 0.8rem; font-weight: 400; color: var(--text-muted);">/an</span></p>
-                    </div>
-                    <p style="margin: 0.8rem 0 1.2rem 0; font-size: 0.8rem; min-height: 2.4rem;">Pour ne jamais rater une évolution majeure.</p>
-                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; text-align: left; flex-grow: 1;">
-                        ✔ Versions majeures auto<br>
-                        ✔ Mises à jour continues<br>
-                        ✔ Support prioritaire
-                    </p>
-                </div>
-                <a href="#" class="btn btn-secondary" style="width: 100%; padding: 0.6rem 0.5rem; font-size: 0.85rem;">Ajouter</a>
+            <!-- Standard Multi -->
+            <div class="card featured">
+                <h2 class="card-title">Standard Multi</h2>
+                <div class="card-price">59,99 €</div>
+                <div class="card-price-period">/ unique</div>
+                <p class="card-desc">La puissance absolue pour toute votre équipe.</p>
+                <ul class="card-features">
+                    <li>1 Ordinateur hôte</li>
+                    <li>5 Périphériques</li>
+                    <li>Glisser & Réorganiser</li>
+                    <li>Export PDF Setlist</li>
+                    <li>Mode Live View</li>
+                </ul>
+                <a href="#" class="btn btn-primary">Choisir Multi</a>
             </div>
 
         </div>
 
-        <p style="text-align: center; font-size: 0.85rem; color: var(--text-muted); margin-top: -1rem; margin-bottom: 2rem;">
-            * Option Add-on "Utilisateurs illimités" disponible à 34,99 € (paiement unique) pour l'offre Standard Multi.
-        </p>
-    </section>
+        <!-- 2 options optionnelles -->
+        <div class="options-offers">
+
+            <!-- Pass Évolution -->
+            <div class="card">
+                <div class="card-badge">Optionnel</div>
+                <h2 class="card-title dark">Pass Évolution</h2>
+                <div class="card-price" style="color: var(--quantum-blue);">14,99 €</div>
+                <div class="card-price-period">/ an</div>
+                <p class="card-desc">Pour ne jamais rater une évolution majeure.</p>
+                <ul class="card-features">
+                    <li>Versions majeures auto</li>
+                    <li>Mises à jour continues</li>
+                    <li>Support prioritaire</li>
+                </ul>
+                <a href="#" class="btn btn-secondary">Ajouter</a>
+            </div>
+
+            <!-- Utilisateurs illimités -->
+            <div class="card addon">
+                <div class="card-badge">Option Add-on</div>
+                <h2 class="card-title dark">Utilisateurs illimités</h2>
+                <div class="card-price" style="color: var(--quantum-blue);">34,99 €</div>
+                <div class="card-price-period">/ unique</div>
+                <p class="card-desc">Disponible en complément pour l'offre Standard Multi.</p>
+                <ul class="card-features">
+                    <li>Nombre de périphériques illimité sur le réseau local</li>
+                </ul>
+                <a href="#" class="btn btn-secondary">Ajouter l'option</a>
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- --- Footer --- -->
     <footer>
