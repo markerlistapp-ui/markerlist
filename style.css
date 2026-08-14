@@ -197,10 +197,11 @@ body {
 
 /* --- Logo Hero spécifique --- */
 .hero-logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    display: inline-block; /* Pour qu'il ne prenne que la largeur du logo */
 }
 
 .hero-logo {
