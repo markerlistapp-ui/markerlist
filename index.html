@@ -30,6 +30,24 @@
             height: auto !important;
             background: transparent !important;
         }
+        /* Conteneur global empilé verticalement */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column; /* Force l'empilement vertical : Grille -> Prérequis -> Footer */
+    gap: 3rem;
+}
+
+/* Grille des tarifs (qui s'adapte en colonnes pour les cartes) */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1.5rem;
+    align-items: stretch;
+    width: 100%;
+}
     </style>
 </head>
 <body>
