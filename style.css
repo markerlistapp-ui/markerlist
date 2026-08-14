@@ -444,6 +444,20 @@ footer {
     width: 100%;
 }
 
+<!-- --- Script de détection de langue --- -->
+    <script>
+        // Détecte la langue du navigateur au chargement de la page
+        const userLang = navigator.language || navigator.userLanguage;
+        const shortLang = userLang.substring(0, 2).toLowerCase();
+        
+        const supportedLanguages = ['fr', 'en', 'es', 'de'];
+        const currentLang = supportedLanguages.includes(shortLang) ? shortLang : 'en';
+
+        console.log("Langue détectée et appliquée :", currentLang);
+        
+        // Vous pourrez ici basculer les textes de votre page selon "currentLang"
+    </script>
+
 /* --- Responsive Mobile --- */
 @media (max-width: 768px) {
     .hero-title { font-size: 2.2rem; }
