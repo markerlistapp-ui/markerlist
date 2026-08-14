@@ -49,8 +49,8 @@
 
     <!-- --- Hero / Header --- -->
     <section class="hero">
-        <div style="margin-bottom: 1.5rem;">
-            <img src="{{ url_for('static', filename='images/votre-logo.svg') }}" alt="MarkerList Logo" style="width: 120px; height: auto; display: inline-block;">
+        <div class="hero-logo-container">
+            <img src="{{ url_for('static', filename='images/votre-logo.svg') }}" alt="MarkerList Logo" class="hero-logo">
         </div>
 
         <div class="hero-badge"> La gestion de marqueurs nouvelle génération sur Ableton Live</div>
@@ -154,8 +154,6 @@
         </div>
     </section>
 
-
-
     
 <!-- --- Section Offres & Tarifs --- -->
     <section class="cta-section" id="download">
@@ -238,7 +236,7 @@
                         ✔ 1 Ordinateur hôte<br>
                         ✔ 5 Périphériques<br>
                         ✔ Glisser & Réorganiser<br>
-                        ✔ Export PDF Setlist
+                        ✔ Export PDF Setlist<br>
                         ✔ Mode Live View
                     </p>
                 </div>
