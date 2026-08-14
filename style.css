@@ -458,6 +458,7 @@ body {
     margin-bottom: 2.5rem;
 }
 
+/* --- Grille et Cartes Tarifaires --- */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -476,13 +477,35 @@ body {
     height: 100%;
 }
 
-/* Hauteur fixe pour le prix pour éviter les décalages */
+/* On transforme l'intérieur de la carte en grille stricte à 5 étages */
+.pricing-card {
+    display: grid;
+    grid-template-rows: auto auto minmax(70px, auto) auto 1fr auto;
+    /* 
+      Ligne 1 : Titre
+      Ligne 2 : Prix (container)
+      Ligne 3 : Description (hauteur minimale garantie pour s'aligner)
+      Ligne 4 : Espace vide / séparateur optionnel
+      Ligne 5 : Liste des fonctionnalités (prend l'espace disponible)
+      Ligne 6 : Bouton (toujours collé en bas)
+    */
+}
+
+/* Attribution des éléments aux lignes de la grille */
+.pricing-card > h3 {
+    grid-row: 1;
+    font-weight: 700; 
+    color: #2457ff; 
+    margin-bottom: 1rem;
+}
+
 .price-container {
-    height: 80px; 
+    grid-row: 2;
+    height: 75px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .price-value {
@@ -498,18 +521,33 @@ body {
     margin-top: 5px;
 }
 
-.pricing-card p {
-    flex-grow: 1;
+.pricing-card > p {
+    grid-row: 3;
     color: #6b7280;
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.pricing-card ul {
+.pricing-card > ul {
+    grid-row: 5;
     text-align: left;
-    margin-bottom: auto;
-    margin-top: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 0;
     padding-left: 1.2rem;
+    list-style: none;
+}
+
+.pricing-card > ul li {
+    margin-bottom: 0.5rem;
+}
+
+/* Le bouton se place tout en bas sur la dernière ligne */
+.pricing-card > a {
+    grid-row: 6;
+    margin-top: auto;
 }
 
 /* --- Footer --- */
