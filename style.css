@@ -1,5 +1,5 @@
 /* ==========================================================
-   MARKERLIST - CSS CORRIGÉ ET STABILISÉ
+   MARKERLIST - CORRECTION DÉFINITIVE MISE EN PAGE
    ========================================================== */
 
 :root {
@@ -26,24 +26,17 @@ body {
     overflow-x: hidden;
 }
 
-/* --- NAVIGATION & HEADER SUPÉRIEUR --- */
-header, .header, .nav-container {
-    position: relative;
+/* --- NAVIGATION & HEADER --- */
+header, .header, nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 2rem;
-    max-width: 1250px;
+    padding: 1.25rem 2.5rem;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
-/* Sélecteur de langue en haut à gauche */
-.lang-selector, select {
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-/* --- HERO SECTION CENTRÉ --- */
+/* --- HERO SECTION --- */
 .hero {
     text-align: center;
     padding: 2rem 1.5rem 4rem 1.5rem;
@@ -51,7 +44,7 @@ header, .header, .nav-container {
     margin: 0 auto;
 }
 
-.hero img, .hero-logo, .logo-img {
+.hero img, .hero-logo {
     width: 120px;
     height: 120px;
     margin: 0 auto 1.5rem auto;
@@ -59,8 +52,7 @@ header, .header, .nav-container {
     object-fit: contain;
 }
 
-/* Le petit badge sous le logo */
-.hero span:not(.hero-title span), .badge, .hero-tag {
+.hero span, .hero-tag {
     display: inline-block;
     padding: 6px 16px;
     background: rgba(36, 87, 255, 0.06);
@@ -86,16 +78,15 @@ header, .header, .nav-container {
     margin-bottom: 2rem;
 }
 
-/* Boutons du Hero */
-.hero-cta, .cta-group, .hero div:has(.btn) {
+.hero-cta, .cta-group {
     display: flex;
     justify-content: center;
     gap: 1rem;
     margin-bottom: 3rem;
-    flex-wrap: wrap;
 }
 
-.btn, button, a.btn {
+/* Boutons */
+.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +99,7 @@ header, .header, .nav-container {
     font-size: 0.95rem;
 }
 
-.btn-primary, .hero .btn:first-child {
+.btn-primary {
     background: var(--quantum-blue);
     color: #ffffff;
     box-shadow: 0 4px 14px rgba(36, 87, 255, 0.3);
@@ -119,34 +110,32 @@ header, .header, .nav-container {
     background: var(--quantum-blue-hover);
 }
 
-.btn-secondary, .btn-outline, .hero .btn:nth-child(2) {
+.btn-outline, .btn-secondary {
     background: #ffffff;
     color: var(--text-main);
     border: 1px solid var(--border-color);
 }
 
-/* --- CONTENEUR VIDÉO PRINCIPAL --- */
-.video-container, .hero-video {
-    max-width: 900px;
-    margin: 0 auto;
-    border-radius: 20px;
-    background: #0f172a;
-    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
-    overflow: hidden;
+/* --- CONTENEURS VIDÉOS (Correction du bug du gros triangle noir) --- */
+iframe, video, .video-container, .feature-media, div:has(> svg), div:has(> video) {
+    background: #0f172a !important;
+    border-radius: 18px;
     aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.25);
+    overflow: hidden;
 }
 
-/* --- SECTIONS FEATURES (ALTERNÉES PROPREMENT) --- */
-.features, .feature-section {
+/* --- SECTIONS FEATURES (Remise en page alternée Texte / Vidéo) --- */
+section:has(.feature-row), .features-section, .features {
     padding: 5rem 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.feature-row, .feature-item {
+/* Si vos blocs de features sont des divs successifs, on les transforme en lignes alternées */
+.feature-row, .feature-item, div:has(> h2) {
     display: flex;
     align-items: center;
     gap: 4rem;
@@ -157,58 +146,20 @@ header, .header, .nav-container {
     flex-direction: row-reverse;
 }
 
-.feature-text {
-    flex: 1;
-}
-
-.feature-text h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 1rem;
-    letter-spacing: -0.5px;
-}
-
-.feature-text p {
-    color: var(--text-muted);
-    font-size: 1rem;
-}
-
-.feature-media {
-    flex: 1;
-    background: #0f172a;
-    border-radius: 16px;
-    aspect-ratio: 16 / 9;
-    box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.2);
-}
-
-/* --- SECTION TARIFS (GRID 6 COLONNES ÉQUILIBRÉES) --- */
-.pricing, .pricing-section {
+/* --- SECTION TARIFS --- */
+.pricing-section, .pricing {
     padding: 5rem 2rem;
     max-width: 1300px;
     margin: 0 auto;
     text-align: center;
 }
 
-.pricing h2 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 0.75rem;
-}
-
-.pricing > p {
-    color: var(--text-muted);
-    font-size: 1.05rem;
-    margin-bottom: 3.5rem;
-}
-
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
     align-items: stretch;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 
 .pricing-card {
@@ -219,65 +170,9 @@ header, .header, .nav-container {
     display: flex;
     flex-direction: column;
     text-align: left;
-    transition: all 0.2s ease;
 }
 
-.pricing-card.highlight, .pricing-card:nth-child(4) {
+.pricing-card.highlight {
     border-color: var(--quantum-blue);
     box-shadow: 0 15px 30px rgba(36, 87, 255, 0.08);
-}
-
-.pricing-card h3 {
-    color: var(--quantum-blue);
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-
-.pricing-card .price, .price-value {
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 0.75rem;
-    white-space: nowrap;
-}
-
-.pricing-card p {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    margin-bottom: 1.25rem;
-    min-height: 35px;
-}
-
-.pricing-card ul {
-    list-style: none;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
-}
-
-.pricing-card ul li {
-    font-size: 0.8rem;
-    color: #334155;
-    margin-bottom: 0.6rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 6px;
-}
-
-.pricing-card .btn, .pricing-card button {
-    width: 100%;
-    padding: 10px;
-    font-size: 0.85rem;
-    border-radius: 8px;
-}
-
-/* --- RESPONSIVE MOBILE --- */
-@media (max-width: 900px) {
-    .feature-row, .feature-item, .feature-row:nth-child(even) {
-        flex-direction: column;
-        gap: 2rem;
-    }
-    .hero h1 {
-        font-size: 2.3rem;
-    }
 }
