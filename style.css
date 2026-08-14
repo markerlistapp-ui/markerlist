@@ -1,5 +1,5 @@
 /* ==========================================================
-   MARKERLIST - HERO ORIGINAL RESTAURÉ & PROPRE
+   MARKERLIST - CSS CORRIGÉ ET STABILISÉ
    ========================================================== */
 
 :root {
@@ -8,7 +8,6 @@
     --bg-dark: #f8fafc;
     --bg-card: #ffffff;
     --border-color: rgba(36, 87, 255, 0.12);
-    --border-highlight: rgba(36, 87, 255, 0.4);
     --text-main: #0f172a;
     --text-muted: #64748b;
 }
@@ -27,41 +26,89 @@ body {
     overflow-x: hidden;
 }
 
-/* --- SÉLECTEUR DE LANGUE FLOTTANT (HAUT GAUCHE) --- */
-.lang-selector-top {
-    position: absolute;
-    top: 1.5rem;
-    left: 1.5rem;
-    z-index: 50;
+/* --- NAVIGATION & HEADER SUPÉRIEUR --- */
+header, .header, .nav-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    max-width: 1250px;
+    margin: 0 auto;
 }
 
-.lang-selector select {
-    background: #ffffff;
-    color: var(--text-main);
-    border: 1px solid var(--border-color);
-    padding: 6px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
+/* Sélecteur de langue en haut à gauche */
+.lang-selector, select {
     font-size: 0.85rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    font-weight: 600;
 }
 
-/* --- BOUTONS --- */
-.btn {
+/* --- HERO SECTION CENTRÉ --- */
+.hero {
+    text-align: center;
+    padding: 2rem 1.5rem 4rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero img, .hero-logo, .logo-img {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* Le petit badge sous le logo */
+.hero span:not(.hero-title span), .badge, .hero-tag {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(36, 87, 255, 0.06);
+    color: var(--quantum-blue);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(36, 87, 255, 0.12);
+}
+
+.hero h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+/* Boutons du Hero */
+.hero-cta, .cta-group, .hero div:has(.btn) {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.btn, button, a.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 14px 28px;
+    padding: 12px 24px;
     border-radius: 12px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
     cursor: pointer;
     font-size: 0.95rem;
 }
 
-.btn-primary {
+.btn-primary, .hero .btn:first-child {
     background: var(--quantum-blue);
     color: #ffffff;
     box-shadow: 0 4px 14px rgba(36, 87, 255, 0.3);
@@ -70,84 +117,16 @@ body {
 
 .btn-primary:hover {
     background: var(--quantum-blue-hover);
-    transform: translateY(-1px);
 }
 
-.btn-outline {
+.btn-secondary, .btn-outline, .hero .btn:nth-child(2) {
     background: #ffffff;
     color: var(--text-main);
     border: 1px solid var(--border-color);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
 }
 
-.btn-outline:hover {
-    border-color: var(--quantum-blue);
-    color: var(--quantum-blue);
-}
-
-/* --- HERO SECTION CENTRÉ (ORIGINAL) --- */
-.hero {
-    text-align: center;
-    padding: 4rem 1.5rem 3rem 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.hero-logo-container {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 1.5rem auto;
-    background: #ffffff;
-    border-radius: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 15px 35px rgba(36, 87, 255, 0.08);
-    border: 1px solid var(--border-color);
-}
-
-.hero-logo {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-}
-
-.hero-tag {
-    display: inline-block;
-    padding: 8px 20px;
-    background: rgba(36, 87, 255, 0.06);
-    color: var(--quantum-blue);
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(36, 87, 255, 0.12);
-}
-
-.hero-title {
-    font-size: 3.5rem;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    color: var(--text-main);
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    margin-bottom: 2.5rem;
-}
-
-.hero-cta-group {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3.5rem;
-}
-
-/* --- LECTEUR VIDÉO PRINCIPAL --- */
-.video-hero-container {
+/* --- CONTENEUR VIDÉO PRINCIPAL --- */
+.video-container, .hero-video {
     max-width: 900px;
     margin: 0 auto;
     border-radius: 20px;
@@ -155,201 +134,150 @@ body {
     box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
     overflow: hidden;
     aspect-ratio: 16 / 9;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.play-button {
-    width: 72px;
-    height: 72px;
-    background: var(--quantum-blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 0 30px rgba(36, 87, 255, 0.5);
-    cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.play-button:hover {
-    transform: scale(1.08);
-}
-
-/* --- SECTIONS FEATURES (ALTERNÉES) --- */
-.features-section {
-    padding: 6rem 2rem;
+/* --- SECTIONS FEATURES (ALTERNÉES PROPREMENT) --- */
+.features, .feature-section {
+    padding: 5rem 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
 
-.feature-row {
+.feature-row, .feature-item {
     display: flex;
     align-items: center;
-    gap: 5rem;
-    margin-bottom: 6rem;
+    gap: 4rem;
+    margin-bottom: 5rem;
 }
 
-.feature-row:last-child {
-    margin-bottom: 0;
-}
-
-.feature-row.reverse {
+.feature-row:nth-child(even), .feature-item.reverse {
     flex-direction: row-reverse;
 }
 
-.feature-content {
+.feature-text {
     flex: 1;
 }
 
-.feature-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(36, 87, 255, 0.08);
-    color: var(--quantum-blue);
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-}
-
-.feature-content h2 {
-    font-size: 2.25rem;
+.feature-text h2 {
+    font-size: 2rem;
     font-weight: 800;
     color: var(--text-main);
-    letter-spacing: -0.5px;
     margin-bottom: 1rem;
+    letter-spacing: -0.5px;
 }
 
-.feature-content p {
+.feature-text p {
     color: var(--text-muted);
-    font-size: 1.05rem;
-    line-height: 1.6;
+    font-size: 1rem;
 }
 
-.feature-video-box {
+.feature-media {
     flex: 1;
     background: #0f172a;
-    border-radius: 18px;
+    border-radius: 16px;
     aspect-ratio: 16 / 9;
     box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-/* --- SECTION TARIFS (PRICING) --- */
-.pricing-section {
-    padding: 6rem 2rem;
-    max-width: 1250px;
+/* --- SECTION TARIFS (GRID 6 COLONNES ÉQUILIBRÉES) --- */
+.pricing, .pricing-section {
+    padding: 5rem 2rem;
+    max-width: 1300px;
     margin: 0 auto;
     text-align: center;
 }
 
-.pricing-header {
-    margin-bottom: 4rem;
-}
-
-.pricing-header h2 {
-    font-size: 2.75rem;
+.pricing h2 {
+    font-size: 2.5rem;
     font-weight: 800;
     color: var(--text-main);
-    letter-spacing: -1px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
-.pricing-header p {
+.pricing > p {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
+    margin-bottom: 3.5rem;
 }
 
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+    gap: 1rem;
     align-items: stretch;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .pricing-card {
     background: #ffffff;
     border: 1px solid var(--border-color);
-    border-radius: 20px;
-    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    padding: 1.75rem 1.25rem;
     display: flex;
     flex-direction: column;
     text-align: left;
-    position: relative;
-    transition: all 0.25s ease;
+    transition: all 0.2s ease;
 }
 
-.pricing-card.highlight {
+.pricing-card.highlight, .pricing-card:nth-child(4) {
     border-color: var(--quantum-blue);
-    box-shadow: 0 20px 40px rgba(36, 87, 255, 0.08);
+    box-shadow: 0 15px 30px rgba(36, 87, 255, 0.08);
 }
 
 .pricing-card h3 {
     color: var(--quantum-blue);
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.5rem;
 }
 
-.price-value {
-    font-size: 1.85rem;
+.pricing-card .price, .price-value {
+    font-size: 1.6rem;
     font-weight: 800;
     color: var(--text-main);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     white-space: nowrap;
 }
 
 .pricing-card p {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-bottom: 1.75rem;
-    min-height: 40px;
+    font-size: 0.8rem;
+    margin-bottom: 1.25rem;
+    min-height: 35px;
 }
 
 .pricing-card ul {
     list-style: none;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     flex-grow: 1;
 }
 
 .pricing-card ul li {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #334155;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: 6px;
 }
 
-.pricing-card .btn {
+.pricing-card .btn, .pricing-card button {
     width: 100%;
     padding: 10px;
-    font-size: 0.9rem;
-    border-radius: 10px;
-}
-
-.pricing-footer-note {
-    color: var(--text-muted);
     font-size: 0.85rem;
-    margin-top: 2rem;
+    border-radius: 8px;
 }
 
-/* --- RESPONSIVE --- */
+/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 900px) {
-    .feature-row, .feature-row.reverse {
+    .feature-row, .feature-item, .feature-row:nth-child(even) {
         flex-direction: column;
-        gap: 2.5rem;
+        gap: 2rem;
     }
-    .hero-title {
-        font-size: 2.5rem;
+    .hero h1 {
+        font-size: 2.3rem;
     }
 }
