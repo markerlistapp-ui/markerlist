@@ -307,6 +307,105 @@ body {
     box-shadow: 0 0 35px rgba(36, 87, 255, 0.6);
 }
 
+
+/* --- Style Éditorial / Épuré (Option 2) --- */
+.value-prop-editorial {
+    padding: 6rem 2rem;
+    background: #ffffff; /* Ou var(--bg-dark) selon vos préférences */
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editorial-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.editorial-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.editorial-tag {
+    color: var(--quantum-blue);
+    background: #e6edff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.editorial-header h2 {
+    font-size: 2.2rem;
+    color: var(--text-white);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.editorial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.editorial-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.editorial-item:hover {
+    background: #ffffff;
+    border-color: var(--border-highlight);
+    box-shadow: 0 10px 30px rgba(36, 87, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.editorial-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--quantum-blue);
+    opacity: 0.8;
+    line-height: 1;
+    min-width: 40px;
+}
+
+.editorial-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.editorial-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Responsive mobile */
+@media (max-width: 768px) {
+    .editorial-item {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    .editorial-header h2 {
+        font-size: 1.8rem;
+    }
+}
+
+
 /* --- Section Proposition de Valeur --- */
 .value-prop {
     padding: 5rem 8%;
