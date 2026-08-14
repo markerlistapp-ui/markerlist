@@ -422,16 +422,21 @@
         <p>&copy; 2026 Markerlist. Tous droits réservés. Propulsé pour la scène.</p>
     </footer>
 
-    <!-- Ajoutez le bloc script ici -->
-    <script>
-        function changeLanguage(lang) {
-            if (lang === 'fr') {
-                window.location.href = 'index.html';
-            } else {
-                window.location.href = 'index-' + lang + '.html';
-            }
+<script>
+    // Force le menu à afficher "FR" sur cette page
+    document.addEventListener("DOMContentLoaded", function() {
+        const select = document.querySelector(".lang-selector select");
+        if (select) select.value = "fr";
+    });
+
+    function changeLanguage(lang) {
+        if (lang === 'fr') {
+            window.location.href = 'index.html';
+        } else {
+            window.location.href = 'index-' + lang + '.html';
         }
-    </script>
+    }
+</script>
     
 </body>
 </html>
