@@ -227,6 +227,7 @@ body {
     box-shadow: none !important;
     outline: none !important;
     padding: 0 !important;
+    max-width: 140px !important;
     display: block; /* Évite les espaces parasites en bas de l'image */
 }
 
@@ -471,6 +472,30 @@ footer {
         
         // Vous pourrez ici basculer les textes de votre page selon "currentLang"
     </script>
+
+@media (max-width: 768px) {
+    /* Force toutes les grilles à passer sur une seule colonne sur mobile */
+    .value-grid, 
+    section > div[style*="display: grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+    
+    /* Ajustement des marges globales pour les petits écrans */
+    body {
+        overflow-x: hidden;
+    }
+    
+    section {
+        padding: 0 1rem !important;
+    }
+    
+    /* Réduction de la taille des grands titres sur mobile */
+    .hero-title, h1 {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+}
 
 /* --- Responsive Mobile --- */
 @media (max-width: 768px) {
