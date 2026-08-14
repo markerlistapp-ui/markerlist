@@ -107,52 +107,89 @@
 
 
     <!-- --- Section Points Forts (Style Alterné / Zig-Zag) --- -->
-    <section class="features-section" style="max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;">
-        <h2 style="text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 4rem;">Pensé pour la scène, sans compromis</h2>
-        
-        <div style="display: flex; flex-direction: column; gap: 5rem;">
-            
-            <!-- Ligne 1 : Texte à gauche, Vidéo à droite -->
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Glisser & Réorganiser</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Modifiez votre setlist à la volée</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Glissez, déposez et réorganisez vos repères en un clin d'œil, même lorsque la lecture est en cours sur votre session.</p>
-                </div>
-                <!-- Encadré Vidéo / Remplacer par <video> si besoin -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-            </div>
+<section class="features" id="fonctionnalites">
+    <h2 class="section-title">Fonctionnalités Clés</h2>
 
-            <!-- Ligne 2 : Vidéo à gauche, Texte à droite -->
-            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
-                <!-- Encadré Vidéo (Ordre inversé visuellement) -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Bibliothèque & Gestion</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Ajustez votre show en direct</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Piochez instantanément vos morceaux depuis votre onglet <strong>bibliothèque</strong> pour les ajouter à la setlist, ou retirez-les en un clic.</p>
-                </div>
-            </div>
-
-            <!-- Ligne 3 : Texte à gauche, Vidéo à droite -->
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">International & Confort</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Pour tous les groupes, partout</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Profitez d'une gestion multimédia flexible et d'une application entièrement disponible en <strong>français, anglais, espagnol et allemand</strong>.</p>
-                </div>
-                <!-- Encadré Vidéo -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-            </div>
-
+    <!-- Ligne 1 : Glisser & Réorganiser (Déjà en place) -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Glisser & Réorganiser</span>
+            <h3>Modifiez votre setlist à la volée</h3>
+            <p>Glissez, déposez et réorganisez vos repères en un clin d'œil, même lorsque la lecture est en cours sur votre session.</p>
         </div>
-    </section>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 2 : Bibliothèque & Gestion (Inversée) -->
+    <div class="feature-row reverse">
+        <div class="feature-text">
+            <span class="feature-tag">Bibliothèque & Gestion</span>
+            <h3>Ajustez votre show en direct</h3>
+            <p>Retirez les morceaux non souhaités de votre set : ils basculent instantanément dans la bibliothèque et peuvent y être réintégrés d'un simple clic.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 3 : Stops et Lecture Continue -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Lecture & Automatisation</span>
+            <h3>Gestion des stops et lecture continue</h3>
+            <p>L’app stoppe automatiquement la lecture au prochain marqueur sans programmation MIDI complexe, ou enchaîne vos morceaux en lecture fluide sans interruption.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 4 : Live View & Confort Scénique (Inversée) -->
+    <div class="feature-row reverse">
+        <div class="feature-text">
+            <span class="feature-tag">Live View</span>
+            <h3>Un confort visuel maximal sur scène</h3>
+            <p>Idéal sous les projecteurs : visualisez d’un coup d’œil le morceau en cours, le suivant, le décompte automatique basé sur le click et le temps restant.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 5 : Esprit de groupe connecté -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Multijoueur & Synchro</span>
+            <h3>L'esprit de groupe connecté</h3>
+            <p>Chaque musicien accède en temps réel depuis sa propre tablette ou téléphone aux informations vitales du concert et aux pistes Ableton (mute, volume, routing).</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     
 <!-- --- Section Offres & Tarifs --- -->
