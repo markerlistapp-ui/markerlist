@@ -54,7 +54,26 @@
             color: var(--quantum-blue);
         }
 
-        /* Conteneur principal empilé verticalement */
+        /* Section d'en-tête principale (Hero) */
+        .hero-section {
+            text-align: center;
+            padding: 3rem 1rem 1rem 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.025em;
+        }
+        .hero-section p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Conteneur global empilé */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -64,10 +83,10 @@
             gap: 3rem;
         }
 
-        /* Grille Tarifs */
+        /* Grille Tarifs (corrigée avec minmax 260px pour un retour à la ligne propre) */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 1.5rem;
             align-items: stretch;
             width: 100%;
@@ -145,13 +164,19 @@
 </head>
 <body>
 
-    <!-- En-tête avec sélecteur de langue -->
+    <!-- Barre de navigation -->
     <header>
         <a href="/" class="logo">Markerlist</a>
         <div class="lang-switcher">
             <span class="active">FR</span> / <a href="/en/">EN</a>
         </div>
     </header>
+
+    <!-- En-tête / Présentation (Hero) -->
+    <section class="hero-section">
+        <h1>Pilotez vos setlists Ableton Live sur scène</h1>
+        <p>Détecte automatiquement vos repères de session pour enchaîner vos morceaux en direct, sans prise de tête et sans Max for Live.</p>
+    </section>
 
     <!-- Conteneur global empilé -->
     <div class="main-container">
