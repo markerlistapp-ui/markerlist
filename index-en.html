@@ -225,53 +225,89 @@
     </section>
 
 
-    <!-- --- Section Points Forts (Style Alterné / Zig-Zag) --- -->
-    <section class="features-section" style="max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;">
-        <h2 style="text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 4rem;">Designed for the stage, no compromises</h2>
-        
-        <div style="display: flex; flex-direction: column; gap: 5rem;">
-            
-            <!-- Ligne 1 : Texte à gauche, Vidéo à droite -->
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Drag & Reorder</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Modify your setlist on the fly</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Drag, drop, and reorganize your markers in a snap, even while playback is running in your session.</p>
-                </div>
-                <!-- Encadré Vidéo / Remplacer par <video> si besoin -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-            </div>
+<section class="features" id="features">
+    <h2 class="section-title">Key Features</h2>
 
-            <!-- Ligne 2 : Vidéo à gauche, Texte à droite -->
-            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
-                <!-- Encadré Vidéo (Ordre inversé visuellement) -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Library & Management</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Adjust your show live</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Instantly pick your tracks from your <strong>library</strong> tab to add them to the setlist, or remove them with a single click.</p>
-                </div>
-            </div>
-
-            <!-- Ligne 3 : Texte à gauche, Vidéo à droite -->
-            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
-                <div>
-                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">International & Comfort</span>
-                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">For all bands, everywhere</h3>
-                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Enjoy flexible multimedia management and an application fully available in <strong>French, English, Spanish, and German</strong>.</p>
-                </div>
-                <!-- Encadré Vidéo -->
-                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
-                </div>
-            </div>
-
+    <!-- Ligne 1 : Glisser & Réorganiser -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Drag & Reorder</span>
+            <h3>Modify your setlist on the fly</h3>
+            <p>Drag, drop, and reorganize your markers in a snap, even while playback is running in your session.</p>
         </div>
-    </section>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 2 : Bibliothèque & Gestion (Inversée) -->
+    <div class="feature-row reverse">
+        <div class="feature-text">
+            <span class="feature-tag">Library & Management</span>
+            <h3>Adjust your show live</h3>
+            <p>Remove unwanted tracks from your set: they instantly move to the library and can be re-integrated with a simple click.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 3 : Stops et Lecture Continue -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Playback & Automation</span>
+            <h3>Stop management and continuous playback</h3>
+            <p>The app automatically stops playback at the next marker without complex MIDI programming, or chain your songs for seamless, uninterrupted playback.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 4 : Live View & Confort Scénique (Inversée) -->
+    <div class="feature-row reverse">
+        <div class="feature-text">
+            <span class="feature-tag">Live View</span>
+            <h3>Maximum visual comfort on stage</h3>
+            <p>Ideal under spotlights: see at a glance the current track, the next one, the automatic countdown based on the click, and the remaining time.</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ligne 5 : Esprit de groupe connecté -->
+    <div class="feature-row">
+        <div class="feature-text">
+            <span class="feature-tag">Multiplayer & Sync</span>
+            <h3>Connected band spirit</h3>
+            <p>Every musician gets real-time access from their own tablet or phone to vital concert information and Ableton tracks (mute, volume, routing).</p>
+        </div>
+        <div class="feature-video">
+            <div class="video-wrapper sub-video">
+                <div class="video-placeholder">
+                    <div class="play-button small"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
     
