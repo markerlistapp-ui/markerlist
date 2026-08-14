@@ -204,17 +204,26 @@ body {
     display: inline-block; /* Pour qu'il ne prenne que la largeur du logo */
 }
 
-.hero-logo {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 28px;
-    background: #ffffff;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06), 
-                0 0 0 8px rgba(36, 87, 255, 0.03);
-    padding: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* --- Nettoyage absolu des conteneurs de logos --- */
+.hero-logo-container, .nav-brand {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* --- Transparence et format des images de logo --- */
+.hero-logo, .nav-logo {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0 !important;
+    display: block; /* Évite les espaces parasites en bas de l'image */
 }
 
 .hero-logo:hover {
