@@ -130,15 +130,25 @@
 <body>
 
     <!-- --- Navigation --- -->
+<!-- --- Navigation --- -->
     <nav class="navbar">
         <div class="nav-brand">
-            <img src="assets/images/logo.png" alt="Markerlist Logo" class="nav-logo">
+            <img src="assets/images/logo.png" alt="Logo Markerlist" class="nav-logo">
             <span>Markerlist</span>
         </div>
+        
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#demo">Demo</a>
             <a href="#download" class="btn-small">Get the app</a>
+        </div>
+        
+        <!-- C'EST ICI QU'IL FAUT L'AJOUTER -->
+        <div class="lang-selector">
+            <select onchange="changeLanguage(this.value)">
+                <option value="en">EN</option>
+                <option value="fr">FR</option>
+            </select>
         </div>
     </nav>
 
