@@ -105,28 +105,30 @@
 </head>
 <body>
 
-    <!-- --- Navigation --- -->
-    <nav class="navbar">
-        <div class="nav-brand">
-            <img src="assets/images/logo.png" alt="Logo Markerlist" class="nav-logo">
-            <span>Markerlist</span>
-        </div>
-        
+<nav class="navbar">
+    <!-- Brand / Logo -->
+    <a href="#" class="nav-brand">
+        <img src="logo.png" alt="Markerlist Logo" class="nav-logo">
+        <span>Markerlist</span>
+    </a>
+
+    <!-- Bloc Droite (Navigation + CTA + Langue) -->
+    <div class="nav-right">
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#demo">Demo</a>
-            <a href="#download" class="btn-small">Get the app</a>
         </div>
 
+        <a href="#download" class="btn btn-primary btn-small">Get the app</a>
+
         <div class="lang-selector">
-            <select onchange="changeLanguage(this.value)">
+            <select>
                 <option value="en">EN</option>
                 <option value="fr">FR</option>
-                <option value="es">ES</option>
-                <option value="de">DE</option>
             </select>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- --- Hero / Header --- -->
     <section class="hero">
