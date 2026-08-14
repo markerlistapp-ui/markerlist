@@ -649,9 +649,10 @@
 }
 
 /* --- Grille et Cartes Tarifaires Corrigées --- */
+/* --- Grille et Cartes Tarifaires - Alignement parfait --- */
 .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.2rem;
     align-items: stretch;
 }
@@ -661,85 +662,69 @@
     background: #ffffff;
     border-radius: 20px;
     padding: 2.2rem 1.2rem;
-    display: grid;
-    /* On force 6 lignes strictes pour toutes les cartes :
-       1. Titre
-       2. Prix
-       3. Sous-titre prix (/ paiement unique, / an)
-       4. Description (hauteur fixe pour égaliser l'espace)
-       5. Liste des fonctionnalités (prend tout l'espace restant)
-       6. Bouton (toujours ancré en bas)
-    */
-    grid-template-rows: 50px 65px 35px 85px 1fr 50px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     height: 100%;
 }
 
-/* 1. Titre */
-.pricing-card > h3,
-.pricing-card > .pricing-title {
-    grid-row: 1;
+/* 1. Titre de la carte */
+.pricing-card h3 {
     font-size: 1.15rem;
     font-weight: 700;
     color: var(--quantum-blue);
+    min-height: 2.8rem; /* Hauteur fixe pour égaliser les titres sur 1 ou 2 lignes */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
+    margin: 0 0 1rem 0;
 }
 
-/* 2. Valeur du prix */
-.price-value,
-.pricing-card > .price-value {
-    grid-row: 2;
-    font-size: 2.1rem;
+/* 2. Conteneur de prix unique et strict */
+.pricing-card .price-container, 
+.pricing-card .price-value {
+    font-size: 2rem;
     font-weight: 800;
     color: #111827;
-    line-height: 1;
+    white-space: nowrap; /* EMPÊCHE LE PRIX DE PASSER À LA LIGNE */
+    height: 50px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
+    margin-bottom: 0.5rem;
 }
 
-/* 3. Sous-titre du prix */
-.price-sub,
-.pricing-card > .price-sub {
-    grid-row: 3;
+/* 3. Sous-titre du prix (/ paiement unique, / an) */
+.pricing-card .price-sub {
     font-size: 0.8rem;
     color: #6b7280;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 4px;
+    height: 25px; /* Hauteur fixe pour aligner le sous-titre */
+    margin-bottom: 1.5rem;
 }
 
-/* 4. Description de la carte */
-.pricing-card > p {
-    grid-row: 4;
+/* 4. Description (hauteur minimale fixe pour absorber les 1, 2 ou 3 lignes) */
+.pricing-card p {
     color: #6b7280;
     font-size: 0.85rem;
     line-height: 1.4;
-    margin: 0 0 1rem 0;
+    min-height: 65px; /* Bloque un espace identique pour les textes courts et longs */
+    margin: 0 0 1.5rem 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 5px;
 }
 
-/* 5. Liste des fonctionnalités (alignée sur le premier critère) */
-.pricing-card > ul {
-    grid-row: 5;
+/* 5. Liste des fonctionnalités */
+.pricing-card ul {
     text-align: left;
     list-style: none;
-    padding-left: 0.8rem;
-    margin: 1rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    padding-left: 0.5rem;
+    margin: 0 0 2rem 0;
+    flex-grow: 1; /* Pousse le bouton automatiquement vers le bas */
 }
 
-.pricing-card > ul li {
-    font-size: 0.88rem;
+.pricing-card ul li {
+    font-size: 0.85rem;
     color: #374151;
     margin-bottom: 0.6rem;
     display: flex;
@@ -747,14 +732,12 @@
     gap: 6px;
 }
 
-/* 6. Bouton d'action ancré tout en bas */
-.pricing-card > a,
-.pricing-card > .btn,
-.pricing-card > button {
-    grid-row: 6;
-    align-self: end;
-    width: 100%;
+/* 6. Bouton ancré tout en bas proprement */
+.pricing-card .btn,
+.pricing-card a.btn,
+.pricing-card button {
     margin-top: auto;
+    width: 100%;
 }
 
 /* --- Footer --- */
