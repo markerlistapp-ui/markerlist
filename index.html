@@ -185,16 +185,54 @@
 </section>
 <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; max-width: 1200px; margin: 0 auto; align-items: stretch;">
 
+
+<style>
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        align-items: stretch;
+    }
+    .pricing-card {
+        border: 1px solid var(--border-color, #e2e8f0);
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 2.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    }
+    .pricing-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 15px 35px rgba(36, 87, 255, 0.12);
+    }
+    .pricing-card.featured {
+        border: 2px solid var(--quantum-blue, #2457ff);
+        box-shadow: 0 10px 30px rgba(36, 87, 255, 0.08);
+    }
+    .pricing-card.addon {
+        border: 2px dashed var(--quantum-blue, #2457ff);
+    }
+</style>
+
+
+<!-- --- Tarifs --- -->
+    
+<div class="pricing-grid">
     <!-- 1. Découverte -->
-    <div class="pricing-card" style="border: 1px solid var(--border-color); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Découverte</h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
+    <div class="pricing-card">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Découverte</h3>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
             Gratuit
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             Idéal pour tester l'application en conditions réelles.
         </p>
-        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
+        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
             <li style="margin-bottom: 0.5rem;">✓ 1 Ordinateur hôte</li>
             <li style="margin-bottom: 0.5rem;">✓ 1 Périphérique</li>
             <li style="margin-bottom: 0.5rem;">✓ Fonctionnalités de l'offre Standard Solo</li>
@@ -204,15 +242,15 @@
     </div>
 
     <!-- 2. Access -->
-    <div class="pricing-card" style="border: 1px solid var(--border-color); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Access</h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-            9,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ unique</span>
+    <div class="pricing-card">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Access</h3>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+            9,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ unique</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             Idéal pour les musiciens solos s'équipant léger.
         </p>
-        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
+        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
             <li style="margin-bottom: 0.5rem;">✓ 1 Ordinateur hôte</li>
             <li style="margin-bottom: 0.5rem;">✓ 1 Périphérique</li>
             <li style="margin-bottom: 0.5rem;">✓ Stop auto / Continu</li>
@@ -221,15 +259,15 @@
     </div>
 
     <!-- 3. Standard Solo -->
-    <div class="pricing-card" style="border: 1px solid var(--border-color); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Standard Solo</h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-            29,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ unique</span>
+    <div class="pricing-card">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Standard Solo</h3>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+            29,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ unique</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             Parfait pour propulser duos et performances.
         </p>
-        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
+        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
             <li style="margin-bottom: 0.5rem;">✓ 1 Ordinateur hôte</li>
             <li style="margin-bottom: 0.5rem;">✓ 2 Périphériques</li>
             <li style="margin-bottom: 0.5rem;">✓ Glisser & Réorganiser</li>
@@ -238,16 +276,16 @@
         <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choisir Solo</a>
     </div>
 
-    <!-- 4. Standard Multi -->
-    <div class="pricing-card" style="border: 2px solid var(--quantum-blue); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center; box-shadow: 0 10px 30px rgba(36, 87, 255, 0.08);">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Standard Multi</h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-            59,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ unique</span>
+    <!-- 4. Standard Multi (Mise en avant avec bordure bleue) -->
+    <div class="pricing-card featured">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Standard Multi</h3>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+            59,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ unique</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             La puissance absolue pour toute votre équipe.
         </p>
-        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
+        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
             <li style="margin-bottom: 0.5rem;">✓ 1 Ordinateur hôte</li>
             <li style="margin-bottom: 0.5rem;">✓ 5 Périphériques</li>
             <li style="margin-bottom: 0.5rem;">✓ Glisser & Réorganiser</li>
@@ -258,16 +296,16 @@
     </div>
 
     <!-- 5. Pass Évolution -->
-    <div class="pricing-card" style="border: 1px solid var(--border-color); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center;">
-        <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Optionnel</div>
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 1.5rem;">Pass Évolution</h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue); margin-bottom: 1.5rem; line-height: 1.1;">
-            14,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ an</span>
+    <div class="pricing-card">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue, #2457ff); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Optionnel</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white, #111827); margin-bottom: 1.5rem;">Pass Évolution</h3>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem; line-height: 1.1;">
+            14,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ an</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             Pour ne jamais rater une évolution majeure.
         </p>
-        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
+        <ul style="list-style: none; padding: 0; margin-bottom: 2rem; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
             <li style="margin-bottom: 0.5rem;">✓ Versions majeures auto</li>
             <li style="margin-bottom: 0.5rem;">✓ Mises à jour continues</li>
             <li style="margin-bottom: 0.5rem;">✓ Support prioritaire</li>
@@ -276,15 +314,15 @@
     </div>
 
     <!-- 6. Option Add-on Utilisateurs illimités -->
-    <div class="pricing-card" style="border: 2px dashed var(--quantum-blue); background: #ffffff; border-radius: 20px; padding: 2.5rem 1.5rem; display: flex; flex-direction: column; text-align: center;">
-        <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Option Add-on</div>
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.3;">
+    <div class="pricing-card addon">
+        <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue, #2457ff); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Option Add-on</div>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.3;">
             Utilisateurs<br>illimités
         </h3>
-        <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue); margin-bottom: 1.5rem; line-height: 1.1;">
-            34,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ unique</span>
+        <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem; line-height: 1.1;">
+            34,99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ unique</span>
         </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+        <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
             Disponible en complément pour l'offre Standard Multi.
         </p>
         <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Ajouter l'option</a>
