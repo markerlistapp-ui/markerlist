@@ -455,6 +455,12 @@ footer {
     width: 100%;
 }
 
+/* --- Forcer le texte du bouton principal de la navbar en blanc --- */
+.navbar .btn-primary, 
+.navbar a.btn-primary {
+    color: #ffffff !important;
+}
+
 /* --- Responsive Mobile --- */
 @media (max-width: 768px) {
     .navbar {
@@ -462,7 +468,7 @@ footer {
     }
 
     .nav-links {
-        display: none; /* Vous pourrez ajouter un menu burger si besoin */
+        display: none;
     }
 
     .hero-title { 
