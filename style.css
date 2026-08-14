@@ -82,13 +82,9 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 2rem;
-}
-
-.nav-links {
-    display: flex;
     gap: 1.5rem;
-    align-items: center;
+    margin-left: auto; /* Pousse les liens et le sélecteur vers la droite si besoin */
+    margin-right: 1.5rem; /* Espace entre le menu et le sélecteur de langue */
 }
 
 .nav-links a:hover {
