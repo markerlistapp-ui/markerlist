@@ -140,6 +140,98 @@ body {
     color: var(--text-white);
 }
 
+/* --- Lecteur Vidéo Principal & Sous-vidéos --- */
+.video-hero-container,
+.sub-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 14px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 19px;
+    overflow: hidden;
+    background-color: #0f172a;
+}
+
+.video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #1e293b 0%, #0f172a 100%);
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+/* --- Style Éditorial / Épuré (Corrigé) --- */
+.value-prop-editorial {
+    padding: 6rem 2rem;
+    background: #ffffff;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.editorial-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.editorial-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
+}
+
+.editorial-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+}
+
+.editorial-item:hover {
+    border-color: var(--border-highlight);
+    box-shadow: 0 10px 30px rgba(36, 87, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.editorial-number {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--quantum-blue);
+    opacity: 0.8;
+    line-height: 1;
+    min-width: 40px;
+}
+
+.editorial-content h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
+}
+
+.editorial-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 /* --- Section Proposition de Valeur --- */
 .value-prop {
     padding: 5rem 2rem;
@@ -171,7 +263,7 @@ body {
     box-shadow: 0 10px 30px rgba(36, 87, 255, 0.06);
 }
 
-/* --- Pricing Cards (Optimisées) --- */
+/* --- Pricing Cards (Prix sur une seule ligne) --- */
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -195,10 +287,15 @@ body {
 }
 
 .price-value {
-    font-size: 2.1rem;
+    font-size: 2rem;
     font-weight: 800;
     color: var(--text-white);
     margin-bottom: 0.5rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 .pricing-card p {
@@ -212,6 +309,26 @@ body {
     text-align: left;
     list-style: none;
     margin-bottom: 2rem;
+    padding-left: 0.8rem;
+}
+
+.pricing-card ul li {
+    font-size: 0.88rem;
+    color: #374151;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border-color);
+    width: 100%;
 }
 
 /* --- Responsive --- */
@@ -221,6 +338,6 @@ body {
         gap: 1rem;
     }
     .hero-title { font-size: 2.2rem !important; }
-    .feature-row { flex-direction: column; }
+    .feature-row, .editorial-item { flex-direction: column; }
     .value-grid, .pricing-grid { grid-template-columns: 1fr !important; }
 }
