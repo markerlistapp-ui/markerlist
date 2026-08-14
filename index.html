@@ -121,10 +121,11 @@
                         Pilotez vos marqueurs Ableton Live en temps réel depuis une tablette ou un smartphone sur scène sans quitter vos instruments des yeux.
                     </p>
                 </div>
-                <!-- Encadré Vidéo / Illustration -->
-                <div style="background: rgba(36, 87, 255, 0.05); border: 1px dashed rgba(36, 87, 255, 0.3); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
-                    <!-- Remplacez par votre balise <video> ou un <iframe> -->
-                    <span style="font-size: 0.8rem; color: var(--quantum-blue); font-weight: 600;">[ Vidéo : Navigation ]</span>
+               <!-- Vidéo intégrée -->
+                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
             </div>
 
@@ -136,10 +137,13 @@
                         Modifiez l'ordre de votre setlist à la volée entre deux morceaux. La synchronisation avec Ableton s'effectue instantanément.
                     </p>
                 </div>
-                <!-- Encadré Vidéo / Illustration -->
-                <div style="background: rgba(36, 87, 255, 0.05); border: 1px dashed rgba(36, 87, 255, 0.3); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 0.8rem; color: var(--quantum-blue); font-weight: 600;">[ Vidéo : Drag & Drop ]</span>
+           <!-- Vidéo intégrée -->
+                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
+                
             </div>
 
             <!-- Point fort 3 -->
@@ -150,11 +154,12 @@
                         Un affichage scène épuré à fort contraste pour garder une visibilité parfaite, même sous les éclairages intenses des concerts.
                     </p>
                 </div>
-                <!-- Encadré Vidéo / Illustration -->
-                <div style="background: rgba(36, 87, 255, 0.05); border: 1px dashed rgba(36, 87, 255, 0.3); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">
-                    <span style="font-size: 0.8rem; color: var(--quantum-blue); font-weight: 600;">[ Vidéo : Live View ]</span>
+           <!-- Vidéo intégrée -->
+                <div style="background: rgba(36, 87, 255, 0.05); border-radius: 8px; overflow: hidden; aspect-ratio: 16/9;">
+                    <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                        <source src="{{ url_for('static', filename='videos/votre-demo.mp4') }}" type="video/mp4">
+                    </video>
                 </div>
-            </div>
 
         </div>
     </section>
