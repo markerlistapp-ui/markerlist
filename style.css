@@ -65,6 +65,9 @@ body {
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--text-white);
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 .nav-logo {
@@ -73,6 +76,7 @@ body {
     object-fit: cover;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(36, 87, 255, 0.15);
+    background: transparent !important;
 }
 
 .nav-links {
@@ -100,6 +104,7 @@ body {
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .btn-primary {
@@ -195,7 +200,7 @@ body {
     flex-wrap: wrap;
 }
 
-/* --- Logo Hero spécifique --- */
+/* --- Logo Hero spécifique & Nettoyage des cadres --- */
 .hero-logo-container {
     background: transparent !important;
     background-color: transparent !important;
@@ -205,36 +210,27 @@ body {
     width: auto !important;
     height: auto !important;
     padding: 0 !important;
-    margin-bottom: 20px;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* --- Nettoyage absolu des conteneurs de logos --- */
-.hero-logo-container, .nav-brand {
-    background: transparent !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-    outline: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-/* --- Transparence et format des images de logo --- */
-.hero-logo, .nav-logo {
+.hero-logo {
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
     outline: none !important;
     padding: 0 !important;
-    max-width: 140px !important;
-    display: block; /* Évite les espaces parasites en bas de l'image */
+    width: 140px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
 }
 
 .hero-logo:hover {
     transform: scale(1.05);
-    box-shadow: 0 15px 35px rgba(36, 87, 255, 0.12), 
-                0 0 0 12px rgba(36, 87, 255, 0.05);
 }
 
 /* --- Lecteur Vidéo Principal --- */
@@ -459,47 +455,39 @@ footer {
     width: 100%;
 }
 
-<!-- --- Script de détection de langue --- -->
-    <script>
-        // Détecte la langue du navigateur au chargement de la page
-        const userLang = navigator.language || navigator.userLanguage;
-        const shortLang = userLang.substring(0, 2).toLowerCase();
-        
-        const supportedLanguages = ['fr', 'en', 'es', 'de'];
-        const currentLang = supportedLanguages.includes(shortLang) ? shortLang : 'en';
-
-        console.log("Langue détectée et appliquée :", currentLang);
-        
-        // Vous pourrez ici basculer les textes de votre page selon "currentLang"
-    </script>
-
+/* --- Responsive Mobile --- */
 @media (max-width: 768px) {
-    /* Force toutes les grilles à passer sur une seule colonne sur mobile */
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    .nav-links {
+        display: none; /* Vous pourrez ajouter un menu burger si besoin */
+    }
+
+    .hero-title { 
+        font-size: 2.2rem !important; 
+        line-height: 1.2 !important;
+    }
+
+    .feature-row, 
+    .feature-row.reverse { 
+        flex-direction: column; 
+        gap: 2rem; 
+    }
+
     .value-grid, 
     section > div[style*="display: grid"] {
         grid-template-columns: 1fr !important;
-        gap: 2rem !important;
+        gap: 1.5rem !important;
     }
     
-    /* Ajustement des marges globales pour les petits écrans */
     body {
         overflow-x: hidden;
     }
     
     section {
-        padding: 0 1rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
-    
-    /* Réduction de la taille des grands titres sur mobile */
-    .hero-title, h1 {
-        font-size: 2.2rem !important;
-        line-height: 1.2 !important;
-    }
-}
-
-/* --- Responsive Mobile --- */
-@media (max-width: 768px) {
-    .hero-title { font-size: 2.2rem; }
-    .feature-row, .feature-row.reverse { flex-direction: column; gap: 2rem; }
-    .nav-links { display: none; }
 }
