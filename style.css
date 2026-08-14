@@ -458,6 +458,60 @@ body {
     margin-bottom: 2.5rem;
 }
 
+.pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Largeur minimale augmentée pour le confort */
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        
+        .pricing-card {
+            border: 1px solid var(--border-color, #e2e8f0);
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column; /* Aligne tout en colonne */
+            text-align: center;
+            height: 100%; /* Important pour l'alignement */
+        }
+
+        /* Hauteur fixe pour le prix pour éviter les décalages */
+        .price-container {
+            height: 80px; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1;
+        }
+
+        .price-sub {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-top: 5px;
+        }
+
+        .pricing-card p {
+            flex-grow: 1; /* Pousse le bouton vers le bas */
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card ul {
+            text-align: left;
+            margin-bottom: 2rem;
+            padding-left: 1.2rem;
+        }
+
+
 /* --- Footer --- */
 footer {
     text-align: center;
@@ -474,7 +528,7 @@ footer {
     color: #ffffff !important;
 }
 
-/* --- Responsive Mobile --- */
+
 /* --- Responsive Mobile --- */
 @media (max-width: 768px) {
     .navbar {
