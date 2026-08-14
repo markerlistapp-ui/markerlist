@@ -3,96 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markerlist - Control Ableton Live Setlists Live</title>
-    
-    <!-- Balises Hreflang pour le SEO international -->
-    <link rel="alternate" hreflang="fr" href="https://votredomaine.com/" />
-    <link rel="alternate" hreflang="en" href="https://votredomaine.com/en/" />
-    <link rel="alternate" hreflang="x-default" href="https://votredomaine.com/" />
-
+    <title>Markerlist - Control and reorganize your Ableton Live sessions on stage</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --quantum-blue: #2457ff;
-            --border-color: #e2e8f0;
-            --text-white: #111827;
-            --text-muted: #6b7280;
-            --bg-body: #f8fafc;
+        /* Styles pour assurer la transparence et la taille du logo */
+        .nav-logo {
+            height: 45px !important;
+            width: auto !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+            padding: 0 !important;
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-white);
-            margin: 0;
-            padding: 0;
+        .hero-logo-container {
+            background: transparent !important;
+            box-shadow: none !important;
+            border: none !important;
+            width: auto !important;
+            height: auto !important;
+            padding: 0 !important;
+            margin-bottom: 10px;
         }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .hero-logo {
+            width: 180px !important;
+            height: auto !important;
+            background: transparent !important;
         }
-        .logo {
-            font-weight: 800;
-            font-size: 1.25rem;
-            color: var(--quantum-blue);
-            text-decoration: none;
-        }
-        .lang-switcher {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-        .lang-switcher a {
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-        .lang-switcher a:hover {
-            color: var(--quantum-blue);
-        }
-        .lang-switcher .active {
-            color: var(--quantum-blue);
-        }
-
-        /* Section d'en-tête principale (Hero) */
-        .hero-section {
-            text-align: center;
-            padding: 3rem 1rem 1rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero-section h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
-        }
-        .hero-section p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
         /* Conteneur global empilé verticalement */
         .main-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem 1rem;
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* Force l'empilement vertical : Grille -> Prérequis -> Footer */
             gap: 3rem;
         }
 
-        /* Grille Tarifs */
+        /* Grille des tarifs (qui s'adapte en colonnes pour les cartes) */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
             gap: 1.5rem;
             align-items: stretch;
             width: 100%;
         }
+
+        .pricing-grid-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1.5rem;
+            align-items: stretch;
+        }
         .pricing-card {
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color, #e2e8f0);
             background: #ffffff;
             border-radius: 20px;
             padding: 2.5rem 1.5rem;
@@ -107,205 +77,303 @@
             box-shadow: 0 15px 35px rgba(36, 87, 255, 0.12);
         }
         .pricing-card.featured {
-            border: 2px solid var(--quantum-blue);
+            border: 2px solid var(--quantum-blue, #2457ff);
             box-shadow: 0 10px 30px rgba(36, 87, 255, 0.08);
         }
         .pricing-card.addon {
-            border: 2px dashed var(--quantum-blue);
-        }
-        .btn {
-            border-radius: 8px;
-            padding: 0.75rem 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .btn-secondary {
-            background: #f1f5f9;
-            color: var(--text-white);
-        }
-        .btn-secondary:hover {
-            background: #e2e8f0;
-        }
-        .btn-primary {
-            background: var(--quantum-blue);
-            color: #ffffff;
-        }
-        .btn-primary:hover {
-            background: #1d4ed8;
+            border: 2px dashed var(--quantum-blue, #2457ff);
         }
 
-        /* Bloc Prérequis en dessous */
+        /* Prérequis */
         .prerequisites {
             text-align: center;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            padding: 1rem 0;
-        }
-        .prerequisites strong {
-            color: var(--text-white);
-        }
-
-        /* Pied de page tout en bas */
-        footer {
-            text-align: center;
-            padding: 3rem 1rem;
             font-size: 0.85rem;
             color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
+            margin-top: 3rem;
+            line-height: 1.6;
         }
+        /* Footer */
+        footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+
         footer a {
             color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
             text-decoration: underline;
         }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-offers {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-offers,
+            .options-offers {
+                grid-template-columns: 1fr;
+            }
+        }
+        
     </style>
 </head>
 <body>
 
-    <!-- Barre de navigation -->
-    <header>
-        <a href="/en/" class="logo">Markerlist</a>
-        <div class="lang-switcher">
-            <a href="/">FR</a> / <span class="active">EN</span>
+    <!-- --- Navigation --- -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <img src="assets/images/logo.png" alt="Markerlist Logo" class="nav-logo">
+            <span>Markerlist</span>
         </div>
-    </header>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#demo">Demo</a>
+            <a href="#download" class="btn-small">Get the app</a>
+        </div>
+    </nav>
 
-    <!-- En-tête / Présentation (Hero) -->
-    <section class="hero-section">
-        <h1>Control your Ableton Live setlists on stage</h1>
-        <p>Automatically detects your session markers to seamlessly transition between tracks live, effortlessly and without Max for Live.</p>
+    <!-- --- Hero / Header --- -->
+    <section class="hero">
+        <div class="hero-logo-container">
+            <img src="assets/images/logo.png" alt="MarkerList Logo" class="hero-logo">
+        </div>
+
+        <div class="hero-badge">Next-generation marker management for Ableton Live</div>
+        
+        <h1 class="hero-title">Organize. Control. Perform.</h1>
+        
+        <p class="hero-subtitle">
+        Transform your DAW sessions into a dynamic setlist controllable in real-time.
+        </p>
+
+        <div class="hero-actions">
+            <a href="#download" class="btn btn-primary btn-large">Try for free (15 min)</a>
+            <a href="#demo" class="btn btn-secondary btn-large">Watch demo (1 min)</a>
+        </div>
+
+        <!-- --- Lecteur Vidéo Principal --- -->
+        <div class="video-hero-container" id="demo">
+            <div class="video-wrapper">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </div>
+                    <span>Watch the presentation video (Coming soon)</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- Conteneur global empilé -->
-    <div class="main-container">
-
-        <!-- 1. Grille Tarifaire -->
-        <div class="pricing-grid">
-
-            <!-- Discovery -->
-            <div class="pricing-card">
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Discovery</h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-                    Free
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Ideal for testing the app in real conditions.
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Device</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Standard Solo features</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 15 min session, every 15 min</li>
-                </ul>
-                <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Try (15 min)</a>
+    <!-- --- Section Proposition de Valeur --- -->
+    <section class="value-prop">
+        <h2>Why choose Markerlist?</h2>
+        <div class="value-grid">
+            
+            <div class="value-card">
+                <div class="icon">⚡</div>
+                <h3>Instant customization</h3>
+                <p>Change the order of your songs before or during your set with a simple drag-and-drop, without ever stopping playback.</p>
             </div>
 
-            <!-- Access -->
-            <div class="pricing-card">
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Access</h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-                    9.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ one-time</span>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Ideal for solo musicians traveling light.
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Device</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Auto stop / Continuous</li>
-                </ul>
-                <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Access</a>
+            <div class="value-card">
+                <div class="icon">💻📱</div>
+                <h3>PC/Mac Host & Touch Control</h3>
+                <p>Your computer runs the Ableton session in the background, while you control everything remotely from your tablets or phones with total fluidity.</p>
             </div>
 
-            <!-- Standard Solo -->
-            <div class="pricing-card">
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Standard Solo</h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-                    29.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ one-time</span>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Perfect to power duos and live performances.
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 2 Devices</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Drag & Reorder</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Setlist PDF Export</li>
-                </ul>
-                <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Solo</a>
-            </div>
-
-            <!-- Standard Multi -->
-            <div class="pricing-card featured">
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue); margin-bottom: 1.5rem;">Standard Multi</h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.1;">
-                    59.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ one-time</span>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Absolute power for your whole team.
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
-                    <li style="margin-bottom: 0.5rem;">✓ 5 Devices</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Drag & Reorder</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Setlist PDF Export</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Live View Mode</li>
-                </ul>
-                <a href="#acheter" class="btn btn-primary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Multi</a>
-            </div>
-
-            <!-- Evolution Pass -->
-            <div class="pricing-card">
-                <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Optional</div>
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 1.5rem;">Evolution Pass</h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue); margin-bottom: 1.5rem; line-height: 1.1;">
-                    14.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ year</span>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Never miss a major software update.
-                </p>
-                <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted);">
-                    <li style="margin-bottom: 0.5rem;">✓ Auto major versions</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Continuous updates</li>
-                    <li style="margin-bottom: 0.5rem;">✓ Priority support</li>
-                </ul>
-                <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Add Pass</a>
-            </div>
-
-            <!-- Unlimited Users Add-on -->
-            <div class="pricing-card addon">
-                <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Add-on Option</div>
-                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white); margin-bottom: 1.5rem; line-height: 1.3;">
-                    Unlimited<br>Users
-                </h3>
-                <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue); margin-bottom: 1.5rem; line-height: 1.1;">
-                    34.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted); display: block; margin-top: 4px;">/ one-time</span>
-                </div>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
-                    Available as an add-on for the Standard Multi plan.
-                </p>
-                <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Add Option</a>
+            <div class="value-card">
+                <div class="icon">🚀</div>
+                <h3>Standalone, no Max for Live</h3>
+                <p>MarkerList works completely independently. No Max for Live installation required: a lightweight and stable integration for your setup.</p>
             </div>
 
         </div>
+    </section>
 
-        <!-- 2. Bloc Prérequis (en dessous des prix) -->
-        <div class="prerequisites">
-            <strong>Prerequisites:</strong> macOS • Ableton Live 11 or 12 (Standard, Suite, Lite) • Without Max for Live.<br>
-            Windows version coming soon.<br>
-            Additional DAWs coming soon.
+
+    <!-- --- Section Points Forts (Style Alterné / Zig-Zag) --- -->
+    <section class="features-section" style="max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;">
+        <h2 style="text-align: center; font-size: 2.2rem; font-weight: 800; color: var(--text-white); margin-bottom: 4rem;">Designed for the stage, no compromises</h2>
+        
+        <div style="display: flex; flex-direction: column; gap: 5rem;">
+            
+            <!-- Ligne 1 : Texte à gauche, Vidéo à droite -->
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
+                <div>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Drag & Reorder</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Modify your setlist on the fly</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Drag, drop, and reorganize your markers in a snap, even while playback is running in your session.</p>
+                </div>
+                <!-- Encadré Vidéo / Remplacer par <video> si besoin -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
+                </div>
+            </div>
+
+            <!-- Ligne 2 : Vidéo à gauche, Texte à droite -->
+            <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center;">
+                <!-- Encadré Vidéo (Ordre inversé visuellement) -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
+                </div>
+                <div>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">Library & Management</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">Adjust your show live</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Instantly pick your tracks from your <strong>library</strong> tab to add them to the setlist, or remove them with a single click.</p>
+                </div>
+            </div>
+
+            <!-- Ligne 3 : Texte à gauche, Vidéo à droite -->
+            <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center;">
+                <div>
+                    <span style="display: inline-block; background: rgba(36, 87, 255, 0.1); color: var(--quantum-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 4px; margin-bottom: 1rem; letter-spacing: 0.5px;">International & Comfort</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-white); margin-bottom: 1rem; line-height: 1.2;">For all bands, everywhere</h3>
+                    <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">Enjoy flexible multimedia management and an application fully available in <strong>French, English, Spanish, and German</strong>.</p>
+                </div>
+                <!-- Encadré Vidéo -->
+                <div style="background: #121824; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                    <div style="width: 50px; height: 50px; background: var(--quantum-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; box-shadow: 0 4px 12px rgba(36, 87, 255, 0.4);">▶</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+    
+        <!-- GRILLE TARIFAIRE -->
+<div class="pricing-grid-wrapper">
+    <div class="pricing-grid">
+
+        <!-- 1. Discovery -->
+        <div class="pricing-card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Discovery</h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+                Free
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Ideal for testing the app in real conditions.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
+                <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
+                <li style="margin-bottom: 0.5rem;">✓ 1 Device</li>
+                <li style="margin-bottom: 0.5rem;">✓ Standard Solo features</li>
+                <li style="margin-bottom: 0.5rem;">✓ 15 min session, every 15 min</li>
+            </ul>
+            <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Try (15 min)</a>
+        </div>
+
+        <!-- 2. Access -->
+        <div class="pricing-card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Access</h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+                9.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ one-time</span>
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Ideal for solo musicians traveling light.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
+                <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
+                <li style="margin-bottom: 0.5rem;">✓ 1 Device</li>
+                <li style="margin-bottom: 0.5rem;">✓ Auto stop / Continuous</li>
+            </ul>
+            <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Access</a>
+        </div>
+
+        <!-- 3. Standard Solo -->
+        <div class="pricing-card">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Standard Solo</h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+                29.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ one-time</span>
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Perfect to power duos and live performances.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
+                <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
+                <li style="margin-bottom: 0.5rem;">✓ 2 Devices</li>
+                <li style="margin-bottom: 0.5rem;">✓ Drag & Reorder</li>
+                <li style="margin-bottom: 0.5rem;">✓ Setlist PDF Export</li>
+            </ul>
+            <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Solo</a>
+        </div>
+
+        <!-- 4. Standard Multi -->
+        <div class="pricing-card featured">
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem;">Standard Multi</h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.1;">
+                59.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ one-time</span>
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Absolute power for your whole team.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
+                <li style="margin-bottom: 0.5rem;">✓ 1 Host computer</li>
+                <li style="margin-bottom: 0.5rem;">✓ 5 Devices</li>
+                <li style="margin-bottom: 0.5rem;">✓ Drag & Reorder</li>
+                <li style="margin-bottom: 0.5rem;">✓ Setlist PDF Export</li>
+                <li style="margin-bottom: 0.5rem;">✓ Live View Mode</li>
+            </ul>
+            <a href="#acheter" class="btn btn-primary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Choose Multi</a>
+        </div>
+
+        <!-- 5. Evolution Pass -->
+        <div class="pricing-card">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue, #2457ff); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Optional</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white, #111827); margin-bottom: 1.5rem;">Evolution Pass</h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem; line-height: 1.1;">
+                14.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ year</span>
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Never miss a major software update.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0 0 2rem 0; text-align: left; font-size: 0.85rem; color: var(--text-muted, #6b7280);">
+                <li style="margin-bottom: 0.5rem;">✓ Auto major versions</li>
+                <li style="margin-bottom: 0.5rem;">✓ Continuous updates</li>
+                <li style="margin-bottom: 0.5rem;">✓ Priority support</li>
+            </ul>
+            <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Add Pass</a>
+        </div>
+
+        <!-- 6. Unlimited Users Add-on -->
+        <div class="pricing-card addon">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--quantum-blue, #2457ff); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1.2rem;">Add-on Option</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-white, #111827); margin-bottom: 1.5rem; line-height: 1.3;">
+                Unlimited<br>Users
+            </h3>
+            <div style="font-size: 2.2rem; font-weight: 800; color: var(--quantum-blue, #2457ff); margin-bottom: 1.5rem; line-height: 1.1;">
+                34.99 € <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted, #6b7280); display: block; margin-top: 4px;">/ one-time</span>
+            </div>
+            <p style="color: var(--text-muted, #6b7280); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.5; flex-grow: 1;">
+                Available as an add-on for the Standard Multi plan.
+            </p>
+            <a href="#acheter" class="btn btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: auto;">Add Option</a>
         </div>
 
     </div>
+</div>
 
-    <!-- 3. Pied de page (tout en bas) -->
+<!-- Prérequis -->
+    <div class="prerequisites">
+        <p><strong>Requirements:</strong> macOS • Ableton Live 11 or 12 (Standard, Suite, Lite) • No Max for Live required. • Local network</p>
+        <p>Using a local network is recommended live for optimal use of MarkerList</p>
+        <p>Windows version coming soon.</p>
+        <p>Additional DAWs coming soon.</p>
+    </div>
+    
+    <!-- --- Footer --- -->
     <footer>
-        <p>&copy; 2026 Markerlist. All rights reserved.</p>
-        <p>
-            <a href="/en/legal.html">Legal Notice</a> | <a href="/en/privacy.html">Privacy Policy</a>
-        </p>
+        <p>&copy; 2026 Markerlist. All rights reserved. Powered for the stage.</p>
     </footer>
 
 </body>
