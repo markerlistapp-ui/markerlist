@@ -8,7 +8,494 @@
 <meta property="og:title" content="Markerlist — Organisez. Pilotez. Jouez.">
 <meta property="og:description" content="Transformez votre session Ableton en setlist pilotable en temps réel, latence minimale, depuis toute l'équipe sur scène.">
 <meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.goo<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markerlist — Organisez. Pilotez. Jouez.</title>
+<meta name="description" content="Pilotez votre setlist Ableton Live en temps réel depuis n'importe quelle tablette ou téléphone sur scène, sans jamais toucher à votre session d'origine.">
+<meta property="og:title" content="Markerlist — Organisez. Pilotez. Jouez.">
+<meta property="og:description" content="Transformez votre session Ableton en setlist pilotable en temps réel, latence minimale, depuis toute l'équipe sur scène.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFC;
+    --surface:#FFFFFF;
+    --line:#E2E5EF;
+    --ink:#14171F;
+    --ink-soft:#5B5F6C;
+    --blue:#3064F6;
+    --blue-deep:#1D3FB0;
+    --blue-mid:#7C97FA;
+    --blue-soft:#E9EEFE;
+    --blue-border:#C7D4FC;
+    --amber:#B8860B;
+    --amber-soft:#FBF3E1;
+    --amber-border:#EAD9AE;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,248,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .brand img{width:26px;height:26px;border-radius:6px;}
+  nav .links{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--ink-soft);}
+  nav .links a:hover{color:var(--ink);}
+  .lang{display:flex;gap:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;}
+  .lang span{padding:3px 7px;border:1px solid var(--line);border-radius:5px;color:var(--ink-soft);}
+  .lang span.active{color:var(--ink);border-color:var(--ink);}
+  .btn-primary{
+    background:var(--ink);color:#fff;padding:9px 18px;border-radius:8px;
+    font-size:14px;font-weight:500;
+  }
+  .btn-primary:hover{background:var(--blue);}
+
+  /* TIMELINE RULER — signature element */
+  .ruler{
+    position:relative;height:34px;
+    background-image:repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .ruler::before{
+    content:'';position:absolute;top:0;bottom:0;left:0;right:0;
+    background-image:repeating-linear-gradient(90deg, var(--ink-soft) 0 1px, transparent 1px 200px);
+    opacity:.35;
+  }
+
+  /* HERO */
+  .hero{padding:88px 0 64px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--blue-deep);
+    background:var(--blue-soft);border:1px solid var(--blue-border);padding:5px 11px;border-radius:100px;
+    margin-bottom:26px;
+  }
+  .hero h1{font-size:56px;font-weight:600;line-height:1.05;max-width:780px;}
+  .hero p.lead{margin-top:22px;font-size:18px;color:var(--ink-soft);max-width:560px;}
+  .hero .ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+  .btn-ghost{
+    padding:12px 22px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-weight:500;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-cta{
+    padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;
+  }
+  .btn-cta:hover{background:var(--blue);}
+
+  /* mock timeline card in hero */
+  .hero-visual{
+    margin-top:56px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px 26px;
+  }
+  .hv-top{display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);margin-bottom:16px;}
+  .hv-track{position:relative;height:54px;background:#F3F2ED;border-radius:8px;overflow:hidden;}
+  .hv-clip{position:absolute;top:8px;bottom:8px;background:var(--blue-soft);border:1px solid var(--blue-border);border-radius:5px;display:flex;align-items:center;padding:0 10px;font-size:12px;font-weight:500;color:var(--blue-deep);white-space:nowrap;}
+  .hv-marker{position:absolute;top:0;bottom:0;width:2px;background:var(--blue-deep);}
+  .hv-marker::after{
+    content:attr(data-t);position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);white-space:nowrap;
+  }
+
+  /* SECTION shared */
+  section{padding:76px 0;}
+  .section-head{max-width:620px;margin-bottom:48px;}
+  .section-tag{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em;}
+  .section-head h2{font-size:32px;font-weight:600;line-height:1.15;}
+  .section-head p.sub{margin-top:12px;font-size:15.5px;color:var(--ink-soft);}
+
+  /* WHY — grid */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .why-item{background:var(--surface);padding:30px 26px;}
+  .why-item .t{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue);margin-bottom:14px;}
+  .why-item h3{font-size:17px;font-weight:600;margin-bottom:10px;}
+  .why-item p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* FEATURES — marker/flag list */
+  .feature-row{
+    display:grid;grid-template-columns:44px 1fr;gap:20px;
+    padding:26px 0;border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .feature-row:last-child{border-bottom:1px solid var(--line);}
+  .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
+  .feature-row h3{font-size:18px;font-weight:600;margin-bottom:6px;}
+  .feature-row p{font-size:15px;color:var(--ink-soft);max-width:560px;}
+  .feature-row .badge-new{display:inline-block;margin-left:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;vertical-align:middle;}
+
+  /* PRICING */
+  .earlybird-banner{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--amber-soft);border:1px solid var(--amber-border);color:#7A5B0E;
+    border-radius:100px;padding:9px 20px;font-size:13.5px;font-weight:500;
+    max-width:fit-content;margin:0 auto 36px;
+  }
+  .earlybird-banner .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .price-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;display:flex;flex-direction:column;
+  }
+  .price-card.highlight{border-color:var(--ink);position:relative;}
+  .price-card.highlight::before{
+    content:'Le plus choisi';position:absolute;top:-11px;left:24px;
+    background:var(--ink);color:#fff;font-size:11px;padding:3px 9px;border-radius:100px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .price-card h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+  .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .price-card .amount-row{display:flex;align-items:baseline;gap:8px;}
+  .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;margin-bottom:2px;}
+  .price-card .was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;}
+  .price-card .period{font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;}
+  .price-card ul{list-style:none;font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .price-card li{padding:6px 0;padding-left:18px;position:relative;}
+  .price-card li::before{content:'—';position:absolute;left:0;color:var(--blue);}
+  .price-card .cta{margin-top:20px;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;}
+  .price-card.highlight .cta{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .addons{display:flex;gap:16px;margin-top:16px;}
+  .addon{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;font-size:13.5px;}
+  .addon .amount{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+  .addon .lbl{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+
+  /* REQUIREMENTS strip */
+  .req{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .req .wrap{display:flex;flex-wrap:wrap;gap:28px;padding:22px 32px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .req .wrap span b{color:var(--ink);font-weight:500;}
+  .roadmap{background:var(--bg);}
+  .roadmap .wrap{display:flex;flex-wrap:wrap;gap:28px;padding:14px 32px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* FAQ */
+  .faq-item{border-top:1px solid var(--line);padding:22px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h3{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .faq-item p{font-size:14.5px;color:var(--ink-soft);max-width:640px;}
+
+  footer{padding:40px 0;font-size:13px;color:var(--ink-soft);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
+  footer .flinks{display:flex;gap:20px;}
+  footer .flinks a:hover{color:var(--ink);}
+
+  @media (max-width:820px){
+    .hero h1{font-size:38px;}
+    .why-grid{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    .addons{flex-direction:column;}
+    nav .links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand"><img src="data:image/png;base64,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" alt="Markerlist"></div>
+    <div class="links">
+      <a href="#features">Fonctionnalités</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <div class="lang"><span class="active">FR</span><span>EN</span></div>
+      <a href="#pricing" class="btn-primary">Essayer l'app</a>
+    </div>
+  </div>
+</nav>
+
+<div class="ruler"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">● connecté à Ableton Live</div>
+    <h1>Organisez. Pilotez. Jouez.</h1>
+    <p class="lead">Transformez votre session Ableton en setlist pilotable en temps réel, depuis n'importe quel ordinateur, tablette ou téléphone sur scène, avec une latence minimale.</p>
+    <div class="ctas">
+      <a href="#pricing" class="btn-cta">Essayer gratuitement — 15 min</a>
+      <a href="#features" class="btn-ghost">▶ Voir les fonctionnalités</a>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hv-top">
+        <span>SESSION.ALS</span>
+        <span> SET: 07:22 / 45:10 restant</span>
+        <span>128 BPM    SONG 02: 00:35 / 03:10 restant</span>
+      </div>
+      <div class="hv-track">
+        <div class="hv-clip" style="left:4%;width:22%;">Song 01</div>
+        <div class="hv-clip" style="left:28%;width:26%;">Song 02</div>
+        <div class="hv-clip" style="left:56%;width:20%;">Song 03</div>
+        <div class="hv-clip" style="left:78%;width:18%;">Song 04</div>
+        <div class="hv-marker" style="left:28%;" data-t="MARKER 2"></div>
+        <div class="hv-marker" style="left:56%;" data-t="MARKER 3"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// pourquoi markerlist</div>
+      <h2>Pensé pour la scène, conçu pour la fluidité</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="t">EN UN CLIC</div>
+        <h3>Détection auto</h3>
+        <p>Markerlist détecte vos marqueurs instantanément. Réorganisez les morceaux par glisser-déposer, sans couper la lecture ni modifier votre session. Votre setlist est prête.</p>
+      </div>
+      <div class="why-item">
+        <div class="t">MULTIPLATEFORME</div>
+        <h3>L'indépendance</h3>
+        <p>Aucun plugin requis. L'ordinateur hôte gère Ableton, vous pilotez tout depuis tablettes, téléphones ou ordinateurs (iOS, Android, Windows, macOS) — latence minimale grâce à un pont MIDI dédié.</p>
+      </div>
+      <div class="why-item">
+        <div class="t">SIMPLE ET EFFICACE</div>
+        <h3>Ne modifiez plus vos sessions</h3>
+        <p>Zéro manipulation risquée dans Ableton : Markerlist n'altère jamais votre projet d'origine, jamais.</p>
+      </div>
+      <div class="why-item">
+        <div class="t">TAILLÉ POUR LE LIVE</div>
+        <h3>Visualisez l'essentiel</h3>
+        <p>Suivez les repères clés du morceau en cours via un décompte et un métronome visuel plein écran, et accédez aux réglages audio (volume, routage) en un clic. Le click et le pré-roll restent visibles et réglables directement sur la grille principale, sans même passer en plein écran.</p>
+      </div>
+      <div class="why-item">
+        <div class="t">SÉCURISÉ</div>
+        <h3>Contrôle d'accès strict</h3>
+        <p>Seuls les membres de l'équipe que vous autorisez peuvent se connecter à l'interface. L'ordinateur hôte gère les utilisateurs, les droits, et peut passer un musicien en lecture seule à tout moment.</p>
+      </div>
+      <div class="why-item">
+        <div class="t">RÉSILIENT</div>
+        <h3>Une coupure WiFi n'arrête pas le show</h3>
+        <p>Reconnexion automatique avec reprise d'état complète — jamais une commande envoyée en retard après une coupure réseau.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// fonctionnalités clés</div>
+      <h2>Session figée, setlist libre</h2>
+      <p class="sub">Votre session Ableton reste intacte du premier au dernier morceau — Markerlist ne fait que la piloter, jamais la modifier.</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Glisser & réorganiser</h3><p>Glissez, déposez et réorganisez vos repères en un clin d'œil, même pendant la lecture.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Bibliothèque & gestion</h3><p>Retirez un morceau du set : il bascule dans la bibliothèque et peut y être réintégré d'un clic.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Partagez votre setlist</h3><p>Export PDF de votre setlist avec l'organisation du live. Personnalisez-la avec le nom de votre groupe, votre logo et la durée du set.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Stops & lecture continue</h3><p>Stop automatique au marqueur suivant sans programmation, ou enchaînement fluide sans interruption.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Pré-roll d'équipe<span class="badge-new">nouveau</span></h3><p>Avant de reprendre, toute l'équipe voit le nom du morceau puis un décompte rythmé sur le tempo — tout le monde repart ensemble, pas seulement la personne qui a appuyé sur play.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Boucles de section<span class="badge-new">nouveau</span></h3><p>Bouclez un refrain ou un pont d'un tap — une fois, deux fois, ou en boucle libre jusqu'à relâchement, avec enchaînement automatique vers la section suivante.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Bouton panique<span class="badge-new">nouveau</span></h3><p>Un appui long ramène instantanément le show au premier morceau, quel que soit l'état en cours — le geste de sécurité si quelque chose tourne mal sur scène.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Live View</h3><p>Morceau en cours, section en cours et section à venir, décompte rythmé sur le métronome, temps restant — lisible d'un coup d'œil sous les projecteurs.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Rôles par appareil<span class="badge-new">nouveau</span></h3><p>Donnez à chaque musicien sa propre Vue Live en lecture seule, et réservez le pilotage (play/stop) à la régie — chacun voit tout, seule la personne autorisée déclenche.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Multijoueur & synchro</h3><p>Chaque musicien accède en temps réel, depuis son propre appareil (iOS, Android), aux infos du concert et aux pistes Ableton (mute, volume, routage), master compris.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// tarifs</div>
+      <h2>Un palier pour chaque scène</h2>
+    </div>
+
+    <div class="earlybird-banner"><span class="dot"></span>Tarifs de lancement Early Bird — pour une durée limitée</div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Découverte</h3>
+        <div class="sub">Tester en conditions réelles</div>
+        <div class="amount">Gratuit</div>
+        <div class="period">Sessions de 15 min, renouvelables — idéal pour tester l'app en conditions réelles.</div>
+        <ul>
+          <li>1 ordinateur hôte</li>
+          <li>1 périphérique</li>
+          <li>Fonctionnalités Standard Solo</li>
+        </ul>
+        <div class="cta">Essayer</div>
+      </div>
+
+      <div class="price-card">
+        <h3>Access</h3>
+        <div class="sub">Le basique pour les répétitions et le live à petit prix</div>
+        <div class="amount-row"><div class="amount">19,99 €</div></div>
+        <div class="period">paiement unique</div>
+        <ul>
+          <li>1 ordinateur hôte</li>
+          <li>1 périphérique</li>
+          <li>Stop automatique et lecture continue</li>
+        </ul>
+        <div class="cta">Choisir Access</div>
+      </div>
+
+      <div class="price-card highlight">
+        <h3>Standard Solo</h3>
+        <div class="sub">Duos et performances live</div>
+        <div class="amount-row"><div class="amount">39,99 €</div></div>
+        <div class="period">paiement unique</div>
+        <ul>
+          <li>1 ordinateur hôte</li>
+          <li>2 périphériques</li>
+          <li>Stop automatique et lecture continue</li>
+          <li>Pré-roll d'équipe et boucles de section</li>
+          <li>Paramétrage et contrôle des pistes Ableton</li>
+          <li>Glisser & réorganiser</li>
+          <li>Export PDF de setlist</li>
+        </ul>
+        <div class="cta">Choisir Solo</div>
+      </div>
+
+      <div class="price-card">
+        <h3>Standard Multi</h3>
+        <div class="sub">Toute l'équipe, synchronisée</div>
+        <div class="amount-row"><div class="amount">69,99 €</div></div>
+        <div class="period">paiement unique</div>
+        <ul>
+          <li>1 ordinateur hôte</li>
+          <li>5 périphériques</li>
+          <li>Stop automatique et lecture continue</li>
+          <li>Pré-roll d'équipe et boucles de section</li>
+          <li>Paramétrage et contrôle des pistes Ableton</li>
+          <li>Rôles par appareil (lecture seule)</li>
+          <li>Glisser & réorganiser</li>
+          <li>Export PDF de setlist</li>
+          <li>Mode Live View</li>
+        </ul>
+        <div class="cta">Choisir Multi</div>
+      </div>
+    </div>
+
+    <div class="addons">
+      <div class="addon">
+        <div class="amount">14,99 €/an</div>
+        <div class="lbl">Evolution Pass — mises à jour majeures</div>
+        <div class="cta" style="margin-top:14px;">Choisir Evolution Pass</div>
+      </div>
+      <div class="addon">
+        <div class="amount">34,99 €</div>
+        <div class="lbl">Périphériques illimités — option pour Standard Multi uniquement</div>
+        <div class="cta" style="margin-top:14px;">Choisir Illimité</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="req">
+  <div class="wrap">
+    <span><b>macOS</b> · Ableton Live 11/12 (Intro, Lite, Standard, Suite)</span>
+    <span>Ne nécessite pas Max for Live</span>
+    <span>Réseau local recommandé pour une utilisation live</span>
+  </div>
+</div>
+<div class="req roadmap">
+  <div class="wrap">
+    <span>À venir : hôte Windows</span>
+    <span>À venir : support d'un DAW supplémentaire</span>
+  </div>
+</div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// questions fréquentes</div>
+      <h2>Avant de vous lancer</h2>
+    </div>
+    <div class="faq-item">
+      <h3>Markerlist modifie-t-il mon projet Ableton ?</h3>
+      <p>Non, jamais. Markerlist lit et pilote votre session en temps réel mais n'écrit rien dans votre projet d'origine — vous pouvez désinstaller l'app sans laisser aucune trace dans votre .als.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Ai-je besoin de Max for Live ou d'un plugin particulier ?</h3>
+      <p>Non. Markerlist se connecte à Ableton Live directement, sans plugin ni device à charger dans votre session.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Que se passe-t-il si le WiFi coupe pendant le concert ?</h3>
+      <p>L'appareil se reconnecte automatiquement et retrouve immédiatement l'état exact du show en cours. Aucune commande envoyée pendant la coupure ne repart en retard une fois le réseau revenu.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Combien d'appareils puis-je connecter en même temps ?</h3>
+      <p>Cela dépend du palier choisi — de 1 périphérique (Access) à 5 (Standard Multi), avec une option Illimité disponible sur Standard Multi.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Puis-je essayer avant d'acheter ?</h3>
+      <p>Oui — le palier Découverte est gratuit et sans limite de renouvellement, en sessions de 15 minutes, pour tester l'app en conditions réelles avant de choisir un palier payant.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Markerlist</span>
+    <div class="flinks">
+      <a href="#faq">FAQ</a>
+      <a href="mailto:contact@markerlist.app">Contact</a>
+      <a href="#">Confidentialité</a>
+    </div>
+    <span class="mono">Propulsé pour la scène.</span>
+  </div>
+</footer>
+
+</body>
+</html>
+gleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
