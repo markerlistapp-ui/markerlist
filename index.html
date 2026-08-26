@@ -53,8 +53,9 @@
   nav .links{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--ink-soft);}
   nav .links a:hover{color:var(--ink);}
   .lang{display:flex;gap:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;}
-  .lang span{padding:3px 7px;border:1px solid var(--line);border-radius:5px;color:var(--ink-soft);}
+  .lang span,.lang a{padding:3px 7px;border:1px solid var(--line);border-radius:5px;color:var(--ink-soft);}
   .lang span.active{color:var(--ink);border-color:var(--ink);}
+  .lang a:hover{color:var(--ink);border-color:var(--ink);}
   .btn-primary{
     background:var(--ink);color:#fff;padding:9px 18px;border-radius:8px;
     font-size:14px;font-weight:500;
@@ -183,6 +184,7 @@
   .compare-table th{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;}
   .compare-table td:first-child,.compare-table th:first-child{text-align:left;color:var(--ink-soft);font-size:13.5px;white-space:normal;}
   .compare-table .yes{color:var(--blue);font-weight:700;}
+  .compare-table .partial{color:var(--ink-soft);font-weight:600;font-size:12px;font-family:'IBM Plex Mono',monospace;}
   .compare-table .no{color:var(--ink-soft);}
 
   /* REQUIREMENTS strip */
@@ -224,7 +226,7 @@
       <a href="#faq">FAQ</a>
     </div>
     <div style="display:flex;align-items:center;gap:18px;">
-      <div class="lang"><span class="active">FR</span><span>EN</span></div>
+      <div class="lang"><span class="active">FR</span><a href="markerlist_landing_en.html">EN</a></div>
       <a href="#pricing" class="btn-primary">Essayer l'app</a>
     </div>
   </div>
@@ -371,7 +373,7 @@
         <h3>Découverte</h3>
         <div class="sub">Tester en conditions réelles</div>
         <div class="amount">Gratuit</div>
-        <div class="period">Sessions de 15 min, renouvelables — idéal pour tester l'app en conditions réelles.</div>
+        <div class="period">Sessions de 15 min, puis 5 min de pause avant de relancer (5 relances maximum sur 24h) — idéal pour tester l'app en conditions réelles.</div>
         <ul>
           <li>1 ordinateur hôte</li>
           <li>1 périphérique</li>
@@ -389,6 +391,7 @@
           <li>1 ordinateur hôte</li>
           <li>1 périphérique</li>
           <li>Stop automatique et lecture continue</li>
+          <li>Pré-roll fixe (4 temps, non modifiable)</li>
         </ul>
         <div class="cta">Choisir Access</div>
       </div>
@@ -402,7 +405,7 @@
           <li>1 ordinateur hôte</li>
           <li>2 périphériques</li>
           <li>Stop automatique et lecture continue</li>
-          <li>Pré-roll d'équipe et boucles de section</li>
+          <li>Pré-roll d'équipe</li>
           <li>Paramétrage et contrôle des pistes Ableton</li>
           <li>Glisser & réorganiser</li>
           <li>Export PDF de setlist</li>
@@ -420,7 +423,8 @@
           <li>1 ordinateur hôte</li>
           <li>4 périphériques</li>
           <li>Stop automatique et lecture continue</li>
-          <li>Pré-roll d'équipe et boucles de section</li>
+          <li>Pré-roll d'équipe</li>
+          <li>Boucles de section</li>
           <li>Paramétrage et contrôle des pistes Ableton</li>
           <li>Rôles par appareil (lecture seule)</li>
           <li>Messages individuels ou à toute l'équipe</li>
@@ -459,8 +463,8 @@
           <tr><td>Glisser & réorganiser</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
           <tr><td>Export PDF de setlist</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
           <tr><td>Paramétrage et contrôle des pistes Ableton</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Pré-roll d'équipe</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Boucles de section</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Pré-roll d'équipe</td><td class="yes">✓</td><td class="partial">4 temps fixes</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Boucles de section</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
           <tr><td>Multijoueur & synchro</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
           <tr><td>Live View</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
           <tr><td>Rôles par appareil</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
@@ -513,7 +517,7 @@
     </div>
     <div class="faq-item">
       <h3>Puis-je essayer avant d'acheter ?</h3>
-      <p>Oui — le palier Découverte est gratuit et sans limite de renouvellement, en sessions de 15 minutes, pour tester l'app en conditions réelles avant de choisir un palier payant.</p>
+      <p>Oui — le palier Découverte est gratuit : des sessions de 15 minutes, séparées par une pause de 5 minutes, jusqu'à 5 relances, pour tester l'app en conditions réelles avant de choisir un palier payant.</p>
     </div>
   </div>
 </section>
