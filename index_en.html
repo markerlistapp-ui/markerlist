@@ -145,9 +145,12 @@
     display:flex;align-items:center;justify-content:center;gap:10px;
     background:var(--amber-soft);border:1px solid var(--amber-border);color:#7A5B0E;
     border-radius:100px;padding:9px 20px;font-size:13.5px;font-weight:500;
-    max-width:fit-content;margin:0 auto 36px;
+    max-width:fit-content;margin:0 auto 12px;
   }
   .earlybird-banner .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0;}
+  .earlybird-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 36px;}
+  .promo-bar{background:var(--amber);color:#3D2C05;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
+  .promo-bar a{color:#3D2C05;text-decoration:underline;}
   .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .price-card{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
@@ -163,7 +166,7 @@
   .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
   .price-card .amount-row{display:flex;align-items:baseline;gap:8px;}
   .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;margin-bottom:2px;}
-  .price-card .was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;}
+  .was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;}
   .price-card .period{font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;}
   .price-card ul{list-style:none;font-size:13.5px;color:var(--ink-soft);flex:1;}
   .price-card li{padding:6px 0;padding-left:18px;position:relative;}
@@ -216,6 +219,8 @@
 </style>
 </head>
 <body>
+
+<div class="promo-bar">Early Bird: <strong>-20%</strong> off all plans — first 50 customers, until October 31, 2026. <a href="#pricing">See pricing →</a></div>
 
 <nav>
   <div class="wrap">
@@ -366,7 +371,8 @@
       <h2>A tier for every stage</h2>
     </div>
 
-    <div class="earlybird-banner"><span class="dot"></span>Early Bird launch pricing — for a limited time</div>
+    <div class="earlybird-banner"><span class="dot"></span>Early Bird: -20%</div>
+    <p class="earlybird-sub">20% off all plans, applied at checkout — limited to the first 50 customers, until October 31, 2026.</p>
 
     <div class="price-grid">
       <div class="price-card">
@@ -385,7 +391,7 @@
       <div class="price-card">
         <h3>Access</h3>
         <div class="sub">The essentials for rehearsals and live shows, at a low price</div>
-        <div class="amount-row"><div class="amount">€19.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99 excl. tax</div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
@@ -399,7 +405,7 @@
       <div class="price-card highlight">
         <h3>Standard Solo</h3>
         <div class="sub">Duos and live performances</div>
-        <div class="amount-row"><div class="amount">€39.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€39.99</div><div class="amount">€31.99 excl. tax</div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
@@ -417,7 +423,7 @@
       <div class="price-card">
         <h3>Standard Multi</h3>
         <div class="sub">Your whole team, in sync</div>
-        <div class="amount-row"><div class="amount">€69.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99 excl. tax</div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
@@ -439,12 +445,12 @@
 
     <div class="addons">
       <div class="addon">
-        <div class="amount">€14.99 excl. tax/yr</div>
+        <div class="amount-row"><div class="was">€14.99</div><div class="amount">€11.99 excl. tax/yr</div></div>
         <div class="lbl">Evolution Pass — major updates from year 2 onward (year 1 already included with Solo/Multi)</div>
         <div class="cta" style="margin-top:14px;">Choose Evolution Pass</div>
       </div>
       <div class="addon">
-        <div class="amount">€34.99 excl. tax</div>
+        <div class="amount-row"><div class="was">€34.99</div><div class="amount">€27.99 excl. tax</div></div>
         <div class="lbl">Unlimited devices — add-on for Standard Multi only</div>
         <div class="cta" style="margin-top:14px;">Choose Unlimited</div>
       </div>
@@ -528,7 +534,7 @@
     <div class="flinks">
       <a href="#faq">FAQ</a>
       <a href="mailto:contact@markerlist.app">Contact</a>
-      <a href="confidentialite.html">Privacy</a>
+      <a href="confidentialite_en.html">Privacy</a>
     </div>
     <span class="mono">Built for the stage.</span>
   </div>
