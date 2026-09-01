@@ -151,7 +151,7 @@
   .earlybird-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 36px;}
   .promo-bar{background:var(--amber);color:#3D2C05;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
   .promo-bar a{color:#3D2C05;text-decoration:underline;}
-  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .price-card{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px 24px;display:flex;flex-direction:column;
@@ -177,6 +177,16 @@
   .addon{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;font-size:13.5px;}
   .addon .amount{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
   .addon .lbl{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .trial-strip{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    border:1px dashed var(--line);border-radius:var(--radius);
+    padding:18px 24px;margin-top:16px;
+  }
+  .trial-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .trial-strip h3{font-size:15px;font-weight:600;margin-bottom:6px;}
+  .trial-strip p{font-size:13px;color:var(--ink-soft);max-width:620px;}
+  .trial-cta{flex-shrink:0;padding:10px 20px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;white-space:nowrap;}
+  .trial-cta:hover{border-color:var(--ink);}
 
   /* COMPARISON: features / tiers */
   .compare{margin-top:56px;}
@@ -213,6 +223,7 @@
     .why-grid{grid-template-columns:1fr;}
     .price-grid{grid-template-columns:1fr;}
     .addons{flex-direction:column;}
+    .trial-strip{flex-direction:column;align-items:flex-start;}
     nav .links{display:none;}
     .hv-top{font-size:11px;}
   }
@@ -376,19 +387,6 @@
 
     <div class="price-grid">
       <div class="price-card">
-        <h3>Discovery</h3>
-        <div class="sub">Try it under real conditions</div>
-        <div class="amount">Free</div>
-        <div class="period">15-minute sessions, then a 5-minute pause before restarting (5 restarts max) — perfect for testing the app under real conditions.</div>
-        <ul>
-          <li>1 host computer</li>
-          <li>1 device</li>
-          <li>Standard Solo features</li>
-        </ul>
-        <div class="cta">Try it</div>
-      </div>
-
-      <div class="price-card">
         <h3>Access</h3>
         <div class="sub">The essentials for rehearsals and live shows, at a low price</div>
         <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99 excl. tax</div></div>
@@ -421,7 +419,7 @@
       </div>
 
       <div class="price-card">
-        <h3>Standard Group</h3>
+        <h3>Standard Multi</h3>
         <div class="sub">Your whole team, in sync</div>
         <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99 excl. tax</div></div>
         <div class="period">one-time payment</div>
@@ -446,14 +444,23 @@
     <div class="addons">
       <div class="addon">
         <div class="amount-row"><div class="was">€14.99</div><div class="amount">€11.99 excl. tax/yr</div></div>
-        <div class="lbl">Evolution Pass — major updates from year 2 onward (year 1 already included with Standard Solo/Group)</div>
+        <div class="lbl">Evolution Pass — major updates from year 2 onward (year 1 already included with Solo/Multi)</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/864f0e04-ac87-409b-b339-1741668c7aac?checkout[discount_code]=U5NTM1MG" target="_blank" rel="noopener">Choose Evolution Pass</a>
       </div>
       <div class="addon">
         <div class="amount-row"><div class="was">€49.99</div><div class="amount">€39.99 excl. tax</div></div>
-        <div class="lbl">Unlimited devices — add-on for Standard Group only</div>
+        <div class="lbl">Unlimited devices — add-on for Standard Multi only</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/4f1c2263-808d-4ec5-9a00-e8d8d508f7a4?checkout[discount_code]=U5NTM1MG" target="_blank" rel="noopener">Choose Unlimited</a>
       </div>
+    </div>
+
+    <div class="trial-strip">
+      <div class="trial-text">
+        <div class="trial-label">Not sure yet? — free trial</div>
+        <h3>Discovery</h3>
+        <p>15-minute sessions, then a 5-minute pause before restarting (5 restarts max within 24h), with Standard Solo features on 1 host computer and 1 device — perfect for testing under real conditions before choosing a tier.</p>
+      </div>
+      <a class="cta trial-cta" href="https://github.com/markerlistapp-ui/markerlist/releases/latest/download/MarkerList.app.zip">Try it free</a>
     </div>
 
     <p style="margin-top:24px;font-size:12.5px;color:var(--ink-soft);text-align:center;">Prices exclude tax — VAT or equivalent is calculated automatically based on your billing country at checkout.</p>
