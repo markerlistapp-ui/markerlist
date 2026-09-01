@@ -151,7 +151,7 @@
   .earlybird-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 36px;}
   .promo-bar{background:var(--amber);color:#3D2C05;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
   .promo-bar a{color:#3D2C05;text-decoration:underline;}
-  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
   .price-card{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px 24px;display:flex;flex-direction:column;
@@ -177,6 +177,16 @@
   .addon{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;font-size:13.5px;}
   .addon .amount{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
   .addon .lbl{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .trial-strip{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    border:1px dashed var(--line);border-radius:var(--radius);
+    padding:18px 24px;margin-top:16px;
+  }
+  .trial-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .trial-strip h3{font-size:15px;font-weight:600;margin-bottom:6px;}
+  .trial-strip p{font-size:13px;color:var(--ink-soft);max-width:620px;}
+  .trial-cta{flex-shrink:0;padding:10px 20px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;white-space:nowrap;}
+  .trial-cta:hover{border-color:var(--ink);}
 
   /* COMPARATIF fonctionnalités / paliers */
   .compare{margin-top:56px;}
@@ -213,6 +223,7 @@
     .why-grid{grid-template-columns:1fr;}
     .price-grid{grid-template-columns:1fr;}
     .addons{flex-direction:column;}
+    .trial-strip{flex-direction:column;align-items:flex-start;}
     nav .links{display:none;}
     .hv-top{font-size:11px;}
   }
@@ -376,19 +387,6 @@
 
     <div class="price-grid">
       <div class="price-card">
-        <h3>Découverte</h3>
-        <div class="sub">Tester en conditions réelles</div>
-        <div class="amount">Gratuit</div>
-        <div class="period">Sessions de 15 min, puis 5 min de pause avant de relancer (5 relances maximum sur 24h) — idéal pour tester l'app en conditions réelles.</div>
-        <ul>
-          <li>1 ordinateur hôte</li>
-          <li>1 périphérique</li>
-          <li>Fonctionnalités Standard Solo</li>
-        </ul>
-        <div class="cta">Essayer</div>
-      </div>
-
-      <div class="price-card">
         <h3>Access</h3>
         <div class="sub">Le basique pour les répétitions et le live à petit prix</div>
         <div class="amount-row"><div class="was">19,99 €</div><div class="amount">15,99 € HT</div></div>
@@ -421,7 +419,7 @@
       </div>
 
       <div class="price-card">
-        <h3>Standard Group</h3>
+        <h3>Standard Multi</h3>
         <div class="sub">Toute l'équipe, synchronisée</div>
         <div class="amount-row"><div class="was">69,99 €</div><div class="amount">55,99 € HT</div></div>
         <div class="period">paiement unique</div>
@@ -446,14 +444,23 @@
     <div class="addons">
       <div class="addon">
         <div class="amount-row"><div class="was">14,99 €</div><div class="amount">11,99 € HT/an</div></div>
-        <div class="lbl">Evolution Pass — mises à jour majeures dès la 2e année (1re année déjà incluse avec Standard Solo/Group)</div>
+        <div class="lbl">Evolution Pass — mises à jour majeures dès la 2e année (1re année déjà incluse avec Solo/Multi)</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/864f0e04-ac87-409b-b339-1741668c7aac?checkout[discount_code]=U5NTM1MG" target="_blank" rel="noopener">Choisir Evolution Pass</a>
       </div>
       <div class="addon">
         <div class="amount-row"><div class="was">49,99 €</div><div class="amount">39,99 € HT</div></div>
-        <div class="lbl">Périphériques illimités — option pour Standard Group uniquement</div>
+        <div class="lbl">Périphériques illimités — option pour Standard Multi uniquement</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/4f1c2263-808d-4ec5-9a00-e8d8d508f7a4?checkout[discount_code]=U5NTM1MG" target="_blank" rel="noopener">Choisir Illimité</a>
       </div>
+    </div>
+
+    <div class="trial-strip">
+      <div class="trial-text">
+        <div class="trial-label">Pas encore sûr ? — essai gratuit</div>
+        <h3>Découverte</h3>
+        <p>Sessions de 15 min, puis 5 min de pause avant de relancer (5 relances maximum sur 24h), avec les fonctionnalités Standard Solo sur 1 ordinateur hôte et 1 périphérique — idéal pour tester en conditions réelles avant de choisir un palier.</p>
+      </div>
+      <a class="cta trial-cta" href="https://github.com/markerlistapp-ui/markerlist/releases/latest/download/MarkerList.app.zip">Essayer gratuitement</a>
     </div>
 
     <p style="margin-top:24px;font-size:12.5px;color:var(--ink-soft);text-align:center;">Prix HT — taxe (TVA ou équivalent) calculée automatiquement selon le pays de facturation, à l'étape de paiement.</p>
