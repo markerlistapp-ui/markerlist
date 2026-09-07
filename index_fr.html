@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<!-- Consent Mode v2 -- doit s'exécuter AVANT GTM/gtag plus bas, pour
+     qu'aucun cookie analytics ne soit posé tant que le visiteur n'a pas
+     explicitement accepté via le bandeau (voir #consentBanner en fin de
+     <body>). Sans ce bloc, Google considère le consentement accordé par
+     défaut. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -8,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
 <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MD0RDHJD10"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -17,15 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   gtag('config', 'G-MD0RDHJD10');
 </script>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MD0RDHJD10"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', 'G-MD0RDHJD10');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Markerlist — Organisez. Pilotez. Jouez.</title>
@@ -246,9 +253,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .trial-strip{flex-direction:column;align-items:flex-start;}
     nav .links{display:none;}
   }
+
+  /* BANDEAU DE CONSENTEMENT */
+  .consent-banner{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:200;
+    max-width:640px;margin:0 auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:0 20px 50px rgba(20,23,31,0.18);
+    padding:18px 20px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;
+  }
+  .consent-banner p{font-size:13.5px;color:var(--ink-soft);flex:1 1 320px;}
+  .consent-banner a{text-decoration:underline;color:var(--ink);}
+  .consent-actions{display:flex;gap:10px;flex-shrink:0;}
+  .consent-actions button{cursor:pointer;font-family:inherit;}
+  button.btn-cta{border:0;}
 </style>
 </head>
 <body>
+<!-- Bandeau de consentement (cookies analytics) -- affiché tant qu'aucun
+     choix n'est stocké en localStorage. Consent Mode v2 (voir <head>)
+     bloque déjà tout stockage analytics par défaut avant même l'affichage
+     de ce bandeau, donc l'ordre d'apparition n'est pas critique ici. -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <p>Nous utilisons des cookies pour comprendre comment les visiteurs utilisent ce site. Tu peux accepter ou refuser — voir notre <a href="confidentialite.html">Politique de confidentialité</a>.</p>
+  <div class="consent-actions">
+    <button id="consentDecline" class="btn-ghost" type="button">Refuser</button>
+    <button id="consentAccept" class="btn-cta" type="button">Accepter</button>
+  </div>
+</div>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -580,5 +614,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </footer>
 
+<script>
+(function(){
+  var KEY = 'ml_consent';
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch(e) {}
+
+  function updateConsent(granted){
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
+  }
+
+  var banner = document.getElementById('consentBanner');
+  if (stored === 'accepted') {
+    updateConsent(true);
+  } else if (stored !== 'declined' && banner) {
+    banner.hidden = false;
+  }
+
+  var acceptBtn = document.getElementById('consentAccept');
+  var declineBtn = document.getElementById('consentDecline');
+  if (acceptBtn) acceptBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'accepted'); } catch(e) {}
+    updateConsent(true);
+    if (banner) banner.hidden = true;
+  });
+  if (declineBtn) declineBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'declined'); } catch(e) {}
+    if (banner) banner.hidden = true;
+  });
+})();
+</script>
 </body>
 </html>
