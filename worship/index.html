@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Consent Mode v2 -- must run BEFORE GTM/gtag below, so no analytics
+     cookie is set until the visitor explicitly accepts via the banner
+     (see #consentBanner near the end of <body>). Without this block,
+     Google treats consent as granted by default. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markerlist for Worship Teams</title>
+<meta name="description" content="Run your Sunday setlist from a phone or tablet, built for a volunteer-led team — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta property="og:title" content="Markerlist for Worship Teams">
+<meta property="og:description" content="Run your Sunday setlist from a phone or tablet, built for a volunteer-led team — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markerlist.app/worship/">
+<meta property="og:image" content="https://markerlist.app/assets/images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markerlist for Worship Teams">
+<meta name="twitter:description" content="Run your Sunday setlist from a phone or tablet, built for a volunteer-led team — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta name="twitter:image" content="https://markerlist.app/assets/images/logo.png">
+<link rel="canonical" href="https://markerlist.app/worship/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MarkerList",
+  "url": "https://markerlist.app/worship/",
+  "description": "Run your Sunday setlist from a phone or tablet, built for a volunteer-led worship team, without ever modifying the original Ableton session.",
+  "applicationCategory": "MusicApplication",
+  "operatingSystem": "macOS",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "15.99",
+    "highPrice": "55.99",
+    "offerCount": "3"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFC;
+    --surface:#FFFFFF;
+    --line:#E2E5EF;
+    --ink:#14171F;
+    --ink-soft:#5B5F6C;
+    --blue:#3064F6;
+    --blue-deep:#1D3FB0;
+    --blue-mid:#7C97FA;
+    --blue-soft:#E9EEFE;
+    --blue-border:#C7D4FC;
+    --amber:#B8860B;
+    --amber-soft:#FBF3E1;
+    --amber-border:#EAD9AE;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,248,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .brand img{width:26px;height:26px;border-radius:6px;}
+  nav .links{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--ink-soft);}
+  nav .links a:hover{color:var(--ink);}
+  .btn-primary{background:var(--ink);color:#fff;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:500;}
+  .btn-primary:hover{background:var(--blue);}
+
+  .ruler{position:relative;height:34px;background-image:repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .ruler::before{content:'';position:absolute;top:0;bottom:0;left:0;right:0;background-image:repeating-linear-gradient(90deg, var(--ink-soft) 0 1px, transparent 1px 200px);opacity:.35;}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:5px 12px;border-radius:100px;}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue);}
+
+  .hero{padding:76px 0 60px;}
+  .hero h1{font-size:50px;font-weight:600;line-height:1.08;max-width:760px;margin-top:24px;}
+  .hero .lead{margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:540px;}
+  .hero .ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn-cta{padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;}
+  .btn-cta:hover{background:var(--blue);color:#fff;}
+  .btn-ghost{padding:12px 22px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px;}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink);}
+
+  section{padding:64px 0;}
+  .section-head{max-width:620px;margin-bottom:40px;}
+  .section-tag{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em;}
+  .section-head h2{font-size:30px;font-weight:600;line-height:1.15;}
+  .section-head p.sub{margin-top:12px;font-size:15.5px;color:var(--ink-soft);}
+
+  .trust-row{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .trust-item{background:var(--surface);padding:26px 24px;display:flex;flex-direction:column;gap:12px;}
+  .trust-item svg{color:var(--blue);}
+  .trust-item h3{font-size:15.5px;font-weight:600;}
+  .trust-item p{font-size:13.5px;color:var(--ink-soft);margin:0;}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .split h2{font-size:28px;font-weight:600;line-height:1.2;margin-bottom:16px;}
+  .split p{font-size:15.5px;color:var(--ink-soft);line-height:1.65;}
+  .role-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;display:flex;gap:14px;align-items:flex-start;}
+  .role-card + .role-card{margin-top:14px;}
+  .role-icon{width:36px;height:36px;border-radius:9px;background:var(--blue-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue-deep);}
+  .role-card h3{font-size:14.5px;font-weight:600;margin-bottom:4px;}
+  .role-card p{font-size:13px;color:var(--ink-soft);margin:0;}
+  .role-tag{display:inline-block;margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;}
+
+  .feature-row{display:grid;grid-template-columns:44px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line);align-items:start;}
+  .feature-row:last-child{border-bottom:1px solid var(--line);}
+  .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
+  .feature-row h3{font-size:18px;font-weight:600;margin-bottom:6px;}
+  .feature-row p{font-size:15px;color:var(--ink-soft);max-width:600px;margin:0;}
+
+  .budget-panel{background:var(--ink);color:#fff;border-radius:var(--radius);padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;}
+  .budget-panel h2{color:#fff;font-size:26px;margin-bottom:14px;}
+  .budget-panel p{color:rgba(255,255,255,0.68);font-size:15px;line-height:1.65;}
+  .budget-figure{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:22px;}
+  .budget-figure .line{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13.5px;}
+  .budget-figure .line:last-child{border-bottom:0;}
+  .budget-figure .line span:first-child{color:rgba(255,255,255,0.6);}
+  .budget-figure .line.total span{color:#fff;font-weight:600;}
+
+  .price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;}
+  .price-card.highlight{border-color:var(--ink);position:relative;}
+  .price-card.highlight::before{content:'Most popular for teams';position:absolute;top:-11px;left:24px;background:var(--ink);color:#fff;font-size:11px;padding:3px 9px;border-radius:100px;font-family:'IBM Plex Mono',monospace;}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .price-card h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+  .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .price-card .amount-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;}
+  .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:600;}
+  .price-card .was{font-size:13px;color:var(--ink-soft);text-decoration:line-through;}
+  .price-card .period{font-size:12.5px;color:var(--ink-soft);margin:4px 0 18px;}
+  .price-card ul{list-style:none;padding:0;margin:0;font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .price-card li{padding:6px 0 6px 18px;position:relative;}
+  .price-card li::before{content:'—';position:absolute;left:0;color:var(--blue);}
+  .price-card .cta{margin-top:20px;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;}
+  .price-card.highlight .cta{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .faq-item{border-top:1px solid var(--line);padding:22px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h3{font-size:15.5px;font-weight:600;margin-bottom:8px;}
+  .faq-item p{font-size:14px;color:var(--ink-soft);max-width:660px;margin:0;}
+
+  .closer{text-align:center;padding:72px 0 88px;}
+  .closer h2{font-size:32px;margin-bottom:14px;}
+  .closer p{font-size:15.5px;color:var(--ink-soft);max-width:480px;margin:0 auto 28px;}
+
+  footer{padding:32px 0;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
+  footer .flinks{display:flex;gap:20px;}
+  footer .flinks a:hover{color:var(--ink);}
+
+  @media (max-width:760px){
+    .hero h1{font-size:34px;}
+    .trust-row{grid-template-columns:1fr;}
+    .split{grid-template-columns:1fr;}
+    .budget-panel{grid-template-columns:1fr;padding:32px;}
+    .price-grid{grid-template-columns:1fr;}
+    nav .links{display:none;}
+  }
+
+  .consent-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;max-width:640px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 50px rgba(20,23,31,0.18);padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;}
+  .consent-banner p{font-size:13.5px;color:var(--ink-soft);flex:1 1 320px;}
+  .consent-banner a{text-decoration:underline;color:var(--ink);}
+  .consent-actions{display:flex;gap:10px;flex-shrink:0;}
+  .consent-actions button{cursor:pointer;font-family:inherit;}
+  button.btn-cta{border:0;}
+  .consent-banner[hidden]{display:none;}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -- must be the very first thing after <body>,
+     nothing before it, or Search Console's GTM-based ownership verification fails. -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Bandeau de consentement (cookies analytics) -- affiché tant qu'aucun
+     choix n'est stocké en localStorage. Consent Mode v2 (voir <head>)
+     bloque déjà tout stockage analytics par défaut avant même l'affichage
+     de ce bandeau, donc l'ordre d'apparition n'est pas critique ici. -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <p>We use cookies to understand how visitors use this site. You can accept or decline — see our <a href="/confidentialite_en.html">Privacy Policy</a>.</p>
+  <div class="consent-actions">
+    <button id="consentDecline" class="btn-ghost" type="button">Decline</button>
+    <button id="consentAccept" class="btn-cta" type="button">Accept</button>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/assets/images/logo.png" alt="Markerlist">
+      Markerlist
+    </a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#pricing" id="try-free-nav" class="btn-primary">Try the app</a>
+  </div>
+</nav>
+
+<div class="ruler"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>FOR WORSHIP &amp; PRODUCTION TEAMS</div>
+    <h1>Sunday shouldn't depend on who's running the laptop.</h1>
+    <p class="lead">Markerlist turns your Ableton session into a setlist your whole team can run, from a phone or tablet, without ever touching the original session — built for the reality that it's usually a volunteer at the desk, not a paid tech.</p>
+    <div class="ctas">
+      <a href="#pricing" id="try-free-hero" class="btn-cta">Try it free</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Download app</a>
+    </div>
+  </div>
+</header>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// why it's safe to hand off</div>
+      <h2>Nothing about your session changes, ever</h2>
+      <p class="sub">Whoever's running sound on Sunday can reorder the set, jump songs, or recover from a dropped connection — none of it touches your original Ableton project.</p>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Never modifies your project</h3>
+        <p>Markerlist reads and controls your session in real time. Nothing is ever written back to your .als file, so there's no risk of Sunday's set getting altered by accident.</p>
+      </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5.5 12a11 11 0 0 1 13 0"/><path d="M9 15.5a6 6 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+        <h3>Recovers from a dropped WiFi</h3>
+        <p>If the connection drops mid-song, the device reconnects and picks up exactly where the show is. No command ever fires late once the network is back.</p>
+      </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        <h3>A panic button, built in</h3>
+        <p>Two quick taps on STOP bring the whole show back to the first song instantly, whatever state it's in — the safety net for when something goes sideways.</p>
+      </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6l1 1 2-2"/><path d="M3 12l1 1 2-2"/><path d="M3 18l1 1 2-2"/></svg>
+        <h3>Ready ahead, flexible live</h3>
+        <p>Build the setlist during the week — reorder, add, or pull songs anytime. If Sunday needs to change on the spot, drag a song in or loop a section, no laptop required.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="section-tag">// built for a volunteer team</div>
+        <h2>The sound desk stays in control. Everyone else just sees what's next.</h2>
+        <p>Every musician can connect their own phone or tablet, but only the person you authorize can actually trigger play or stop. Nobody on stage can accidentally end the song early — they just see the countdown and what's coming.</p>
+      </div>
+      <div>
+        <div class="role-card">
+          <div class="role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="10" height="20" rx="2"/><path d="M8 18h2"/><path d="M17 8v10a2 2 0 0 1-2 2"/><path d="M14 6h6l-3-3M20 6l-3 3"/></svg>
+          </div>
+          <div>
+            <h3>Sound desk</h3>
+            <p>Full control — play, stop, reorder, jump between songs.</p>
+            <span class="role-tag">read / write</span>
+          </div>
+        </div>
+        <div class="role-card">
+          <div class="role-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+          </div>
+          <div>
+            <h3>Vocals, keys, guitar…</h3>
+            <p>Sees the current song, what's next, and a synced countdown.</p>
+            <span class="role-tag">read only</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// built for the actual service</div>
+      <h2>The rest of what a Sunday needs</h2>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Team pre-roll</h3><p>Before coming back in, the whole team sees the song name, then a countdown timed to the tempo — everyone comes in together, not just whoever's watching the screen.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Reorder without touching Ableton</h3><p>Drag songs into a new order for this week's service in seconds. Pull one out for next time — it moves to the library and can be brought back with one tap.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Section loops</h3><p>Loop a chorus or a bridge with one tap when the pastor keeps the moment going a little longer — once, twice, or freely until released.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Printable run of service</h3><p>Export the set as a PDF with your team's name and total duration — hand it to whoever's filling in this week without opening a laptop.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="budget-panel">
+      <div>
+        <div class="section-tag" style="color:rgba(255,255,255,0.5);">// how churches actually budget</div>
+        <h2>One line item, paid once. Not a subscription to re-approve every year.</h2>
+        <p>No monthly fee to justify at the next budget meeting, no license that lapses if a renewal gets missed. You pay once per computer, and it keeps working.</p>
+      </div>
+      <div class="budget-figure">
+        <div class="line"><span>Access — 1 device</span><span>€15.99, once</span></div>
+        <div class="line"><span>Standard Solo — 2 devices</span><span>€31.99, once</span></div>
+        <div class="line total"><span>Standard Multi — 4 devices</span><span>€55.99, once</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// pricing</div>
+      <h2>A tier for every team size</h2>
+      <p class="sub">No song licensing, no monthly rentals to fund — just control, paid once. Prices exclude tax.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Access</h3>
+        <div class="sub">One person running the set, at a low price</div>
+        <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer</li>
+          <li>1 device</li>
+          <li>Automatic stop and continuous playback</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/b3141751-b31b-4de3-b653-dbc58b2875cc?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Access</a>
+      </div>
+      <div class="price-card highlight">
+        <h3>Standard Multi</h3>
+        <div class="sub">The whole team, in sync</div>
+        <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer, 4 devices</li>
+          <li>Roles per device (read-only)</li>
+          <li>Team pre-roll &amp; section loops</li>
+          <li>Setlist PDF export</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/5a560815-dd7e-4322-9baf-3dcdda8d7e46?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Multi</a>
+      </div>
+      <div class="price-card">
+        <h3>Standard Solo</h3>
+        <div class="sub">Duos and smaller teams</div>
+        <div class="amount-row"><div class="was">€39.99</div><div class="amount">€31.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer, 2 devices</li>
+          <li>Drag &amp; reorder</li>
+          <li>Setlist PDF export</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/0c341af4-56ea-44f6-8529-eaf0d3101ac2?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Solo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// before you get started</div>
+      <h2>Questions worship teams actually ask</h2>
+    </div>
+    <div class="faq-item">
+      <h3>What happens if the sanctuary WiFi drops mid-song?</h3>
+      <p>The device reconnects automatically and picks up the exact state of the service in progress. No command sent during the drop ever fires late once the network is back.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can we let musicians see the setlist without giving them control?</h3>
+      <p>Yes — that's what device roles are for. The sound desk keeps play/stop, everyone else gets a read-only view of the current and next song.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What if this week's volunteer has never used it before?</h3>
+      <p>There's nothing to configure on the app itself — the setlist is already built from your session's locators. Export a PDF run-of-service ahead of time if you want them to see the order before they touch a screen.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do we need Max for Live or any other plugin?</h3>
+      <p>No. Markerlist connects directly to Ableton Live — nothing to load into your session.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I try it before buying?</h3>
+      <p>Yes — the Discovery tier is free: 15-minute sessions with Standard Multi features unlocked, separated by a 5-minute pause, up to 5 restarts per 24h, so you can test it under real conditions before choosing a paid tier.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<div class="closer">
+  <div class="wrap">
+    <h2>Try it on a real service before you decide anything.</h2>
+    <p>15-minute sessions with Standard Multi features unlocked, no card required — see how it runs before choosing a tier.</p>
+    <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-cta">Try it free</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Markerlist</span>
+    <div class="flinks">
+      <a href="#faq">FAQ</a>
+      <a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a>
+      <a href="mailto:contact@markerlist.app">Contact</a>
+      <a href="/confidentialite_en.html">Privacy</a>
+    </div>
+    <span class="mono">Built for the stage.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = 'ml_consent';
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch(e) {}
+
+  function updateConsent(granted){
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
+  }
+
+  var banner = document.getElementById('consentBanner');
+  if (stored === 'accepted') {
+    updateConsent(true);
+  } else if (stored !== 'declined' && banner) {
+    banner.hidden = false;
+  }
+
+  var acceptBtn = document.getElementById('consentAccept');
+  var declineBtn = document.getElementById('consentDecline');
+  if (acceptBtn) acceptBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'accepted'); } catch(e) {}
+    updateConsent(true);
+    if (banner) banner.hidden = true;
+  });
+  if (declineBtn) declineBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'declined'); } catch(e) {}
+    if (banner) banner.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
