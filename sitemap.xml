@@ -15,6 +15,15 @@
   </url>
   <url>
     <loc>https://markerlist.app/worship/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/worship/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/worship/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/worship/"/>
+  </url>
+  <url>
+    <loc>https://markerlist.app/worship/index_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/worship/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/worship/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/worship/"/>
   </url>
   <url>
     <loc>https://markerlist.app/bands/</loc>
