@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Consent Mode v2 -- must run BEFORE GTM/gtag below, so no analytics
+     cookie is set until the visitor explicitly accepts via the banner
+     (see #consentBanner near the end of <body>). Without this block,
+     Google treats consent as granted by default. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
+<!-- End Google Tag Manager -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Markerlist for Bands</title>
+<meta name="description" content="Run your setlist from a phone or tablet, built for amateur and semi-pro bands playing real shows — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta property="og:title" content="Markerlist for Bands">
+<meta property="og:description" content="Run your setlist from a phone or tablet, built for amateur and semi-pro bands playing real shows — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markerlist.app/bands/">
+<meta property="og:image" content="https://markerlist.app/assets/images/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Markerlist for Bands">
+<meta name="twitter:description" content="Run your setlist from a phone or tablet, built for amateur and semi-pro bands playing real shows — one-time payment, no Max for Live, never touches your Ableton session.">
+<meta name="twitter:image" content="https://markerlist.app/assets/images/logo.png">
+<link rel="canonical" href="https://markerlist.app/bands/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MarkerList",
+  "url": "https://markerlist.app/bands/",
+  "description": "Run your setlist live from a phone or tablet, built for amateur and semi-pro bands, without ever modifying the original Ableton session.",
+  "applicationCategory": "MusicApplication",
+  "operatingSystem": "macOS",
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": "EUR",
+    "lowPrice": "15.99",
+    "highPrice": "55.99",
+    "offerCount": "3"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAFAFC;
+    --surface:#FFFFFF;
+    --line:#E2E5EF;
+    --ink:#14171F;
+    --ink-soft:#5B5F6C;
+    --blue:#3064F6;
+    --blue-deep:#1D3FB0;
+    --blue-mid:#7C97FA;
+    --blue-soft:#E9EEFE;
+    --blue-border:#C7D4FC;
+    --amber:#B8860B;
+    --amber-soft:#FBF3E1;
+    --amber-border:#EAD9AE;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(250,250,248,0.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .brand img{width:26px;height:26px;border-radius:6px;}
+  nav .links{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--ink-soft);}
+  nav .links a:hover{color:var(--ink);}
+  .btn-primary{background:var(--ink);color:#fff;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:500;}
+  .btn-primary:hover{background:var(--blue);}
+
+  .ruler{position:relative;height:34px;background-image:repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .ruler::before{content:'';position:absolute;top:0;bottom:0;left:0;right:0;background-image:repeating-linear-gradient(90deg, var(--ink-soft) 0 1px, transparent 1px 200px);opacity:.35;}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:5px 12px;border-radius:100px;}
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--blue);}
+
+  .hero{padding:76px 0 60px;}
+  .hero h1{font-size:50px;font-weight:600;line-height:1.08;max-width:760px;margin-top:24px;}
+  .hero .lead{margin-top:20px;font-size:18px;color:var(--ink-soft);max-width:540px;}
+  .hero .ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn-cta{padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;}
+  .btn-cta:hover{background:var(--blue);color:#fff;}
+  .btn-ghost{padding:12px 22px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-weight:500;display:inline-flex;align-items:center;gap:8px;}
+  .btn-ghost:hover{border-color:var(--ink);color:var(--ink);}
+
+  section{padding:60px 0;}
+  .section-head{max-width:640px;margin-bottom:32px;}
+  .section-tag{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em;}
+  .section-head h2{font-size:29px;font-weight:600;line-height:1.18;}
+  .section-head p.sub{margin-top:12px;font-size:15.5px;color:var(--ink-soft);}
+
+  .qualify-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px 36px;}
+  .qualify-panel h2{font-size:22px;margin-bottom:12px;}
+  .qualify-panel p{font-size:15px;color:var(--ink-soft);line-height:1.7;max-width:720px;}
+
+  .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .trust-item{background:var(--surface);padding:26px 24px;display:flex;flex-direction:column;gap:12px;}
+  .trust-item svg{color:var(--blue);}
+  .trust-item h3{font-size:15.5px;font-weight:600;}
+  .trust-item p{font-size:13.5px;color:var(--ink-soft);margin:0;}
+
+  .room-panel{background:var(--ink);border-radius:var(--radius);padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .room-panel h2{color:#fff;font-size:27px;margin-bottom:14px;}
+  .room-panel p{color:rgba(255,255,255,0.68);font-size:15px;line-height:1.7;}
+  .room-example{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:12px;padding:20px;}
+  .room-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.1);font-size:13.5px;color:rgba(255,255,255,0.85);}
+  .room-row:last-child{border-bottom:0;}
+  .room-row .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue-mid);background:rgba(124,151,250,0.15);padding:2px 8px;border-radius:100px;flex-shrink:0;}
+
+  .feature-row{display:grid;grid-template-columns:44px 1fr;gap:20px;padding:24px 0;border-top:1px solid var(--line);align-items:start;}
+  .feature-row:last-child{border-bottom:1px solid var(--line);}
+  .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
+  .feature-row h3{font-size:17px;font-weight:600;margin-bottom:6px;}
+  .feature-row p{font-size:14.5px;color:var(--ink-soft);max-width:600px;margin:0;}
+
+  .gear-panel{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center;}
+  .gear-panel h2{font-size:27px;line-height:1.2;margin-bottom:14px;}
+  .gear-panel p{font-size:15px;color:var(--ink-soft);line-height:1.7;}
+  .gear-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .gear-row{background:var(--surface);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13.5px;}
+  .gear-row span:first-child{color:var(--ink-soft);}
+  .gear-row.total{background:var(--blue-soft);}
+  .gear-row.total span{font-weight:600;color:var(--ink);}
+
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;}
+  .price-card.highlight{border-color:var(--ink);position:relative;}
+  .price-card.highlight::before{content:'Most popular for teams';position:absolute;top:-11px;left:24px;background:var(--ink);color:#fff;font-size:11px;padding:3px 9px;border-radius:100px;font-family:'IBM Plex Mono',monospace;}
+  .price-card h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+  .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .price-card .amount-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;}
+  .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:600;}
+  .price-card .was{font-size:13px;color:var(--ink-soft);text-decoration:line-through;}
+  .price-card .period{font-size:12.5px;color:var(--ink-soft);margin:4px 0 18px;}
+  .price-card ul{list-style:none;padding:0;margin:0;font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .price-card li{padding:6px 0 6px 18px;position:relative;}
+  .price-card li::before{content:'—';position:absolute;left:0;color:var(--blue);}
+  .price-card .cta{margin-top:20px;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;}
+  .price-card.highlight .cta{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+  .faq-item{border-top:1px solid var(--line);padding:20px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h3{font-size:15.5px;font-weight:600;margin-bottom:8px;}
+  .faq-item p{font-size:14px;color:var(--ink-soft);max-width:660px;margin:0;}
+
+  .closer{text-align:center;padding:68px 0 84px;}
+  .closer h2{font-size:31px;margin-bottom:14px;}
+  .closer p{font-size:15.5px;color:var(--ink-soft);max-width:480px;margin:0 auto 28px;}
+
+  footer{padding:32px 0;font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
+  footer .flinks{display:flex;gap:20px;}
+  footer .flinks a:hover{color:var(--ink);}
+
+  @media (max-width:760px){
+    .hero h1{font-size:34px;}
+    .trust-row{grid-template-columns:1fr;}
+    .room-panel{grid-template-columns:1fr;padding:32px;}
+    .gear-panel{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    nav .links{display:none;}
+  }
+
+  .consent-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:200;max-width:640px;margin:0 auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 20px 50px rgba(20,23,31,0.18);padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;}
+  .consent-banner p{font-size:13.5px;color:var(--ink-soft);flex:1 1 320px;}
+  .consent-banner a{text-decoration:underline;color:var(--ink);}
+  .consent-actions{display:flex;gap:10px;flex-shrink:0;}
+  .consent-actions button{cursor:pointer;font-family:inherit;}
+  button.btn-cta{border:0;}
+  .consent-banner[hidden]{display:none;}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -- must be the very first thing after <body>,
+     nothing before it, or Search Console's GTM-based ownership verification fails. -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- Bandeau de consentement (cookies analytics) -- affiché tant qu'aucun
+     choix n'est stocké en localStorage. Consent Mode v2 (voir <head>)
+     bloque déjà tout stockage analytics par défaut avant même l'affichage
+     de ce bandeau, donc l'ordre d'apparition n'est pas critique ici. -->
+<div id="consentBanner" class="consent-banner" hidden>
+  <p>We use cookies to understand how visitors use this site. You can accept or decline — see our <a href="/confidentialite_en.html">Privacy Policy</a>.</p>
+  <div class="consent-actions">
+    <button id="consentDecline" class="btn-ghost" type="button">Decline</button>
+    <button id="consentAccept" class="btn-cta" type="button">Accept</button>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/">
+      <img src="/assets/images/logo.png" alt="Markerlist">
+      Markerlist
+    </a>
+    <div class="links">
+      <a href="/#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#pricing" id="try-free-nav" class="btn-primary">Try the app</a>
+  </div>
+</nav>
+
+<div class="ruler"></div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>FOR AMATEUR &amp; SEMI-PRO BANDS</div>
+    <h1>Play the show. Don't run the laptop.</h1>
+    <p class="lead">Markerlist turns your Ableton session into a setlist you control from a phone or tablet, so whoever's closest to the stage can jump songs or recover from a hiccup, without anyone stuck behind a screen all night.</p>
+    <div class="ctas">
+      <a href="#pricing" id="try-free-hero" class="btn-cta">Try it free</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Download app</a>
+    </div>
+  </div>
+</header>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="qualify-panel">
+      <div class="section-tag">// how your set is built</div>
+      <h2>Built for one Arrangement, not scene-per-song</h2>
+      <p>Most bands running a click or backing tracks alongside real instruments keep the whole set in one Arrangement, a Locator per song, not Session view's scene-per-song setup. It's not simpler for its own sake: a locator is one unambiguous point on a linear timeline, there's no scene design or follow actions to get right, and it plays back exactly the same way every night. If that's how your set's built, Markerlist reads it directly, no reconfiguring needed.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// why it holds up on the night that matters</div>
+      <h2>A wedding doesn't get a second take.</h2>
+      <p class="sub">No command sent while you're mid-song puts the show at risk — the session stays exactly as you built it, no matter what happens to the network.</p>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Never modifies your project</h3>
+        <p>Markerlist reads and controls your session in real time. Nothing is ever written back to your .als file — the arrangement you rehearsed is the one that plays.</p>
+      </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5.5 12a11 11 0 0 1 13 0"/><path d="M9 15.5a6 6 0 0 1 6 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+        <h3>Recovers from a dropped WiFi</h3>
+        <p>The venue's network isn't yours to fix mid-song. If the connection drops, the device reconnects and picks up exactly where the show is — nothing fires late.</p>
+      </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
+        <h3>A panic button, built in</h3>
+        <p>Two quick taps on STOP bring the whole show back to the first song instantly, whatever state it's in — the recovery move for when something goes sideways.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="room-panel">
+      <div>
+        <div class="section-tag" style="color:rgba(255,255,255,0.5);">// when the crowd tells you something</div>
+        <h2>Read the room. Adjust without breaking stride.</h2>
+        <p>The dance floor's emptying, or a song's landing harder than expected — a fixed setlist doesn't have to mean a fixed night. Drag a song up next, or hold a chorus a little longer, from whoever's closest to the stage.</p>
+      </div>
+      <div class="room-example">
+        <div class="room-row"><span class="tag">NOW</span> Song 7 of 14</div>
+        <div class="room-row"><span class="tag">SWAP</span> Bumped a dance track up next</div>
+        <div class="room-row"><span class="tag">LOOP</span> Holding the chorus one more time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// built for the actual gig</div>
+      <h2>The rest of what a show needs</h2>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Reorder without touching Ableton</h3><p>Drag songs into a new order between sets, or on the spot. Pull one out and it moves to the library — bring it back with one tap if the night calls for it.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Section loops</h3><p>Hold a chorus or a bridge with one tap when the room's into it — once, twice, or freely until you release it, with a clean hand-off back to the song.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Team pre-roll</h3><p>Coming back from a break, the whole band sees the song name, then a tempo-timed countdown — everyone comes in together, not just whoever's near the screen.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Share the setlist with the client</h3><p>Export the set as a PDF with your band's name and total duration — hand it to the couple, the planner, or the venue ahead of the night.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section>
+  <div class="wrap">
+    <div class="gear-panel">
+      <div>
+        <div class="section-tag">// gear you buy once</div>
+        <h2>You don't rent a cable. Why rent a setlist tool?</h2>
+        <p>No monthly fee to keep track of between gigs, no license that lapses if a renewal gets missed. Pay once per computer, same as the rest of your rig.</p>
+      </div>
+      <div class="gear-list">
+        <div class="gear-row"><span>Access — 1 device</span><span>€15.99, once</span></div>
+        <div class="gear-row"><span>Standard Solo — 2 devices</span><span>€31.99, once</span></div>
+        <div class="gear-row total"><span>Standard Multi — 4 devices</span><span>€55.99, once</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// pricing</div>
+      <h2>A tier for every lineup</h2>
+      <p class="sub">No song licensing, no monthly rentals to fund — just control, paid once. Prices exclude tax.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-card">
+        <h3>Access</h3>
+        <div class="sub">One person running the set, at a low price</div>
+        <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer</li>
+          <li>1 device</li>
+          <li>Automatic stop and continuous playback</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/b3141751-b31b-4de3-b653-dbc58b2875cc?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Access</a>
+      </div>
+      <div class="price-card highlight">
+        <h3>Standard Multi</h3>
+        <div class="sub">The whole band, in sync</div>
+        <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer, 4 devices</li>
+          <li>Section loops</li>
+          <li>Team pre-roll</li>
+          <li>Setlist PDF export</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/5a560815-dd7e-4322-9baf-3dcdda8d7e46?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Multi</a>
+      </div>
+      <div class="price-card">
+        <h3>Standard Solo</h3>
+        <div class="sub">Duos and smaller acts</div>
+        <div class="amount-row"><div class="was">€39.99</div><div class="amount">€31.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>1 host computer, 2 devices</li>
+          <li>Drag &amp; reorder</li>
+          <li>Setlist PDF export</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/0c341af4-56ea-44f6-8529-eaf0d3101ac2?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Solo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// before you get started</div>
+      <h2>Questions bands actually ask</h2>
+    </div>
+    <div class="faq-item">
+      <h3>What if the venue's WiFi is unreliable?</h3>
+      <p>The device reconnects automatically and picks up the exact state of the show in progress. No command sent during the drop ever fires late once the network is back.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I swap songs mid-set if the crowd wants something else?</h3>
+      <p>Yes — drag any song up next, or pull one from the library, without pausing the show or touching Ableton.</p>
+    </div>
+    <div class="faq-item">
+      <h3>My set is in Session view with one scene per song — does this still work?</h3>
+      <p>Not directly. Markerlist reads Locators in a single Arrangement, not Session scenes. If you're open to switching, most bands running a click or backing tracks find it's actually the simpler setup for a fixed, night-after-night set.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do we need Max for Live or any other plugin?</h3>
+      <p>No. Markerlist connects directly to Ableton Live — nothing to load into your session.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I try it before buying?</h3>
+      <p>Yes — the Discovery tier is free: 15-minute sessions with Standard Multi features unlocked, separated by a 5-minute pause, up to 5 restarts per 24h, so you can test it under real conditions before choosing a paid tier.</p>
+    </div>
+  </div>
+</section>
+
+<div class="ruler"></div>
+
+<div class="closer">
+  <div class="wrap">
+    <h2>Try it before your next gig.</h2>
+    <p>15-minute sessions with Standard Multi features unlocked, no card required — see how it runs before choosing a tier.</p>
+    <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-cta">Try it free</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Markerlist</span>
+    <div class="flinks">
+      <a href="#faq">FAQ</a>
+      <a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a>
+      <a href="mailto:contact@markerlist.app">Contact</a>
+      <a href="/confidentialite_en.html">Privacy</a>
+    </div>
+    <span class="mono">Built for the stage.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY = 'ml_consent';
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch(e) {}
+
+  function updateConsent(granted){
+    if (typeof gtag !== 'function') return;
+    gtag('consent', 'update', { 'analytics_storage': granted ? 'granted' : 'denied' });
+  }
+
+  var banner = document.getElementById('consentBanner');
+  if (stored === 'accepted') {
+    updateConsent(true);
+  } else if (stored !== 'declined' && banner) {
+    banner.hidden = false;
+  }
+
+  var acceptBtn = document.getElementById('consentAccept');
+  var declineBtn = document.getElementById('consentDecline');
+  if (acceptBtn) acceptBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'accepted'); } catch(e) {}
+    updateConsent(true);
+    if (banner) banner.hidden = true;
+  });
+  if (declineBtn) declineBtn.addEventListener('click', function(){
+    try { localStorage.setItem(KEY, 'declined'); } catch(e) {}
+    if (banner) banner.hidden = true;
+  });
+})();
+</script>
+</body>
+</html>
