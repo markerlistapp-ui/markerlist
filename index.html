@@ -138,11 +138,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .hero h1{font-size:56px;font-weight:600;line-height:1.05;max-width:780px;}
   .hero p.lead{margin-top:22px;font-size:18px;color:var(--ink-soft);max-width:560px;}
-  .hero p.who-for{margin-top:10px;font-size:14.5px;color:var(--ink-soft);max-width:560px;}
-  .hero p.who-for b{color:var(--ink);font-weight:600;}
-  .hero p.who-for a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
-  .hero p.who-for a:hover{text-decoration-color:var(--blue);}
-  .hero p.who-for a:hover b{color:var(--blue);}
+  p.who-for{margin:0 auto;font-size:14px;color:var(--ink-soft);max-width:560px;text-align:center;}
+  p.who-for b{color:var(--ink);font-weight:600;}
+  p.who-for a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
+  p.who-for a:hover{text-decoration-color:var(--blue);}
+  p.who-for a:hover b{color:var(--blue);}
   .hero .ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
   .btn-ghost{
     padding:12px 22px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-weight:500;
@@ -186,7 +186,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
   .feature-row h3{font-size:18px;font-weight:600;margin-bottom:6px;}
   .feature-row p{font-size:15px;color:var(--ink-soft);max-width:560px;}
-  .feature-row .badge-new{display:inline-block;margin-left:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;vertical-align:middle;}
+  .feature-row .badge-new,.price-card .badge-new{display:inline-block;margin-left:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;vertical-align:middle;}
 
   /* PRICING */
   .earlybird-banner{
@@ -197,9 +197,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
   .earlybird-banner .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0;}
   .earlybird-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 36px;}
+  .version-bar{background:var(--blue);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
+  .version-bar a{color:#fff;text-decoration:underline;}
   .promo-bar{background:var(--amber);color:#3D2C05;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
   .promo-bar a{color:#3D2C05;text-decoration:underline;}
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .price-card{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
     padding:26px 24px;display:flex;flex-direction:column;
@@ -266,6 +268,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   footer .flinks{display:flex;gap:20px;}
   footer .flinks a:hover{color:var(--ink);}
 
+  @media (max-width:1100px){
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
   @media (max-width:820px){
     .hero h1{font-size:38px;}
     .why-grid{grid-template-columns:1fr;}
@@ -311,6 +317,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+<div class="version-bar">🎉 MarkerList 1.2.0 is out — two-machine redundancy with automatic failover, now on the new Pro Multi tier. <a href="#redundancy">See how it works →</a></div>
 <div class="promo-bar">Early Bird: <strong>-20%</strong> off all plans — first 50 customers, until October 31, 2026. <a href="#pricing">See pricing →</a></div>
 
 <nav>
@@ -336,7 +343,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="eyebrow">● connected to Ableton Live</div>
     <h1>Organize. Control. Play.</h1>
     <p class="lead">Any phone, tablet, or computer on stage becomes a real playback controller for your Ableton session, live and in your hand, with minimal latency.</p>
-    <p class="who-for">Built for anyone taking Ableton Live on stage, from <a href="/bands/"><b>amateur and semi-pro bands</b></a> to <a href="/worship/"><b>church worship teams</b></a>.</p>
     <div class="ctas">
       <a href="#pricing" id="try-free-hero" class="btn-cta">Try it free</a>
       <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Download app</a>
@@ -388,6 +394,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>A WiFi drop doesn't stop the show</h3>
         <p>Automatic reconnection with full state recovery — no command ever fires late after a network drop.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="redundancy">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// reliability</div>
+      <h2>A second computer, always ready to take over</h2>
+      <p class="sub">Pair a backup machine and it silently mirrors your entire show in real time — setlist order, chained sections, loop cues, mixer levels, track routing, all of it. If the main computer ever fails mid-set, take over in one tap and keep playing.</p>
+    </div>
+
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Live mirroring<span class="badge-new">new</span></h3><p>Every change on the main computer reaches the backup machine instantly — song order, auto-stops and chained sections, loop cues, mixer volumes, mute/solo, track routing. Both machines run their own Ableton in parallel, always in step.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>One-tap takeover<span class="badge-new">new</span></h3><p>If the main Ableton session ever stops responding, MarkerList surfaces an unmissable on-screen alert on the backup machine, above every other app. Confirm, and it becomes the new host — no re-cabling, no re-pairing tablets, no lost setlist.</p></div>
+    </div>
+    <div class="feature-row">
+      <div class="f-flag"></div>
+      <div><h3>Silent by design<span class="badge-new">new</span></h3><p>The backup machine stays muted until you need it — nothing reaches the house mix while it's on standby, and switching over is always your call, never automatic.</p></div>
     </div>
   </div>
 </section>
@@ -460,6 +489,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="ruler"></div>
 
+<div class="wrap" style="padding-top:8px;padding-bottom:8px;">
+  <p class="who-for">Built for anyone taking Ableton Live on stage, from <a href="/bands/"><b>amateur and semi-pro bands</b></a> to <a href="/worship/"><b>church worship teams</b></a>.</p>
+</div>
+
 <section id="pricing">
   <div class="wrap">
     <div class="section-head">
@@ -526,6 +559,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
         <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/5a560815-dd7e-4322-9baf-3dcdda8d7e46?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Multi</a>
       </div>
+
+      <div class="price-card">
+        <h3>Pro Multi<span class="badge-new">new</span></h3>
+        <div class="sub">Touring acts and big rooms — automatic failover if a computer goes down</div>
+        <div class="amount-row"><div class="was">€129.99</div><div class="amount">€103.99 excl. tax</div></div>
+        <div class="period">one-time payment</div>
+        <ul>
+          <li>Everything in Standard Multi</li>
+          <li>Two-machine redundancy</li>
+          <li>Automatic failover, tablets reconnect on their own</li>
+          <li>Backup computer runs free — no second purchase</li>
+          <li>1 year of major updates included</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/5f82912d-ec75-4937-b5b9-3d062dbd248d?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Pro Multi</a>
+      </div>
     </div>
 
     <div class="addons">
@@ -556,19 +604,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="compare-title">Features by tier</div>
       <div class="compare-scroll">
         <table class="compare-table">
-          <tr><th>Feature</th><th>Access</th><th>Standard Solo</th><th>Standard Multi</th></tr>
-          <tr><td>Stops & continuous playback</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Library & management</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Drag & reorder</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Setlist PDF export</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Ableton track setup and control</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Team pre-roll</td><td class="partial">4 fixed beats</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Section loops</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-          <tr><td>Section cue</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-          <tr><td>Multiplayer & sync</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
-          <tr><td>Live view</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-          <tr><td>Roles per device</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
-          <tr><td>Team messages</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+          <tr><th>Feature</th><th>Access</th><th>Standard Solo</th><th>Standard Multi</th><th>Pro Multi</th></tr>
+          <tr><td>Stops & continuous playback</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Library & management</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Drag & reorder</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Setlist PDF export</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Ableton track setup and control</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Team pre-roll</td><td class="partial">4 fixed beats</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Section loops</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Section cue</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Multiplayer & sync</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Live view</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Roles per device</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Team messages</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Two-machine redundancy</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
         </table>
       </div>
     </div>
