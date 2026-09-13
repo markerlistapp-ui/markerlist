@@ -135,6 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .feature-row{display:grid;grid-template-columns:44px 1fr;gap:20px;padding:24px 0;border-top:1px solid var(--line);align-items:start;}
   .feature-row:last-child{border-bottom:1px solid var(--line);}
   .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
+  .badge-new{display:inline-block;margin-left:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;vertical-align:middle;}
   .feature-row h3{font-size:17px;font-weight:600;margin-bottom:6px;}
   .feature-row p{font-size:14.5px;color:var(--ink-soft);max-width:600px;margin:0;}
 
@@ -147,7 +148,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .gear-row.total{background:var(--blue-soft);}
   .gear-row.total span{font-weight:600;color:var(--ink);}
 
-  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
   .price-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column;}
   .price-card.highlight{border-color:var(--ink);position:relative;}
   .price-card.highlight::before{content:'Most popular for teams';position:absolute;top:-11px;left:24px;background:var(--ink);color:#fff;font-size:11px;padding:3px 9px;border-radius:100px;font-family:'IBM Plex Mono',monospace;}
@@ -176,6 +177,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
   footer .flinks{display:flex;gap:20px;}
   footer .flinks a:hover{color:var(--ink);}
+
+  @media (max-width:1100px){
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+  }
 
   @media (max-width:760px){
     .hero h1{font-size:34px;}
@@ -280,6 +285,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>A panic button, built in</h3>
         <p>Two quick taps on STOP bring the whole show back to the first song instantly, whatever state it's in — the recovery move for when something goes sideways.</p>
       </div>
+      <div class="trust-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="12" height="9" rx="1.5"/><rect x="9" y="11" width="12" height="9" rx="1.5"/><path d="M6 8h6"/><path d="M12 15h6"/></svg>
+        <h3>Survives a computer dying, too<span class="badge-new">new</span></h3>
+        <p>Pair a second laptop as a silent backup — it mirrors the whole set live. If the main computer ever fails during the first dance, the band gets an unmissable alert and takes over in one tap.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -351,7 +361,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="gear-list">
         <div class="gear-row"><span>Access — 1 device</span><span>€15.99, once</span></div>
         <div class="gear-row"><span>Standard Solo — 2 devices</span><span>€31.99, once</span></div>
-        <div class="gear-row total"><span>Standard Multi — 4 devices</span><span>€55.99, once</span></div>
+        <div class="gear-row"><span>Standard Multi — 4 devices</span><span>€55.99, once</span></div>
+        <div class="gear-row total"><span>Pro Multi — 4 devices + backup rig</span><span>€103.99, once</span></div>
       </div>
     </div>
   </div>
@@ -415,6 +426,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <li>1 year of major updates included</li>
         </ul>
         <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/0c341af4-56ea-44f6-8529-eaf0d3101ac2?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Solo</a>
+      </div>
+      <div class="price-card">
+        <h3>Pro Multi<span class="badge-new">new</span></h3>
+        <div class="sub">Touring acts — automatic failover if a computer goes down</div>
+        <div class="amount-row"><div class="was">€129.99</div><div class="amount">€103.99</div></div>
+        <div class="period">excl. tax · one-time payment</div>
+        <ul>
+          <li>Everything in Standard Multi</li>
+          <li>Two-machine redundancy</li>
+          <li>Backup computer runs free — no second purchase</li>
+          <li>1 year of major updates included</li>
+        </ul>
+        <a class="cta" href="https://markerlist.lemonsqueezy.com/checkout/buy/5f82912d-ec75-4937-b5b9-3d062dbd248d?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Pro Multi</a>
       </div>
     </div>
   </div>
