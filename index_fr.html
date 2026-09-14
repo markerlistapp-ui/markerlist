@@ -154,6 +154,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;
   }
   .btn-cta:hover{background:var(--blue);}
+  .dl-alt{font-size:12px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px;align-self:center;}
+  .dl-alt:hover{color:var(--ink);}
+  .trial-dl{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
 
   /* hero demo video */
   .hero-video{
@@ -318,7 +321,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
   
-<div class="version-bar">🎉 MarkerList 1.2.0 est sorti — redondance deux machines avec bascule automatique, disponible sur le nouveau palier Pro Multi. <a href="#redundancy">Voir comment ça marche →</a></div>
+<div class="version-bar">🎉 MarkerList 1.3.0 est sorti — la machine de secours garde le show synchronisé même en cas de coupure Wi-Fi ou Ableton, avec plusieurs correctifs de fiabilité et le support complet des Mac Intel. <a href="#redundancy">Voir comment ça marche →</a></div>
 <div class="promo-bar">Early Bird : <strong>-20%</strong> sur toutes les offres — 50 premiers clients, jusqu'au 31 octobre 2026. <a href="#pricing">Voir les tarifs →</a></div>
 
 <nav>
@@ -346,7 +349,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lead">N'importe quel téléphone, tablette ou ordinateur sur scène devient un vrai contrôleur de playback pour votre session Ableton, en direct et entre vos mains, avec une latence minimale.</p>
     <div class="ctas">
       <a href="#pricing" id="try-free-hero" class="btn-cta">Essayer gratuitement</a>
-      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Télécharger l'app</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-arm64.dmg" class="btn-ghost">⬇ Télécharger l'app</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-intel.dmg" class="dl-alt" title="Menu Pomme → À propos de ce Mac. Si la ligne « Puce » indique Intel, utilise ce lien.">Mac Intel ?</a>
       <a href="#features" class="btn-ghost">▶ Voir les fonctionnalités</a>
     </div>
 
@@ -596,7 +600,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Découverte</h3>
         <p>Sessions de 15 min, puis 5 min de pause avant de relancer (5 relances maximum sur 24h), avec les fonctionnalités Standard Multi sur 1 ordinateur hôte et 1 périphérique — idéal pour tester en conditions réelles avant de choisir un palier.</p>
       </div>
-      <a class="cta trial-cta" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Essayer gratuitement</a>
+      <div class="trial-dl">
+        <a class="cta trial-cta" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-arm64.dmg">Essayer gratuitement</a>
+        <a class="dl-alt" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-intel.dmg" title="Menu Pomme → À propos de ce Mac. Si la ligne « Puce » indique Intel, utilise ce lien.">Mac Intel ?</a>
+      </div>
     </div>
 
     <p style="margin-top:24px;font-size:12.5px;color:var(--ink-soft);text-align:center;">Prix HT — taxe (TVA ou équivalent) calculée automatiquement selon le pays de facturation, à l'étape de paiement.</p>
