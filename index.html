@@ -61,6 +61,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  html{scrollbar-gutter:stable both-edges;}
   :root{
     --bg:#FAFAFC;
     --surface:#FFFFFF;
@@ -219,6 +220,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
   .amount-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;}
   .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;margin-bottom:2px;white-space:nowrap;}
+  .amount .tax-note{font-size:14px;font-weight:500;color:var(--ink-soft);}
   .was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;white-space:nowrap;}
   .price-card .period{font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;}
   .price-card ul{list-style:none;font-size:13.5px;color:var(--ink-soft);flex:1;}
@@ -512,11 +514,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="price-card">
         <h3>Access</h3>
         <div class="sub">The essentials for rehearsals and live shows, at a low price</div>
-        <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€19.99</div><div class="amount">€15.99<span class="tax-note"> excl. tax</span></div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
-          <li>1 device</li>
+          <li>1 device (1 browser window)</li>
           <li>Automatic stop and continuous playback</li>
           <li>Fixed pre-roll (4 beats, not adjustable)</li>
         </ul>
@@ -526,11 +528,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="price-card highlight">
         <h3>Standard Solo</h3>
         <div class="sub">Duos and live performances</div>
-        <div class="amount-row"><div class="was">€39.99</div><div class="amount">€31.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€39.99</div><div class="amount">€31.99<span class="tax-note"> excl. tax</span></div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
-          <li>2 devices</li>
+          <li>2 devices (browser windows)</li>
           <li>Automatic stop and continuous playback</li>
           <li>Team pre-roll</li>
           <li>Ableton track setup and control</li>
@@ -544,11 +546,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="price-card">
         <h3>Standard Multi</h3>
         <div class="sub">Your whole team, in sync</div>
-        <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€69.99</div><div class="amount">€55.99<span class="tax-note"> excl. tax</span></div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>1 host computer</li>
-          <li>4 devices</li>
+          <li>4 devices (browser windows)</li>
           <li>Automatic stop and continuous playback</li>
           <li>Team pre-roll</li>
           <li>Section loops</li>
@@ -567,7 +569,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="price-card">
         <h3>Pro Multi<span class="badge-new">new</span></h3>
         <div class="sub">Touring acts and big rooms — automatic failover if a computer goes down</div>
-        <div class="amount-row"><div class="was">€129.99</div><div class="amount">€103.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€129.99</div><div class="amount">€103.99<span class="tax-note"> excl. tax</span></div></div>
         <div class="period">one-time payment</div>
         <ul>
           <li>Everything in Standard Multi</li>
@@ -582,12 +584,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="addons">
       <div class="addon">
-        <div class="amount-row"><div class="was">€14.99</div><div class="amount">€11.99 excl. tax/yr</div></div>
+        <div class="amount-row"><div class="was">€14.99</div><div class="amount">€11.99<span class="tax-note"> excl. tax/yr</span></div></div>
         <div class="lbl">Evolution Pass — major updates from year 2 onward (year 1 already included with Solo/Multi)</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/7e0e563e-c572-46e2-9f1a-085618f2e94e?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Evolution Pass</a>
       </div>
       <div class="addon">
-        <div class="amount-row"><div class="was">€49.99</div><div class="amount">€39.99 excl. tax</div></div>
+        <div class="amount-row"><div class="was">€49.99</div><div class="amount">€39.99<span class="tax-note"> excl. tax</span></div></div>
         <div class="lbl">Unlimited devices — add-on for Standard Multi and Pro Multi only</div>
         <a class="cta" style="margin-top:14px;" href="https://markerlist.lemonsqueezy.com/checkout/buy/6f12f725-2863-4743-8efc-0cbbdde31327?checkout[discount_code]=Q3NTYYMA" target="_blank" rel="noopener">Choose Unlimited</a>
       </div>
