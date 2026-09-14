@@ -153,6 +153,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;
   }
   .btn-cta:hover{background:var(--blue);}
+  .dl-alt{font-size:12px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px;align-self:center;}
+  .dl-alt:hover{color:var(--ink);}
+  .trial-dl{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
 
   /* hero demo video */
   .hero-video{
@@ -317,7 +320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<div class="version-bar">🎉 MarkerList 1.2.0 is out — two-machine redundancy with automatic failover, now on the new Pro Multi tier. <a href="#redundancy">See how it works →</a></div>
+<div class="version-bar">🎉 MarkerList 1.3.0 is out — the backup machine now keeps your show running smoothly even if Wi-Fi or Ableton drops, plus reliability fixes and full Intel Mac support. <a href="#redundancy">See how it works →</a></div>
 <div class="promo-bar">Early Bird: <strong>-20%</strong> off all plans — first 50 customers, until October 31, 2026. <a href="#pricing">See pricing →</a></div>
 
 <nav>
@@ -345,7 +348,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p class="lead">Any phone, tablet, or computer on stage becomes a real playback controller for your Ableton session, live and in your hand, with minimal latency.</p>
     <div class="ctas">
       <a href="#pricing" id="try-free-hero" class="btn-cta">Try it free</a>
-      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Download app</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-arm64.dmg" class="btn-ghost">⬇ Download app</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-intel.dmg" class="dl-alt" title="Apple menu → About This Mac. If &quot;Chip&quot; shows Intel, use this link.">Intel Mac?</a>
       <a href="#features" class="btn-ghost">▶ See the features</a>
     </div>
 
@@ -595,7 +599,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h3>Discovery</h3>
         <p>15-minute sessions, then a 5-minute pause before restarting (5 restarts max within 24h), with Standard Multi features on 1 host computer and 1 device — perfect for testing under real conditions before choosing a tier.</p>
       </div>
-      <a class="cta trial-cta" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Try it free</a>
+      <div class="trial-dl">
+        <a class="cta trial-cta" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-arm64.dmg">Try it free</a>
+        <a class="dl-alt" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-intel.dmg" title="Apple menu → About This Mac. If &quot;Chip&quot; shows Intel, use this link.">Intel Mac?</a>
+      </div>
     </div>
 
     <p style="margin-top:24px;font-size:12.5px;color:var(--ink-soft);text-align:center;">Prices exclude tax — VAT or equivalent is calculated automatically based on your billing country at checkout.</p>
