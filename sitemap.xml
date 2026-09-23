@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://markerlist.app/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
-  </url>
-  <url>
-    <loc>https://markerlist.app/index_fr.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
-  </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://markerlist.app/</loc></url>
+  <url><loc>https://markerlist.app/index_fr.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller_fr.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller_fr.html</loc></url>
+  <url><loc>https://markerlist.app/control-ableton-from-phone.html</loc></url>
+  <url><loc>https://markerlist.app/controle-ableton-telephone_fr.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller.html</loc></url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller_fr.html</loc></url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html</loc></url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html</loc></url>
 </urlset>

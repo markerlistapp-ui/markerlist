@@ -1,0 +1,698 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control Ableton from Your Phone | Markerlist</title><meta name="description" content="Control Ableton Live from your phone. Markerlist turns your Arrangement View live set into a clear browser-based control surface for songs, sections, playback and loops."><meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://markerlist.app/control-ableton-from-phone.html">
+<link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html">
+<link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html">
+<link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html">
+<meta property="og:type" content="website"><meta property="og:title" content="Control Ableton from Your Phone | Markerlist"><meta property="og:description" content="Control Ableton Live from your phone. Markerlist turns your Arrangement View live set into a clear browser-based control surface for songs, sections, playback and loops.">
+<meta property="og:url" content="https://markerlist.app/control-ableton-from-phone.html"><meta property="og:image" content="https://markerlist.app/assets/images/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html{scrollbar-gutter:stable both-edges;}
+  :root{
+    --bg:#FAFAFC;
+    --surface:#FFFFFF;
+    --line:#E2E5EF;
+    --ink:#14171F;
+    --ink-soft:#5B5F6C;
+    --blue:#3064F6;
+    --blue-deep:#1D3FB0;
+    --blue-mid:#7C97FA;
+    --blue-soft:#E9EEFE;
+    --blue-border:#C7D4FC;
+    --amber:#B8860B;
+    --amber-soft:#FBF3E1;
+    --amber-border:#EAD9AE;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,250,248,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
+  .brand img{width:26px;height:26px;border-radius:6px;}
+  nav .links{display:flex;align-items:center;gap:32px;font-size:14px;color:var(--ink-soft);}
+  nav .links a:hover{color:var(--ink);}
+  .lang{display:flex;gap:6px;font-size:12px;font-family:'IBM Plex Mono',monospace;}
+  .lang span,.lang a{padding:3px 7px;border:1px solid var(--line);border-radius:5px;color:var(--ink-soft);}
+  .lang span.active{color:var(--ink);border-color:var(--ink);}
+  .lang a:hover{color:var(--ink);border-color:var(--ink);}
+  .btn-primary{
+    background:var(--ink);color:#fff;padding:9px 18px;border-radius:8px;
+    font-size:14px;font-weight:500;
+  }
+  .btn-primary:hover{background:var(--blue);}
+
+  /* TIMELINE RULER — signature element */
+  .ruler{
+    position:relative;height:34px;
+    background-image:repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 40px);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .ruler::before{
+    content:'';position:absolute;top:0;bottom:0;left:0;right:0;
+    background-image:repeating-linear-gradient(90deg, var(--ink-soft) 0 1px, transparent 1px 200px);
+    opacity:.35;
+  }
+
+  /* HERO */
+  .hero{padding:88px 0 64px;}
+  .hero-brand{display:flex;align-items:center;gap:16px;margin-bottom:32px;}
+  .hero-brand img{width:60px;height:60px;}
+  .hero-brand span{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:32px;letter-spacing:-0.01em;}
+  .hero-tagline{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--ink-soft);letter-spacing:.02em;margin-bottom:14px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--blue-deep);
+    background:var(--blue-soft);border:1px solid var(--blue-border);padding:5px 11px;border-radius:100px;
+    margin-bottom:26px;
+  }
+  .hero h1{font-size:56px;font-weight:600;line-height:1.05;max-width:780px;}
+  .hero p.lead{margin-top:22px;font-size:18px;color:var(--ink-soft);max-width:560px;}
+  p.who-for{margin:0 auto;font-size:14px;color:var(--ink-soft);max-width:560px;text-align:center;}
+  p.who-for b{color:var(--ink);font-weight:600;}
+  p.who-for a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;}
+  p.who-for a:hover{text-decoration-color:var(--blue);}
+  p.who-for a:hover b{color:var(--blue);}
+  .hero .ctas{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+  .trust-line{font-size:12.5px;color:var(--ink-soft);margin-top:12px;}
+  .btn-ghost{
+    padding:12px 22px;border:1px solid var(--line);border-radius:8px;font-size:14.5px;font-weight:500;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{border-color:var(--ink);}
+  .btn-cta{
+    padding:12px 22px;background:var(--ink);color:#fff;border-radius:8px;font-size:14.5px;font-weight:500;
+  }
+  .btn-cta:hover{background:var(--blue);}
+  .dl-alt{font-size:12px;color:var(--ink-soft);text-decoration:underline;text-underline-offset:2px;align-self:center;}
+  .dl-alt:hover{color:var(--ink);}
+  .trial-dl{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+
+  /* hero demo video */
+  .hero-video{
+    margin-top:56px;position:relative;width:100%;aspect-ratio:16/9;
+    background:#0B0D12;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 30px 80px rgba(20,23,31,0.14);
+  }
+  .hero-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+
+  /* hero demo carousel (remplace l'ancienne vidéo YouTube, désormais
+     obsolète -- captures réelles de l'app, même ratio 16/9 que le slot
+     existant : chaque image est en object-fit:contain, jamais recadrée,
+     centrée avec des bandes du même fond sombre que l'app elle-même,
+     invisibles à l'œil vu la quasi-identité de teinte avec le fond de ce
+     conteneur. Toutes les captures partagent EXACTEMENT les mêmes
+     dimensions sources (900x1200) -- letterboxing identique d'une slide
+     à l'autre, aucun "saut" de cadrage au changement. */
+  .hero-carousel{position:absolute;inset:0;}
+  .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity 0.9s ease;pointer-events:none;}
+  .hero-slide.active{opacity:1;}
+  .hero-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:9px;z-index:2;}
+  .hero-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;padding:0;cursor:pointer;transition:background 0.2s ease,transform 0.2s ease;}
+  .hero-dot:hover{background:rgba(255,255,255,0.55);}
+  .hero-dot.active{background:#fff;transform:scale(1.35);}
+  .hero-caption{position:absolute;top:16px;left:50%;transform:translateX(-50%);z-index:2;padding:6px 14px;border-radius:999px;background:rgba(11,13,18,0.78);color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;letter-spacing:0.03em;white-space:nowrap;opacity:0;transition:opacity 0.5s ease;pointer-events:none;}
+  .hero-caption.visible{opacity:1;}
+
+  /* SECTION shared */
+  section{padding:76px 0;}
+  .section-head{max-width:620px;margin-bottom:48px;}
+  .section-tag{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);margin-bottom:10px;letter-spacing:.02em;}
+  .section-head h2{font-size:32px;font-weight:600;line-height:1.15;}
+  .section-head p.sub{margin-top:12px;font-size:15.5px;color:var(--ink-soft);}
+
+  /* WHY — grid */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .why-item{background:var(--surface);padding:30px 26px;}
+  .why-item .t{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--blue);margin-bottom:14px;}
+  .why-item h3{font-size:17px;font-weight:600;margin-bottom:10px;}
+  .why-item p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* FEATURES — locator/flag list */
+  .feature-row{
+    display:grid;grid-template-columns:44px 1fr;gap:20px;
+    padding:26px 0;border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .feature-row:last-child{border-bottom:1px solid var(--line);}
+  .f-flag{width:10px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%);flex-shrink:0;margin-top:6px;}
+  .feature-row h3{font-size:18px;font-weight:600;margin-bottom:6px;}
+  .feature-row p{font-size:15px;color:var(--ink-soft);max-width:560px;}
+  .feature-row .badge-new,.price-card .badge-new{display:inline-block;margin-left:10px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:var(--blue-deep);background:var(--blue-soft);border:1px solid var(--blue-border);padding:2px 8px;border-radius:100px;vertical-align:middle;}
+
+  /* PRICING */
+  .earlybird-banner{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--amber-soft);border:1px solid var(--amber-border);color:#7A5B0E;
+    border-radius:100px;padding:9px 20px;font-size:13.5px;font-weight:500;
+    max-width:fit-content;margin:0 auto 12px;
+  }
+  .earlybird-banner .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);flex-shrink:0;}
+  .earlybird-sub{text-align:center;font-size:12.5px;color:var(--ink-soft);margin:0 0 36px;}
+  .version-bar{background:var(--blue);color:#fff;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
+  .version-bar a{color:#fff;text-decoration:underline;}
+  .promo-bar{background:var(--amber);color:#3D2C05;text-align:center;padding:11px 16px;font-size:14px;font-weight:600;}
+  .promo-bar a{color:#3D2C05;text-decoration:underline;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .price-card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px;display:flex;flex-direction:column;
+  }
+  .price-card.highlight{border-color:var(--ink);position:relative;}
+  .price-card.highlight::before{
+    content:'Most popular';position:absolute;top:-11px;left:24px;
+    background:var(--ink);color:#fff;font-size:11px;padding:3px 9px;border-radius:100px;
+    font-family:'IBM Plex Mono',monospace;
+  }
+  .price-card h3{font-size:16px;font-weight:600;margin-bottom:4px;}
+  .price-card .sub{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .amount-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;}
+  .price-card .amount{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600;margin-bottom:2px;white-space:nowrap;}
+  .amount .tax-note{font-size:14px;font-weight:500;color:var(--ink-soft);}
+  .was{font-size:14px;color:var(--ink-soft);text-decoration:line-through;white-space:nowrap;}
+  .price-card .period{font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;}
+  .price-card ul{list-style:none;font-size:13.5px;color:var(--ink-soft);flex:1;}
+  .price-card li{padding:6px 0;padding-left:18px;position:relative;}
+  .price-card li::before{content:'—';position:absolute;left:0;color:var(--blue);}
+  .price-card .cta{margin-top:20px;text-align:center;padding:10px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;font-weight:500;}
+  .price-card.highlight .cta{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .addons{display:flex;gap:16px;margin-top:16px;}
+  .addon{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;font-size:13.5px;}
+  .addon .amount{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;}
+  .addon .lbl{color:var(--ink-soft);font-size:12.5px;margin-top:2px;}
+  .trial-strip{
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    background:var(--blue-soft);border:1px solid var(--blue-border);border-radius:var(--radius);
+    padding:18px 24px;margin-top:16px;
+  }
+  .trial-label{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue-deep);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;}
+  .trial-strip h3{font-size:15px;font-weight:600;margin-bottom:6px;color:var(--ink);}
+  .trial-strip p{font-size:13px;color:var(--ink-soft);max-width:620px;}
+  .trial-cta{flex-shrink:0;padding:10px 20px;border:1px solid var(--blue);color:var(--blue);background:var(--surface);border-radius:8px;font-size:13.5px;font-weight:500;white-space:nowrap;}
+  .trial-cta:hover{background:var(--blue);color:#fff;}
+
+  /* COMPARISON: features / tiers */
+  .compare{margin-top:56px;}
+  .compare-title{font-family:'Space Grotesk',sans-serif;font-size:19px;font-weight:600;margin-bottom:18px;}
+  .compare-scroll{overflow-x:auto;}
+  .compare-table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px;}
+  .compare-table th,.compare-table td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap;}
+  .compare-table th{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:13.5px;}
+  .compare-table td:first-child,.compare-table th:first-child{text-align:left;color:var(--ink-soft);font-size:13.5px;white-space:normal;}
+  .compare-table .yes{color:var(--blue);font-weight:700;}
+  .compare-table .partial{color:var(--ink-soft);font-weight:600;font-size:12px;font-family:'IBM Plex Mono',monospace;}
+  .compare-table .no{color:var(--ink-soft);}
+
+  .plan-kicker{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.08em;color:var(--blue);margin-bottom:7px;}
+  .plan-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:24px;}
+  .plan-summary>div{background:var(--surface);padding:14px 12px;}
+  .plan-summary strong{display:block;font-family:'Space Grotesk',sans-serif;font-size:13px;margin-bottom:3px;}
+  .plan-summary span{font-size:12px;color:var(--ink-soft);}
+  .requirements-section{padding:72px 0;}
+  .requirements-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+  .requirements-card{background:var(--surface);padding:26px;}
+  .requirements-card .t{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);margin-bottom:12px;}
+  .requirements-card h3{font-size:17px;margin-bottom:8px;}
+  .requirements-card p{font-size:14px;color:var(--ink-soft);}
+  .requirements-note{margin-top:16px;padding:16px 20px;border:1px solid var(--blue-border);background:var(--blue-soft);border-radius:var(--radius);font-size:13.5px;color:var(--ink-soft);}
+  .requirements-note strong{color:var(--ink);}
+  @media (max-width:820px){
+    .plan-summary{grid-template-columns:1fr 1fr;}
+    .requirements-grid{grid-template-columns:1fr;}
+  }
+
+  /* REQUIREMENTS strip */
+  .req{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .req .wrap{display:flex;flex-wrap:wrap;gap:28px;padding:22px 32px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);}
+  .req .wrap span b{color:var(--ink);font-weight:500;}
+  .roadmap{background:var(--bg);}
+  .roadmap .wrap{display:flex;flex-wrap:wrap;gap:28px;padding:14px 32px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+
+  /* FAQ */
+  .faq-item{border-top:1px solid var(--line);padding:22px 0;}
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item h3{font-size:16px;font-weight:600;margin-bottom:8px;}
+  .faq-item p{font-size:14.5px;color:var(--ink-soft);max-width:640px;}
+
+  footer{padding:40px 0;font-size:13px;color:var(--ink-soft);}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;align-items:center;}
+  footer .flinks{display:flex;gap:20px;}
+  footer .flinks a:hover{color:var(--ink);}
+
+  @media (max-width:1100px){
+    .price-grid{grid-template-columns:repeat(2,1fr);}
+  }
+
+  @media (max-width:820px){
+    .hero h1{font-size:38px;}
+    .why-grid{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr;}
+    .addons{flex-direction:column;}
+    .trial-strip{flex-direction:column;align-items:flex-start;}
+    nav .links{display:none;}
+  }
+
+  /* CONSENT BANNER */
+  .consent-banner{
+    position:fixed;left:16px;right:16px;bottom:16px;z-index:200;
+    max-width:640px;margin:0 auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:0 20px 50px rgba(20,23,31,0.18);
+    padding:18px 20px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;
+  }
+  .consent-banner p{font-size:13.5px;color:var(--ink-soft);flex:1 1 320px;}
+  .consent-banner a{text-decoration:underline;color:var(--ink);}
+  .consent-actions{display:flex;gap:10px;flex-shrink:0;}
+  .consent-actions button{cursor:pointer;font-family:inherit;}
+  button.btn-cta{border:0;}
+  .consent-banner[hidden]{display:none;}
+
+/* MARKERLIST V2 — same visual language, new marketing hierarchy */
+.hero-positioning{
+  margin-top:14px;
+  font-size:13px;
+  color:var(--ink-soft);
+  max-width:620px;
+}
+.positioning-section{padding:92px 0 76px;}
+.positioning-lead{
+  max-width:760px;
+  margin:0 auto 44px;
+  text-align:center;
+  font-size:18px;
+  line-height:1.65;
+  color:var(--ink-soft);
+}
+.positioning-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.positioning-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  background:var(--surface);
+}
+.positioning-card .t{
+  font-size:11px;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+  margin-bottom:13px;
+}
+.positioning-card h3{margin:0 0 10px;}
+.positioning-card p{
+  margin:0;
+  color:var(--ink-soft);
+  line-height:1.6;
+}
+@media (max-width:760px){
+  .positioning-grid{grid-template-columns:1fr;}
+  .positioning-section{padding:64px 0 54px;}
+  .positioning-lead{font-size:16px;}
+}
+
+/* V3 hierarchy refinement */
+#new-positioning{
+  padding-top:78px;
+  padding-bottom:82px;
+}
+#new-positioning .section-head{margin-bottom:22px;}
+#new-positioning .positioning-lead{
+  margin-bottom:42px;
+}
+#new-positioning + .ruler{
+  margin-top:0;
+}
+@media (max-width:760px){
+  #new-positioning{padding-top:58px;padding-bottom:62px;}
+}
+
+/* V4 — hero conversion layer */
+.hero-benefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  margin-top:18px;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;
+  background:var(--line);
+}
+.hero-benefits > div{
+  background:var(--surface);
+  padding:17px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.hero-benefits strong{
+  font-size:13px;
+  font-weight:600;
+}
+.hero-benefits span{
+  font-size:12px;
+  color:var(--ink-soft);
+}
+@media (max-width:760px){
+  .hero-benefits{grid-template-columns:1fr;}
+}
+
+/* V6 — Live Performance section */
+.live-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin-top:42px;
+}
+.live-card{
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:26px;
+  background:var(--surface);
+}
+.live-card .t{
+  font-size:11px;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+  margin-bottom:13px;
+}
+.live-card h3{
+  margin:0 0 10px;
+}
+.live-card p{
+  margin:0;
+  color:var(--ink-soft);
+  line-height:1.6;
+}
+@media (max-width:900px){
+  .live-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:600px){
+  .live-grid{grid-template-columns:1fr;}
+}
+
+/* V7 — Pro Multi redundancy positioning */
+.pro-only-badge{
+  display:inline-flex;
+  align-items:center;
+  margin:0 auto 16px;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:10px;
+  letter-spacing:.12em;
+  font-weight:600;
+  color:var(--ink-soft);
+}
+#redundancy .section-head{
+  text-align:center;
+}
+#redundancy .section-head .sub{
+  max-width:760px;
+  margin-left:auto;
+  margin-right:auto;
+}
+#redundancy .feature-row h3{
+  margin-bottom:8px;
+}
+#redundancy .feature-row .f-flag{
+  font-size:10px;
+  letter-spacing:.12em;
+  color:var(--ink-soft);
+}
+
+/* V8 — Redundancy placement and hierarchy */
+#redundancy .section-head{
+  text-align:center;
+}
+#redundancy .section-head .section-tag{
+  margin-bottom:14px;
+}
+#redundancy .section-head h2{
+  margin-bottom:16px;
+}
+#redundancy .pro-only-badge{
+  margin:18px auto 0;
+}
+#redundancy .feature-row{
+  margin-top:0;
+}
+.redundancy-cta{
+  text-align:center;
+  margin-top:34px;
+}
+.redundancy-cta-link{
+  display:inline-flex;
+  align-items:center;
+  padding:11px 18px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:13.5px;
+  font-weight:500;
+}
+.redundancy-cta-link:hover{
+  border-color:var(--ink);
+  color:var(--blue);
+}
+
+/* V9 — align redundancy with the rest of the page */
+#redundancy .redundancy-head{
+  text-align:left;
+}
+#redundancy .redundancy-head .section-tag{
+  text-align:left;
+  margin-bottom:14px;
+}
+#redundancy .redundancy-title-row{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+#redundancy .redundancy-title-row h2{
+  margin:0;
+}
+#redundancy .redundancy-title-row .pro-only-badge{
+  margin:0;
+  flex:0 0 auto;
+}
+#redundancy .redundancy-head .sub{
+  max-width:780px;
+  margin:18px 0 0;
+  text-align:left;
+}
+@media (max-width:700px){
+  #redundancy .redundancy-title-row{
+    align-items:flex-start;
+    gap:12px;
+  }
+  #redundancy .redundancy-title-row .pro-only-badge{
+    margin-top:4px;
+  }
+}
+
+/* V10 — pricing clarity */
+.pricing-intro{
+  max-width:720px;
+  margin:18px auto 0;
+  text-align:center;
+  color:var(--ink-soft);
+  font-size:16px;
+  line-height:1.6;
+}
+#pricing .price-card .sub{
+  min-height:44px;
+}
+#pricing .price-card{
+  display:flex;
+  flex-direction:column;
+}
+#pricing .price-card ul{
+  flex:1;
+}
+#pricing .price-card h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+#pricing .price-card:nth-child(4){
+  border-color:var(--ink);
+}
+@media (max-width:760px){
+  .pricing-intro{
+    font-size:15px;
+  }
+  #pricing .price-card .sub{
+    min-height:0;
+  }
+}
+
+/* V11 — pricing intro aligned with section content */
+#pricing .section-head{
+  text-align:left;
+}
+#pricing .section-head .section-tag,
+#pricing .section-head h2,
+#pricing .section-head .pricing-intro{
+  text-align:left;
+}
+#pricing .pricing-intro{
+  max-width:760px;
+  margin:18px 0 0;
+}
+
+/* V14 — final landing-page polish */
+.faq-grid{
+  max-width:860px;
+  margin:42px auto 0;
+  border-top:1px solid var(--line);
+}
+.faq-item{
+  border-bottom:1px solid var(--line);
+}
+.faq-item summary{
+  cursor:pointer;
+  list-style:none;
+  padding:20px 2px;
+  font-size:15px;
+  font-weight:600;
+}
+.faq-item summary::-webkit-details-marker{display:none;}
+.faq-item summary::after{
+  content:"+";
+  float:right;
+  font-size:20px;
+  font-weight:400;
+  color:var(--ink-soft);
+}
+.faq-item[open] summary::after{content:"−";}
+.faq-item p{
+  margin:0;
+  padding:0 36px 22px 2px;
+  max-width:760px;
+  color:var(--ink-soft);
+  line-height:1.65;
+}
+#pricing .section-head,
+#pricing .section-head .section-tag,
+#pricing .section-head h2,
+#pricing .section-head .pricing-intro{
+  text-align:left;
+}
+@media (max-width:760px){
+  .faq-grid{margin-top:30px;}
+  .faq-item summary{padding:17px 0;}
+  .faq-item p{padding:0 24px 19px 0;}
+}
+
+  /* V21 — conversion + mobile polish */
+  .section-cta{padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);}
+  .section-cta .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .section-cta span{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;}
+  section[id], header{scroll-margin-top:84px;}
+  @media (max-width:820px){
+    .wrap{padding-left:20px;padding-right:20px;}
+    nav .wrap{height:60px;padding-left:16px;padding-right:16px;}
+    nav .links{display:none;}
+    nav .btn-primary{padding:8px 13px;font-size:13px;}
+    .hero{padding:58px 0 46px;}
+    .hero-brand{margin-bottom:24px;gap:12px;}
+    .hero-brand img{width:48px;height:48px;}
+    .hero-brand span{font-size:26px;}
+    .hero h1{font-size:36px;line-height:1.08;}
+    .hero p.lead{font-size:16px;margin-top:18px;}
+    .hero .ctas{margin-top:26px;gap:10px;}
+    .hero .ctas .btn-cta,.hero .ctas .btn-ghost{flex:1 1 100%;text-align:center;justify-content:center;}
+    .hero-video{margin-top:38px;border-radius:10px;}
+    section{padding:58px 0;}
+    .section-head{margin-bottom:34px;}
+    .section-head h2{font-size:28px;}
+    .section-head p.sub{font-size:15px;}
+    .why-item{padding:24px 20px;}
+    .feature-row{grid-template-columns:24px 1fr;gap:12px;padding:22px 0;}
+    .live-grid{margin-top:30px;}
+    .live-card{padding:22px 20px;}
+    .requirements-section{padding:58px 0;}
+    .price-card{padding:24px 20px;}
+    .price-grid{gap:12px;}
+    .plan-summary{grid-template-columns:1fr;}
+    .compare{margin-top:42px;}
+    .compare-scroll{margin-left:-4px;margin-right:-4px;padding-bottom:8px;}
+    .compare-table{min-width:640px;}
+    .section-cta .wrap{align-items:flex-start;flex-direction:column;gap:12px;}
+    .section-cta .btn-cta{width:100%;text-align:center;}
+    .addons{gap:12px;}
+    footer .wrap{padding-left:20px;padding-right:20px;}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:33px;}
+    .hero-video{margin-top:30px;}
+    .hero-dots{bottom:10px;}
+    .hero-caption{top:10px;font-size:10px;padding:5px 10px;max-width:88%;overflow:hidden;text-overflow:ellipsis;}
+    .earlybird-banner{font-size:12.5px;padding:8px 14px;}
+    .price-card .amount{font-size:28px;}
+    .price-card .was{font-size:13px;}
+    .trial-strip{padding:18px 18px;}
+    .trial-dl,.trial-dl .trial-cta{width:100%;}
+    .trial-cta{text-align:center;}
+    footer .flinks{width:100%;flex-wrap:wrap;gap:14px;}
+  }
+
+.seo-hero{padding:78px 0 58px}.seo-hero h1{font-size:52px;line-height:1.05;max-width:900px;margin-bottom:22px}.seo-lead{font-size:20px;line-height:1.6;color:var(--ink-soft);max-width:760px}.seo-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.seo-section{padding:68px 0}.seo-section.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.seo-section h2{font-size:34px;line-height:1.15;margin-bottom:16px}.seo-section .intro{font-size:16px;line-height:1.7;color:var(--ink-soft);max-width:760px;margin-bottom:30px}.seo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.seo-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}.seo-card h3{font-size:18px;margin-bottom:9px}.seo-card p{font-size:14px;line-height:1.65;color:var(--ink-soft)}.seo-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.seo-step{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--bg)}.seo-step .n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);margin-bottom:10px}.seo-step h3{font-size:16px;margin-bottom:7px}.seo-step p{font-size:13px;color:var(--ink-soft);line-height:1.55}.seo-callout{margin-top:30px;padding:22px 24px;background:var(--blue-soft);border:1px solid var(--blue-border);border-radius:var(--radius)}.seo-callout p{font-size:15px;line-height:1.65}.seo-faq{max-width:820px}.seo-faq details{border-top:1px solid var(--line);padding:20px 0}.seo-faq details:last-child{border-bottom:1px solid var(--line)}.seo-faq summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px}.seo-faq p{font-size:14px;line-height:1.65;color:var(--ink-soft);padding-top:10px;max-width:720px}.seo-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.seo-links a{padding:9px 14px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;background:var(--surface)}@media(max-width:820px){.seo-hero{padding:56px 0 44px}.seo-hero h1{font-size:38px}.seo-lead{font-size:17px}.seo-grid,.seo-flow{grid-template-columns:1fr}.seo-section{padding:50px 0}.seo-section h2{font-size:29px}}
+
+.seo-hero{padding:78px 0 58px}.seo-hero h1{font-size:52px;line-height:1.05;max-width:900px;margin-bottom:22px}.seo-lead{font-size:20px;line-height:1.6;color:var(--ink-soft);max-width:760px}.seo-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.seo-section{padding:68px 0}.seo-section.alt{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.seo-section h2{font-size:34px;line-height:1.15;margin-bottom:16px}.seo-section .intro{font-size:16px;line-height:1.7;color:var(--ink-soft);max-width:760px;margin-bottom:30px}.seo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.seo-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}.seo-card h3{font-size:18px;margin-bottom:9px}.seo-card p{font-size:14px;line-height:1.65;color:var(--ink-soft)}.seo-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}.seo-step{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--bg)}.seo-step .n{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--blue);margin-bottom:10px}.seo-step h3{font-size:16px;margin-bottom:7px}.seo-step p{font-size:13px;color:var(--ink-soft);line-height:1.55}.seo-callout{margin-top:30px;padding:22px 24px;background:var(--blue-soft);border:1px solid var(--blue-border);border-radius:var(--radius)}.seo-callout p{font-size:15px;line-height:1.65}.seo-faq{max-width:820px}.seo-faq details{border-top:1px solid var(--line);padding:20px 0}.seo-faq details:last-child{border-bottom:1px solid var(--line)}.seo-faq summary{cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px}.seo-faq p{font-size:14px;line-height:1.65;color:var(--ink-soft);padding-top:10px;max-width:720px}.seo-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.seo-links a{padding:9px 14px;border:1px solid var(--line);border-radius:8px;font-size:13.5px;background:var(--surface)}@media(max-width:820px){.seo-hero{padding:56px 0 44px}.seo-hero h1{font-size:38px}.seo-lead{font-size:17px}.seo-grid,.seo-flow{grid-template-columns:1fr}.seo-section{padding:50px 0}.seo-section h2{font-size:29px}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Markerlist", "url": "https://markerlist.app/", "description": "Control Ableton Live from your phone. Markerlist turns your Arrangement View live set into a clear browser-based control surface for songs, sections, playback and loops.", "applicationCategory": "MusicApplication", "operatingSystem": "macOS"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I control Ableton from an iPhone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Markerlist's browser-based control interface can be opened on an iPhone on the same local network."}}, {"@type": "Question", "name": "Can I use Android?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Android phones can use Markerlist through a browser."}}, {"@type": "Question", "name": "Do I need to install a plugin in Ableton?", "acceptedAnswer": {"@type": "Answer", "text": "No. Markerlist operates externally and does not require a Markerlist plugin or Max for Live device."}}, {"@type": "Question", "name": "Can another band member use a second phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, depending on your plan. Each opened browser window counts as one device."}}]}</script>
+</head><body><nav><div class="wrap">
+<div class="brand"><a href="index.html">Markerlist</a></div>
+<div class="links"><a href="#features">Features</a><a href="#faq">FAQ</a><a href="index.html#pricing">Pricing</a></div>
+<div style="display:flex;align-items:center;gap:18px;"><div class="lang"><span class="active">EN</span><a href="ableton-ipad-controller_fr.html">FR</a></div><a href="index.html#pricing" class="btn-primary">Try free</a></div>
+</div></nav><div class="ruler"></div>
+<main>
+<section class="seo-hero"><div class="wrap"><div class="eyebrow">ABLETON LIVE CONTROL</div><h1>Control Ableton Live from your phone.</h1><p class="seo-lead">Keep the Ableton computer where it is and use your phone as a live control surface. Markerlist gives you direct access to your Arrangement View set from a browser.</p><div class="seo-cta-row"><a href="index.html#pricing" class="btn-primary">Try Markerlist free</a></div></div></section>
+<section class="seo-section alt" id="features"><div class="wrap"><div class="section-head"><div class="section-tag">// live workflow</div><h2>Your phone becomes the control surface.</h2><p class="intro">Markerlist is designed for live use: open it in your phone browser, connect to the same local network, and control the Ableton show without reaching for the main computer.</p></div><div class="seo-grid"><div class="seo-card"><h3>Navigate your set</h3><p>Use the structure of your Arrangement View — songs, sections and locators — as the basis for live navigation.</p></div><div class="seo-card"><h3>No dedicated hardware</h3><p>The control interface runs in a browser. Use the phone you already carry on stage.</p></div><div class="seo-card"><h3>One browser window = one device</h3><p>Each opened browser window counts as one device, so closing it frees the slot.</p></div></div></div></section>
+<section class="seo-section"><div class="wrap"><div class="section-head"><div class="section-tag">// how it works</div><h2>From Arrangement View to the stage.</h2><p class="intro">Build your show in Ableton, then use the device you already have with you to control it.</p></div><div class="seo-flow">
+<div class="seo-step"><div class="n">01</div><h3>Build</h3><p>Prepare songs, sections and locators in Arrangement View.</p></div>
+<div class="seo-step"><div class="n">02</div><h3>Open</h3><p>Open Markerlist in your phone or iPad browser.</p></div>
+<div class="seo-step"><div class="n">03</div><h3>Control</h3><p>Navigate and control playback from the stage.</p></div>
+<div class="seo-step"><div class="n">04</div><h3>Perform</h3><p>Keep the Ableton computer where it belongs.</p></div>
+</div></div></section>
+<section class="seo-section alt"><div class="wrap"><div class="section-head"><div class="section-tag">// devices</div><h2>Phone, iPad or computer.</h2><p class="intro">The control interface runs in a browser on Windows, macOS, iOS and Android. Currently, only the host computer running Ableton must be a Mac.</p></div><div class="seo-links"><a href="ableton-arrangement-view-controller.html">Ableton Arrangement View controller →</a><a href="ableton-ipad-controller.html">Ableton iPad controller →</a></div></div></section>
+<section class="seo-section" id="faq"><div class="wrap"><div class="section-head"><div class="section-tag">// FAQ</div><h2>Frequently asked questions</h2></div><div class="seo-faq"><details><summary>Can I control Ableton from an iPhone?</summary><p>Yes. Markerlist's browser-based control interface can be opened on an iPhone on the same local network.</p></details><details><summary>Can I use Android?</summary><p>Yes. Android phones can use Markerlist through a browser.</p></details><details><summary>Do I need to install a plugin in Ableton?</summary><p>No. Markerlist operates externally and does not require a Markerlist plugin or Max for Live device.</p></details><details><summary>Can another band member use a second phone?</summary><p>Yes, depending on your plan. Each opened browser window counts as one device.</p></details></div></div></section>
+<section class="seo-section alt"><div class="wrap"><div class="section-head"><div class="section-tag">// ready to perform</div><h2>Try Markerlist from the phone you use on stage.</h2></div><a href="index.html#pricing" class="btn-primary">Try free</a></div></section>
+</main><footer>
+<div class="wrap">
+<span>© 2026 Markerlist</span>
+<div class="flinks">
+<a href="#faq">FAQ</a>
+<a href="https://www.youtube.com/@MarkerList" rel="noopener" target="_blank">YouTube</a>
+<a href="mailto:contact@markerlist.app">Contact</a>
+<a href="confidentialite_en.html">Privacy</a>
+</div>
+<span class="mono">Built for the stage.</span>
+</div>
+</footer></body></html>
