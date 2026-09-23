@@ -717,6 +717,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .trial-cta{text-align:center;}
     footer .flinks{width:100%;flex-wrap:wrap;gap:14px;}
   }
+
+  /* YouTube demo */
+  .video-section{padding:64px 0 76px;}
+  .video-section .section-head{margin-bottom:28px;}
+  .video-frame{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:#0B0D12;box-shadow:0 30px 80px rgba(20,23,31,0.14);}
+  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  @media (max-width:820px){
+    .video-section{padding:48px 0 56px;}
+    .video-section .section-head{margin-bottom:22px;}
+    .video-frame{border-radius:12px;}
+  }
 </style>
 </head>
 <body>
@@ -784,7 +795,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div><strong>No project rebuild</strong><span>No plugin. No added CPU load.</span></div>
 </div>
 </div>
-</header><section class="positioning-section" id="new-positioning">
+</header>
+<section class="video-section" aria-labelledby="video-title">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-tag">// product demo</div>
+      <h2 id="video-title">See Markerlist in action</h2>
+      <p class="sub">See how Markerlist puts your Ableton Live set at your fingertips on stage.</p>
+    </div>
+    <div class="video-frame">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/592vBjOa_qU"
+        title="See Markerlist in action"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+<section class="positioning-section" id="new-positioning">
 <div class="wrap">
 <div class="section-head">
 <div class="section-tag">// your workflow</div>
