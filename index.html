@@ -415,6 +415,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   }
 
 </style>
+
+<style id="markerlist-layout-fix">
+  html, body { overflow-x: hidden; }
+  .wrap { min-width: 0; }
+  .track-layout, .setlist-layout, .sections-layout, .web-layout, .core-layout { min-width: 0; }
+  .track-layout > *, .setlist-layout > *, .sections-layout > *, .web-layout > *, .core-layout > * { min-width: 0; }
+  .track-layout .visual-card, .setlist-layout .visual-card, .sections-layout .visual-card, .web-layout .visual-card { width: 100%; }
+  @media (max-width: 900px) {
+    .track-layout, .setlist-layout, .sections-layout, .web-layout, .core-layout { grid-template-columns: 1fr; }
+    .track-layout .visual-card, .setlist-layout .visual-card, .sections-layout .visual-card, .web-layout .visual-card { justify-self: stretch; max-width: none; }
+    .core-features { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 620px) {
+    .core-features { grid-template-columns: 1fr; }
+    .core-feature { border-right: 0; border-bottom: 1px solid var(--line); }
+    .core-feature:last-child { border-bottom: 0; }
+  }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -- must be the very first thing after <body>,
@@ -568,8 +586,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <section>
-  <div class="wrap">
-    <div class="track-layout"><section>
   <div class="wrap">
     <div class="track-layout">
       <div class="section-head">
