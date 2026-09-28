@@ -1,15 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://markerlist.app/</loc></url>
-  <url><loc>https://markerlist.app/index_fr.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-arrangement-view-controller.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-arrangement-view-controller_fr.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-ipad-controller.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-ipad-controller_fr.html</loc></url>
-  <url><loc>https://markerlist.app/control-ableton-from-phone.html</loc></url>
-  <url><loc>https://markerlist.app/controle-ableton-telephone_fr.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-live-set-controller.html</loc></url>
-  <url><loc>https://markerlist.app/ableton-live-set-controller_fr.html</loc></url>
-  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html</loc></url>
-  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://markerlist.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/index-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/index-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
+  </url>
+  <url><loc>https://markerlist.app/index_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/index-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/index-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
+  </url>
+  <url><loc>https://markerlist.app/index-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/index-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/index-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
+  </url>
+  <url><loc>https://markerlist.app/index-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/index-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/index-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
+  </url>
+  <url><loc>https://markerlist.app/index-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/index_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/index-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/index-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/index-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-arrangement-view-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-arrangement-view-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-arrangement-view-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-arrangement-view-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-arrangement-view-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-arrangement-view-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-arrangement-view-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-arrangement-view-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-arrangement-view-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-arrangement-view-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-arrangement-view-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-arrangement-view-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-arrangement-view-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-arrangement-view-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-arrangement-view-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-arrangement-view-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-arrangement-view-controller-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-arrangement-view-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-arrangement-view-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-arrangement-view-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-arrangement-view-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-arrangement-view-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-ipad-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-ipad-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-ipad-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-ipad-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-ipad-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-ipad-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-ipad-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-ipad-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-ipad-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-ipad-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-ipad-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-ipad-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-ipad-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-ipad-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-ipad-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-ipad-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-ipad-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-ipad-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-ipad-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-ipad-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-ipad-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-ipad-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-ipad-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-ipad-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-ipad-controller-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-ipad-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-ipad-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-ipad-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-ipad-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-ipad-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-ipad-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/control-ableton-from-phone.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/control-ableton-from-phone-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/control-ableton-from-phone-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/control-ableton-from-phone-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html"/>
+  </url>
+  <url><loc>https://markerlist.app/controle-ableton-telephone_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/control-ableton-from-phone-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/control-ableton-from-phone-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/control-ableton-from-phone-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html"/>
+  </url>
+  <url><loc>https://markerlist.app/control-ableton-from-phone-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/control-ableton-from-phone-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/control-ableton-from-phone-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/control-ableton-from-phone-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html"/>
+  </url>
+  <url><loc>https://markerlist.app/control-ableton-from-phone-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/control-ableton-from-phone-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/control-ableton-from-phone-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/control-ableton-from-phone-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html"/>
+  </url>
+  <url><loc>https://markerlist.app/control-ableton-from-phone-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/control-ableton-from-phone.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/controle-ableton-telephone_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/control-ableton-from-phone-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/control-ableton-from-phone-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/control-ableton-from-phone-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/control-ableton-from-phone.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-live-set-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-live-set-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-live-set-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-live-set-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-live-set-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-live-set-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-live-set-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-live-set-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-live-set-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-live-set-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-live-set-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-live-set-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-live-set-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-live-set-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-live-set-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-live-set-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-live-set-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-live-set-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-live-set-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-live-set-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-live-set-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-live-set-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-live-set-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-live-set-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/ableton-live-set-controller-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/ableton-live-set-controller.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/ableton-live-set-controller_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/ableton-live-set-controller-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/ableton-live-set-controller-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/ableton-live-set-controller-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/ableton-live-set-controller.html"/>
+  </url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+  </url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+  </url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+  </url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+  </url>
+  <url><loc>https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance_fr.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-de.html"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-pt.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance-es.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://markerlist.app/how-to-use-ableton-locators-for-live-performance.html"/>
+  </url>
 </urlset>
