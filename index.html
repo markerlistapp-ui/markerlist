@@ -179,12 +179,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .visual-card img{display:block;width:100%;height:auto;}
   .visual-card-caption{padding:13px 15px;background:#0b0d12;color:#c9ced9;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.04em;text-transform:uppercase;}
   /* Crop the marketing canvas to the original product screen so its UI stays readable. */
-  .sections-crop,.track-crop,.library-crop{position:relative;overflow:hidden;}
-  .sections-crop{aspect-ratio:860/710;}
+  .sections-crop,.track-crop,.library-crop{overflow:hidden;border:0;border-radius:0;box-shadow:none;background:transparent;}
+  .crop-frame{position:relative;width:100%;overflow:hidden;}
+  .sections-crop .crop-frame{aspect-ratio:860/710;}
   .sections-crop img{position:absolute;left:-33.72%;top:-24.65%;width:186.05%;max-width:none;height:auto;}
-  .track-crop{aspect-ratio:640/750;}
+  .track-crop .crop-frame{aspect-ratio:640/750;}
   .track-crop img{position:absolute;left:-76.56%;top:-17.33%;width:250%;max-width:none;height:auto;}
-  .library-crop{aspect-ratio:780/740;}
+  .library-crop .crop-frame{aspect-ratio:780/740;}
   .library-crop img{position:absolute;left:-52.56%;top:-18.24%;width:205.13%;max-width:none;height:auto;}
   .section-visual{margin-top:30px;}
   .setlist-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center;}
@@ -193,9 +194,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .sections-layout .visual-card{max-width:760px;justify-self:end;}
   .track-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center;}
   .track-layout .visual-card{max-width:520px;justify-self:end;}
-  .web-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;}
-  .web-layout .visual-card{max-height:430px;overflow:hidden;}
-  .web-layout .visual-card img{object-fit:cover;object-position:top center;}
+  .web-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;align-items:start;}
+  .web-layout .section-head{max-width:760px;}
+  .web-layout .web-visual{width:100%;max-width:880px;justify-self:center;background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;}
+  .web-layout .web-visual img{display:block;width:100%;height:auto;object-fit:contain;}
   @media (max-width:900px){
     .hero-showcase{min-height:auto;}
     .setlist-layout,.sections-layout,.track-layout,.web-layout{grid-template-columns:1fr;gap:24px;}
@@ -210,7 +212,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .core-copy h2{font-size:42px;font-weight:600;line-height:1.08;max-width:480px;}
   .core-copy p.sub{margin-top:16px;font-size:17px;color:var(--ink-soft);max-width:430px;}
   .core-visual{width:100%;max-width:700px;justify-self:end;box-shadow:0 28px 70px rgba(20,23,31,.16);}
-  .core-visual img{display:block;width:100%;height:auto;}
+  .core-visual img{display:block;height:auto;}
   .core-features{display:grid;grid-template-columns:repeat(4,1fr);margin-top:34px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
   .core-feature{padding:24px 22px 26px;border-right:1px solid var(--line);}
   .core-feature:last-child{border-right:0;}
@@ -476,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="index-es.html">ES</a>
         <a href="index-pt.html">PT</a>
       </div>
-      <a href="#pricing" id="try-free-nav" class="btn-primary">Try the app</a>
+      <a href="#discovery" id="try-free-nav" class="btn-primary">Try the app</a>
     </div>
   </div>
 </nav>
@@ -490,7 +492,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1>Run your entire Ableton show from the stage.</h1>
     <p class="lead">Build your show in Ableton Arrangement View. Markerlist turns it into a live control system for your stage — songs, sections, loops, setlist, tracks and more.<br><strong>Keep Ableton on the computer. Keep control in your hands.</strong></p>
     <div class="ctas">
-      <a href="#pricing" id="try-free-hero" class="btn-cta">Try your show free</a>
+      <a href="#discovery" id="try-free-hero" class="btn-cta">Try your show free</a>
       <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Download for Mac</a>
       <a href="#how-it-works" class="btn-ghost">▶ See how it works</a>
     </div>
@@ -563,8 +565,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="sub">Navigate the show from the stage instead of reaching for the computer.</p>
       </div>
       <div class="core-visual visual-card sections-crop">
-        <img src="assets/markerlist-visuals/sections.png" alt="Markerlist sections view with CUE controls, section durations and loop release" loading="lazy">
-        <div class="visual-card-caption">Sections · CUE · progress · release</div>
+        <div class="crop-frame"><img src="assets/markerlist-visuals/sections.png" alt="Markerlist sections view with CUE controls, section durations and loop release" loading="lazy"></div><div class="visual-card-caption">Sections · CUE · progress · release</div>
       </div>
     </div>
 
@@ -602,8 +603,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="sub">Quickly mute or solo an Ableton track from the stage when something needs attention. Markerlist is a control and safety layer — not a replacement for Ableton's mixer.</p>
       </div>
       <div class="visual-card track-crop">
-        <img src="assets/markerlist-visuals/track-control.png" alt="Markerlist Ableton Tracks panel with mute and solo controls" loading="lazy">
-        <div class="visual-card-caption">Mute · solo · track access</div>
+        <div class="crop-frame"><img src="assets/markerlist-visuals/track-control.png" alt="Markerlist Ableton Tracks panel with mute and solo controls" loading="lazy"></div><div class="visual-card-caption">Mute · solo · track access</div>
       </div>
     </div>
   </div>
@@ -634,8 +634,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="sub">Your Ableton project stays untouched. Markerlist gives you a separate layer for the live show.</p>
       </div>
       <div class="visual-card library-crop">
-        <img src="assets/markerlist-visuals/library.png" alt="Markerlist Library showing songs and total set duration" loading="lazy">
-        <div class="visual-card-caption">Library · songs · durations · active set</div>
+        <div class="crop-frame"><img src="assets/markerlist-visuals/library.png" alt="Markerlist Library showing songs and total set duration" loading="lazy"></div><div class="visual-card-caption">Library · songs · durations · active set</div>
       </div>
     </div>
     <div class="problem-grid">
@@ -768,7 +767,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="sub">Markerlist runs its control interface in a browser. Connect phones, tablets or computers to the same live show, while the Ableton host stays on the Mac.</p>
         <p class="sub" style="margin-top:14px;">One open browser window counts as one connected device, with the number of simultaneous devices determined by your plan.</p>
       </div>
-      <div class="visual-card">
+      <div class="visual-card web-visual">
         <img src="assets/markerlist-visuals/web-control.png" alt="Markerlist Web Control active with multiple connected devices" loading="lazy">
       </div>
     </div>
@@ -780,7 +779,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-head">
       <div class="section-tag">// pricing</div>
       <h2>A tier for every stage</h2>
-      <p class="sub">No song licensing, no monthly rentals to fund — just control, paid once.</p>
+      <p class="sub">No song licensing or monthly plan. Major updates are included for year one with Standard Solo, Standard Multi and Pro Multi, then available through an optional Evolution Pass.</p>
     </div>
 
     <div class="earlybird-banner"><span class="dot"></span>Early Bird: -20%</div>
@@ -880,7 +879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
 
-    <div class="trial-strip">
+    <div class="trial-strip" id="discovery">
       <div class="trial-text">
         <div class="trial-label">Not sure yet? — free trial</div>
         <h3>Discovery</h3>
