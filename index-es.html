@@ -178,13 +178,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   .visual-card{background:#0b0d12;border:1px solid #262b34;border-radius:14px;overflow:hidden;box-shadow:0 22px 55px rgba(20,23,31,.13);}
   .visual-card img{display:block;width:100%;height:auto;}
   .visual-card-caption{padding:13px 15px;background:#0b0d12;color:#c9ced9;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.04em;text-transform:uppercase;}
+  /* Crop the marketing canvas to the original product screen so its UI stays readable. */
+  .sections-crop,.track-crop,.library-crop{position:relative;overflow:hidden;}
+  .sections-crop{aspect-ratio:860/710;}
+  .sections-crop img{position:absolute;left:-33.72%;top:-24.65%;width:186.05%;max-width:none;height:auto;}
+  .track-crop{aspect-ratio:640/750;}
+  .track-crop img{position:absolute;left:-76.56%;top:-17.33%;width:250%;max-width:none;height:auto;}
+  .library-crop{aspect-ratio:780/740;}
+  .library-crop img{position:absolute;left:-52.56%;top:-18.24%;width:205.13%;max-width:none;height:auto;}
   .section-visual{margin-top:30px;}
-  .setlist-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:38px;align-items:center;}
-  .setlist-layout .visual-card{max-width:680px;justify-self:end;}
+  .setlist-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;}
+  .setlist-layout .visual-card{max-width:none;justify-self:stretch;}
   .sections-layout{display:grid;grid-template-columns:1fr 1.25fr;gap:42px;align-items:center;}
   .sections-layout .visual-card{max-width:760px;justify-self:end;}
-  .track-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center;}
-  .track-layout .visual-card{max-width:560px;justify-self:end;}
+  .track-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;}
+  .track-layout .visual-card{max-width:none;justify-self:stretch;}
   .web-layout{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;}
   .web-layout .visual-card{max-height:430px;overflow:hidden;}
   .web-layout .visual-card img{object-fit:cover;object-position:top center;}
@@ -197,8 +205,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   /* THE CORE — product-led composition */
   .core-section{padding-top:86px;padding-bottom:86px;}
-  .core-layout{display:grid;grid-template-columns:.72fr 1.28fr;gap:54px;align-items:center;}
-  .core-copy{padding-right:10px;}
+  .core-layout{display:grid;grid-template-columns:1fr;gap:24px;align-items:start;}
+  .core-copy{padding-right:0;}
   .core-copy h2{font-size:42px;font-weight:600;line-height:1.08;max-width:480px;}
   .core-copy p.sub{margin-top:16px;font-size:17px;color:var(--ink-soft);max-width:430px;}
   .core-visual{width:100%;max-width:none;justify-self:stretch;box-shadow:0 28px 70px rgba(20,23,31,.16);}
@@ -554,8 +562,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Tu sesión de Ableton se convierte en una interfaz de control en directo.</h2>
         <p class="sub">Navega por el show desde el escenario sin volver al ordenador.</p>
       </div>
-      <div class="core-visual visual-card">
+      <div class="core-visual visual-card sections-crop">
         <img src="assets/markerlist-visuals/sections.png" alt="Markerlist sections view with CUE controls, section durations and loop release" loading="lazy">
+        <div class="visual-card-caption">Sections · CUE · progress · release</div>
       </div>
     </div>
 
@@ -592,8 +601,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Una red de seguridad cuando la necesitas.</h2>
         <p class="sub">Quickly mute or solo an Ableton track from the stage when something needs attention. Markerlist is a control and safety layer — not a replacement for Ableton's mixer.</p>
       </div>
-      <div class="visual-card">
+      <div class="visual-card track-crop">
         <img src="assets/markerlist-visuals/track-control.png" alt="Markerlist Ableton Tracks panel with mute and solo controls" loading="lazy">
+        <div class="visual-card-caption">Mute · solo · track access</div>
       </div>
     </div>
   </div>
@@ -623,8 +633,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2>Prepara tu setlist para esta noche.</h2>
         <p class="sub">Your Ableton project stays untouched. Markerlist gives you a separate layer for the live show.</p>
       </div>
-      <div class="visual-card">
+      <div class="visual-card library-crop">
         <img src="assets/markerlist-visuals/library.png" alt="Markerlist Library showing songs and total set duration" loading="lazy">
+        <div class="visual-card-caption">Library · songs · durations · active set</div>
       </div>
     </div>
     <div class="problem-grid">
