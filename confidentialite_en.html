@@ -55,6 +55,7 @@
     <li><b>Identification and contact data:</b> email address, name or username, when you create an account, purchase a license, or contact us through support.</li>
     <li><b>Transaction data:</b> information related to your license purchases (processed securely by our partner payment providers, without us having direct access to your full banking details).</li>
     <li><b>Connection data:</b> IP address, browsing data, and technical logs necessary for the local-network synchronization features of the application to work properly.</li>
+    <li><b>Free-trial identifier (pseudonymised):</b> to enforce the free-trial limit (5 sessions per 24 hours), the app sends our control server a salted cryptographic hash (SHA-256) of your computer's hardware identifier — from which the original identifier cannot be derived — together with the timestamps of your trial sessions over the last 24 hours. No other data is sent (no name, no e-mail address, nothing about the content of your sessions), and our service does not record your IP address. A licensed computer sends nothing.</li>
   </ul>
 
   <h2>Article 2: Purpose of collection</h2>
@@ -63,10 +64,11 @@
     <li>Manage, activate, and track your Markerlist usage licenses.</li>
     <li>Send technical information, software updates, or responses to your support requests.</li>
     <li>Improve the application's performance and the user experience.</li>
+    <li>Enforce the free-trial limit (legitimate interest). The app must reach the control server at least once every 24 hours for the trial to continue; between two check-ins, it works with a local check. This information is used for nothing else, is no longer used after 24 hours and is deleted automatically afterwards. The app also keeps the trial state in several places on your computer (its data folder, the Shared folder and its preferences) so that it is not erased by mistake.</li>
   </ul>
 
   <h2>Article 3: Data sharing</h2>
-  <p>Your personal data is strictly confidential. It is never sold, rented, or transferred to third parties. It may only be shared with our technical subcontractors (hosting provider, payment solution), strictly to the extent necessary to deliver these services.</p>
+  <p>Your personal data is strictly confidential. It is never sold, rented, or transferred to third parties. It may only be shared with our technical subcontractors (hosting provider, payment solution), strictly to the extent necessary to deliver these services. The free-trial control server is hosted by Cloudflare; the trial information is stored there in a database located in Western Europe.</p>
 
   <h2>Article 4: Data security</h2>
   <p>We implement all appropriate technical and organizational measures to protect your data against loss, unauthorized access, disclosure, or alteration.</p>

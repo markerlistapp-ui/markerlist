@@ -55,6 +55,7 @@
     <li><b>Données d'identification et de contact :</b> adresse e-mail, nom ou pseudonyme, lorsque vous créez un compte, achetez une licence ou nous contactez via le support.</li>
     <li><b>Données de transaction :</b> les informations relatives à vos achats de licences (traitées de manière sécurisée par nos prestataires de paiement partenaires, sans que nous ayons accès direct à vos données bancaires complètes).</li>
     <li><b>Données de connexion :</b> adresse IP, données de navigation et journaux techniques nécessaires au bon fonctionnement de la synchronisation de l'application en réseau local.</li>
+    <li><b>Identifiant d'essai gratuit (pseudonymisé) :</b> pour appliquer la limite de l'essai gratuit (5 sessions sur 24 heures), l'application envoie à notre serveur de contrôle une empreinte cryptographique (SHA-256, salée) de l'identifiant matériel de votre ordinateur — dont l'identifiant d'origine ne peut pas être déduit — ainsi que les horodatages de vos sessions d'essai des dernières 24 heures. Aucune autre donnée n'est transmise (ni nom, ni adresse e-mail, ni contenu de vos sessions), et notre service n'enregistre pas votre adresse IP. Un ordinateur sous licence ne transmet rien.</li>
   </ul>
 
   <h2>Article 2 : Finalité de la collecte</h2>
@@ -63,10 +64,11 @@
     <li>La gestion, l'activation et le suivi de vos licences d'utilisation de Markerlist.</li>
     <li>L'envoi d'informations techniques, de mises à jour logicielles ou de réponses à vos demandes de support.</li>
     <li>L'amélioration des performances de l'application et de l'expérience utilisateur.</li>
+    <li>Faire respecter la limite de l'essai gratuit (intérêt légitime). L'application doit joindre le serveur de contrôle au moins une fois toutes les 24 heures pour que l'essai se poursuive ; entre deux vérifications, elle fonctionne avec un contrôle local. Ces informations ne servent qu'à cela, ne sont plus utilisées au-delà de 24 heures et sont supprimées automatiquement ensuite. L'application conserve aussi l'état de l'essai à plusieurs endroits de votre ordinateur (son dossier de données, le dossier Partagé et ses préférences) pour qu'il ne soit pas effacé par erreur.</li>
   </ul>
 
   <h2>Article 3 : Partage des données</h2>
-  <p>Vos données personnelles sont strictement confidentielles. Elles ne sont en aucun cas vendues, louées ou cédées à des tiers. Elles peuvent uniquement être partagées avec nos sous-traitants techniques (hébergeur, solution de paiement) dans la stricte limite nécessaire à l'exécution des prestations.</p>
+  <p>Vos données personnelles sont strictement confidentielles. Elles ne sont en aucun cas vendues, louées ou cédées à des tiers. Elles peuvent uniquement être partagées avec nos sous-traitants techniques (hébergeur, solution de paiement) dans la stricte limite nécessaire à l'exécution des prestations. Le serveur de contrôle de l'essai gratuit est hébergé par Cloudflare ; les informations d'essai y sont stockées dans une base située en Europe de l'Ouest.</p>
 
   <h2>Article 4 : Sécurité des données</h2>
   <p>Nous mettons en œuvre toutes les mesures techniques et organisationnelles appropriées pour protéger vos données contre la perte, l'accès non autorisé, la divulgation ou l'altération.</p>
