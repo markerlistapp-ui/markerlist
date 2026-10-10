@@ -478,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <a href="index-es.html">ES</a>
         <a href="index-pt.html">PT</a>
       </div>
-      <a href="#discovery" id="try-free-nav" class="btn-primary">Essayer l’app</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" id="try-free-nav" class="btn-primary">Essayer l’app</a>
     </div>
   </div>
 </nav>
@@ -492,11 +492,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1>Pilotez votre setlist Ableton Live depuis la scène.</h1>
     <p class="lead">Construisez votre show dans Ableton Arrangement View. Markerlist le transforme en système de contrôle live pour la scène — morceaux, sections, boucles, setlist, pistes et plus.<br><strong>Gardez Ableton sur l’ordinateur. Gardez le contrôle entre vos mains.</strong></p>
     <div class="ctas">
-      <a href="#discovery" id="try-free-hero" class="btn-cta">Tester gratuitement</a>
-      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-ghost">⬇ Télécharger pour Mac</a>
+      <a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" id="try-free-hero" class="btn-cta">Tester gratuitement</a>
+      <a href="#pricing" class="btn-ghost">Voir les offres</a>
       <a href="#how-it-works" class="btn-ghost">▶ Voir comment ça marche</a>
     </div>
-    <p class="trust-line">Aucune carte bancaire · Ableton tourne sur Mac · Contrôlez depuis un téléphone, une tablette ou un ordinateur</p>
+    <p class="trust-line">Essai gratuit · Sans compte ni carte bancaire · Pour macOS avec Ableton Live 11 ou 12 · Contrôlez depuis un téléphone, une tablette ou un ordinateur</p>
 
     <div class="hero-showcase" aria-label="Ableton Arrangement View with Markerlist stage control on tablet and phone">
       <picture>
@@ -883,10 +883,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="trial-text">
         <div class="trial-label">Vous hésitez ? — essai gratuit</div>
         <h3>Discovery</h3>
-        <p>Discovery vous donne accès aux fonctionnalités Pro Multi pendant des sessions de 15 minutes, suivies d’une pause de 5 minutes avant de reprendre (jusqu’à 5 reprises sur 24 h), sur 1 ordinateur hôte et 1 appareil — idéal pour tester Markerlist en conditions réelles avant de choisir une offre.</p>
+        <p>Toutes les fonctionnalités Pro Multi, gratuitement et sans limite de durée d’essai : jouez par sessions de 15 minutes, autant de jours que vous voulez, sur 1 ordinateur hôte et 1 appareil. Testez avec votre vrai set avant de choisir une offre.</p>
+        <p style="font-size:12.5px;color:var(--ink-soft);margin-top:6px;">Entre deux sessions : une pause de 5 minutes, jusqu’à 5 reprises par 24 h.</p>
       </div>
       <div class="trial-dl">
-        <a class="cta trial-cta" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Essayer gratuitement</a>
+        <a class="cta trial-cta" id="trial-download" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Essayer gratuitement</a>
       </div>
     </div>
 
@@ -1033,6 +1034,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <script>
+</script>
+<script>
+/* Suivi des téléchargements (GTM) : chaque clic sur le .dmg envoie l'événement "download_click" */
+/* Sur téléphone/tablette (iPhone, iPad, Android), le .dmg ne s'installe pas : les boutons principaux
+   gardent leur ancien comportement (défilement vers l'essai Discovery) au lieu de télécharger. */
+(function () {
+  var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!mobile) return;
+  ['try-free-nav', 'try-free-hero'].forEach(function (id) { var a = document.getElementById(id); if (a) a.setAttribute('href', '#discovery'); });
+})();
+document.addEventListener('click', function (e) {
+  var a = e.target.closest && e.target.closest('a[href$=".dmg"]');
+  if (!a) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event: 'download_click', download_location: a.id || 'other', page_language: document.documentElement.lang || ''});
+});
 </script>
 </body>
 </html>
