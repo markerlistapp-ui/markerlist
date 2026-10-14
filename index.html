@@ -1046,6 +1046,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   if (!mobile) return;
   ['try-free-nav', 'try-free-hero'].forEach(function (id) { var a = document.getElementById(id); if (a) a.setAttribute('href', '#discovery'); });
+  /* Carte Discovery : sur téléphone/tablette son bouton ne télécharge plus le .dmg (inutilisable) ; il propose de s'envoyer le lien par e-mail pour l'ouvrir sur le Mac.
+     C'est un simple lien mailto : le site ne collecte rien. Le clic est compté sous l'événement GTM "send_link_click" (et non plus "download_click"). */
+  var dl = document.getElementById('trial-download');
+  if (dl) {
+    var TX = {
+      en: {note: 'MarkerList runs on a Mac. Open this page on your Mac to download the free trial.', btn: 'Email me the link', subject: 'MarkerList: free trial for my Mac', body: 'Open this link on your Mac to download the free trial:'},
+      fr: {note: 'MarkerList fonctionne sur Mac. Ouvrez cette page sur votre Mac pour télécharger l’essai gratuit.', btn: 'Recevoir le lien par e-mail', subject: 'MarkerList : essai gratuit pour mon Mac', body: 'Ouvrez ce lien sur votre Mac pour télécharger l’essai gratuit :'},
+      de: {note: 'MarkerList läuft auf dem Mac. Öffne diese Seite auf deinem Mac, um die kostenlose Testversion herunterzuladen.', btn: 'Link per E-Mail erhalten', subject: 'MarkerList: kostenlose Testversion für meinen Mac', body: 'Öffne diesen Link auf deinem Mac, um die kostenlose Testversion herunterzuladen:'},
+      es: {note: 'MarkerList funciona en Mac. Abre esta página en tu Mac para descargar la prueba gratuita.', btn: 'Recibir el enlace por correo', subject: 'MarkerList: prueba gratuita para mi Mac', body: 'Abre este enlace en tu Mac para descargar la prueba gratuita:'},
+      pt: {note: 'O MarkerList funciona no Mac. Abra esta página no seu Mac para descarregar o teste gratuito.', btn: 'Receber o link por e-mail', subject: 'MarkerList: teste gratuito para o meu Mac', body: 'Abra este link no seu Mac para descarregar o teste gratuito:'}
+    };
+    var t = TX[(document.documentElement.lang || 'en').slice(0, 2).toLowerCase()] || TX.en;
+    var link = location.origin + location.pathname + '?utm_source=mobile_reminder&utm_medium=email_self&utm_campaign=send_link';
+    dl.setAttribute('href', 'mailto:?subject=' + encodeURIComponent(t.subject) + '&body=' + encodeURIComponent(t.body + '\r\n\r\n' + link));
+    dl.textContent = t.btn;
+    var note = document.createElement('p');
+    note.textContent = t.note;
+    note.style.cssText = 'font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin:0;align-self:stretch;text-align:left;';
+    dl.parentNode.insertBefore(note, dl);
+    dl.addEventListener('click', function () {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({event: 'send_link_click', download_location: 'trial-download', page_language: document.documentElement.lang || ''});
+    });
+  }
 })();
 document.addEventListener('click', function (e) {
   var a = e.target.closest && e.target.closest('a[href$=".dmg"]');
