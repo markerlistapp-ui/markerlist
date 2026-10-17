@@ -54,14 +54,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261017" crossorigin>
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261017b" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017b" crossorigin>
 <style>
-@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261017) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261017) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261017) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261017) format('woff')}
+@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261017b) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017b) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261017b) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261017b) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261017b) format('woff')}
 /* ===== Base partagée par les deux directions : structure, composants, comportements. Les couleurs / polices / rayons viennent des jetons (:root). ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
@@ -89,7 +89,7 @@ ul,ol{padding:0;list-style:none}
 .btn svg{width:1em;height:1em;flex:none}
 
 /* ----- Navigation ----- */
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav-bg);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--nav-bg);border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;gap:clamp(12px,3vw,40px);height:var(--nav-h)}
 .brand{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font:700 24px/1 var(--text);letter-spacing:.005em;margin-right:auto}
 .brand img{width:34px;height:34px}
@@ -111,28 +111,25 @@ ul,ol{padding:0;list-style:none}
 .lang-menu [aria-current]{color:var(--ink);font-weight:700}
 
 /* ----- Typo de section ----- */
-.eyebrow{font:600 14px/1 var(--text);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-label);display:inline-flex;align-items:center;gap:10px}
 .h2{font-family:var(--display);font-weight:var(--h-weight);text-transform:uppercase;letter-spacing:var(--h-track);line-height:var(--h-lh);font-size:clamp(var(--h2-min),5.4vw,var(--h2-max));text-wrap:balance}
 .sec{padding-block:var(--sec-pad)}
 .sec-head{display:grid;gap:18px;margin-bottom:clamp(32px,5vw,64px);max-width:820px}
 .sec-head .sub{font-size:clamp(19px,1.9vw,23px);color:var(--ink-2);max-width:60ch;line-height:1.45}
-.tag{display:inline-flex;align-items:center;height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--line-2);font:600 13px/1 var(--text);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
-.tag-new{background:var(--blue);border-color:var(--blue);color:#fff}
-.tag-amber{border-color:rgba(226,165,66,.55);border-color:color-mix(in srgb,var(--amber) 55%,transparent);color:var(--amber-text);background:var(--amber-soft)}
+.tag{display:inline-flex;align-items:center;height:26px;padding:0 9px;border-radius:3px;background:var(--blue);color:#fff;font:700 13.5px/1 var(--text);letter-spacing:.02em;white-space:nowrap}
+.plan-note{font-size:16px;line-height:1.4;color:var(--amber-text)}
 
 /* ----- Héro ----- */
 .hero{position:relative;padding-block:var(--hero-pad);overflow:clip}
 .hero-in{display:grid;gap:var(--hero-gap);position:relative;z-index:1}
 .hero-head{grid-area:head;display:grid;gap:clamp(18px,2.4vw,28px);align-content:start}
-.chip{justify-self:start;display:inline-flex;align-items:center;gap:12px;min-height:44px;padding:0 16px 0 6px;border-radius:999px;border:1px solid var(--line-2);background:var(--chip-bg);text-decoration:none;font:500 16px/1 var(--text);color:var(--ink-2)}
-.chip:hover{border-color:var(--ink-3);color:var(--ink)}
-.chip b{display:inline-grid;place-items:center;height:28px;padding:0 12px;border-radius:999px;background:var(--blue);color:#fff;font:700 13px/1 var(--text);letter-spacing:.1em;text-transform:uppercase}
+.chip{justify-self:start;display:inline-flex;align-items:center;gap:12px;min-height:44px;text-decoration:none;font:500 17px/1.2 var(--text);color:var(--ink-2)}
+.chip:hover{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+.chip b{display:inline-grid;place-items:center;height:26px;padding:0 9px;border-radius:3px;background:var(--blue);color:#fff;font:700 13.5px/1 var(--text);letter-spacing:.02em;white-space:nowrap;flex:none}
 .h1{font-family:var(--display);font-weight:var(--h-weight);text-transform:uppercase;letter-spacing:var(--h-track);line-height:var(--h1-lh);font-size:var(--h1-size);text-wrap:balance}
 .hero-copy{grid-area:copy;display:grid;gap:16px;align-content:start}
 .lead{font-size:clamp(19px,1.75vw,22px);line-height:1.45;color:var(--ink-2);max-width:36em}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
-.fine{font-size:15px;color:var(--ink-3);letter-spacing:.01em}
-.fine span+span::before{content:"·";margin:0 .6em;opacity:.7}
+.fine{font-size:15px;line-height:1.45;color:var(--ink-3);max-width:36em}
 .checks{display:grid;gap:7px;max-width:36em}
 .checks li{position:relative;padding-left:28px;font-size:16.5px;line-height:1.35;color:var(--ink-2);font-weight:500}
 .checks li::before{content:"";position:absolute;left:0;top:.18em;width:18px;height:18px;background:var(--blue-2);-webkit-mask:var(--check) center/contain no-repeat;mask:var(--check) center/contain no-repeat}
@@ -149,48 +146,30 @@ ul,ol{padding:0;list-style:none}
 .dev.phone .ui{border-radius:2.9cqw}
 .abl{position:absolute;left:0;top:0;width:100%;border-radius:1.8cqw;overflow:hidden;border:1px solid var(--dev-line);box-shadow:var(--dev-shadow);background:#2b2b2b}
 .abl img{width:100%}
-.abl .head{position:absolute;top:0;bottom:0;left:24.33%;width:2px;background:var(--amber);box-shadow:0 0 10px var(--amber);opacity:.95;transition:opacity .25s;will-change:transform}
+.abl .head{position:absolute;top:0;bottom:0;left:24.33%;width:2px;background:var(--amber);opacity:.95;transition:opacity .25s;will-change:transform}
 .abl.rst .head{opacity:0}
 .hero-stage{display:grid;gap:clamp(14px,2vw,22px);align-content:start}
-.stage-cap{text-align:center;font:600 13px/1.35 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-wrap:balance}
-.stage-cap i{display:inline-block;width:10px;height:10px;border:2px solid var(--amber);margin-right:8px;vertical-align:-1px}
-
-/* ----- Bande de preuves ----- */
-.proof{border-block:1px solid var(--line);background:var(--proof-bg)}
-.proof ul{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;padding-block:20px}
-.proof li{font:600 15px/1.2 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);display:flex;align-items:center;gap:12px}
-.proof li::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--blue);flex:none}
+.stage-cap{text-align:center;font:500 16px/1.4 var(--text);color:var(--ink-3);text-wrap:balance}
 
 /* ----- Démo vidéo (façade : la vraie vidéo ne se charge qu'au clic) ----- */
 .demo-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,72px);align-items:center}
 .facade{position:relative;display:block;aspect-ratio:16/9;border-radius:var(--r-card);overflow:hidden;border:1px solid var(--line-2);background:#0b0b0d;box-shadow:var(--dev-shadow);text-decoration:none;color:#fff}
-.facade .poster{position:absolute;inset:0;display:grid;place-items:center;background:radial-gradient(120% 90% at 70% 10%,#14234f 0,#0b0b0d 60%)}
-.facade .poster img{width:min(64%,560px);border-radius:14px;border:1px solid var(--dev-line);box-shadow:var(--dev-shadow);transform:translateY(10%)}
-.facade::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,13,.0) 40%,rgba(11,11,13,.75))}
-.play{position:absolute;z-index:2;left:50%;top:50%;translate:-50% -50%;width:clamp(64px,9vw,96px);aspect-ratio:1;border-radius:50%;background:var(--blue);display:grid;place-items:center;box-shadow:0 0 0 10px rgba(48,100,246,.22),0 18px 40px rgba(0,0,0,.5);transition:transform .2s}
+.facade .poster{position:absolute;inset:0;display:grid;place-items:center;background:var(--surface)}
+.facade .poster img{width:min(64%,560px);border-radius:var(--r-dev);border:1px solid var(--dev-line);box-shadow:var(--dev-shadow);transform:translateY(10%)}
+.play{position:absolute;z-index:2;left:50%;top:50%;translate:-50% -50%;width:clamp(64px,9vw,96px);aspect-ratio:1;border-radius:50%;background:var(--blue);display:grid;place-items:center;transition:transform .2s}
 .facade:hover .play{transform:scale(1.06)}
 .play svg{width:34%;height:34%;margin-left:6%;fill:#fff}
-.facade .cap{position:absolute;z-index:2;left:20px;bottom:16px;font:600 14px/1 var(--text);letter-spacing:.14em;text-transform:uppercase}
-
-/* ----- Problème / solution ----- */
-.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px)}
-.vs-card{padding:clamp(22px,3vw,36px);border-radius:var(--r-card);border:1px solid var(--line);display:grid;gap:14px;align-content:start}
-.vs-card .eyebrow{color:var(--ink-3)}
-.vs-card h3{font:var(--h3-weight) clamp(28px,3vw,40px)/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
-.vs-card p{color:var(--ink-2);max-width:34em}
-.vs-card.with{background:var(--with-bg);border-color:var(--with-line)}
-.vs-card.with .eyebrow{color:var(--accent-label)}
-.vs-card.with p{color:var(--ink)}
+.facade .cap{position:absolute;z-index:2;left:16px;bottom:16px;padding:9px 14px;border-radius:var(--r-btn);background:var(--bg);font:600 16px/1 var(--text)}
 
 /* ----- Comment ça marche : 4 repères sur une ligne de temps (c'est une vraie séquence) ----- */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;counter-reset:s}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative}
 .step{position:relative;padding:34px clamp(14px,2vw,28px) 4px 0;display:grid;gap:12px;align-content:start}
 .step::before{content:"";position:absolute;left:0;right:0;top:11px;height:1px;background:var(--line-2)}
 .step::after{content:"";position:absolute;left:0;top:4px;width:14px;height:14px;background:var(--blue);clip-path:polygon(0 0,100% 0,100% 55%,50% 100%,0 55%)}
 .step:last-child::before{right:auto;width:14px}
 .step h3{font:var(--h3-weight) clamp(26px,2.6vw,34px)/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
-.step p{color:var(--ink-2);font-size:18px;max-width:20em}
-.step .n{font:600 13px/1 var(--text);letter-spacing:.16em;text-transform:uppercase;color:var(--accent-label)}
+.step p{color:var(--ink-2);font-size:18px;max-width:24em}
+.step .n{font:600 16px/1 var(--text);color:var(--accent-label)}
 
 /* ----- Explorateur de fonctions ----- */
 .ex{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(28px,5vw,80px);align-items:start}
@@ -200,12 +179,12 @@ ul,ol{padding:0;list-style:none}
 .ex-head{appearance:none;background:none;border:0;width:100%;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 0}
 .ex-title{font:var(--h3-weight) clamp(30px,3.4vw,46px)/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track);color:var(--ink-3);transition:color .2s;text-wrap:balance}
 .ex-item[data-active] .ex-title,.ex-head:hover .ex-title{color:var(--ink)}
-.ex-ico{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:transform .2s,background-color .2s}
-.ex-ico::before{content:"";width:10px;height:2px;background:var(--ink-2);border-radius:2px}
-.ex-ico::after{content:"";position:absolute;width:2px;height:10px;background:var(--ink-2);border-radius:2px;transition:opacity .2s}
-.ex-ico{position:relative}
-.ex-item[data-active] .ex-ico{background:var(--blue);border-color:var(--blue)}
-.ex-item[data-active] .ex-ico::before,.ex-item[data-active] .ex-ico::after{background:#fff}
+.ex-ico{flex:none;position:relative;width:24px;height:24px}
+.ex-ico::before,.ex-ico::after{content:"";position:absolute;left:50%;top:50%;background:var(--ink-3);transition:opacity .2s,background-color .2s}
+.ex-ico::before{width:16px;height:2px;margin:-1px 0 0 -8px}
+.ex-ico::after{width:2px;height:16px;margin:-8px 0 0 -1px}
+.ex-head:hover .ex-ico::before,.ex-head:hover .ex-ico::after{background:var(--ink)}
+.ex-item[data-active] .ex-ico::before{background:var(--blue-2)}
 .ex-item[data-active] .ex-ico::after{opacity:0}
 .ex-body{padding:0 0 30px;display:grid;gap:16px;max-width:36em}
 .js .ex .ex-item:not([data-active]) .ex-body,.js .ex .ex-item:not([data-active]) .ex-inline{display:none}
@@ -213,16 +192,12 @@ ul,ol{padding:0;list-style:none}
 .ex-body ul{display:grid;gap:12px}
 .ex-body li{padding-left:22px;position:relative;color:var(--ink-2)}
 .ex-body li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:2px;background:var(--blue)}
-.ex-body li b{color:var(--ink);font-weight:600}
-.ex-plan{display:flex;flex-wrap:wrap;gap:8px}
-.ex-plan .tag{white-space:normal;height:auto;min-height:26px;padding:5px 12px;line-height:1.25;border-radius:14px;font-size:13px}
 .ex-list,.ex-item,.ex-text,.ex-body{min-width:0}
 .ex-stack{position:sticky;top:calc(var(--nav-h) + 56px);display:grid;grid-template-columns:minmax(0,1fr)}
 .ex-stack figure{grid-area:1/1;opacity:0;transition:opacity .35s;pointer-events:none;justify-self:stretch}
 .ex-stack figure[data-active]{opacity:1}
 .shot{background:var(--dev-bg);border:1px solid var(--dev-line);border-radius:var(--r-dev);padding:10px;box-shadow:var(--dev-shadow);overflow:hidden;position:relative}
 .shot img{border-radius:calc(var(--r-dev) - 8px);width:100%}
-.shot.fade::after{content:"";position:absolute;left:10px;right:10px;bottom:10px;height:22%;border-radius:0 0 calc(var(--r-dev) - 8px) calc(var(--r-dev) - 8px);background:linear-gradient(180deg,transparent,var(--dev-bg))}
 .ex-stack .shot{width:min(100%,520px);margin-inline:auto;max-height:min(74vh,720px)}
 .ex-stack .shot img{max-height:calc(min(74vh,720px) - 20px);object-fit:cover;object-position:top}
 .ex-inline{display:none}
@@ -233,44 +208,44 @@ ul,ol{padding:0;list-style:none}
 .midi-copy ul{display:grid;gap:14px}
 .midi-copy li{padding-left:24px;position:relative;color:var(--ink-2)}
 .midi-copy li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:2px;background:var(--amber)}
-.midi-copy li b{color:var(--ink);font-weight:600}
-.note{font-size:15.5px;line-height:1.5;color:var(--ink-3);max-width:46em;border-left:2px solid var(--line-2);padding-left:14px}
+.midi-copy>.tag{justify-self:start}
+.note{font-size:15.5px;line-height:1.5;color:var(--ink-3);max-width:46em}
 .rig{display:grid;gap:14px}
-.pads{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,1.3vw,14px);padding:clamp(12px,1.8vw,22px);border-radius:var(--r-rig);background:var(--rig-bg);border:1px solid var(--line-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),var(--dev-shadow)}
+.pads{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(8px,1.3vw,14px);padding:clamp(12px,1.8vw,22px);border-radius:var(--r-rig);background:var(--rig-bg);border:1px solid var(--line-2)}
 .pad{--c:var(--pad-blue);position:relative;appearance:none;aspect-ratio:1;min-height:68px;border-radius:var(--r-pad);border:1px solid var(--line-2);background:var(--pad-bg);color:var(--pad-ink);cursor:pointer;display:flex;align-items:flex-end;text-align:left;padding:clamp(8px,1.1vw,12px);font:400 clamp(15px,1.55vw,22px)/.98 var(--pad-font);letter-spacing:.05em;text-transform:uppercase;transition:background-color .15s,border-color .15s,transform .08s,box-shadow .15s}
 .pad:active{transform:scale(.97)}
 .pad .led{position:absolute;top:clamp(8px,1.1vw,12px);left:clamp(8px,1.1vw,12px);width:9px;height:9px;border-radius:50%;background:var(--led-off);transition:background-color .15s,box-shadow .15s}
 .pad .sub{position:absolute;top:clamp(6px,1vw,10px);right:clamp(8px,1.1vw,12px);font:600 clamp(12px,1.1vw,13px)/1 var(--text);letter-spacing:.08em;color:var(--c)}
 .pad[data-on]{border-color:var(--c);background:var(--surface-2);border-color:color-mix(in srgb,var(--c) 70%,transparent);background:color-mix(in srgb,var(--c) 15%,var(--pad-bg))}
-.pad[data-on] .led{background:var(--c);box-shadow:0 0 12px 2px color-mix(in srgb,var(--c) 70%,transparent)}
+.pad[data-on] .led{background:var(--c)}
 .pad.k-play{--c:var(--pad-green)}.pad.k-stop{--c:var(--pad-red)}.pad.k-loop{--c:var(--pad-amber)}.pad.k-rel{--c:var(--pad-grey)}
-.readout{display:flex;flex-wrap:wrap;gap:6px 22px;padding:14px 18px;border-radius:var(--r-btn);background:var(--readout-bg);border:1px solid var(--line);font:600 15px/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.readout{display:flex;flex-wrap:wrap;gap:6px 22px;padding:14px 18px;border-radius:var(--r-btn);background:var(--readout-bg);border:1px solid var(--line);font:600 15px/1.2 var(--text);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);font-variant-numeric:tabular-nums}
 .readout b{color:var(--ink)}
 .readout .hot{color:var(--amber-text)}
 .rig-hint{font-size:15px;color:var(--ink-3)}
 
 /* ----- Secours ----- */
 .bk-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(28px,5vw,80px);align-items:center}
-.facts{display:grid;gap:0;border-top:1px solid var(--line)}
-.facts li{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:6px 22px;padding:18px 0;border-bottom:1px solid var(--line)}
-.facts b{font:var(--h3-weight) 28px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
-.facts span{color:var(--ink-2)}
+.facts{display:grid;gap:0;border-top:1px solid var(--line);margin:0}
+.facts>div{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:6px 22px;padding:18px 0;border-bottom:1px solid var(--line)}
+.facts dt{font:var(--h3-weight) 28px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
+.facts dd{margin:0;color:var(--ink-2)}
 .bk{display:grid;gap:18px;padding:clamp(18px,3vw,34px);border-radius:var(--r-card);border:1px solid var(--line-2);background:var(--bk-bg)}
 .bk-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(70px,.5fr) minmax(0,1fr);align-items:center;gap:0}
 .bk-node{display:grid;gap:8px;padding:clamp(14px,2vw,22px);border-radius:var(--r-btn);border:1px solid var(--line-2);background:var(--surface);transition:border-color .25s,opacity .25s}
 .bk-node .role{font:var(--h3-weight) clamp(24px,2.4vw,32px)/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
 .bk-node .what{font-size:15.5px;color:var(--ink-3)}
-.bk-node .st{display:inline-flex;align-items:center;gap:8px;font:700 13px/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+.bk-node .st{display:inline-flex;align-items:center;gap:8px;font:600 15px/1.2 var(--text);color:var(--ink-3)}
 .bk-node .st i{width:10px;height:10px;border-radius:50%;background:var(--ink-3)}
 .bk-node[data-s="active"]{border-color:rgba(60,193,127,.55);border-color:color-mix(in srgb,var(--green) 55%,transparent)}
-.bk-node[data-s="active"] .st{color:var(--green)}.bk-node[data-s="active"] .st i{background:var(--green);box-shadow:0 0 10px var(--green)}
+.bk-node[data-s="active"] .st{color:var(--green)}.bk-node[data-s="active"] .st i{background:var(--green)}
 .bk-node[data-s="down"]{border-color:rgba(234,90,95,.55);border-color:color-mix(in srgb,var(--red) 55%,transparent);opacity:.85}
 .bk-node[data-s="down"] .st{color:var(--red)}.bk-node[data-s="down"] .st i{background:var(--red)}
 .bk-link{position:relative;height:100%;min-height:60px;display:grid;place-items:center}
 .bk-link::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:repeating-linear-gradient(90deg,var(--ink-3) 0 6px,transparent 6px 12px)}
-.bk-link span{position:relative;background:var(--bk-bg);padding:2px 8px;font:600 13px/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);text-align:center}
-.bk-mirror,.bk-devs{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;font:600 13px/1 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
-.bk-mirror i,.bk-devs i{font-style:normal;display:inline-grid;place-items:center;height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--ink-2)}
+.bk-link span{position:relative;background:var(--bk-bg);padding:2px 8px;font:600 14px/1.2 var(--text);color:var(--ink-3);text-align:center}
+.bk-mirror,.bk-devs{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;font:600 14px/1.2 var(--text);color:var(--ink-3)}
+.bk-mirror i,.bk-devs i{font-style:normal;display:inline-grid;place-items:center;height:30px;padding:0 12px;border-radius:4px;border:1px solid var(--line-2);color:var(--ink-2)}
 .bk-msg{min-height:3.1em;font-size:17px;color:var(--ink-2)}
 .bk-msg b{color:var(--ink)}
 
@@ -291,13 +266,14 @@ ul,ol{padding:0;list-style:none}
 .team-card{display:grid;gap:12px;align-content:start;padding:clamp(18px,2.4vw,28px);border-radius:var(--r-card);border:1px solid var(--line);background:var(--surface)}
 .team-card h3{font:var(--h3-weight) 30px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
 .team-card p{color:var(--ink-2);font-size:18px}
+.team-card .plan-note{color:var(--amber-text);font-size:16px}
 .team-card img{border-radius:var(--r-btn);border:1px solid var(--line);margin-top:6px}
 
 /* ----- Tarifs ----- */
 .plans{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,20px);align-items:stretch}
 @supports (grid-template-rows:subgrid){.plans .plan{display:grid;grid-template-rows:subgrid;grid-row:span 6;row-gap:16px}.plans .plan ul{align-content:start}}
 .plan{position:relative;display:flex;flex-direction:column;gap:18px;padding:clamp(20px,2.2vw,28px);border-radius:var(--r-card);border:1px solid var(--line-2);background:var(--surface)}
-.plan.hl{border-color:var(--hl-line);box-shadow:var(--hl-shadow)}
+.plan.hl{border-color:var(--hl-line)}
 .plan .badge{position:absolute;top:-14px;left:24px}
 .plan h3{font:var(--h3-weight) 34px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .plan .for{color:var(--ink-3);font-size:16.5px;line-height:1.35;min-height:3.8em}
@@ -316,6 +292,7 @@ ul,ol{padding:0;list-style:none}
 .addon small{font-size:15px;color:var(--ink-3)}
 .addon p{font-size:16.5px;color:var(--ink-2);line-height:1.35}
 .trial{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 40px;align-items:center;margin-top:clamp(28px,4vw,48px);padding:clamp(24px,3.4vw,44px);border-radius:var(--r-card);border:1px solid var(--with-line);background:var(--with-bg)}
+.trial-lead{font-size:17px;color:var(--ink-2)}
 .trial h3{font:var(--h3-weight) clamp(32px,3.4vw,46px)/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track);margin:10px 0 12px}
 .trial p{color:var(--ink-2);max-width:46em}
 .trial .small{font-size:15px;color:var(--ink-3);margin-top:8px}
@@ -323,13 +300,13 @@ ul,ol{padding:0;list-style:none}
 .cmp-wrap{margin-top:clamp(40px,6vw,72px)}
 .cmp-wrap>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;min-height:44px}
 .cmp-wrap>summary::-webkit-details-marker{display:none}
-.cmp-wrap>summary::after{content:"+";flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;font:500 20px/1 var(--text);color:var(--ink-2)}
+.cmp-wrap>summary::after{content:"+";flex:none;width:30px;text-align:center;font:400 30px/1 var(--text);color:var(--ink-3)}
 .cmp-wrap[open]>summary::after{content:"–"}
 .cmp-title{font:var(--h3-weight) 34px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track)}
 .cmp{position:relative;overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-card);background:var(--surface)}
 .cmp table{width:100%;min-width:640px;border-collapse:collapse}
 .cmp th,.cmp td{padding:14px 18px;text-align:center;border-bottom:1px solid var(--line);font-size:17px}
-.cmp th{font:600 14px/1.2 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);background:var(--surface-2)}
+.cmp th{font:var(--h3-weight) 22px/1.1 var(--display);letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);background:var(--surface-2)}
 .cmp th:first-child,.cmp td:first-child{text-align:left;position:sticky;left:0;background:var(--surface);z-index:1}
 .cmp thead th:first-child{background:var(--surface-2)}
 .cmp tbody th{font:500 17px/1.35 var(--text);letter-spacing:0;text-transform:none;color:var(--ink);background:var(--surface)}
@@ -337,21 +314,22 @@ ul,ol{padding:0;list-style:none}
 .cmp td:first-child{font-weight:500}
 .cmp .y{color:var(--blue-2)}.cmp .y svg{width:20px;height:20px;display:inline-block;vertical-align:middle}
 .cmp .n{color:var(--ink-3)}
-.cmp td.fx{font:600 14px/1.2 var(--text);letter-spacing:.06em;color:var(--amber-text);text-transform:uppercase}
+.cmp td.fx{font:600 15px/1.2 var(--text);color:var(--amber-text)}
 
 /* ----- FAQ ----- */
 .faq{display:grid;border-top:1px solid var(--line);max-width:900px}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font:600 clamp(19px,2vw,23px)/1.3 var(--text)}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";flex:none;width:30px;height:30px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:50%;font:500 20px/1 var(--text);color:var(--ink-2);transition:transform .2s}
-.faq details[open] summary::after{content:"–";background:var(--blue);border-color:var(--blue);color:#fff}
+.faq summary::after{content:"+";flex:none;width:30px;text-align:center;font:400 30px/1 var(--text);color:var(--ink-3)}
+.faq details[open] summary::after{content:"–";color:var(--blue-2)}
 .faq details p{padding:0 50px 24px 0;color:var(--ink-2);max-width:46em}
 
 /* ----- Appel final + pied de page ----- */
 .final{border-radius:var(--r-big);border:1px solid var(--line-2);background:var(--final-bg);padding:clamp(34px,6vw,84px);display:grid;gap:26px;justify-items:start;position:relative;overflow:hidden}
 .final .h2{max-width:14em}
 .final p{color:var(--ink-2);font-size:clamp(19px,1.9vw,23px);max-width:34em}
+.final .fine{font-size:15px;line-height:1.45;color:var(--ink-3);max-width:min(36em,48%)}
 .compat{border-top:1px solid var(--line);margin-top:clamp(56px,8vw,112px)}
 .compat ul{display:flex;flex-wrap:wrap;gap:8px 28px;padding-block:20px;font:500 15px/1.3 var(--text);letter-spacing:.04em;color:var(--ink-3)}
 .compat b{color:var(--ink-2);font-weight:600}
@@ -360,7 +338,6 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 26px}
 .foot a{text-decoration:none;color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 8px}
 .foot a:hover{color:var(--ink)}
-.foot .tagline{font:600 14px/1 var(--text);letter-spacing:.16em;text-transform:uppercase}
 
 /* ----- Règle / repères (direction A uniquement : masquée en B) ----- */
 .ruler{display:none}
@@ -369,10 +346,10 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
 .midi-copy .h2{font-size:clamp(38px,4.4vw,64px)}
 .final{isolation:isolate}
 .final-art{position:absolute;right:clamp(8px,3vw,48px);bottom:0;width:min(44%,540px);height:100%;pointer-events:none;z-index:-1}
-.final-art .shot{position:absolute;padding:6px;border-radius:16px}
+.final-art .shot{position:absolute;padding:6px;border-radius:var(--r-dev)}
 .final-art .t{right:34%;bottom:-34%;width:58%}
 .final-art .p{right:2%;bottom:-24%;width:30%}
-@media (max-width:900px){.final-art{display:none}}
+@media (max-width:900px){.final-art{display:none}.final .fine{max-width:36em}}
 
 /* ----- Réactif ----- */
 @media (max-width:1100px){
@@ -387,12 +364,11 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
   .ex-inline{display:block;margin-top:6px}
   .ex-inline .shot{width:min(100%,460px)}
   .ex-inline .shot img{max-height:480px;object-fit:cover;object-position:top}
-  .steps{grid-template-columns:1fr 1fr;row-gap:20px}
-  .step:nth-child(2)::before{right:0}.step:nth-child(2n)::before{right:auto;width:14px}
-  .step:nth-child(2)::before{right:auto;width:14px}
+  .steps{grid-template-columns:1fr;row-gap:24px}
+  .step{padding-right:0}
+  .step:last-child::before{right:0;width:auto}
   .team,.devs{grid-template-columns:1fr}
   .devs{align-items:start}
-  .vs{grid-template-columns:1fr}
   .trial{grid-template-columns:1fr}
 }
 @media (max-width:640px){
@@ -401,16 +377,11 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
   .brand{font-size:21px}.brand img{width:30px;height:30px}
   .nav-end{gap:8px}
   .nav-end .btn{min-height:44px;padding:0 14px;font-size:16px}
-  .steps{grid-template-columns:1fr}
-  .step{padding-right:0}
-  .step::before,.step:nth-child(2)::before,.step:nth-child(2n)::before{right:auto;width:100%}
   .facts li{grid-template-columns:1fr}
   .bk-row{grid-template-columns:1fr}
   .bk-link{min-height:56px}
   .bk-link::before{left:50%;right:auto;top:0;bottom:0;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--ink-3) 0 6px,transparent 6px 12px)}
   .addon{grid-template-columns:1fr}
-  .proof ul{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
-  .proof li{font-size:14px;letter-spacing:.1em}
   .pads{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pad{aspect-ratio:auto;min-height:84px}
   .readout{font-size:14px}
@@ -538,13 +509,14 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
 .ui.phone .e-song{left:calc(0*var(--u));top:calc(528*var(--u));width:calc(390*var(--u));height:calc(52*var(--u))}
 .ui.phone .e-bar{left:calc(10*var(--u));top:calc(590*var(--u));width:calc(370*var(--u));height:calc(6*var(--u))}
 .ui.phone .e-rows{left:calc(10*var(--u));top:calc(616*var(--u));width:calc(370*var(--u));height:calc(228*var(--u))}
-/* ===== Direction A — « Stage Dark » : l'identité de l'application et des vidéos (noir scène, Bebas Neue, Barlow Semi Condensed, bleu marque, ambre = boucle/armé) ===== */
+/* ===== Direction A — « Stage Dark » : l'identité de l'application et des vidéos (noir scène, Bebas Neue, Barlow Semi Condensed, bleu marque, ambre = boucle/armé).
+   Passe anti-« IA » (17/10) : à plat. Aucune lueur, aucun dégradé décoratif, aucun flou d'arrière-plan, coins serrés comme sur du matériel. ===== */
 :root{
   color-scheme:dark;
   --bg:#0B0B0D;--bg-2:#0F0F12;--surface:#141418;--surface-2:#1A1A20;
   --line:#25252C;--line-2:#34343D;
   --ink:#F4F4F6;--ink-2:#B9B9C4;--ink-3:#8E8E9B;
-  --blue:#3064F6;--blue-2:#7C9BFF;--amber:#E2A542;--amber-text:#E2A542;--amber-soft:rgba(226,165,66,.12);--green:#3CC17F;--red:#EA5A5F;
+  --blue:#3064F6;--blue-2:#7C9BFF;--amber:#E2A542;--amber-text:#E2A542;--green:#3CC17F;--red:#EA5A5F;
   --pad-blue:#7C9BFF;--pad-green:#3CC17F;--pad-red:#EA5A5F;--pad-amber:#E2A542;--pad-grey:#B9B9C4;--pad-ink:#F4F4F6;
   --focus:#9DB4FF;--accent-label:#8FA9FF;
   --display:'Bebas Neue','Arial Narrow',Impact,sans-serif;
@@ -553,28 +525,21 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
   --h-weight:400;--h3-weight:400;--h-track:.012em;--h-lh:.94;--h1-lh:.9;--h2-min:42px;--h2-max:84px;
   --h1-size:clamp(52px,7.4vw,118px);
   --fs-body:19.5px;--wrap:1240px;--sec-pad:clamp(64px,9vw,128px);--hero-pad:clamp(18px,2.4vw,34px) clamp(44px,6vw,92px);--hero-gap:clamp(14px,1.6vw,24px) clamp(28px,5vw,72px);
-  --r-btn:8px;--r-card:12px;--r-big:16px;--r-dev:18px;--r-rig:18px;--r-pad:10px;
-  --nav-bg:rgba(11,11,13,.82);--chip-bg:rgba(255,255,255,.03);--proof-bg:#0D0D10;--ghost-hover:rgba(255,255,255,.04);
+  --r-btn:6px;--r-card:8px;--r-big:10px;--r-dev:12px;--r-rig:10px;--r-pad:6px;
+  --nav-bg:#0B0B0D;--ghost-hover:#17171B;
   --btn-bg:var(--blue);--btn-ink:#fff;--btn-bg-hover:#4A78FF;
-  --with-bg:linear-gradient(180deg,rgba(48,100,246,.12),rgba(48,100,246,.04));--with-line:rgba(124,155,255,.38);
-  --dev-bg:#101013;--dev-line:#34343D;--dev-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.02);
-  --rig-bg:linear-gradient(180deg,#17171C,#0F0F13);--pad-bg:#1B1B21;--led-off:#2D2D35;--readout-bg:#0D0D10;--bk-bg:#0F0F12;
-  --hl-line:var(--blue-2);--hl-shadow:0 0 0 1px rgba(124,155,255,.35),0 30px 70px -28px rgba(48,100,246,.55);
-  --final-bg:radial-gradient(90% 140% at 100% 0%,rgba(48,100,246,.28),transparent 60%),#101014;
+  --with-bg:#0E1322;--with-line:#38477A;
+  --dev-bg:#101013;--dev-line:#34343D;--dev-shadow:0 28px 56px -28px rgba(0,0,0,.8);
+  --rig-bg:#131317;--pad-bg:#1B1B21;--led-off:#2D2D35;--readout-bg:#0D0D10;--bk-bg:#0F0F12;
+  --hl-line:var(--blue-2);
+  --final-bg:#101016;
   --check:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3.2L13 4.8' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 body{background:var(--bg)}
 .brand{color:var(--ink)}
-.btn-primary{box-shadow:0 10px 30px -12px rgba(48,100,246,.7)}
-.h1 .em{color:var(--blue-2)}
 .sec.alt{background:var(--bg-2)}
 
-/* hero : grille d'arrangement + repère « playhead » qui rappellent la vue Arrangement d'Ableton */
-.hero{background:radial-gradient(70% 60% at 82% 38%,rgba(48,100,246,.20),transparent 62%),var(--bg)}
-.hero::before{content:"";position:absolute;inset:0;background:
-  repeating-linear-gradient(90deg,rgba(255,255,255,.045) 0 1px,transparent 1px 64px),
-  repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0 1px,transparent 1px 16px);
-  -webkit-mask:linear-gradient(180deg,#000 0,transparent 80%);mask:linear-gradient(180deg,#000 0,transparent 80%);pointer-events:none}
+/* hero : la maquette animée porte le visuel, le fond reste uni */
 .hero-in{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);grid-template-areas:"head head" "copy stage";align-items:start}
 .hero-copy{padding-top:6px}
 
@@ -583,11 +548,11 @@ body{background:var(--bg)}
   background:
     repeating-linear-gradient(90deg,var(--line-2) 0 1px,transparent 1px 64px) left bottom/100% 9px no-repeat,
     repeating-linear-gradient(90deg,var(--line) 0 1px,transparent 1px 16px) left bottom/100% 5px no-repeat}
-.ruler::after{content:"";position:absolute;top:0;bottom:0;left:calc(var(--p) * (100% - 2px));width:2px;background:var(--amber);box-shadow:0 0 10px var(--amber);z-index:2}
+.ruler::after{content:"";position:absolute;top:0;bottom:0;left:calc(var(--p) * (100% - 2px));width:2px;background:var(--amber);z-index:2}
 .ruler .loc{position:absolute;top:0;width:0;height:100%;border-left:1px solid var(--line-2);pointer-events:none}
 .ruler .loc::before{content:"";position:absolute;top:0;left:0;width:9px;height:9px;background:var(--ink-3);clip-path:polygon(0 0,100% 0,0 100%)}
 .ruler .loc.on{border-left-color:var(--amber)}.ruler .loc.on::before{background:var(--amber)}
-.ruler .now{position:absolute;top:50%;left:calc(var(--p) * (100% - 2px) + 14px);translate:0 -50%;padding:3px 8px;border-radius:4px;background:var(--bg);font:600 12.5px/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);white-space:nowrap;z-index:1}
+.ruler .now{position:absolute;top:50%;left:calc(var(--p) * (100% - 2px) + 14px);translate:0 -50%;padding:3px 8px;border-radius:3px;background:var(--bg);font:600 12.5px/1 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);white-space:nowrap;z-index:1}
 .ruler .now.flip{left:auto;right:calc((1 - var(--p)) * (100% - 2px) + 14px)}
 .ruler .now:empty{display:none}
 @media (min-width:901px){.ruler .now{display:none}}
@@ -595,20 +560,14 @@ body{background:var(--bg)}
 /* sections : titres monumentaux */
 .sec-head .h2{font-size:clamp(44px,6.2vw,92px)}
 .sec-head .sub{color:var(--ink-2)}
-.vs-card h3{font-size:clamp(34px,3.6vw,52px)}
 .ex-title{font-size:clamp(34px,4vw,56px)}
-.ex-stack .shot{box-shadow:var(--dev-shadow),0 0 120px -30px rgba(48,100,246,.35)}
 .pad{border-radius:var(--r-pad)}
 .final .h2{font-size:clamp(52px,8vw,120px)}
-.hl{position:relative}
-.plan.hl::after{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none}
 .plan .for{min-height:3.7em}
-.cmp td.hlc,.cmp th.hlc{background:rgba(48,100,246,.06)}
 
 /* mobile */
 @media (max-width:900px){
   .hero-in{grid-template-columns:1fr;grid-template-areas:"head" "copy" "stage"}
-  .hero::before{-webkit-mask:linear-gradient(180deg,#000 0,transparent 60%);mask:linear-gradient(180deg,#000 0,transparent 60%)}
   .ruler{height:24px}
 }
 @media (max-width:640px){
@@ -620,19 +579,16 @@ body{background:var(--bg)}
 .stage-fallback{display:none;width:100%;height:auto}
 @supports not (width:1cqw){.stage{aspect-ratio:auto;max-width:none}.stage .abl,.stage .dev{display:none}.stage-fallback{display:block}}
 .chip .arr{flex:none}
-.chip b{white-space:nowrap;letter-spacing:.07em;flex:none}
-.chip{gap:10px;padding-right:14px}
+.chip{gap:10px}
 .nav-end .btn{white-space:nowrap}
 @media (max-width:480px){.nav-end .btn{font-size:15px;padding:0 12px}.brand{font-size:20px;gap:8px}.brand img{width:28px;height:28px}.nav-end{gap:8px}.chip{font-size:15px}}
-.bars{color:var(--blue-2);margin-top:6px}
-.team-card .tag{justify-self:start}
 .video{display:grid;gap:10px;min-width:0}
 .video-note{font-size:14px;line-height:1.4;color:var(--ink-3)}
 .video-frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r-card);background:#000;box-shadow:var(--dev-shadow)}
 .trial-note{font-size:14px;line-height:1.45;color:var(--ink-3);margin:0;text-align:left}
 
 /* bandeau cookies : une barre basse, deux boutons de 44 px ; masqué tant que le choix n'est pas à faire */
-.consent{position:fixed;z-index:60;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));margin-inline:auto;max-width:760px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:10px 12px 10px 18px;background:rgba(20,20,24,.97);border:1px solid var(--line-2);border-radius:12px;box-shadow:0 18px 50px -12px rgba(0,0,0,.75)}
+.consent{position:fixed;z-index:60;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));margin-inline:auto;max-width:760px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;padding:10px 12px 10px 18px;background:#141418;border:1px solid var(--line-2);border-radius:var(--r-card);box-shadow:0 18px 50px -12px rgba(0,0,0,.75)}
 .consent[hidden]{display:none}
 .consent p{margin:0;flex:1 1 320px;font-size:15px;line-height:1.35;color:var(--ink-2)}
 .consent a{color:var(--ink);text-underline-offset:3px}
@@ -719,12 +675,12 @@ body{background:var(--bg)}
   <div class="wrap hero-in">
     <div class="hero-head">
       <a class="chip" href="#midi"><b>Nouveau en 1.5</b> Contrôleurs MIDI pris en charge <svg class="arr" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M2 8h11M9 3.5L13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <h1 class="h1">Pilotez votre setlist Ableton Live depuis la <span class="em">scène.</span></h1>
+      <h1 class="h1">Pilotez votre setlist Ableton Live depuis la scène.</h1>
     </div>
     <div class="hero-copy">
-      <p class="lead">Préparez votre show dans Arrangement View comme d’habitude. Puis pilotez morceaux, sections et boucles depuis un téléphone, une tablette ou un ordinateur, et lancez, arrêtez et bouclez avec une pédale ou des pads MIDI. Votre projet Ableton reste intact.</p>
+      <p class="lead">Préparez votre show dans Arrangement View comme d’habitude. Sur scène, choisissez le morceau, bouclez une section ou lancez et arrêtez depuis un téléphone, une tablette, un ordinateur ou une pédale MIDI. Votre projet Ableton n’est jamais modifié.</p>
       <div class="cta-row"><a class="btn btn-primary" id="try-free-hero" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Télécharger l’essai gratuit pour Mac</a><a class="btn btn-ghost" href="#pricing">Voir les offres</a></div>
-      <p class="fine"><span>Essai gratuit</span><span>Sessions de 15 min</span><span>Sans compte ni carte bancaire</span></p>
+      <p class="fine">Gratuit, sans limite de durée : sessions de 15 minutes maximum, pause de 5 minutes entre deux sessions, jusqu’à 5 sessions par 24 h. Sans compte ni carte bancaire.</p>
       <ul class="checks"><li>Mac avec toutes les éditions d’Ableton Live 11 et 12 : Intro, Lite, Standard, Suite</li><li><b>Pas besoin de Max for Live</b></li><li><b>Aucune latence ajoutée à votre session</b></li><li>Aucune connexion internet nécessaire, sauf pour activer une licence et pour l’essai gratuit</li></ul>
     </div>
     <div class="hero-stage">
@@ -766,79 +722,69 @@ body{background:var(--bg)}
 </div></div>
       </div>
       <img class="stage-fallback" src="assets/site/img/stage-fr.webp" width="766" height="710" alt="" loading="lazy" decoding="async">
-      <p class="stage-cap"><i></i>Ableton joue. Votre tablette et votre téléphone suivent, section par section.</p>
+      <p class="stage-cap">Ableton joue. Votre tablette et votre téléphone suivent, section par section.</p>
     </div>
   </div>
 </section>
-<section class="proof"><div class="wrap"><ul><li>Aucun plugin à charger</li><li>Aucun projet à reconstruire</li><li>Aucune modification de votre fichier .als</li></ul></div></section>
 <section class="sec" id="demo" aria-labelledby="demo-h">
   <div class="wrap demo-in">
-    <div class="sec-head" style="margin:0"><span class="eyebrow">En action</span><h2 class="h2" id="demo-h">Découvrez Markerlist en action</h2><p class="sub">Découvrez comment une session Ableton en vue Arrangement devient une interface de contrôle prête pour la scène.</p></div>
+    <div class="sec-head" style="margin:0"><h2 class="h2" id="demo-h">Découvrez Markerlist en action</h2><p class="sub">Comment une session en vue Arrangement se pilote depuis la scène.</p></div>
     <div class="video">
-      <a class="facade" href="https://www.youtube.com/watch?v=Oct4LdKMVzw" target="_blank" rel="noopener" data-video="Oct4LdKMVzw" data-title="Markerlist — Contrôler Ableton Arrangement View depuis la scène" aria-label="Lire la vidéo de démonstration de Markerlist (ouvre YouTube)">
+      <a class="facade" href="https://www.youtube.com/watch?v=Oct4LdKMVzw" target="_blank" rel="noopener" data-video="Oct4LdKMVzw" data-title="Markerlist : contrôler Ableton Arrangement View depuis la scène" aria-label="Lire la vidéo de démonstration de Markerlist (ouvre YouTube)">
         <span class="poster"><img src="assets/site/img/tab_land.webp" width="1200" height="832" alt="" loading="lazy" decoding="async"></span><span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="cap">Voir la démo</span>
       </a>
       <p class="video-note">YouTube ne se charge que lorsque vous lancez la lecture.</p>
     </div>
   </div>
 </section>
-<section class="sec alt" aria-labelledby="vs-h">
-  <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Le défi du live</span><h2 class="h2" id="vs-h">Moins de temps devant l’ordinateur. Plus de temps sur scène.</h2></div>
-    <div class="vs">
-      <div class="vs-card"><span class="eyebrow">Sans interface de contrôle sur scène</span><h3>Retourner à l’ordinateur</h3><p>Cherchez le bon morceau et la bonne section, vérifiez la timeline et lancez la lecture — pendant que votre attention quitte la performance.</p></div>
-      <div class="vs-card with"><span class="eyebrow">Avec Markerlist</span><h3>Gardez le contrôle avec vous</h3><p><b>Préparez votre show dans Ableton.</b> Puis pilotez le show depuis votre appareil sur scène, pendant qu’Ableton reste sur l’ordinateur.</p></div>
-    </div>
-  </div>
-</section>
 <section class="sec" id="how" aria-labelledby="how-h">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Fonctionnement</span><h2 class="h2" id="how-h">De la session Ableton au contrôle live.</h2><p class="sub">Continuez à préparer votre show dans Arrangement View comme d’habitude. Markerlist ajoute une interface de contrôle dédiée à la performance.</p></div>
-    <ol class="steps"><li class="step"><span class="n">Étape 1 · Préparez</span><h3>Construire dans Ableton</h3><p>Créez vos morceaux, sections et repères dans Arrangement View comme d’habitude.</p></li><li class="step"><span class="n">Étape 2 · Connectez</span><h3>Connecter Markerlist</h3><p>Ouvrez l’interface de contrôle Markerlist sur le téléphone, la tablette ou l’ordinateur que vous utiliserez sur scène.</p></li><li class="step"><span class="n">Étape 3 · Jouez</span><h3>Piloter le show</h3><p>Choisissez les morceaux et les sections, lancez des boucles, parcourez votre setlist et contrôlez la lecture sans retourner au Mac.</p></li><li class="step"><span class="n">Étape 4 · Gardez le contrôle</span><h3>Sachez où vous en êtes</h3><p>Depuis la scène, consultez le morceau et la section en cours, la suite du programme, le tempo, la progression et le temps restant.</p></li></ol>
+    <div class="sec-head"><h2 class="h2" id="how-h">Fini les allers-retours vers l’ordinateur.</h2><p class="sub">Changer de morceau ne devrait pas obliger à aller à l’ordinateur, trouver le bon repère et lancer la lecture pendant que tout le monde attend. Vous continuez à travailler dans Arrangement View, et Markerlist est la télécommande du show.</p></div>
+    <ol class="steps"><li class="step"><span class="n">Étape 1</span><h3>Construire dans Ableton</h3><p>Créez vos morceaux, sections et repères dans Arrangement View comme d’habitude.</p></li><li class="step"><span class="n">Étape 2</span><h3>Connecter Markerlist</h3><p>Ouvrez l’interface de contrôle Markerlist sur le téléphone, la tablette ou l’ordinateur que vous utiliserez sur scène.</p></li><li class="step"><span class="n">Étape 3</span><h3>Piloter le show</h3><p>Choisissez les morceaux et les sections, lancez des boucles et contrôlez la lecture sans retourner au Mac. Le morceau en cours, la suite, le tempo et le temps restant restent sous vos yeux.</p></li></ol>
   </div>
 </section>
 <section class="sec" id="features" data-loc="Fonctionnalités" aria-labelledby="ft-h">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Contrôle live</span><h2 class="h2" id="ft-h">Plus que Play et Stop.</h2><p class="sub">Votre session Ableton devient une interface de contrôle live : naviguez dans le show depuis la scène au lieu de retourner à l’ordinateur.</p></div>
+    <div class="sec-head"><h2 class="h2" id="ft-h">Ce que vous pilotez depuis la scène</h2></div>
     <div class="ex"><ul class="ex-list"><li class="ex-item" data-active>
   <div class="ex-text"><h3 class="ex-title-row"><button class="ex-head" type="button" id="exh-setlist" aria-expanded="true" aria-controls="exb-setlist"><span class="ex-title">Setlist</span><span class="ex-ico" aria-hidden="true"></span></button></h3>
-    <div class="ex-body" id="exb-setlist" role="region" aria-labelledby="exh-setlist"><p class="lede">Votre projet Ableton reste intact. Markerlist ajoute une interface distincte pour piloter le show en direct.</p><ul><li><b>Réorganisez sans reconstruire.</b> Faites glisser les morceaux pour les remettre dans l’ordre, retirez-en un du set actif et récupérez-le dans la bibliothèque quand vous le souhaitez.</li><li><b>Emportez la setlist avec vous.</b> Exportez un PDF clair avec les titres, leur durée et la durée totale du set, à partager avec l’équipe.</li></ul><div class="ex-plan"><span class="tag tag-amber">Glisser-déposer et export PDF : à partir de Standard Solo</span></div></div>
+    <div class="ex-body" id="exb-setlist" role="region" aria-labelledby="exh-setlist"><p class="lede">L’ordre du set vit dans Markerlist. Votre projet Ableton n’est pas touché.</p><ul><li>Faites glisser les morceaux dans l’ordre. Retirez-en un du set de ce soir, récupérez-le plus tard dans la bibliothèque.</li><li>Exportez un PDF avec les titres, leur durée et la durée totale du set, à partager avec l’équipe.</li></ul><p class="plan-note">Glisser-déposer et export PDF : à partir de Standard Solo</p></div>
   </div>
-  <figure class="ex-inline"><div class="shot fade"><img src="assets/site/img/tab_grid.webp" width="980" height="1197" alt="Bibliothèque Markerlist : les morceaux du set avec leur durée et le set actif" loading="lazy" decoding="async"></div></figure>
+  <figure class="ex-inline"><div class="shot"><img src="assets/site/img/tab_grid.webp" width="980" height="1197" alt="Bibliothèque Markerlist : les morceaux du set avec leur durée et le set actif" loading="lazy" decoding="async"></div></figure>
 </li><li class="ex-item">
   <div class="ex-text"><h3 class="ex-title-row"><button class="ex-head" type="button" id="exh-loops" aria-expanded="false" aria-controls="exb-loops"><span class="ex-title">Boucles et cue</span><span class="ex-ico" aria-hidden="true"></span></button></h3>
-    <div class="ex-body" id="exb-loops" role="region" aria-labelledby="exh-loops"><p class="lede">Markerlist vous donne accès aux commandes essentielles pendant la lecture de votre arrangement.</p><ul><li><b>Boucles de section.</b> Répétez un refrain, un pont ou une autre section, puis désactivez la boucle lorsque vous êtes prêt à continuer.</li><li><b>Préparation de section.</b> Préparez une section de destination et laissez Markerlist y rediriger la lecture au bon moment, sans modifier votre session Arrangement View.</li><li><b>Arrêt automatique et lecture en continu.</b> Arrêtez automatiquement la lecture au prochain repère ou laissez-la se poursuivre en continu, selon la configuration de votre show.</li></ul><div class="ex-plan"><span class="tag tag-amber">Boucles et préparation de section : à partir de Standard Multi</span></div></div>
+    <div class="ex-body" id="exb-loops" role="region" aria-labelledby="exh-loops"><ul><li>Bouclez un refrain ou un pont, puis relâchez la boucle quand vous voulez continuer.</li><li>Choisissez la section où sauter. Markerlist fait le saut au bon moment, sans que vous ayez à modifier l’arrangement.</li><li>Arrêt au prochain repère, ou lecture qui continue, selon le show.</li></ul><p class="plan-note">Boucles et préparation de section : à partir de Standard Multi</p></div>
   </div>
-  <figure class="ex-inline"><div class="shot fade"><img src="assets/site/img/tab_loops.webp" width="980" height="1145" alt="Sections Markerlist avec une boucle armée sur le solo et les commandes de cue" loading="lazy" decoding="async"></div></figure>
+  <figure class="ex-inline"><div class="shot"><img src="assets/site/img/tab_loops.webp" width="980" height="1145" alt="Sections Markerlist avec une boucle armée sur le solo et les commandes de cue" loading="lazy" decoding="async"></div></figure>
 </li><li class="ex-item">
   <div class="ex-text"><h3 class="ex-title-row"><button class="ex-head" type="button" id="exh-stage" aria-expanded="false" aria-controls="exb-stage"><span class="ex-title">Vue scène</span><span class="ex-ico" aria-hidden="true"></span></button></h3>
-    <div class="ex-body" id="exb-stage" role="region" aria-labelledby="exh-stage"><p class="lede">Une vue dédiée à la scène affiche les informations utiles pendant votre performance.</p><ul><li><b>En cours → Suivant → Temps restant.</b> Suivez le morceau et la section en cours, voyez ce qui vient ensuite et gardez un œil sur le temps restant du set.</li><li><b>Tempo et informations sur la section.</b> Consultez le tempo, la mesure, la progression de la section et l’état de la boucle sans retourner à l’ordinateur Ableton.</li><li><b>Clic et pré-décompte.</b> Accédez aux outils de tempo et de lancement dont vous avez besoin directement depuis l’interface de contrôle.</li></ul><div class="ex-plan"><span class="tag tag-amber">Mode vue live : à partir de Standard Multi</span></div></div>
+    <div class="ex-body" id="exb-stage" role="region" aria-labelledby="exh-stage"><p class="lede">Un seul écran avec ce qu’il faut pendant un morceau.</p><ul><li>Morceau et section en cours, ce qui vient ensuite et ce qu’il reste du set.</li><li>Tempo, mesure, progression de la section et état de la boucle, sans retourner à l’ordinateur Ableton.</li><li>Le clic et le pré-décompte sont à portée de doigt.</li></ul><p class="plan-note">Mode vue live : à partir de Standard Multi</p></div>
   </div>
-  <figure class="ex-inline"><div class="shot fade"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="Vue live Markerlist : morceau en cours, morceau suivant, set restant, clic et pré-décompte" loading="lazy" decoding="async"></div></figure>
+  <figure class="ex-inline"><div class="shot"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="Vue live Markerlist : morceau en cours, morceau suivant, set restant, clic et pré-décompte" loading="lazy" decoding="async"></div></figure>
 </li><li class="ex-item">
   <div class="ex-text"><h3 class="ex-title-row"><button class="ex-head" type="button" id="exh-tracks" aria-expanded="false" aria-controls="exb-tracks"><span class="ex-title">Pistes</span><span class="ex-ico" aria-hidden="true"></span></button></h3>
-    <div class="ex-body" id="exb-tracks" role="region" aria-labelledby="exh-tracks"><p class="lede">Coupez ou mettez rapidement une piste Ableton en solo depuis la scène lorsqu’un problème survient.</p><ul><li><b>Muet et solo.</b> Coupez une piste qui pose problème, ou isolez-en une, depuis votre tablette ou votre téléphone.</li><li><b>Contrôle et sécurité.</b> Markerlist se place à côté de la console d’Ableton comme un outil de sécurité sur scène. Il ne la remplace pas.</li></ul><div class="ex-plan"><span class="tag tag-amber">Configuration et contrôle des pistes : à partir de Standard Solo</span></div></div>
+    <div class="ex-body" id="exb-tracks" role="region" aria-labelledby="exh-tracks"><p class="lede">Coupez ou isolez une piste Ableton depuis la scène quand quelque chose ne va pas.</p><ul><li>Coupez une piste qui pose problème, ou isolez-en une, depuis votre tablette ou votre téléphone.</li><li>Markerlist se place à côté de la console d’Ableton comme outil de sécurité. Il ne la remplace pas.</li></ul><p class="plan-note">Configuration et contrôle des pistes : à partir de Standard Solo</p></div>
   </div>
-  <figure class="ex-inline"><div class="shot fade"><img src="assets/site/img/tab_tracks.webp" width="980" height="1713" alt="Panneau Pistes Ableton de Markerlist avec les boutons solo et muet" loading="lazy" decoding="async"></div></figure>
-</li></ul><div class="ex-stack" aria-hidden="true"><figure data-active><div class="shot fade"><img src="assets/site/img/tab_grid.webp" width="980" height="1197" alt="Bibliothèque Markerlist : les morceaux du set avec leur durée et le set actif" loading="lazy" decoding="async"></div></figure><figure><div class="shot fade"><img src="assets/site/img/tab_loops.webp" width="980" height="1145" alt="Sections Markerlist avec une boucle armée sur le solo et les commandes de cue" loading="lazy" decoding="async"></div></figure><figure><div class="shot fade"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="Vue live Markerlist : morceau en cours, morceau suivant, set restant, clic et pré-décompte" loading="lazy" decoding="async"></div></figure><figure><div class="shot fade"><img src="assets/site/img/tab_tracks.webp" width="980" height="1713" alt="Panneau Pistes Ableton de Markerlist avec les boutons solo et muet" loading="lazy" decoding="async"></div></figure></div></div>
+  <figure class="ex-inline"><div class="shot"><img src="assets/site/img/tab_tracks.webp" width="980" height="1713" alt="Panneau Pistes Ableton de Markerlist avec les boutons solo et muet" loading="lazy" decoding="async"></div></figure>
+</li></ul><div class="ex-stack" aria-hidden="true"><figure data-active><div class="shot"><img src="assets/site/img/tab_grid.webp" width="980" height="1197" alt="Bibliothèque Markerlist : les morceaux du set avec leur durée et le set actif" loading="lazy" decoding="async"></div></figure><figure><div class="shot"><img src="assets/site/img/tab_loops.webp" width="980" height="1145" alt="Sections Markerlist avec une boucle armée sur le solo et les commandes de cue" loading="lazy" decoding="async"></div></figure><figure><div class="shot"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="Vue live Markerlist : morceau en cours, morceau suivant, set restant, clic et pré-décompte" loading="lazy" decoding="async"></div></figure><figure><div class="shot"><img src="assets/site/img/tab_tracks.webp" width="980" height="1713" alt="Panneau Pistes Ableton de Markerlist avec les boutons solo et muet" loading="lazy" decoding="async"></div></figure></div></div>
   </div>
 </section>
 <section class="sec alt" id="devices" aria-labelledby="dv-h">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Appareils de contrôle</span><h2 class="h2" id="dv-h">Un écran adapté à chaque rôle.</h2><p class="sub">L’interface Markerlist fonctionne dans un navigateur. Connectez des téléphones, tablettes ou ordinateurs au même show, tandis qu’Ableton reste sur le Mac.</p></div>
-    <div class="devs"><div class="dev-card"><div class="shot fade"><img src="assets/site/img/tab_status.webp" width="980" height="1582" alt="Markerlist sur une tablette : les morceaux du set avec leurs sections" loading="lazy" decoding="async"></div><h3>Tablette</h3><p>Des commandes lisibles pour suivre le set depuis la scène.</p></div><div class="dev-card"><div class="shot fade"><img src="assets/site/img/phone_live.webp" width="640" height="1367" alt="Markerlist sur un téléphone : lecture, arrêt et morceau en cours" loading="lazy" decoding="async"></div><h3>Téléphone</h3><p>Gardez les commandes essentielles avec vous, sans matériel supplémentaire.</p></div><div class="dev-card"><div class="shot browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>Markerlist · sur votre réseau local</span></div><img src="assets/site/img/tab_land.webp" width="1200" height="832" alt="Markerlist dans une fenêtre de navigateur sur ordinateur" loading="lazy" decoding="async"></div><h3>Ordinateur</h3><p>Utilisez une fenêtre de navigateur sur macOS ou Windows comme surface de contrôle supplémentaire.</p></div></div>
+    <div class="sec-head"><h2 class="h2" id="dv-h">Un écran adapté à chaque rôle.</h2><p class="sub">L’interface Markerlist fonctionne dans un navigateur. Connectez des téléphones, tablettes ou ordinateurs au même show, tandis qu’Ableton reste sur le Mac.</p></div>
+    <div class="devs"><div class="dev-card"><div class="shot"><img src="assets/site/img/tab_status.webp" width="980" height="1582" alt="Markerlist sur une tablette : les morceaux du set avec leurs sections" loading="lazy" decoding="async"></div><h3>Tablette</h3><p>Des commandes lisibles pour suivre le set depuis la scène.</p></div><div class="dev-card"><div class="shot"><img src="assets/site/img/phone_live.webp" width="640" height="1367" alt="Markerlist sur un téléphone : lecture, arrêt et morceau en cours" loading="lazy" decoding="async"></div><h3>Téléphone</h3><p>Gardez les commandes essentielles avec vous, sans matériel supplémentaire.</p></div><div class="dev-card"><div class="shot browser"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>Markerlist · sur votre réseau local</span></div><img src="assets/site/img/tab_land.webp" width="1200" height="832" alt="Markerlist dans une fenêtre de navigateur sur ordinateur" loading="lazy" decoding="async"></div><h3>Ordinateur</h3><p>Utilisez une fenêtre de navigateur sur macOS ou Windows comme surface de contrôle supplémentaire.</p></div></div>
     <p class="note note-inline">Chaque fenêtre de navigateur ouverte compte comme un appareil connecté. Le nombre de connexions simultanées dépend de votre formule.</p>
-    <div class="team"><div class="team-card"><h3>Messages</h3><p>Envoyez un mot à tous les écrans, ou à un seul appareil : « On commence dans 1 minute ».</p><img src="assets/site/img/msg.webp" width="1000" height="587" alt="Liste de messages Markerlist avec un message affiché sur un appareil" loading="lazy" decoding="async"><span class="tag tag-amber">À partir de Standard Multi</span></div><div class="team-card"><h3>Rôles</h3><p>Donnez à chaque membre de l’équipe accès aux informations utiles et réservez les commandes sensibles à la personne autorisée.</p><img src="assets/site/img/devices.webp" width="680" height="410" alt="Appareils connectés dans Markerlist avec les boutons contrôle complet et lecture seule" loading="lazy" decoding="async"><span class="tag tag-amber">À partir de Standard Multi</span></div><div class="team-card"><h3>Annonces vocales</h3><p>Annoncez vocalement la prochaine section et l’état des boucles pour que l’équipe reste synchronisée sans devoir regarder un écran en permanence.</p><div class="bars"><svg viewBox="0 0 60 40" width="60" height="40" aria-hidden="true"><g fill="currentColor"><rect x="2" y="14" width="6" height="12" rx="3"/><rect x="14" y="8" width="6" height="24" rx="3"/><rect x="26" y="1" width="6" height="38" rx="3"/><rect x="38" y="9" width="6" height="22" rx="3"/><rect x="50" y="15" width="6" height="10" rx="3"/></g></svg></div></div></div>
+    <div class="team"><div class="team-card"><h3>Messages</h3><p>Envoyez un mot à tous les écrans, ou à un seul appareil : « On commence dans 1 minute ».</p><p class="plan-note">À partir de Standard Multi</p><img src="assets/site/img/msg.webp" width="1000" height="587" alt="Liste de messages Markerlist avec un message affiché sur un appareil" loading="lazy" decoding="async"></div><div class="team-card"><h3>Rôles</h3><p>Donnez à chaque membre de l’équipe accès aux informations utiles et réservez les commandes sensibles à la personne autorisée.</p><p class="plan-note">À partir de Standard Multi</p><img src="assets/site/img/devices.webp" width="680" height="410" alt="Appareils connectés dans Markerlist avec les boutons contrôle complet et lecture seule" loading="lazy" decoding="async"></div><div class="team-card"><h3>Annonces vocales</h3><p>Markerlist annonce à voix haute la prochaine section et l’état de la boucle : personne n’a besoin de surveiller un écran.</p><p class="plan-note">Toutes les offres</p></div></div>
   </div>
 </section>
 <section class="sec" id="midi" data-loc="MIDI" aria-labelledby="midi-h">
   <div class="wrap">
     <div class="midi-grid">
       <div class="midi-copy">
-        <span class="eyebrow"><span class="tag tag-new">Nouveau en 1.5</span> Contrôleur MIDI</span>
-        <h2 class="h2" id="midi-h">Les mains sur votre instrument.</h2>
+        <span class="tag">Nouveau en 1.5</span>
+        <h2 class="h2" id="midi-h">Pilotez le show avec une pédale MIDI ou des pads.</h2>
         <p class="sub">Branchez un pédalier, des pads ou un clavier MIDI, appuyez sur Apprendre, puis sur le bouton de votre choix. Notes ou messages CC.</p>
-        <ul><li><b>Dix actions.</b> Lecture, arrêt, morceau précédent et suivant, boucle de morceau, boucle de section, relâcher, click, enchaîner et pré-roll.</li><li><b>La boucle de section fonctionne comme sur la tablette.</b> Un appui boucle une fois, deux appuis deux fois, trois appuis jusqu’au relâchement, un quatrième appui la désactive.</li><li><b>Retour par LED.</b> Un contrôleur doté de voyants indique ce qui joue, ce qui boucle et ce qui est armé.</li></ul>
+        <ul><li>Dix actions : lecture, arrêt, morceau précédent et suivant, boucle de morceau, boucle de section, relâcher, click, enchaîner et pré-roll.</li><li>Le bouton de boucle de section fonctionne comme sur la tablette : un appui boucle une fois, deux appuis deux fois, trois appuis jusqu’au relâchement, un quatrième appui la désactive.</li><li>Un contrôleur doté de voyants indique ce qui joue, ce qui boucle et ce qui est armé.</li></ul>
         <p class="note">Inclus dans toutes les formules ; chaque bouton suit les droits de votre formule, donc les boucles de section et le relâchement sont disponibles avec Standard Multi et Pro Multi. Les messages Program Change ne sont pas encore pris en charge. Sur l’ordinateur de secours d’une paire redondante, le contrôleur est ignoré.</p>
       </div>
       <div class="rig">
@@ -853,8 +799,8 @@ body{background:var(--bg)}
   <div class="wrap">
     <div class="bk-in">
       <div>
-        <div class="sec-head" style="margin-bottom:28px"><span class="eyebrow">Fiabilité <span class="tag tag-amber">Pro Multi</span></span><h2 class="h2" id="bk-h">Le show doit continuer.</h2><p class="sub">Pro Multi ajoute un second Mac avec une copie synchronisée du show Ableton, prêt à prendre le relais en cas de problème avec l’ordinateur principal.</p></div>
-        <ul class="facts"><li><b>Synchronisation en direct</b><span>L’ordinateur de secours reprend l’état du show : ordre de la setlist, sections, commandes de boucle et contrôles des pistes.</span></li><li><b>Prise de relais en un geste</b><span>En cas de panne de l’ordinateur principal, le système de secours prend le relais sans reconstruire le show ni reconnecter les appareils de contrôle.</span></li><li><b>Secours silencieux</b><span>L’ordinateur de secours reste en sourdine lorsqu’il est en attente. Le basculement est volontaire afin d’éviter que son signal arrive inopinément dans la sonorisation.</span></li><li><b>Secours LTC</b><span>Pro Multi inclut également une solution de secours LTC qui maintient le système synchronisé si l’ordinateur Ableton principal devient indisponible.</span></li></ul>
+        <div class="sec-head" style="margin-bottom:28px"><h2 class="h2" id="bk-h">Le show doit continuer.</h2><p class="sub">Pro Multi ajoute un second Mac avec une copie synchronisée du show Ableton, prêt à prendre le relais en cas de problème avec l’ordinateur principal.</p></div>
+        <dl class="facts"><div><dt>Synchronisation en direct</dt><dd>L’ordinateur de secours reprend l’état du show : ordre de la setlist, sections, commandes de boucle et contrôles des pistes.</dd></div><div><dt>Prise de relais en un geste</dt><dd>En cas de panne de l’ordinateur principal, le système de secours prend le relais sans reconstruire le show ni reconnecter les appareils de contrôle.</dd></div><div><dt>Secours silencieux</dt><dd>L’ordinateur de secours reste en sourdine lorsqu’il est en attente. Le basculement est volontaire afin d’éviter que son signal arrive inopinément dans la sonorisation.</dd></div><div><dt>Secours LTC</dt><dd>Pro Multi inclut également une solution de secours LTC qui maintient le système synchronisé si l’ordinateur Ableton principal devient indisponible.</dd></div></dl>
       </div>
       <div>
         <div class="bk" data-state="normal" data-st-active="Actif · en lecture" data-st-standby="En attente · en sourdine" data-st-offline="Hors ligne" data-st-took="Actif · a pris le relais" data-btn="Simuler : le Mac principal tombe en panne" data-btn-reset="Réinitialiser la démo">
@@ -875,63 +821,63 @@ body{background:var(--bg)}
 </section>
 <section class="sec" id="pricing" data-loc="Tarifs" aria-labelledby="pr-h">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Tarifs</span><h2 class="h2" id="pr-h">Une formule pour chaque scène</h2><p class="sub">Pas de licence par morceau ni d’abonnement mensuel. Les formules sont achetées une fois ; les mises à jour majeures sont incluses un an avec Standard Solo, Standard Multi et Pro Multi, puis disponibles en option.</p></div>
+    <div class="sec-head"><h2 class="h2" id="pr-h">Formules et tarifs</h2><p class="sub">Pas de licence par morceau ni d’abonnement mensuel. Les formules sont achetées une fois ; les mises à jour majeures sont incluses un an avec Standard Solo, Standard Multi et Pro Multi, puis disponibles en option.</p></div>
     <div class="plans"><article class="plan" aria-labelledby="pl-access">
   <h3 id="pl-access">Access</h3>
   <p class="for">L’essentiel pour les répétitions et les concerts, à petit prix</p>
   <div class="price"><strong>19,99 €</strong><small>HT</small></div><p class="once">paiement unique</p>
-  <ul><li>1 ordinateur hôte</li><li>1 appareil (1 fenêtre de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Pré-décompte fixe (4 temps, non réglable)</li></ul>
+  <ul><li>1 ordinateur hôte</li><li>1 appareil (1 fenêtre de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Contrôleurs MIDI pris en charge</li><li>Pré-décompte fixe (4 temps, non réglable)</li></ul>
   <a class="btn btn-ghost" href="https://markerlist.lemonsqueezy.com/checkout/buy/b3141751-b31b-4de3-b653-dbc58b2875cc" target="_blank" rel="noopener">Choisir Access</a>
-</article><article class="plan hl" aria-labelledby="pl-solo"><span class="badge"><span class="tag tag-new">Le plus choisi</span></span>
+</article><article class="plan hl" aria-labelledby="pl-solo"><span class="badge"><span class="tag">Le plus choisi</span></span>
   <h3 id="pl-solo">Standard Solo</h3>
   <p class="for">Duos et concerts<br><b>Artiste solo : un appareil pour piloter votre show.</b></p>
   <div class="price"><strong>39,99 €</strong><small>HT</small></div><p class="once">paiement unique</p>
-  <ul><li>1 ordinateur hôte</li><li>2 appareils (fenêtres de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Pré-décompte pour l’équipe</li><li>Configuration et contrôle des pistes Ableton</li><li>Glisser-déposer et réorganiser</li><li>Export PDF de la setlist</li><li>1 an de mises à jour majeures incluses</li></ul>
+  <ul><li>1 ordinateur hôte</li><li>2 appareils (fenêtres de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Contrôleurs MIDI pris en charge</li><li>Pré-décompte pour l’équipe</li><li>Configuration et contrôle des pistes Ableton</li><li>Glisser-déposer et réorganiser</li><li>Export PDF de la setlist</li><li>1 an de mises à jour majeures incluses</li></ul>
   <a class="btn btn-primary" href="https://markerlist.lemonsqueezy.com/checkout/buy/0c341af4-56ea-44f6-8529-eaf0d3101ac2" target="_blank" rel="noopener">Choisir Solo</a>
 </article><article class="plan" aria-labelledby="pl-multi">
   <h3 id="pl-multi">Standard Multi</h3>
   <p class="for">Toute votre équipe synchronisée<br><b>Groupe ou plusieurs personnes qui pilotent le même show.</b></p>
   <div class="price"><strong>69,99 €</strong><small>HT</small></div><p class="once">paiement unique</p>
-  <ul><li>1 ordinateur hôte</li><li>4 appareils (fenêtres de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Pré-décompte pour l’équipe</li><li>Boucles de section</li><li>Préparation de section</li><li>Configuration et contrôle des pistes Ableton</li><li>Rôles par appareil (lecture seule)</li><li>Messages directs ou à toute l’équipe</li><li>Glisser-déposer et réorganiser</li><li>Export PDF de la setlist</li><li>Mode vue live</li><li>1 an de mises à jour majeures incluses</li></ul>
+  <ul><li>1 ordinateur hôte</li><li>4 appareils (fenêtres de navigateur)</li><li>Arrêt automatique et lecture en continu</li><li>Contrôleurs MIDI pris en charge</li><li>Pré-décompte pour l’équipe</li><li>Boucles de section</li><li>Préparation de section</li><li>Configuration et contrôle des pistes Ableton</li><li>Rôles par appareil (lecture seule)</li><li>Messages directs ou à toute l’équipe</li><li>Glisser-déposer et réorganiser</li><li>Export PDF de la setlist</li><li>Mode vue live</li><li>1 an de mises à jour majeures incluses</li></ul>
   <a class="btn btn-ghost" href="https://markerlist.lemonsqueezy.com/checkout/buy/5a560815-dd7e-4322-9baf-3dcdda8d7e46" target="_blank" rel="noopener">Choisir Multi</a>
 </article><article class="plan" aria-labelledby="pl-pro">
-  <h3 id="pl-pro">Pro Multi <span class="tag tag-new">Nouveau</span></h3>
-  <p class="for">Tournées et grandes scènes — relais automatique en cas de panne d’un ordinateur<br><b>Show critique : redondance sur deux ordinateurs et secours LTC.</b></p>
+  <h3 id="pl-pro">Pro Multi <span class="tag">Nouveau</span></h3>
+  <p class="for">Tournées et grandes scènes : relais automatique en cas de panne d’un ordinateur<br><b>Show critique : redondance sur deux ordinateurs et secours LTC.</b></p>
   <div class="price"><strong>129,99 €</strong><small>HT</small></div><p class="once">paiement unique</p>
-  <ul><li>Tout ce qui est inclus dans Standard Multi</li><li>Redondance sur deux ordinateurs</li><li>Secours par timecode LTC — la synchronisation continue même sans Ableton</li><li>L’ordinateur de secours est inclus — aucun second achat nécessaire</li><li>1 an de mises à jour majeures incluses</li></ul>
+  <ul><li>Tout ce qui est inclus dans Standard Multi</li><li>Redondance sur deux ordinateurs</li><li>Secours par timecode LTC : la synchronisation continue même sans Ableton</li><li>L’ordinateur de secours est inclus, aucun second achat nécessaire</li><li>1 an de mises à jour majeures incluses</li></ul>
   <a class="btn btn-ghost" href="https://markerlist.lemonsqueezy.com/checkout/buy/5f82912d-ec75-4937-b5b9-3d062dbd248d" target="_blank" rel="noopener">Choisir Pro Multi</a>
 </article></div>
-    <div class="addons"><div class="addon"><div class="price"><strong>14,99 €</strong><small>HT/an</small></div><p>Evolution Pass — mises à jour majeures à partir de la deuxième année (la première année est incluse avec Solo/Multi)</p><a class="btn btn-ghost btn-sm" href="https://markerlist.lemonsqueezy.com/checkout/buy/7e0e563e-c572-46e2-9f1a-085618f2e94e" target="_blank" rel="noopener">Choisir Evolution Pass</a></div><div class="addon"><div class="price"><strong>49,99 €</strong><small>HT</small></div><p>Appareils illimités — option réservée à Standard Multi et Pro Multi</p><a class="btn btn-ghost btn-sm" href="https://markerlist.lemonsqueezy.com/checkout/buy/6f12f725-2863-4743-8efc-0cbbdde31327" target="_blank" rel="noopener">Choisir Unlimited</a></div></div>
+    <div class="addons"><div class="addon"><div class="price"><strong>14,99 €</strong><small>HT/an</small></div><p>Evolution Pass : mises à jour majeures à partir de la deuxième année (la première année est incluse avec Solo et Multi)</p><a class="btn btn-ghost btn-sm" href="https://markerlist.lemonsqueezy.com/checkout/buy/7e0e563e-c572-46e2-9f1a-085618f2e94e" target="_blank" rel="noopener">Choisir Evolution Pass</a></div><div class="addon"><div class="price"><strong>49,99 €</strong><small>HT</small></div><p>Appareils illimités : option réservée à Standard Multi et Pro Multi</p><a class="btn btn-ghost btn-sm" href="https://markerlist.lemonsqueezy.com/checkout/buy/6f12f725-2863-4743-8efc-0cbbdde31327" target="_blank" rel="noopener">Choisir Unlimited</a></div></div>
     <div class="trial" id="discovery">
-      <div><span class="eyebrow">Vous hésitez ? Essai gratuit</span><h3>Discovery</h3>
+      <div><p class="trial-lead">Vous hésitez ? Essai gratuit</p><h3>Discovery</h3>
         <p>Toutes les fonctionnalités Pro Multi, gratuitement et sans limite de durée d’essai : jouez par sessions de 15 minutes, autant de jours que vous voulez, sur 1 ordinateur hôte et 1 appareil. Testez avec votre vrai set avant de choisir une offre.</p>
-        <p class="small">Entre deux sessions : une pause de 5 minutes, jusqu’à 5 reprises par 24 h.</p></div>
+        <p class="small">Entre deux sessions : une pause de 5 minutes. Jusqu’à 5 sessions par 24 h.</p></div>
       <a class="btn btn-primary" id="trial-download" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Télécharger l’essai gratuit pour Mac</a>
     </div>
-    <p class="vat">Prix hors taxes — la TVA ou taxe équivalente est calculée automatiquement au paiement selon votre pays de facturation.</p>
+    <p class="vat">Prix hors taxes. La TVA ou taxe équivalente est ajoutée au paiement, selon votre pays de facturation.</p>
     <details class="cmp-wrap" open><summary><h3 class="cmp-title">Fonctionnalités par offre</h3></summary>
-    <div class="cmp" tabindex="0" role="region" aria-label="Fonctionnalités par offre, défilement possible"><table><thead><tr><th scope="col">Fonctionnalité</th><th scope="col">Access</th><th scope="col">Standard Solo</th><th scope="col">Standard Multi</th><th scope="col">Pro Multi</th></tr></thead><tbody><tr><th scope="row">Arrêt et lecture continue</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Bibliothèque et gestion</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Contrôle par périphérique MIDI</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Glisser-déposer et réorganiser</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Export PDF de la setlist</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Configuration et contrôle des pistes Ableton</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Pré-décompte pour l’équipe</th><td class="fx">4 temps fixes</td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Boucles de section</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Préparation de section</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Plusieurs utilisateurs et synchronisation</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Vue live</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Rôles par appareil</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Messages à l’équipe</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Redondance sur deux ordinateurs</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Secours par timecode LTC</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr></tbody></table></div></details>
+    <div class="cmp" tabindex="0" role="region" aria-label="Fonctionnalités par offre, défilement possible"><table><thead><tr><th scope="col">Fonctionnalité</th><th scope="col">Access</th><th scope="col">Standard Solo</th><th scope="col">Standard Multi</th><th scope="col">Pro Multi</th></tr></thead><tbody><tr><th scope="row">Arrêt et lecture continue</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Bibliothèque et gestion</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Contrôle par périphérique MIDI</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Annonces vocales</th><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Glisser-déposer et réorganiser</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Export PDF de la setlist</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Configuration et contrôle des pistes Ableton</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Pré-décompte pour l’équipe</th><td class="fx">4 temps fixes</td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Boucles de section</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Préparation de section</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Plusieurs utilisateurs et synchronisation</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Vue live</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Rôles par appareil</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Messages à l’équipe</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Redondance sur deux ordinateurs</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr><tr><th scope="row">Secours par timecode LTC</th><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="n"><span class="sr">Non inclus</span><span aria-hidden="true">—</span></td><td class="y"><span class="sr">Inclus</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></td></tr></tbody></table></div></details>
   </div>
 </section>
 <section class="sec alt" id="faq" data-loc="FAQ" aria-labelledby="fq-h">
   <div class="wrap">
-    <div class="sec-head"><span class="eyebrow">Questions fréquentes</span><h2 class="h2" id="fq-h">Avant de commencer.</h2></div>
+    <div class="sec-head"><h2 class="h2" id="fq-h">Questions fréquentes</h2></div>
     <div class="faq"><details open><summary>Markerlist modifie-t-il mon projet Ableton ?</summary><p>Non. Markerlist pilote votre session de manière externe et ne modifie pas votre projet .als d’origine.</p></details><details><summary>Ai-je besoin de Max for Live ou d’un plugin ?</summary><p>Non. Markerlist ne nécessite ni Max for Live ni l’ajout d’un plugin Markerlist à votre projet Ableton.</p></details><details><summary>Markerlist fonctionne-t-il avec Arrangement View ?</summary><p>Oui. Arrangement View est au cœur du fonctionnement : préparez votre show dans Ableton, puis utilisez Markerlist pour le piloter en direct.</p></details><details><summary>Quelles versions d’Ableton Live sont compatibles ?</summary><p>Toutes les éditions de Live 11 et de Live 12 fonctionnent : Intro, Lite, Standard et Suite. Max for Live n’est pas nécessaire, donc les éditions qui ne l’incluent pas fonctionnent aussi. Pour le moment, l’ordinateur qui héberge la session doit être un Mac.</p></details><details><summary>Quels appareils puis-je utiliser ?</summary><p>L’interface de contrôle fonctionne dans un navigateur sur iOS, Android, Windows ou macOS. Pour le moment, l’ordinateur qui héberge la session Ableton doit être un Mac.</p></details><details><summary>Ai-je besoin d’une connexion internet ?</summary><p>Pas pour jouer votre show. Une licence payante est vérifiée en ligne une seule fois, lors de son activation, et l’essai gratuit doit se connecter au moins une fois toutes les 24 heures. Vos appareils communiquent avec le Mac par votre réseau local.</p></details><details><summary>Markerlist ralentit-il ma session ou ajoute-t-il de la latence ?</summary><p>Non. Contrairement à un device Max for Live, qui tourne dans le moteur audio d’Ableton et peut être affecté par sa charge, Markerlist pilote votre session de l’extérieur, par un canal MIDI et OSC dédié. Il n’ajoute rien à votre chaîne audio.</p></details><details><summary>Que se passe-t-il si le Wi-Fi coupe pendant un concert ?</summary><p>L’appareil se reconnecte tout seul et retrouve l’état exact du show. Une commande envoyée pendant la coupure n’est pas exécutée en retard au retour du réseau.</p></details><details><summary>Quels contrôleurs MIDI fonctionnent ?</summary><p>Tout contrôleur qui envoie des messages Note ou CC : pédaliers, pads, claviers. Les messages Program Change ne sont pas encore pris en charge. Le contrôle MIDI est inclus dans toutes les formules, et chaque bouton suit les droits de votre formule. Il pilote l’ordinateur principal et il est ignoré sur l’ordinateur de secours d’une paire redondante.</p></details><details><summary>Puis-je contrôler les pistes Ableton ?</summary><p>Oui. Markerlist propose des commandes essentielles comme Muet et Solo, ainsi que les contrôles de piste disponibles dans l’application. C’est un outil de contrôle et de sécurité sur scène, pas un remplacement de la console de mixage d’Ableton.</p></details><details><summary>Plusieurs personnes peuvent-elles se connecter au même show ?</summary><p>Oui. Les formules Multi permettent de connecter plusieurs appareils au même show. Certaines formules proposent aussi des rôles et des autorisations.</p></details><details><summary>Puis-je utiliser un ordinateur de secours ?</summary><p>Oui. Pro Multi ajoute un second Mac avec une copie synchronisée du show, prêt à prendre le relais si nécessaire. Le secours LTC est également inclus.</p></details><details><summary>Puis-je essayer Markerlist avant de l’acheter ?</summary><p>Oui. Discovery est gratuit et vous permet de tester Markerlist avec votre propre configuration avant de choisir une formule payante.</p></details></div>
   </div>
 </section>
 <section class="sec" aria-labelledby="fin-h" style="padding-bottom:0">
   <div class="wrap">
-    <div class="final"><div class="final-art" aria-hidden="true"><div class="shot t"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="" loading="lazy" decoding="async"></div><div class="shot p"><img src="assets/site/img/phone_live.webp" width="640" height="1367" alt="" loading="lazy" decoding="async"></div></div><span class="eyebrow">Votre set. Vos sections. Votre show.</span><h2 class="h2" id="fin-h">Essayez avec votre propre set.</h2>
+    <div class="final"><div class="final-art" aria-hidden="true"><div class="shot t"><img src="assets/site/img/tab_live.webp" width="980" height="1201" alt="" loading="lazy" decoding="async"></div><div class="shot p"><img src="assets/site/img/phone_live.webp" width="640" height="1367" alt="" loading="lazy" decoding="async"></div></div><h2 class="h2" id="fin-h">Essayez avec votre propre set.</h2>
       <p>Téléchargez l’essai gratuit pour Mac et faites une vraie répétition avec. Sans compte, sans carte bancaire.</p>
       <div class="cta-row"><a class="btn btn-primary" id="try-free-final" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Télécharger l’essai gratuit pour Mac</a><a class="btn btn-ghost" href="#pricing">Voir les offres</a></div>
-      <p class="fine" style="margin:0">Mac avec toutes les éditions d’Ableton Live 11 et 12</p></div>
+      <p class="fine" style="margin:0">Gratuit, sans limite de durée : sessions de 15 minutes maximum, pause de 5 minutes entre deux sessions, jusqu’à 5 sessions par 24 h. Mac avec toutes les éditions d’Ableton Live 11 et 12.</p></div>
     <div class="compat"><ul><li><b>macOS</b> · Ableton Live 11/12 (Intro, Lite, Standard, Suite)</li><li>Ne nécessite pas Max for Live</li><li>Réseau local recommandé pour les concerts</li><li>Bientôt : ordinateur hôte sous Windows</li><li>Bientôt : prise en charge d’un autre logiciel de musique</li></ul></div>
   </div>
 </section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Pied de page"><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite.html">Confidentialité</a></nav><span class="tagline">Votre set. Vos sections. Votre show.</span></div></footer>
-<div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>Nous utilisons des cookies pour comprendre comment les visiteurs utilisent ce site. Vous pouvez accepter ou refuser — consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Refuser</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accepter</button></div></div>
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Pied de page"><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite.html">Confidentialité</a></nav></div></footer>
+<div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>Nous utilisons des cookies pour comprendre comment les visiteurs utilisent ce site. Vous pouvez accepter ou refuser. Consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Refuser</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accepter</button></div></div>
 <script type="application/json" id="i18n">{"mobile_nav": "Recevoir le lien", "mobile_hero": "Obtenir le lien de téléchargement Mac", "mobile_note": "Markerlist fonctionne sur Mac. Le bouton ouvre un e-mail prérempli avec le lien à ouvrir sur votre Mac.", "mobile_btn": "Ouvrir un e-mail prérempli avec le lien", "mobile_subject": "Markerlist : essai gratuit pour mon Mac", "mobile_body": "Ouvrez ce lien sur votre Mac pour télécharger l’essai gratuit :", "playing": "Lecture", "stopped": "Arrêt", "song": "Morceau", "loop": "Boucle", "loop_off": "désactivée", "loop_song": "morceau", "loop_section": "section", "click": "Click", "on": "activé", "off": "désactivé", "preroll": "Pré-roll", "bar": "mesure", "bars": "mesures"}</script>
-<script src="assets/site/site.js?v=20261017" defer></script>
+<script src="assets/site/site.js?v=20261017b" defer></script>
 </body>
 </html>
