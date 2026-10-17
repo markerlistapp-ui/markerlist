@@ -2,86 +2,47 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Consent Mode v2 -- must run BEFORE GTM/gtag below, so no analytics cookie is set until the visitor explicitly accepts via the banner (#consentBanner). -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
+<!-- End Google Tag Manager -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Markerlist — Privacy Policy</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FAFAFC;
-    --surface:#FFFFFF;
-    --line:#E2E5EF;
-    --ink:#14171F;
-    --ink-soft:#5B5F6C;
-    --blue:#3064F6;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;}
-  a{color:var(--blue);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .wrap{max-width:680px;margin:0 auto;padding:0 32px;}
-  header{padding:26px 0;border-bottom:1px solid var(--line);margin-bottom:48px;}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .brand{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;}
-  .back{font-size:14px;color:var(--ink-soft);}
-  main{padding-bottom:80px;}
-  h1{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:28px;margin-bottom:8px;letter-spacing:-0.01em;}
-  .updated{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--ink-soft);margin-bottom:36px;}
-  h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin:34px 0 12px;}
-  p{font-size:15px;color:var(--ink-soft);margin-bottom:14px;}
-  ul{margin:0 0 14px 20px;}
-  li{font-size:15px;color:var(--ink-soft);margin-bottom:8px;padding-left:4px;}
-  li b, p b{color:var(--ink);font-weight:600;}
-</style>
+<title>Privacy Policy (GDPR) — Markerlist</title>
+<meta name="description" content="This privacy policy describes how Markerlist (&quot;we&quot;) collects, uses, and protects your personal data when you visit our website and use our application.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://markerlist.app/confidentialite_en.html">
+<!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261017" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017" crossorigin>
+<link rel="stylesheet" href="assets/site/site.css?v=20261017">
 </head>
-<body>
-
-<header>
-  <div class="wrap">
-    <span class="brand">Markerlist</span>
-    <a class="back" href="index.html">← Back to site</a>
-  </div>
-</header>
-
-<main class="wrap">
+<body class="legal">
+<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<header class="nav"><div class="wrap nav-in"><a class="brand" href="/" aria-label="Markerlist, back to top"><img src="assets/site/img/logo-96.webp" width="96" height="96" alt=""><span>Markerlist</span></a><a class="back" href="/">← Back to site</a></div></header>
+<main class="wrap prose" id="main">
   <h1>Privacy Policy (GDPR)</h1>
-  <p class="updated">Also available in <a href="confidentialite.html">French</a>.</p>
-
-  <p>This privacy policy describes how Markerlist ("we") collects, uses, and protects your personal data when you visit our website and use our application.</p>
-
-  <h2>Article 1: Data we collect</h2>
-  <p>As part of using our site and services, we may collect the following categories of data:</p>
-  <ul>
-    <li><b>Identification and contact data:</b> email address, name or username, when you create an account, purchase a license, or contact us through support.</li>
-    <li><b>Transaction data:</b> information related to your license purchases (processed securely by our partner payment providers, without us having direct access to your full banking details).</li>
-    <li><b>Connection data:</b> IP address, browsing data, and technical logs necessary for the local-network synchronization features of the application to work properly.</li>
-    <li><b>Free-trial identifier (pseudonymised):</b> to enforce the free-trial limit (5 sessions per 24 hours), the app sends our control server a salted cryptographic hash (SHA-256) of your computer's hardware identifier — from which the original identifier cannot be derived — together with the timestamps of your trial sessions over the last 24 hours. No other data is sent (no name, no e-mail address, nothing about the content of your sessions), and our service does not record your IP address. A licensed computer sends nothing.</li>
-  </ul>
-
-  <h2>Article 2: Purpose of collection</h2>
-  <p>The data we collect is used exclusively to:</p>
-  <ul>
-    <li>Manage, activate, and track your Markerlist usage licenses.</li>
-    <li>Send technical information, software updates, or responses to your support requests.</li>
-    <li>Improve the application's performance and the user experience.</li>
-    <li>Enforce the free-trial limit (legitimate interest). The app must reach the control server at least once every 24 hours for the trial to continue; between two check-ins, it works with a local check. This information is used for nothing else, is no longer used after 24 hours and is deleted automatically afterwards. The app also keeps the trial state in several places on your computer (its data folder, the Shared folder and its preferences) so that it is not erased by mistake.</li>
-  </ul>
-
-  <h2>Article 3: Data sharing</h2>
-  <p>Your personal data is strictly confidential. It is never sold, rented, or transferred to third parties. It may only be shared with our technical subcontractors (hosting provider, payment solution), strictly to the extent necessary to deliver these services. The free-trial control server is hosted by Cloudflare; the trial information is stored there in a database located in Western Europe.</p>
-
-  <h2>Article 4: Data security</h2>
-  <p>We implement all appropriate technical and organizational measures to protect your data against loss, unauthorized access, disclosure, or alteration.</p>
-
-  <h2>Article 5: Your rights (under GDPR)</h2>
-  <p>In accordance with the General Data Protection Regulation (GDPR), you have the following rights over your information:</p>
-  <ul>
-    <li>Right to access, rectify, and delete your data.</li>
-    <li>Right to restrict or object to the processing of your data.</li>
-    <li>Right to data portability.</li>
-  </ul>
-  <p>To exercise these rights, you can contact us at any time by email at: <a href="mailto:contact@markerlist.app">contact@markerlist.app</a>.</p>
+  <p class="also">Also available in: <a href="confidentialite.html" lang="fr" hreflang="fr">Français</a> · <a href="confidentialite_de.html" lang="de" hreflang="de">Deutsch</a> · <a href="confidentialite_es.html" lang="es" hreflang="es">Español</a> · <a href="confidentialite_pt.html" lang="pt-BR" hreflang="pt-BR">Português (Brasil)</a></p>
+  <p>This privacy policy describes how Markerlist (&quot;we&quot;) collects, uses, and protects your personal data when you visit our website and use our application.</p>
+  <h2>Article 1: Data we collect</h2><p>As part of using our site and services, we may collect the following categories of data:</p><ul><li><b>Identification and contact data:</b> email address, name or username, when you create an account, purchase a license, or contact us through support.</li><li><b>Transaction data:</b> information related to your license purchases (processed securely by our partner payment providers, without us having direct access to your full banking details).</li><li><b>Connection data:</b> IP address, browsing data, and technical logs necessary for the local-network synchronization features of the application to work properly.</li><li><b>Free-trial identifier (pseudonymised):</b> to enforce the free-trial limit (5 sessions per 24 hours), the app sends our control server a salted cryptographic hash (SHA-256) of your computer&#x27;s hardware identifier — from which the original identifier cannot be derived — together with the timestamps of your trial sessions over the last 24 hours. No other data is sent (no name, no e-mail address, nothing about the content of your sessions), and our service does not record your IP address. A licensed computer sends nothing.</li></ul><h2>Article 2: Purpose of collection</h2><p>The data we collect is used exclusively to:</p><ul><li>Manage, activate, and track your Markerlist usage licenses.</li><li>Send technical information, software updates, or responses to your support requests.</li><li>Improve the application&#x27;s performance and the user experience.</li><li>Enforce the free-trial limit (legitimate interest). The app must reach the control server at least once every 24 hours for the trial to continue; between two check-ins, it works with a local check. This information is used for nothing else, is no longer used after 24 hours and is deleted automatically afterwards. The app also keeps the trial state in several places on your computer (its data folder, the Shared folder and its preferences) so that it is not erased by mistake.</li></ul><h2>Article 3: Data sharing</h2><p>Your personal data is strictly confidential. It is never sold, rented, or transferred to third parties. It may only be shared with our technical subcontractors (hosting provider, payment solution), strictly to the extent necessary to deliver these services. The free-trial control server is hosted by Cloudflare; the trial information is stored there in a database located in Western Europe.</p><h2>Article 4: Data security</h2><p>We implement all appropriate technical and organizational measures to protect your data against loss, unauthorized access, disclosure, or alteration.</p><h2>Article 5: Your rights (under GDPR)</h2><p>In accordance with the General Data Protection Regulation (GDPR), you have the following rights over your information:</p><ul><li>Right to access, rectify, and delete your data.</li><li>Right to restrict or object to the processing of your data.</li><li>Right to data portability.</li></ul><p>To exercise these rights, you can contact us at any time by email at: <a href="mailto:contact@markerlist.app">contact@markerlist.app</a>.</p>
 </main>
-
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Footer"><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite_en.html">Privacy</a></nav><span class="tagline">Your set. Your sections. Your show.</span></div></footer>
 </body>
 </html>
