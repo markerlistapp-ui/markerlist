@@ -29,6 +29,7 @@
   (function () {
     var mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     if (!mobile) { return; }
+    ['try-free-hero-win', 'try-free-final-win', 'trial-download-win'].forEach(function (id) { var a = d.getElementById(id); if (a) { a.hidden = true; } });   /* un seul bouton « lien » sur téléphone */
     ['try-free-nav', 'try-free-hero', 'try-free-final'].forEach(function (id) {
       var a = d.getElementById(id);
       if (a) { a.setAttribute('href', '#discovery'); a.textContent = id === 'try-free-nav' ? T.mobile_nav : T.mobile_hero; }
@@ -48,12 +49,12 @@
     }
   })();
 
-  /* 3. Suivi des téléchargements (GTM) : chaque clic sur le .dmg envoie l'événement « download_click » */
+  /* 3. Suivi des téléchargements (GTM) : chaque clic sur le .dmg ou sur l'installeur Windows envoie l'événement « download_click » (platform : mac ou windows) */
   d.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href$=".dmg"]');
+    var a = e.target.closest && e.target.closest('a[href$=".dmg"], a[href$=".exe"]');
     if (!a) { return; }
     w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({ event: 'download_click', download_location: a.id || 'other', page_language: d.documentElement.lang || '' });
+    w.dataLayer.push({ event: 'download_click', download_location: a.id || 'other', platform: /\.exe$/.test(a.getAttribute('href') || '') ? 'windows' : 'mac', page_language: d.documentElement.lang || '' });
   });
 
   /* 4. Vidéo : une façade, YouTube (youtube-nocookie) ne se charge qu'au clic */

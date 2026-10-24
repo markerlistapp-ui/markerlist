@@ -554,3 +554,10 @@ body{background:var(--bg)}
 .prose li{font-size:18px;line-height:1.5;color:var(--ink-2);padding-left:4px;max-width:44em}
 .prose b{color:var(--ink);font-weight:600}
 .prose a{color:var(--blue-2);text-underline-offset:3px}
+
+/* deux boutons de téléchargement (Mac, Windows 10 et 11) : côte à côte s'il y a la place, sinon l'un sous l'autre (règle .cta-row) ; dans l'encart d'essai, deux boutons de même largeur */
+.trial-dl{display:grid;gap:12px}
+a[hidden]{display:none!important}
+/* bloc final : les boutons restent à gauche de l'illustration (même limite que le texte fin) ; le troisième passe à la ligne s'il n'y a plus la place */
+.final .cta-row{max-width:min(36em,48%)}
+@media (max-width:900px){.final .cta-row{max-width:none}}
