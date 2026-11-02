@@ -35,14 +35,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="pt_BR">
-<meta property="og:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261017c">
+<meta property="og:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261028a">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Markerlist | Ableton Live Setlist Controller">
 <meta name="twitter:description" content="Control Ableton Live 11/12 setlists from a phone, tablet or computer over local Wi-Fi. No Max for Live required.">
-<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261017c">
+<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261028a">
 <meta name="twitter:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
 <link rel="canonical" href="https://markerlist.app/">
 <link rel="alternate" hreflang="en" href="https://markerlist.app/">
@@ -54,14 +54,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261017c" crossorigin>
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017c" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261028a" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261028a" crossorigin>
 <style>
-@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261017c) format('woff')}
+@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261028a) format('woff')}
 /* ===== Structure, composants, comportements. Couleurs, polices et rayons : les jetons de theme.css. ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
@@ -621,6 +621,36 @@ a[hidden]{display:none!important}
 .final .cta-row{max-width:min(36em,48%)}
 @media (max-width:900px){.final .cta-row{max-width:none}}
 
+/* 28/10 : « du téléchargement au premier show » (5 étapes) et panneau des prochaines étapes affiché après un clic de téléchargement */
+.steps-5{grid-template-columns:repeat(3,1fr);row-gap:30px}
+@media (min-width:1100px){.steps-5{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:900px){.steps-5{grid-template-columns:1fr;row-gap:24px}}
+.steps-5 .step p{font-size:17px}
+.start-note{margin-top:30px;max-width:62ch;color:var(--ink-3);font-size:16px;line-height:1.45}
+.start-actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:22px}
+.start-help{margin:0;color:var(--ink-2);font-size:17px}
+.start-help a,.dlp-help a{color:var(--blue-2);text-decoration:underline;text-underline-offset:3px}
+.dlpanel{position:fixed;top:84px;right:20px;z-index:45;width:min(430px,calc(100vw - 24px));max-height:calc(100vh - 104px);overflow:auto;box-sizing:border-box;padding:22px 24px 20px;background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:var(--r-big);box-shadow:0 16px 36px -22px rgba(16,19,27,.45)}
+.dlpanel[hidden]{display:none}
+.dlpanel:focus{outline:none}
+.dlpanel:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.dlp-h{font:var(--h3-weight) 34px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track);margin:0 40px 14px 0}
+.dlp-close{position:absolute;top:10px;right:10px;width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;color:var(--ink-2);font:400 30px/1 var(--text);cursor:pointer;border-radius:var(--r-btn)}
+.dlp-close:hover{background:var(--ghost-hover);color:var(--ink)}
+.dlp-os h3{font:600 15px/1.2 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-label);margin:0 0 8px}
+.dlp-os ol{margin:0;padding:0 0 0 22px;display:grid;gap:8px;color:var(--ink-2);font-size:17px;line-height:1.4}
+.dlp-os li::marker{color:var(--ink-3);font-weight:600}
+.dlp-links{margin:16px 0 0}
+.dlp-help{margin:12px 0 0;color:var(--ink-3);font-size:15.5px}
+@media (max-width:640px){.dlpanel{top:auto;bottom:12px;right:12px;left:12px;width:auto;max-height:70vh}}
+
+/* ===== Liens vers l'essai en ligne (01/11/2026), sur les pages d'accueil ET sur les pages d'essai : lien sous les boutons du héros, bouton de la section vidéo (les autres styles de l'essai sont dans try.css, chargée par les pages d'essai seules) ===== */
+.try-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font:600 18px/1.2 var(--text);color:var(--blue-2);text-decoration:none}
+.try-link:hover{text-decoration:underline;text-underline-offset:4px}
+.try-link .ico{display:inline-grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);fill:#fff}
+.try-link .ico svg{width:12px;height:12px;margin-left:2px;fill:#fff}
+.demo-try{margin-top:6px;justify-self:start}
+
 </style>
 <script type="application/ld+json">
 {
@@ -675,7 +705,7 @@ a[hidden]{display:none!important}
 <header class="nav">
   <div class="wrap nav-in">
     <a class="brand" href="#top" aria-label="Markerlist, back to top"><img src="assets/site/img/logo-96.webp" width="96" height="96" alt=""><span>Markerlist</span></a>
-    <nav class="menu" aria-label="Main"><a href="#features">Features</a><a href="#midi">MIDI</a><a href="#backup">Backup</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav>
+    <nav class="menu" aria-label="Main"><a href="#features">Features</a><a href="#midi">MIDI</a><a href="#backup">Backup</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="try.html" id="try-demo-menu">Demo</a></nav>
     <div class="nav-end"><div class="lang-chips" role="group" aria-label="Language"><span aria-current="true" lang="en">EN</span><a href="index_fr.html" lang="fr" hreflang="fr">FR</a><a href="index-de.html" lang="de" hreflang="de">DE</a><a href="index-es.html" lang="es" hreflang="es">ES</a><a href="index-pt.html" lang="pt-BR" hreflang="pt-BR">PT</a></div><details class="lang-menu"><summary aria-label="Language: English">EN</summary><ul><li><span aria-current="true" lang="en">English</span></li><li><a href="index_fr.html" lang="fr" hreflang="fr">Français</a></li><li><a href="index-de.html" lang="de" hreflang="de">Deutsch</a></li><li><a href="index-es.html" lang="es" hreflang="es">Español</a></li><li><a href="index-pt.html" lang="pt-BR" hreflang="pt-BR">Português (Brasil)</a></li></ul></details><a class="btn btn-primary btn-sm" id="try-free-nav" href="#discovery">Download</a></div>
   </div>
   <div class="ruler" aria-hidden="true"></div>
@@ -690,8 +720,9 @@ a[hidden]{display:none!important}
     <div class="hero-copy">
       <p class="lead">Build your show in Arrangement View like you always do. On stage, choose the song, loop a section or start and stop from a phone, a tablet, a computer or a MIDI pedal. Your Ableton project is never modified.</p>
       <div class="cta-row"><a class="btn btn-primary" id="try-free-hero" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg">Download for Mac</a><a class="btn btn-primary" id="try-free-hero-win" href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-Setup.exe">Download for Windows 10 &amp; 11</a><a class="btn btn-ghost" href="#pricing">See plans &amp; pricing</a></div>
+      <p class="try-line"><a class="try-link" id="try-demo-hero" href="try.html"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>Try it in your browser, no install</a></p>
       <p class="fine">Free, with no time limit: sessions of up to 15 minutes, a pause of 5 minutes between them, up to 5 sessions per 24 hours. No account or credit card.</p>
-      <ul class="checks"><li>Windows or Mac, with every edition of Ableton Live 11 and 12: Intro, Lite, Standard, Suite</li><li><b>No Max for Live needed</b></li><li><b>No latency added to your session</b></li><li>No internet needed, except to activate a license and for the free trial</li></ul>
+      <ul class="checks"><li>Windows or Mac, with every edition of Ableton Live 11 and 12: Intro, Lite, Standard, Suite</li><li><b>No Max for Live needed</b></li><li><b>No latency added to your session</b></li><li>No internet needed, except to activate a license and for the free trial</li><li>Guided first setup, about 10 minutes</li></ul>
     </div>
     <div class="hero-stage">
       <div class="stage" role="img" aria-label="An Ableton Live arrangement with the locators of a song, and the same sections following the playhead on a tablet and a phone running Markerlist">
@@ -738,7 +769,7 @@ a[hidden]{display:none!important}
 </section>
 <section class="sec" id="demo" aria-labelledby="demo-h">
   <div class="wrap demo-in">
-    <div class="sec-head" style="margin:0"><h2 class="h2" id="demo-h">See Markerlist in action</h2><p class="sub">How an Arrangement View session is controlled from the stage.</p></div>
+    <div class="sec-head" style="margin:0"><h2 class="h2" id="demo-h">See Markerlist in action</h2><p class="sub">How an Arrangement View session is controlled from the stage.</p><a class="btn btn-ghost demo-try" id="try-demo-video" href="try.html">Try it yourself in your browser</a></div>
     <div class="video">
       <a class="facade" href="https://www.youtube.com/watch?v=8WMwqHURdzw" target="_blank" rel="noopener" data-video="8WMwqHURdzw" data-title="Markerlist: control Ableton Arrangement View from the stage" aria-label="Play the Markerlist demo video (opens YouTube)">
         <span class="poster"><img src="assets/site/img/tab_land.webp" width="1200" height="832" alt="" loading="lazy" decoding="async"></span><span class="play"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="cap">Watch the demo</span>
@@ -751,6 +782,14 @@ a[hidden]{display:none!important}
   <div class="wrap">
     <div class="sec-head"><h2 class="h2" id="how-h">No more walking back to the laptop.</h2><p class="sub">Changing songs shouldn&#x27;t mean going to the computer, finding the locator and pressing play while everyone waits. You keep working in Arrangement View, and Markerlist is the remote for the show.</p></div>
     <ol class="steps"><li class="step"><span class="n">Step 1</span><h3>Build in Ableton</h3><p>Build your songs, sections and locators in Ableton Arrangement View as usual.</p></li><li class="step"><span class="n">Step 2</span><h3>Connect Markerlist</h3><p>Open the Markerlist control interface on the phone, tablet or computer you want to use on stage.</p></li><li class="step"><span class="n">Step 3</span><h3>Run the show</h3><p>Choose songs and sections, trigger loops and control playback without going back to the computer. The current song, what&#x27;s next, tempo and time left stay in view.</p></li></ol>
+  </div>
+</section>
+<section class="sec alt" id="start" aria-labelledby="start-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2" id="start-h">From download to your first show</h2><p class="sub">Plan about 10 minutes the first time. You need Ableton Live 11 or 12, any edition, and a project with your songs in Arrangement View.</p></div>
+    <ol class="steps steps-5"><li class="step"><span class="n">Step 1</span><h3>Install Markerlist</h3><p>Open the file you downloaded. On the first screen, choose Try for free: no account and no license key.</p></li><li class="step"><span class="n">Step 2</span><h3>Connect it to Ableton</h3><p>Markerlist can install two small scripts for you. Restart Ableton Live, then choose them as Control Surface in Preferences. The app walks you through it and tests the connection.</p></li><li class="step"><span class="n">Step 3</span><h3>Mark your songs</h3><p>In Arrangement View, put a locator at the start of each song and one named END_LIVE after the last song.</p></li><li class="step"><span class="n">Step 4</span><h3>Press Start</h3><p>Markerlist reads your locators and shows the address and the PIN of your control page.</p></li><li class="step"><span class="n">Step 5</span><h3>Open it on stage</h3><p>On a phone, tablet or computer on the same Wi-Fi, open the address, enter the PIN and tap your first song.</p></li></ol>
+    <p class="start-note">On Windows, a free tool called loopMIDI adds two virtual MIDI ports for precise stops. It is optional: without it, Markerlist still works in simple mode.</p>
+    <div class="start-actions"><a class="btn btn-ghost" id="setup-video" href="https://www.youtube.com/watch?v=_EaBtB1eLSs" target="_blank" rel="noopener" aria-label="Watch the Markerlist setup video on YouTube (opens in a new tab)">Watch the setup video (1:28)</a><p class="start-help">Stuck on a step? Write to <a id="start-help" href="mailto:contact@markerlist.app">contact@markerlist.app</a> and we will help you set it up.</p></div>
   </div>
 </section>
 <section class="sec" id="features" data-loc="Features" aria-labelledby="ft-h">
@@ -872,7 +911,7 @@ a[hidden]{display:none!important}
 <section class="sec alt" id="faq" data-loc="FAQ" aria-labelledby="fq-h">
   <div class="wrap">
     <div class="sec-head"><h2 class="h2" id="fq-h">Frequently asked questions</h2></div>
-    <div class="faq"><details open><summary>Does Markerlist modify my Ableton project?</summary><p>No. Markerlist controls your session externally and does not write changes into your original .als project.</p></details><details><summary>Do I need Max for Live or a plugin?</summary><p>No. Markerlist does not require Max for Live or a Markerlist plugin to be loaded into your Ableton project.</p></details><details><summary>Does Markerlist work with Arrangement View?</summary><p>Yes. Arrangement View is the core workflow: build your show in Ableton, then use Markerlist as the live control layer.</p></details><details><summary>Which versions of Ableton Live work?</summary><p>Every edition of Live 11 and Live 12 works: Intro, Lite, Standard and Suite. You do not need Max for Live, so editions that do not include it work too. The computer hosting the session can be a Windows PC (Windows 10 or 11, 64-bit) or a Mac.</p></details><details><summary>What devices can I use?</summary><p>The control interface runs in a browser on iOS, Android, Windows or macOS. The computer hosting the Ableton session runs Windows 10 or 11, or macOS.</p></details><details><summary>Do I need an internet connection?</summary><p>Not to run your show. A paid license is checked online once, when you activate it, and the free trial needs to connect at least once every 24 hours. Your devices talk to the host computer over your local network.</p></details><details><summary>Does Markerlist slow down or add latency to my session?</summary><p>No. Unlike a Max for Live device, which runs inside Ableton&#x27;s audio engine and can be affected by its load, Markerlist controls your session from the outside through a dedicated MIDI and OSC channel. It adds nothing to your audio path.</p></details><details><summary>What happens if the Wi-Fi drops during a show?</summary><p>The device reconnects by itself and gets the exact state of the show back. A command sent during the outage is not executed late when the network returns.</p></details><details><summary>Which MIDI controllers work?</summary><p>Any controller that sends Note or CC messages: footswitches, pad controllers, keyboards. Program Change messages are not supported yet. MIDI control is included in every plan, and each button follows your plan&#x27;s rights. It drives the main computer and is ignored on the backup computer of a redundancy pair.</p></details><details><summary>Can I control Ableton tracks?</summary><p>Yes. Markerlist provides essential track controls such as mute and solo, plus track-level controls available in the app. It is intended as a stage-side control and safety tool, not as a replacement for Ableton&#x27;s visual mixer.</p></details><details><summary>Can multiple people connect to the same show?</summary><p>Yes. Multi plans allow several control devices to connect to the same show, with roles and permissions available on supported plans.</p></details><details><summary>Can I use a backup computer?</summary><p>Yes. Pro Multi adds two-machine redundancy, with a second Mac running a mirrored show and ready to take over when needed. LTC backup is also included.</p></details><details><summary>Can I try Markerlist before buying?</summary><p>Yes. Discovery is free and lets you test Markerlist with your own setup before choosing a paid plan.</p></details></div>
+    <div class="faq"><details open><summary>Does Markerlist modify my Ableton project?</summary><p>No. Markerlist controls your session externally and does not write changes into your original .als project.</p></details><details><summary>Do I need Max for Live or a plugin?</summary><p>No. Markerlist does not require Max for Live or a Markerlist plugin to be loaded into your Ableton project.</p></details><details><summary>Does Markerlist work with Arrangement View?</summary><p>Yes. Arrangement View is the core workflow: build your show in Ableton, then use Markerlist as the live control layer.</p></details><details><summary>Which versions of Ableton Live work?</summary><p>Every edition of Live 11 and Live 12 works: Intro, Lite, Standard and Suite. You do not need Max for Live, so editions that do not include it work too. The computer hosting the session can be a Windows PC (Windows 10 or 11, 64-bit) or a Mac.</p></details><details><summary>What do I need to try Markerlist?</summary><p>A Windows 10 or 11 PC or a Mac running Ableton Live 11 or 12 (any edition), a project with your songs in Arrangement View, and a phone, tablet or computer on the same Wi-Fi to use as the remote. Each song needs a locator at its start, and the show needs one named END_LIVE after the last song. The first setup takes about 10 minutes.</p></details><details><summary>Windows shows a blue screen saying Windows protected your PC. What should I do?</summary><p>Markerlist is new and its Windows installer is not code-signed yet, so Microsoft SmartScreen warns about it, as it does for any program it has not seen often. If you downloaded the installer from markerlist.app, choose More info, then Run anyway. The Mac version is notarized by Apple and opens normally.</p></details><details><summary>What devices can I use?</summary><p>The control interface runs in a browser on iOS, Android, Windows or macOS. The computer hosting the Ableton session runs Windows 10 or 11, or macOS.</p></details><details><summary>Do I need an internet connection?</summary><p>Not to run your show. A paid license is checked online once, when you activate it, and the free trial needs to connect at least once every 24 hours. Your devices talk to the host computer over your local network.</p></details><details><summary>Does Markerlist slow down or add latency to my session?</summary><p>No. Unlike a Max for Live device, which runs inside Ableton&#x27;s audio engine and can be affected by its load, Markerlist controls your session from the outside through a dedicated MIDI and OSC channel. It adds nothing to your audio path.</p></details><details><summary>What happens if the Wi-Fi drops during a show?</summary><p>The device reconnects by itself and gets the exact state of the show back. A command sent during the outage is not executed late when the network returns.</p></details><details><summary>Which MIDI controllers work?</summary><p>Any controller that sends Note or CC messages: footswitches, pad controllers, keyboards. Program Change messages are not supported yet. MIDI control is included in every plan, and each button follows your plan&#x27;s rights. It drives the main computer and is ignored on the backup computer of a redundancy pair.</p></details><details><summary>Can I control Ableton tracks?</summary><p>Yes. Markerlist provides essential track controls such as mute and solo, plus track-level controls available in the app. It is intended as a stage-side control and safety tool, not as a replacement for Ableton&#x27;s visual mixer.</p></details><details><summary>Can multiple people connect to the same show?</summary><p>Yes. Multi plans allow several control devices to connect to the same show, with roles and permissions available on supported plans.</p></details><details><summary>Can I use a backup computer?</summary><p>Yes. Pro Multi adds two-machine redundancy, with a second Mac running a mirrored show and ready to take over when needed. LTC backup is also included.</p></details><details><summary>Can I try Markerlist before buying?</summary><p>Yes. Discovery is free and lets you test Markerlist with your own setup before choosing a paid plan.</p></details></div>
   </div>
 </section>
 <section class="sec" aria-labelledby="fin-h" style="padding-bottom:0">
@@ -885,9 +924,10 @@ a[hidden]{display:none!important}
   </div>
 </section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Footer"><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite_en.html">Privacy</a></nav></div></footer>
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Footer"><a href="try.html">Try the demo</a><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite_en.html">Privacy</a></nav></div></footer>
 <div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>We use cookies to understand how visitors use this site. You can accept or decline. See our <a href="confidentialite_en.html">Privacy Policy</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Decline</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accept</button></div></div>
+<aside class="dlpanel" id="dlpanel" role="region" aria-label="Next steps after your download" aria-labelledby="dlp-h" tabindex="-1" hidden><button class="dlp-close" id="dlp-close" type="button" aria-label="Close">×</button><h2 class="dlp-h" id="dlp-h">Your download has started</h2><div class="dlp-os" data-os="mac"><h3>On Mac</h3><ol><li>Open the downloaded file and drag Markerlist into Applications.</li><li>Open Markerlist and choose Try for free on the first screen.</li><li>Follow the guided setup. Plan about 10 minutes.</li></ol></div><div class="dlp-os" data-os="windows" hidden><h3>On Windows</h3><ol><li>Run MarkerList-Setup.exe. If Windows shows a blue screen saying Windows protected your PC, choose More info, then Run anyway. Markerlist is new and its installer is not signed yet.</li><li>Open Markerlist and choose Try for free on the first screen.</li><li>Follow the guided setup. Plan about 10 minutes.</li></ol></div><p class="dlp-links"><a class="btn btn-ghost btn-sm" id="dlp-video" href="https://www.youtube.com/watch?v=_EaBtB1eLSs" target="_blank" rel="noopener">Watch the setup video (1:28)</a></p><p class="dlp-help">Need a hand? Write to <a id="dlp-help" href="mailto:contact@markerlist.app">contact@markerlist.app</a>.</p></aside>
 <script type="application/json" id="i18n">{"mobile_nav": "Get link", "mobile_hero": "Get the download link", "mobile_note": "MarkerList runs on a Windows PC or a Mac. This opens an email draft with the download link to open on your computer.", "mobile_btn": "Open email draft with the download link", "mobile_subject": "MarkerList: free trial for my computer", "mobile_body": "Open this link on your computer to download the free trial:", "playing": "Playing", "stopped": "Stopped", "song": "Song", "loop": "Loop", "loop_off": "off", "loop_song": "song", "loop_section": "section", "click": "Click", "on": "on", "off": "off", "preroll": "Pre-roll", "bar": "bar", "bars": "bars"}</script>
-<script src="assets/site/site.js?v=20261017c" defer></script>
+<script src="assets/site/site.js?v=20261028a" defer></script>
 </body>
 </html>

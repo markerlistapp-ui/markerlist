@@ -1,8 +1,8 @@
-@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BebasNeue-Regular.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BarlowSemiCondensed-Regular.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/BarlowSemiCondensed-Medium.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/BarlowSemiCondensed-SemiBold.woff?v=20261017c) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/BarlowSemiCondensed-Bold.woff?v=20261017c) format('woff')}
+@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BebasNeue-Regular.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BarlowSemiCondensed-Regular.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/BarlowSemiCondensed-Medium.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/BarlowSemiCondensed-SemiBold.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/BarlowSemiCondensed-Bold.woff?v=20261028a) format('woff')}
 /* ===== Structure, composants, comportements. Couleurs, polices et rayons : les jetons de theme.css. ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
@@ -561,3 +561,33 @@ a[hidden]{display:none!important}
 /* bloc final : les boutons restent à gauche de l'illustration (même limite que le texte fin) ; le troisième passe à la ligne s'il n'y a plus la place */
 .final .cta-row{max-width:min(36em,48%)}
 @media (max-width:900px){.final .cta-row{max-width:none}}
+
+/* 28/10 : « du téléchargement au premier show » (5 étapes) et panneau des prochaines étapes affiché après un clic de téléchargement */
+.steps-5{grid-template-columns:repeat(3,1fr);row-gap:30px}
+@media (min-width:1100px){.steps-5{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:900px){.steps-5{grid-template-columns:1fr;row-gap:24px}}
+.steps-5 .step p{font-size:17px}
+.start-note{margin-top:30px;max-width:62ch;color:var(--ink-3);font-size:16px;line-height:1.45}
+.start-actions{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:22px}
+.start-help{margin:0;color:var(--ink-2);font-size:17px}
+.start-help a,.dlp-help a{color:var(--blue-2);text-decoration:underline;text-underline-offset:3px}
+.dlpanel{position:fixed;top:84px;right:20px;z-index:45;width:min(430px,calc(100vw - 24px));max-height:calc(100vh - 104px);overflow:auto;box-sizing:border-box;padding:22px 24px 20px;background:var(--surface);color:var(--ink);border:1px solid var(--line-2);border-radius:var(--r-big);box-shadow:0 16px 36px -22px rgba(16,19,27,.45)}
+.dlpanel[hidden]{display:none}
+.dlpanel:focus{outline:none}
+.dlpanel:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.dlp-h{font:var(--h3-weight) 34px/1 var(--display);text-transform:uppercase;letter-spacing:var(--h-track);margin:0 40px 14px 0}
+.dlp-close{position:absolute;top:10px;right:10px;width:44px;height:44px;display:grid;place-items:center;border:0;background:transparent;color:var(--ink-2);font:400 30px/1 var(--text);cursor:pointer;border-radius:var(--r-btn)}
+.dlp-close:hover{background:var(--ghost-hover);color:var(--ink)}
+.dlp-os h3{font:600 15px/1.2 var(--text);letter-spacing:.14em;text-transform:uppercase;color:var(--accent-label);margin:0 0 8px}
+.dlp-os ol{margin:0;padding:0 0 0 22px;display:grid;gap:8px;color:var(--ink-2);font-size:17px;line-height:1.4}
+.dlp-os li::marker{color:var(--ink-3);font-weight:600}
+.dlp-links{margin:16px 0 0}
+.dlp-help{margin:12px 0 0;color:var(--ink-3);font-size:15.5px}
+@media (max-width:640px){.dlpanel{top:auto;bottom:12px;right:12px;left:12px;width:auto;max-height:70vh}}
+
+/* ===== Liens vers l'essai en ligne (01/11/2026), sur les pages d'accueil ET sur les pages d'essai : lien sous les boutons du héros, bouton de la section vidéo (les autres styles de l'essai sont dans try.css, chargée par les pages d'essai seules) ===== */
+.try-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;font:600 18px/1.2 var(--text);color:var(--blue-2);text-decoration:none}
+.try-link:hover{text-decoration:underline;text-underline-offset:4px}
+.try-link .ico{display:inline-grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);fill:#fff}
+.try-link .ico svg{width:12px;height:12px;margin-left:2px;fill:#fff}
+.demo-try{margin-top:6px;justify-self:start}

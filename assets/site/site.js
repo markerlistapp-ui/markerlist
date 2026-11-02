@@ -49,12 +49,43 @@
     }
   })();
 
-  /* 3. Suivi des téléchargements (GTM) : chaque clic sur le .dmg ou sur l'installeur Windows envoie l'événement « download_click » (platform : mac ou windows) */
+  /* 3. Panneau « prochaines étapes » (28/10) : sur ordinateur, un clic sur un lien de téléchargement l'affiche (étapes propres au système, vidéo d'installation, adresse d'aide).
+        Sur téléphone et tablette ces liens n'existent pas (voir 2) : il ne s'affiche jamais. Échap ou la croix le ferment ; rien n'est mémorisé. */
+  var panel = $('#dlpanel');
+  var track = function (name, extra) {
+    w.dataLayer = w.dataLayer || [];
+    var o = { event: name, page_language: d.documentElement.lang || '' };
+    for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) { o[k] = extra[k]; } }
+    w.dataLayer.push(o);
+  };
+  var hidePanel = function () { if (panel && !panel.hidden) { panel.hidden = true; } };
+  var showPanel = function (platform) {
+    if (!panel) { return; }
+    $$('.dlp-os', panel).forEach(function (b) { b.hidden = b.getAttribute('data-os') !== platform; });
+    panel.hidden = false;
+    try { panel.focus({ preventScroll: true }); } catch (err) { panel.focus(); }
+    track('download_panel_view', { platform: platform });
+  };
+  if (panel) {
+    var closeBtn = $('#dlp-close', panel);
+    if (closeBtn) { closeBtn.addEventListener('click', hidePanel); }
+    d.addEventListener('keydown', function (e) { if (e.key === 'Escape') { hidePanel(); } });
+    var pv = $('#dlp-video', panel), ph = $('#dlp-help', panel);
+    if (pv) { pv.addEventListener('click', function () { track('setup_video_click', { location: 'panel' }); }); }
+    if (ph) { ph.addEventListener('click', function () { track('help_click', { location: 'panel' }); }); }
+  }
+  var sv = $('#setup-video'), sh = $('#start-help');
+  if (sv) { sv.addEventListener('click', function () { track('setup_video_click', { location: 'section' }); }); }
+  if (sh) { sh.addEventListener('click', function () { track('help_click', { location: 'section' }); }); }
+
+  /* 3b. Suivi des téléchargements (GTM) : chaque clic sur le .dmg ou sur l'installeur Windows envoie l'événement « download_click » (platform : mac ou windows) */
   d.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href$=".dmg"], a[href$=".exe"]');
     if (!a) { return; }
+    var platform = /\.exe$/.test(a.getAttribute('href') || '') ? 'windows' : 'mac';
     w.dataLayer = w.dataLayer || [];
-    w.dataLayer.push({ event: 'download_click', download_location: a.id || 'other', platform: /\.exe$/.test(a.getAttribute('href') || '') ? 'windows' : 'mac', page_language: d.documentElement.lang || '' });
+    w.dataLayer.push({ event: 'download_click', download_location: a.id || 'other', platform: platform, page_language: d.documentElement.lang || '' });
+    showPanel(platform);
   });
 
   /* 4. Vidéo : une façade, YouTube (youtube-nocookie) ne se charge qu'au clic */
