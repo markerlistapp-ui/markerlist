@@ -35,14 +35,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:locale:alternate" content="de_DE">
 <meta property="og:locale:alternate" content="es_ES">
 <meta property="og:locale:alternate" content="pt_BR">
-<meta property="og:image" content="https://markerlist.app/assets/site/img/og-fr.jpg?v=20261028a">
+<meta property="og:image" content="https://markerlist.app/assets/site/img/og-fr.jpg?v=20261103a">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Markerlist : un arrangement Ableton Live avec les mêmes sections sur une tablette et un téléphone">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Markerlist | Télécommande de setlist pour Ableton Live">
 <meta name="twitter:description" content="Pilotez vos setlists Ableton Live 11/12 depuis un téléphone, une tablette ou un ordinateur en Wi-Fi local. Sans Max for Live.">
-<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-fr.jpg?v=20261028a">
+<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-fr.jpg?v=20261103a">
 <meta name="twitter:image:alt" content="Markerlist : un arrangement Ableton Live avec les mêmes sections sur une tablette et un téléphone">
 <link rel="canonical" href="https://markerlist.app/index_fr.html">
 <link rel="alternate" hreflang="en" href="https://markerlist.app/">
@@ -54,14 +54,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261028a" crossorigin>
-<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261028a" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BebasNeue-Regular.woff?v=20261103a" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261103a" crossorigin>
 <style>
-@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BebasNeue-Regular.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Medium.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-SemiBold.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(assets/site/fonts/BarlowSemiCondensed-Bold.woff?v=20261103a) format('woff')}
 /* ===== Structure, composants, comportements. Couleurs, polices et rayons : les jetons de theme.css. ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
@@ -338,6 +338,8 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 26px}
 .foot a{text-decoration:none;color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 8px}
 .foot a:hover{color:var(--ink)}
+.foot-guides{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:0 22px;padding-top:6px;border-top:1px solid var(--line)}
+.foot-guides span{color:var(--ink-3)}
 
 .demo-in .sec-head .h2,.bk-in .sec-head .h2{font-size:clamp(40px,5vw,76px)}
 .midi-copy .h2{font-size:clamp(38px,4.4vw,64px)}
@@ -924,10 +926,10 @@ a[hidden]{display:none!important}
   </div>
 </section>
 </main>
-<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Pied de page"><a href="try_fr.html">Essayer la démo</a><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite.html">Confidentialité</a></nav></div></footer>
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Pied de page"><a href="try_fr.html">Essayer la démo</a><a href="#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="confidentialite.html">Confidentialité</a></nav><nav class="foot-guides" aria-label="Guides"><span>Guides</span><a href="controle-ableton-telephone_fr.html">Contrôler Ableton depuis un téléphone</a><a href="ableton-ipad-controller_fr.html">Contrôler Ableton avec un iPad</a><a href="ableton-live-set-controller_fr.html">Piloter une setlist Ableton Live</a><a href="ableton-arrangement-view-controller_fr.html">Contrôler Ableton Arrangement View</a><a href="how-to-use-ableton-locators-for-live-performance_fr.html">Locators Ableton pour le live</a></nav></div></footer>
 <div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>Nous utilisons des cookies pour comprendre comment les visiteurs utilisent ce site. Vous pouvez accepter ou refuser. Consultez notre <a href="confidentialite.html">politique de confidentialité</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Refuser</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accepter</button></div></div>
 <aside class="dlpanel" id="dlpanel" role="region" aria-label="Prochaines étapes après le téléchargement" aria-labelledby="dlp-h" tabindex="-1" hidden><button class="dlp-close" id="dlp-close" type="button" aria-label="Fermer">×</button><h2 class="dlp-h" id="dlp-h">Votre téléchargement a démarré</h2><div class="dlp-os" data-os="mac"><h3>Sur Mac</h3><ol><li>Ouvrez le fichier téléchargé et glissez Markerlist dans Applications.</li><li>Ouvrez Markerlist et choisissez Essayer gratuitement sur le premier écran.</li><li>Suivez l’installation guidée : comptez environ 10 minutes.</li></ol></div><div class="dlp-os" data-os="windows" hidden><h3>Sous Windows</h3><ol><li>Lancez MarkerList-Setup.exe. Si Windows affiche un écran bleu « Windows a protégé votre ordinateur », choisissez Informations complémentaires, puis Exécuter quand même. Markerlist est récent et son installeur n’est pas encore signé.</li><li>Ouvrez Markerlist et choisissez Essayer gratuitement sur le premier écran.</li><li>Suivez l’installation guidée : comptez environ 10 minutes.</li></ol></div><p class="dlp-links"><a class="btn btn-ghost btn-sm" id="dlp-video" href="https://www.youtube.com/watch?v=_EaBtB1eLSs" target="_blank" rel="noopener">Voir la vidéo d’installation (1:28)</a></p><p class="dlp-help">Besoin d’aide ? Écrivez à <a id="dlp-help" href="mailto:contact@markerlist.app">contact@markerlist.app</a>.</p></aside>
 <script type="application/json" id="i18n">{"mobile_nav": "Recevoir le lien", "mobile_hero": "Obtenir le lien de téléchargement", "mobile_note": "Markerlist fonctionne sur PC Windows et sur Mac. Le bouton ouvre un e-mail prérempli avec le lien à ouvrir sur votre ordinateur.", "mobile_btn": "Ouvrir un e-mail prérempli avec le lien", "mobile_subject": "Markerlist : essai gratuit pour mon ordinateur", "mobile_body": "Ouvrez ce lien sur votre ordinateur pour télécharger l’essai gratuit :", "playing": "Lecture", "stopped": "Arrêt", "song": "Morceau", "loop": "Boucle", "loop_off": "désactivée", "loop_song": "morceau", "loop_section": "section", "click": "Click", "on": "activé", "off": "désactivé", "preroll": "Pré-roll", "bar": "mesure", "bars": "mesures"}</script>
-<script src="assets/site/site.js?v=20261028a" defer></script>
+<script src="assets/site/site.js?v=20261103a" defer></script>
 </body>
 </html>

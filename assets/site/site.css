@@ -1,8 +1,8 @@
-@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BebasNeue-Regular.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BarlowSemiCondensed-Regular.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/BarlowSemiCondensed-Medium.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/BarlowSemiCondensed-SemiBold.woff?v=20261028a) format('woff')}
-@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/BarlowSemiCondensed-Bold.woff?v=20261028a) format('woff')}
+@font-face{font-family:'Bebas Neue';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BebasNeue-Regular.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/BarlowSemiCondensed-Regular.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:500;font-display:swap;src:url(fonts/BarlowSemiCondensed-Medium.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:600;font-display:swap;src:url(fonts/BarlowSemiCondensed-SemiBold.woff?v=20261103a) format('woff')}
+@font-face{font-family:'Barlow Semi Condensed';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/BarlowSemiCondensed-Bold.woff?v=20261103a) format('woff')}
 /* ===== Structure, composants, comportements. Couleurs, polices et rayons : les jetons de theme.css. ===== */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 12px)}
@@ -279,6 +279,8 @@ footer{border-top:1px solid var(--line);padding-block:30px 44px}
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 26px}
 .foot a{text-decoration:none;color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 8px}
 .foot a:hover{color:var(--ink)}
+.foot-guides{flex:1 1 100%;display:flex;flex-wrap:wrap;align-items:center;gap:0 22px;padding-top:6px;border-top:1px solid var(--line)}
+.foot-guides span{color:var(--ink-3)}
 
 .demo-in .sec-head .h2,.bk-in .sec-head .h2{font-size:clamp(40px,5vw,76px)}
 .midi-copy .h2{font-size:clamp(38px,4.4vw,64px)}
