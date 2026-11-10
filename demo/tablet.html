@@ -2,8 +2,9 @@
 <html lang="fr"><head>
 <meta name="robots" content="noindex,nofollow">
 <style id="demo-overrides">
-/* Démo web : pas de préréglages, d'export PDF, de manuel local, de routages audio ni de code d'accès (ils dépendent de l'ordinateur qui fait tourner l'application). */
-#open-presets, #open-export, #open-help, #master-io-btn, .track-io-btn, .pin-display, [data-i18n="access_code"] { display: none !important; }
+/* Démo web : pas de préréglages, d'export PDF, de manuel local, de routages audio ni de code d'accès (ils dépendent de l'ordinateur qui fait tourner l'application).
+   Pas non plus le réglage « PLAY après un STOP » (07/11) : c'est un réglage de la machine, et la démo ne simule aucune pause (le simulateur n'envoie jamais is_paused). */
+#open-presets, #open-export, #open-help, #master-io-btn, .track-io-btn, .pin-display, [data-i18n="access_code"], #resume-settings-block { display: none !important; }
 /* Safari sur iPhone zoome TOUTE la page (et la laisse zoomée) quand on touche un champ de saisie dont la police fait moins de 16 px -- ici le filtre « Filtrer un morceau » (13,6 px) : mesuré par l'utilisateur
    sur un vrai iPhone (01/11), la page du site restait agrandie de 18 % et décalée après la démo. La page tablette l'évite seule par maximum-scale=1 dans SON en-tête, ignoré dès qu'elle est dans l'iframe du site. */
 @media (pointer: coarse) { input, textarea, select { font-size: 16px !important; } }
@@ -22,9 +23,9 @@
 @font-face{font-family:'Barlow Semi Condensed';src:url('fonts/BarlowSemiCondensed-Bold.ttf') format('truetype');font-weight:700;font-display:swap;}
 </style>
 <script src="demo-socket.js?v=b9d00e9b9c"></script>
-<script src="demo-engine.js?v=9a8e64d1aa"></script>
+<script src="demo-engine.js?v=67363b6628"></script>
 <script src="demo-music.js?v=76ba0f73e1"></script>
-<script src="demo-audio.js?v=1cccf91cb6"></script>
+<script src="demo-audio.js?v=ac45956def"></script>
 <script defer src="demo-voice.js?v=dfe3d9db6f"></script>
 
 <style>
@@ -101,6 +102,10 @@ button, input, select, textarea {
     --stop:#E5534B; --stop-rgb:229,83,75; --stop-strong:#C93B32; --stop-soft:#3E1C19;
     --chip-bg:rgba(110,147,194,0.14); --chip-text:#A9C2E0; --chip-border:rgba(110,147,194,0.35);
     --marker-bg:rgba(110,147,194,0.14); --marker-text:#A9C2E0; --marker-border:rgba(110,147,194,0.35);
+    /* Teinte de la NOTE sous le titre d'un morceau annoncé en grand (06/11) : ambre adouci, déclaré ici et dans le bloc clair juste en dessous (page de l'app
+       seulement -- la page du code PIN n'affiche aucun nom de morceau). Solide, pas de color-mix() : les vieilles tablettes (Safari 15) ne le comprennent pas et la note
+       prendrait alors la couleur du titre. Contraste 10,3:1 sur le fond de page sombre (le gris --text-secondary : 7,9:1). */
+    --song-note:#DDB672;
     /* Barre de remplissage MORCEAU de la vue Statut (demande explicite,
        14/09 : "avoir la barre de remplissage du morceau en cours... Trouver
        une autre couleur que vert et bleu") -- vert (--play) est déjà pris
@@ -128,6 +133,7 @@ html[data-theme="light"]{
     --stop:#C93B32; --stop-rgb:201,59,50; --stop-strong:#A32E27; --stop-soft:#F8DEDC;
     --chip-bg:#DCE6F0; --chip-text:#2C5177; --chip-border:#C3D5E5;
     --marker-bg:#F3F1EC; --marker-text:#3A3833; --marker-border:#DEDBD3;
+    --song-note:#8B5F1D;     /* ambre foncé : 5,3:1 sur le fond de page clair (#FAF9F6) */
     --accent-purple:#7A4DE0; --accent-purple-rgb:122,77,224;
 }
 /* Bandeaux blancs constatés en conditions réelles (14/09, iPhone à encoche/
@@ -183,6 +189,10 @@ header{position: sticky; top: 0; z-index: 1000; background: var(--bg-page); disp
 #ableton-offline-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1600; background:var(--stop); color:#fff; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
 #foreign-loop-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1590; background:var(--accent-orange); color:#1b1306; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
 #foreign-loop-banner .offline-dot{background:#1b1306;}
+/* Live répond « 0 repère » (09/11, point 1.1) : même langage visuel que le bandeau « Boucle Ableton active » (orange, sticky, non bloquant). Le réglage de la setlist est GARDÉ : ce bandeau
+   explique seulement pourquoi la grille est vide. */
+#no-markers-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1585; background:var(--accent-orange); color:#1b1306; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
+#no-markers-banner .offline-dot{background:#1b1306;}
 .page-flip-edge{position:fixed; top:0; bottom:0; width:70px; max-width:33vw; pointer-events:none; z-index:1500; opacity:0; transition:opacity 0.12s;}
 .page-flip-edge.left{left:0; background:linear-gradient(to right, rgba(var(--accent-blue-rgb),0.4), transparent);}
 .page-flip-edge.right{right:0; background:linear-gradient(to left, rgba(var(--accent-blue-rgb),0.4), transparent);}
@@ -1083,6 +1093,7 @@ html[data-theme="light"] #live-bottom-bar{background:var(--bg-panel); border-col
    "Vue Live" n'a jamais eu de pilule bleue ici : .nowplaying .eyebrow y
    est juste du texte -- couleur PLAY, pas d'accent générique). */
 #live-eyebrow{display:block; text-align:center; margin:0 auto 4px; font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--play); font-family:var(--font-data);}
+#live-eyebrow.is-paused{color:var(--accent-orange);}
 /* font-size 2.6rem (était 2rem) + poids retiré (était 900) -- 21/09, écart
    signalé : .nowplaying .name sur la maquette, même raisonnement que
    .band-name/.section-row-name (Bebas Neue porte déjà ce poids visuel
@@ -1438,7 +1449,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    visible même si quelqu'un a laissé une fenêtre ouverte, jamais caché
    derrière. */
 #preroll-announce{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2500; pointer-events:none; background:rgba(12,12,14,0.86);}
-#preroll-announce span{font-size:2.2rem; font-weight:900; color:#fff; text-align:center; padding:0 24px; text-transform:uppercase; line-height:1.15; font-family:var(--font-display);}
+#preroll-announce > span{font-size:2.2rem; font-weight:900; color:#fff; text-align:center; padding:0 24px; text-transform:uppercase; line-height:1.15; font-family:var(--font-display);}
 #preroll-countdown{position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:2500; pointer-events:none; background:rgba(12,12,14,0.86);}
 #preroll-countdown span{font-size:7rem; font-weight:900; color:#fff; font-family:var(--font-data);}
 /* Message adressé par l'administrateur (voir showAdminMessagePopup) --
@@ -1449,7 +1460,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
 .admin-message-text{color:var(--text-primary); font-family:var(--font-display); font-size:1.05rem; font-weight:600; margin-bottom:20px; white-space:pre-wrap; line-height:1.4;}
 .admin-message-close{background:var(--accent-blue); color:#fff; border:none; border-radius:999px; padding:11px 30px; font-family:var(--font-display); font-weight:700; font-size:0.9rem; cursor:pointer;}
 @media (max-width: 480px){
-    #preroll-announce span{font-size:1.5rem;}
+    #preroll-announce > span{font-size:1.5rem;}
     #preroll-countdown span{font-size:4.5rem;}
 }
 #live-empty{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--text-secondary); font-size:1rem; font-weight:700; text-align:center; padding:20px; z-index:4;}
@@ -1616,6 +1627,22 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
     color:var(--text-primary);
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
+/* Note du musicien lue ENTRE ACCOLADES dans le nom du repère (04/11, voir
+   splitSongName) : tonalité d'origine, capo, tempo... À côté du titre, plus
+   petite, plus discrète, jamais en majuscules ; sur une ligne qui manque de
+   place, c'est elle qui est coupée la première (elle vient après le titre). */
+.song-meta{font-family:var(--font-data); font-size:0.58em; font-weight:500; letter-spacing:0.03em; text-transform:none; color:var(--text-secondary); margin-left:0.5em;}
+/* Là où le morceau est ANNONCÉ en grand (titre de la Vue Live, titre de la Vue Transport, annonce plein écran du pré-roll), la note passe SOUS le titre, centrée,
+   dans une teinte ambre douce (--song-note) qui la détache du gris des textes secondaires sans la faire crier (06/11, retour de l'utilisateur : « le texte ajouté
+   [doit être] en dessous du titre quand il est annoncé avec une couleur qui le fasse ressortir mais sans être trop violent visuellement »). Dans les LISTES (grille,
+   bibliothèque, bandeaux de la Vue Statut, plan de boucles, « prochaine chanson ») elle reste à côté du titre : une ligne de plus par morceau y coûterait trop de place.
+   Taille : la moitié du titre, sans jamais descendre sous 0,85 rem (en Vue Live sur un petit écran le titre tombe à 1 rem : 0,5 em ferait 8 px). */
+#live-name .song-meta,
+#transport-current-song .song-meta,
+#preroll-announce .song-meta{display:block; margin:0.42em 0 0; font-size:max(0.5em, 0.85rem); font-weight:600; line-height:1.2; color:var(--song-note);}
+/* Le calque du pré-roll est SOMBRE dans les deux thèmes (fond rgba(12,12,14,.86), titre en #fff) : la teinte du thème clair y serait illisible. Teinte sombre, en dur
+   comme le #fff du titre. */
+#preroll-announce .song-meta{color:#DDB672;}
 /* Durée d'un morceau (Bibliothèque, voir renderLib()) OU BPM (Vue Grille,
    voir render() -- réutilisée telle quelle le 21/09 pour combler l'écart
    avec la maquette "Setlist" : même traitement visuel qu'une durée, les
@@ -1691,6 +1718,11 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
     #rotate-overlay{display:flex;}
 }
 .overlay-scroll{overflow-y:auto; -webkit-overflow-scrolling:touch; flex:1; min-height:0;}
+/* Gouttière de la barre de défilement (09/11, capture de l'utilisateur : sur macOS la barre « à recouvrement » ne réserve aucune place et recouvre les ~14 derniers pixels du contenu --
+   le bord droit des champs, des boutons et des phrases d'aide était COUPÉ). 16 px de vide à droite DANS la zone défilante, rendus au contenu par une marge négative de même valeur sur le
+   remplissage de 20 px de .overlay-panel : la largeur du contenu ne change pas (260 px avec une barre à recouvrement, moins la barre avec une barre classique), seule la barre se décale
+   dans la marge de la fenêtre au lieu de passer SUR le contenu. Vaut pour toutes les fenêtres qui défilent (Réglages, bibliothèque, pistes, plan de boucles...). */
+.overlay-scroll{padding-right:16px; margin-right:-16px;}
 .overlay-close-x{position:absolute; top:14px; right:14px; width:34px; height:34px; border-radius:50%; background:var(--bg-card); border:1px solid var(--border); color:var(--text-secondary); font-size:18px; font-weight:700; line-height:1; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;}
 /* Liste plate + séparateurs (21/09, refonte visuelle -- avant : pile de
    "cartes" arrondies individuelles, plus proche d'une grille de boutons que
@@ -1801,6 +1833,27 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
 .visual-offset-btn:active{background:var(--accent-orange-soft); border-color:var(--accent-orange); color:var(--accent-orange);}
 .visual-offset-value{flex:1; display:flex; align-items:center; justify-content:center; gap:4px; background:var(--bg-card); border:1px solid var(--border); border-radius:9px; font-family:var(--font-data); font-size:1rem; color:var(--text-primary); font-variant-numeric:tabular-nums;}
 .settings-hint{font-family:var(--font-data); font-size:0.86rem; color:var(--text-faint); margin:-2px 0 0; line-height:1.45;}
+/* La fenêtre RÉGLAGES s'adapte à l'écran (09/11, remarque de l'utilisateur après l'essai de la 1.8.0 : « la fenêtre est fine, il faudrait l'adapter à la taille de l'écran pour que ça soit plus
+   lisible »). Avant : .overlay-panel, partagé par toutes les fenêtres, plafonnait à 300 px sur TOUS les écrans -- une colonne étroite au milieu d'une tablette ou d'une fenêtre d'ordinateur, avec des
+   phrases d'aide coupées en huit lignes. Maintenant 92 % de l'écran, au plus 640 px ; dès 720 px de large le texte grandit un peu et les infos du show passent sur deux colonnes (groupe | lieu,
+   date | heure de fin ; display:contents sur la ligne date/heure pour que ses deux champs rejoignent la grille). Seule cette fenêtre change : menu, bibliothèque, pistes, préréglages... gardent leur
+   largeur (posée une à une, voir leurs style="max-width:..."). */
+#settings-overlay .overlay-panel{width:min(92vw, 640px); max-width:640px;}
+@media (min-width: 720px) {
+    #settings-overlay .overlay-panel{padding:26px 30px;}
+    #settings-overlay .overlay-close-x{top:20px; right:22px;}
+    #settings-overlay .overlay-panel h2{font-size:1.5rem;}
+    #settings-overlay .settings-label{font-size:0.8rem; margin:20px 0 10px;}
+    #settings-overlay .settings-hint{font-size:0.95rem;}
+    #settings-overlay .show-info-fields{display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px;}
+    #settings-overlay .show-info-row{display:contents;}
+    #settings-overlay .show-info-fields input{font-size:1rem; padding:13px 14px;}
+    /* min-width:0 : les six langues tiennent sur UNE rangée dans la fenêtre large (avec les 80 px d'origine, plus le remplissage, la sixième passait seule à la ligne). */
+    #settings-overlay .theme-choice{font-size:0.98rem; padding:14px 8px; min-width:0;}
+    #settings-overlay .visual-offset-btn{width:56px;}
+    #settings-overlay .visual-offset-value{font-size:1.1rem;}
+    #settings-overlay .pin-display{font-size:1.5rem;}
+}
 .live-view-btn{display:block; text-align:center; background:linear-gradient(145deg, var(--play), var(--play-strong)); color:#fff; text-decoration:none; font-weight:800; padding:14px 8px; border-radius:12px; font-family:var(--font-display);}
 /* Vert (--play) remplacé par ambre (--accent-orange, 21/09) : le vert est
    réservé à PLAY dans le nouveau système de couleurs par fonction de la
@@ -1810,6 +1863,8 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    blocs racine depuis l'ajout des colonnes BPM/Sig. de la Vue Grille) --
    même traitement que .pill.selected sur la maquette Menu/Réglages. */
 .theme-choice.selected{background:var(--accent-orange-soft); border-color:var(--accent-orange); color:var(--accent-orange);}
+/* Réglage indisponible (reprise après un STOP : deux machines appairées) : visible mais inactif, avec la raison juste dessous. */
+.theme-choice-row.locked{opacity:0.45; pointer-events:none;}
 .theme-swatch{width:100%; height:36px; border-radius:12px; margin-bottom:8px; border:1px solid rgba(255,255,255,0.15);}
 .track-row{display:flex; align-items:center; justify-content:space-between; padding:12px 4px; border-bottom:1px solid var(--border);}
 .track-row:last-child{border-bottom:none;}
@@ -2206,6 +2261,7 @@ html[data-theme="light"] .picker-option.selected{border-color:var(--play); backg
 <div id="offline-banner" role="alert"><span class="offline-dot"></span><span data-i18n="offline_reconnecting">Connexion perdue — reconnexion en cours…</span></div>
 <div id="ableton-offline-banner" role="alert"><span class="offline-dot"></span><span data-i18n="ableton_unresponsive">Ableton ne répond plus</span></div>
 <div id="foreign-loop-banner" role="alert"><span class="offline-dot"></span><span data-i18n="foreign_loop_warning">Boucle Ableton active</span></div>
+<div id="no-markers-banner" role="status"><span class="offline-dot"></span><span data-i18n="no_markers_banner">Aucun repère : Ableton charge-t-il un projet ?</span></div>
 <!-- Zones de bascule de page pendant un glisser (voir tryPageFlipOnDrag) --
      retour visuel discret (lueur au bord) pour que l'utilisateur sache
      QUAND il est dans la zone sensible, plutôt que de deviner (retour
@@ -2818,6 +2874,40 @@ html[data-theme="light"] .picker-option.selected{border-color:var(--play); backg
         <button type="button" id="visual-offset-plus" class="visual-offset-btn" aria-label="+">+</button>
     </div>
     <div class="settings-hint" data-i18n="visual_offset_hint">Retarde l'indicateur de battement, le décompte et le pré-roll pour les faire coïncider avec le son réellement entendu sur cet appareil.</div>
+    <!-- « PLAY après un STOP » (07/11, étape A de la « vraie pause », demande de l'utilisateur : repartir du début OU reprendre là où ça s'est arrêté, avec un décompte réglable).
+         Contrairement au décalage visuel ci-dessus (local à l'appareil), ce réglage est celui de la MACHINE : il est enregistré côté app (settings.json), partagé par toutes
+         les tablettes et par le contrôleur MIDI -- l'évènement `set_resume_settings` part au serveur, qui rediffuse l'état. Grisé quand deux machines sont appairées. -->
+    <div id="resume-settings-block">
+        <div class="settings-label" data-i18n="resume_after_stop_label">PLAY après un STOP</div>
+        <div class="theme-choice-row" id="resume-mode-row">
+            <div class="theme-choice" id="resume-mode-restart" data-resume-mode-value="restart"><span data-i18n="resume_mode_restart">Repart du début</span></div>
+            <div class="theme-choice" id="resume-mode-resume" data-resume-mode-value="resume"><span data-i18n="resume_mode_resume">Reprend où ça s'est arrêté</span></div>
+        </div>
+        <div id="resume-align-block">
+            <div class="settings-label" data-i18n="resume_align_label">Reprise à</div>
+            <div class="theme-choice-row" id="resume-align-row">
+                <div class="theme-choice" id="resume-align-exact" data-resume-align-value="exact"><span data-i18n="resume_align_exact">L'instant exact</span></div>
+                <div class="theme-choice" id="resume-align-bar" data-resume-align-value="bar"><span data-i18n="resume_align_bar">Début de la mesure</span></div>
+                <div class="theme-choice" id="resume-align-section" data-resume-align-value="section"><span data-i18n="resume_align_section">Début de la section</span></div>
+            </div>
+            <div class="settings-hint" id="resume-align-hint" data-i18n="resume_align_hint" style="margin-top:10px;">Aux deux derniers choix, Live recule brièvement au moment du STOP (la musique saute un instant en arrière avant de s'arrêter), puis la lecture repart avec une courte levée : le premier temps tombe à la fin du décompte. Un morceau sans sections retombe sur la mesure.</div>
+        </div>
+        <div id="resume-preroll-block">
+            <div class="settings-label" data-i18n="resume_preroll_label">Décompte avant la reprise</div>
+            <!-- Deux rangées : « comme le pré-roll » / « aucun », puis 1 / 2 / 4 (le mot « mesures » est dans le titre de la rubrique, pour que les trois chiffres tiennent sur une ligne). -->
+            <div class="theme-choice-row" id="resume-preroll-row">
+                <div class="theme-choice" id="resume-preroll-same" data-resume-preroll-value="same"><span data-i18n="resume_preroll_same">Comme le pré-roll</span></div>
+                <div class="theme-choice" id="resume-preroll-0" data-resume-preroll-value="0"><span data-i18n="resume_preroll_none">Aucun</span></div>
+            </div>
+            <div class="theme-choice-row" id="resume-preroll-row-measures" style="margin-top:10px;">
+                <div class="theme-choice" id="resume-preroll-1" data-resume-preroll-value="1" style="min-width:0;"><span>1</span></div>
+                <div class="theme-choice" id="resume-preroll-2" data-resume-preroll-value="2" style="min-width:0;"><span>2</span></div>
+                <div class="theme-choice" id="resume-preroll-4" data-resume-preroll-value="4" style="min-width:0;"><span>4</span></div>
+            </div>
+        </div>
+        <div class="settings-hint" id="resume-hint" data-i18n="resume_hint" style="margin-top:10px;">« Repart du début » : PLAY relance le morceau depuis son début (comme avant). « Reprend où ça s'est arrêté » : après un STOP en pleine lecture, PLAY reprend là où la lecture s'était arrêtée, après le décompte choisi ; un second STOP, ou le choix d'un autre morceau, annule la pause.</div>
+        <div class="settings-hint" id="resume-unavailable-hint" data-i18n="resume_unavailable_hint" style="display:none; margin-top:10px;">Indisponible tant qu'une deuxième machine est appairée (redondance) : PLAY repart toujours du début.</div>
+    </div>
     <div class="settings-label" data-i18n="language">Langue</div>
     <div class="theme-choice-row">
         <div class="theme-choice" id="lang-choice-fr" data-lang-value="fr"><span data-i18n="lang_fr">Français</span></div>
@@ -2832,6 +2922,8 @@ html[data-theme="light"] .picker-option.selected{border-color:var(--play); backg
         <div class="theme-choice" id="time-format-choice-24h" data-time-format-value="24h"><span data-i18n="time_format_24h">24h</span></div>
         <div class="theme-choice" id="time-format-choice-12h" data-time-format-value="12h"><span data-i18n="time_format_12h">12h (AM/PM)</span></div>
     </div>
+    <div class="settings-label" data-i18n="kbd_shortcuts_title">Raccourcis clavier</div>
+    <div class="settings-hint" data-i18n="kbd_shortcuts_hint">Espace : PLAY / STOP · ← → : précédent / suivant · L : BOUCLE SECTION (Vue Live). Une touche fait ce que fait le bouton correspondant à l'écran.</div>
     <div class="settings-label" data-i18n="access_code">Code d'accès</div>
     <div class="pin-display">000000</div>
     </div>
@@ -3016,6 +3108,53 @@ const lockPath=document.getElementById("lock-path");
 const lockIcon=document.getElementById("lock-icon");
 let markers=[],allMarkers=[],active=null,locked=true,draggingEl=null,placeholder=null,dragOffset={x:0,y:0},chainFlags=new Set(),loopPlanSongs=new Set(),songLoopSongs=new Set(),draggingName=null,pageFlipTimer=null,allowDragDrop=true,allowTrackControl=true,allowPdfExport=true,allowPreroll=true,allowPrerollCustomization=true,allowLiveView=true,allowLtcView=true,allowAlerts=true,allowSongLoop=true,mixerPinnedTracks=new Set();
 
+// --- Nom d'un repère = titre + note entre accolades (04/11) ---
+// Ce qui est écrit ENTRE ACCOLADES dans le nom d'un repère Ableton est une NOTE du
+// musicien (tonalité d'origine, capo, tempo...) : « Hallelujah {La mineur, capo 2} ».
+// Elle s'affiche à côté du titre, en plus discret, et ne fait PAS partie du titre.
+// Le nom ENTIER reste l'identité du morceau (dataset.name, évènements socket, plans de
+// boucles, ordre de la setlist...) : seul l'AFFICHAGE change, jamais ce qui est envoyé.
+// Prudence : accolades non fermées, imbriquées ou nom réduit à une note -> le nom est
+// affiché tel quel, sans rien interpréter (un nom bizarre ne doit jamais disparaître).
+function splitSongName(name){
+    const raw = (name == null) ? '' : String(name);
+    if(raw.indexOf('{') < 0 && raw.indexOf('}') < 0) return {title: raw, meta: ''};
+    let title = '', depth = 0, start = -1;
+    const notes = [];
+    for(let i = 0; i < raw.length; i++){
+        const c = raw.charAt(i);
+        if(c === '{'){
+            if(depth > 0) return {title: raw, meta: ''};
+            depth = 1; start = i;
+        }else if(c === '}'){
+            if(depth === 0) return {title: raw, meta: ''};
+            depth = 0;
+            const note = raw.slice(start + 1, i).replace(/\s+/g, ' ').trim();
+            if(note) notes.push(note);
+        }else if(depth === 0){
+            title += c;
+        }
+    }
+    if(depth !== 0) return {title: raw, meta: ''};
+    title = title.replace(/\s+/g, ' ').trim();
+    if(!title) return {title: raw, meta: ''};
+    return {title: title, meta: notes.join(' · ')};
+}
+function songTitle(name){ return splitSongName(name).title; }
+// Écrit le titre dans `el` et, s'il y a une note, la met dans un <span class="song-meta">
+// juste après (un vrai espace entre les deux pour un lecteur d'écran).
+function fillSongName(el, name){
+    const p = splitSongName(name);
+    el.textContent = p.title;
+    if(p.meta){
+        el.appendChild(document.createTextNode(' '));
+        const m = document.createElement('span');
+        m.className = 'song-meta';
+        m.textContent = p.meta;
+        el.appendChild(m);
+    }
+}
+
 // --- Traduction (français / anglais / espagnol / chinois) ---
 const I18N = {
   fr: {
@@ -3025,6 +3164,14 @@ const I18N = {
     loading: "Chargement…", appearance: "Apparence", theme_dark: "Sombre", theme_light: "Clair",
     beat_indicator_label: "Indicateur de battement", beat_indicator_immersive: "Immersif", beat_indicator_compact: "Discret",
     visual_offset_label: "Décalage visuel", visual_offset_hint: "Retarde l'indicateur de battement, le décompte et le pré-roll pour les faire coïncider avec le son réellement entendu sur cet appareil.",
+    kbd_shortcuts_title: "Raccourcis clavier", kbd_shortcuts_hint: "Espace : PLAY / STOP · ← → : précédent / suivant · L : BOUCLE SECTION (Vue Live). Une touche fait ce que fait le bouton correspondant à l'écran.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "PLAY après un STOP", resume_mode_restart: "Repart du début", resume_mode_resume: "Reprend où ça s'est arrêté", resume_preroll_label: "Décompte avant la reprise (en mesures)", resume_preroll_same: "Comme le pré-roll", resume_preroll_none: "Aucun",
+    resume_hint: "« Repart du début » : PLAY relance le morceau depuis son début (comme avant). « Reprend où ça s'est arrêté » : après un STOP en pleine lecture, PLAY reprend là où la lecture s'était arrêtée, après le décompte choisi ; un second STOP, ou le choix d'un autre morceau, annule la pause.",
+    resume_unavailable_hint: "Indisponible tant qu'une deuxième machine est appairée (redondance) : PLAY repart toujours du début.",
+    paused_label: "En pause", resume_play: "REPRENDRE",
+    resume_align_label: "Reprise à", resume_align_exact: "L'instant exact", resume_align_bar: "Début de la mesure", resume_align_section: "Début de la section",
+    resume_align_hint: "Aux deux derniers choix, Live recule brièvement au moment du STOP (la musique saute un instant en arrière avant de s'arrêter), puis la lecture repart avec une courte levée : le premier temps tombe à la fin du décompte. Un morceau sans sections retombe sur la mesure.",
     language: "Langue", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "Piste", type: "Type", channel: "Canal", choose: "Choisir",
     master_track: "MAIN", master_volume_label: "VOLUME", master_cue_label: "CUE OUT",
@@ -3032,7 +3179,7 @@ const I18N = {
     song_count_one: "morceau", song_count_many: "morceaux", filter_songs_placeholder: "Filtrer un morceau…",
     grid_empty_title: "Ta setlist est vide", grid_empty_hint: "Ouvre la bibliothèque pour choisir les morceaux de ce concert.", grid_empty_hint_readonly: "Contacte l'administrateur : il doit d'abord choisir les morceaux du concert.", grid_empty_btn: "Voir la bibliothèque",
     lib_add_all: "Tout ajouter", lib_remove_all: "Tout retirer", lib_remove_all_confirm: "Confirmer ?",
-    offline_reconnecting: "Connexion perdue — reconnexion en cours…", ableton_unresponsive: "Ableton ne répond plus", foreign_loop_warning: "Boucle Ableton active — le morceau ne se terminera pas. Éteins-la dans Ableton.",
+    offline_reconnecting: "Connexion perdue — reconnexion en cours…", ableton_unresponsive: "Ableton ne répond plus", foreign_loop_warning: "Boucle Ableton active — le morceau ne se terminera pas. Éteins-la dans Ableton.", no_markers_banner: "Aucun repère : Ableton charge-t-il un projet ?",
     solo: "SOLO", mute: "MUTE", muted: "MUTÉ", io_tooltip: "Entrées / sorties", expand_collapse_all_songs: "Tout déplier / replier",
     no_options: "Aucune option disponible", input_section: "ENTRÉE", output_section: "SORTIE",
     confirm_title: "Confirmation", cancel: "Annuler", remove: "Retirer", save: "Enregistrer", load_preset_label: "Charger un préréglage",
@@ -3089,6 +3236,14 @@ const I18N = {
     loading: "Loading…", appearance: "Appearance", theme_dark: "Dark", theme_light: "Light",
     beat_indicator_label: "Beat indicator", beat_indicator_immersive: "Immersive", beat_indicator_compact: "Compact",
     visual_offset_label: "Visual offset", visual_offset_hint: "Delays the beat indicator, the countdown and the pre-roll to match the sound you actually hear on this device.",
+    kbd_shortcuts_title: "Keyboard shortcuts", kbd_shortcuts_hint: "Space: PLAY / STOP · ← →: previous / next · L: LOOP SECTION (Live view). A key does what the matching on-screen button does.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "PLAY after a STOP", resume_mode_restart: "Restarts the song", resume_mode_resume: "Resumes where it stopped", resume_preroll_label: "Count-in before resuming (bars)", resume_preroll_same: "Same as pre-roll", resume_preroll_none: "None",
+    resume_hint: "“Restarts the song”: PLAY starts the song again from its beginning (as before). “Resumes where it stopped”: after a STOP during playback, PLAY continues from the exact point where playback stopped, after the chosen count-in; a second STOP, or choosing another song, cancels the pause.",
+    resume_unavailable_hint: "Unavailable while a second machine is paired (redundancy): PLAY always restarts the song.",
+    paused_label: "Paused", resume_play: "RESUME",
+    resume_align_label: "Resume at", resume_align_exact: "The exact moment", resume_align_bar: "Start of the bar", resume_align_section: "Start of the section",
+    resume_align_hint: "With the last two choices, Live briefly steps back when you press STOP (the music jumps back for an instant before stopping), then playback restarts with a short lead-in: the first beat lands at the end of the countdown. A song without sections falls back to the bar.",
     language: "Language", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "Track", type: "Type", channel: "Channel", choose: "Choose",
     master_track: "MAIN", master_volume_label: "VOLUME", master_cue_label: "CUE OUT",
@@ -3096,7 +3251,7 @@ const I18N = {
     song_count_one: "song", song_count_many: "songs", filter_songs_placeholder: "Filter a song…",
     grid_empty_title: "Your setlist is empty", grid_empty_hint: "Open the library to pick the songs for this show.", grid_empty_hint_readonly: "Ask the administrator to pick the songs for this show first.", grid_empty_btn: "View library",
     lib_add_all: "Add all", lib_remove_all: "Remove all", lib_remove_all_confirm: "Confirm?",
-    offline_reconnecting: "Connection lost — reconnecting…", ableton_unresponsive: "Ableton is not responding", foreign_loop_warning: "Ableton loop is on — the song will not end. Turn it off in Ableton.",
+    offline_reconnecting: "Connection lost — reconnecting…", ableton_unresponsive: "Ableton is not responding", foreign_loop_warning: "Ableton loop is on — the song will not end. Turn it off in Ableton.", no_markers_banner: "No locators: is Ableton loading a project?",
     solo: "SOLO", mute: "MUTE", muted: "MUTED", io_tooltip: "Inputs / Outputs", expand_collapse_all_songs: "Expand / collapse all",
     no_options: "No options available", input_section: "INPUT", output_section: "OUTPUT",
     confirm_title: "Confirmation", cancel: "Cancel", remove: "Remove", save: "Save", load_preset_label: "Load a preset",
@@ -3153,6 +3308,14 @@ const I18N = {
     loading: "Cargando…", appearance: "Apariencia", theme_dark: "Oscuro", theme_light: "Claro",
     beat_indicator_label: "Indicador de tiempo", beat_indicator_immersive: "Inmersivo", beat_indicator_compact: "Discreto",
     visual_offset_label: "Desfase visual", visual_offset_hint: "Retrasa el indicador de tiempo, la cuenta atrás y el pre-roll para que coincidan con el sonido que realmente se oye en este dispositivo.",
+    kbd_shortcuts_title: "Atajos de teclado", kbd_shortcuts_hint: "Espacio: PLAY / STOP · ← →: anterior / siguiente · L: LOOP SECTION (Vista en directo). Una tecla hace lo mismo que el botón correspondiente en pantalla.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "PLAY tras un STOP", resume_mode_restart: "Reinicia el tema", resume_mode_resume: "Continúa donde paró", resume_preroll_label: "Cuenta antes de reanudar (compases)", resume_preroll_same: "Como el pre-roll", resume_preroll_none: "Ninguna",
+    resume_hint: "«Reinicia el tema»: PLAY vuelve a lanzar el tema desde el principio (como antes). «Continúa donde paró»: tras un STOP durante la reproducción, PLAY continúa justo donde se detuvo, después de la cuenta elegida; un segundo STOP, o elegir otro tema, cancela la pausa.",
+    resume_unavailable_hint: "No disponible mientras haya una segunda máquina emparejada (redundancia): PLAY siempre reinicia el tema.",
+    paused_label: "En pausa", resume_play: "REANUDAR",
+    resume_align_label: "Reanudar en", resume_align_exact: "El instante exacto", resume_align_bar: "Inicio del compás", resume_align_section: "Inicio de la sección",
+    resume_align_hint: "Con las dos últimas opciones, Live retrocede un instante al pulsar STOP (la música salta atrás un momento antes de detenerse) y la reproducción vuelve con una breve anacrusa: el primer tiempo cae al final de la cuenta. Un tema sin secciones recurre al compás.",
     language: "Idioma", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "Pista", type: "Tipo", channel: "Canal", choose: "Elegir",
     master_track: "MAIN", master_volume_label: "VOLUMEN", master_cue_label: "CUE OUT",
@@ -3160,7 +3323,7 @@ const I18N = {
     song_count_one: "canción", song_count_many: "canciones", filter_songs_placeholder: "Filtrar una canción…",
     grid_empty_title: "Tu setlist está vacía", grid_empty_hint: "Abre la biblioteca para elegir las canciones de este concierto.", grid_empty_hint_readonly: "Pide al administrador que elija primero las canciones del concierto.", grid_empty_btn: "Ver biblioteca",
     lib_add_all: "Añadir todo", lib_remove_all: "Quitar todo", lib_remove_all_confirm: "¿Confirmar?",
-    offline_reconnecting: "Conexión perdida — reconectando…", ableton_unresponsive: "Ableton no responde", foreign_loop_warning: "Bucle de Ableton activo: la canción no terminará. Desactívalo en Ableton.",
+    offline_reconnecting: "Conexión perdida — reconectando…", ableton_unresponsive: "Ableton no responde", foreign_loop_warning: "Bucle de Ableton activo: la canción no terminará. Desactívalo en Ableton.", no_markers_banner: "Ningún localizador: ¿Ableton está cargando un proyecto?",
     solo: "SOLO", mute: "MUTE", muted: "SILENCIADO", io_tooltip: "Entradas / Salidas", expand_collapse_all_songs: "Desplegar / plegar todo",
     no_options: "No hay opciones disponibles", input_section: "ENTRADA", output_section: "SALIDA",
     confirm_title: "Confirmación", cancel: "Cancelar", remove: "Quitar", save: "Guardar", load_preset_label: "Cargar un preajuste",
@@ -3217,6 +3380,14 @@ const I18N = {
     loading: "Lädt…", appearance: "Erscheinungsbild", theme_dark: "Dunkel", theme_light: "Hell",
     beat_indicator_label: "Taktanzeige", beat_indicator_immersive: "Immersiv", beat_indicator_compact: "Dezent",
     visual_offset_label: "Visueller Versatz", visual_offset_hint: "Verzögert die Taktanzeige, den Countdown und den Preroll, damit sie mit dem auf diesem Gerät tatsächlich gehörten Klang übereinstimmen.",
+    kbd_shortcuts_title: "Tastenkürzel", kbd_shortcuts_hint: "Leertaste: PLAY / STOP · ← →: vorheriger / nächster · L: LOOP SECTION (Live-Ansicht). Eine Taste tut dasselbe wie die passende Schaltfläche auf dem Bildschirm.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "PLAY nach einem STOP", resume_mode_restart: "Startet den Titel neu", resume_mode_resume: "Setzt an der Stoppstelle fort", resume_preroll_label: "Einzähler vor dem Fortsetzen (Takte)", resume_preroll_same: "Wie Pre-Roll", resume_preroll_none: "Keiner",
+    resume_hint: "„Startet den Titel neu“: PLAY startet den Titel wieder von Anfang an (wie bisher). „Setzt an der Stoppstelle fort“: Nach einem STOP während der Wiedergabe setzt PLAY genau dort fort, wo die Wiedergabe stand, nach dem gewählten Einzähler; ein zweites STOP oder die Wahl eines anderen Titels hebt die Pause auf.",
+    resume_unavailable_hint: "Nicht verfügbar, solange ein zweiter Rechner gekoppelt ist (Redundanz): PLAY startet immer von vorn.",
+    paused_label: "Pausiert", resume_play: "FORTSETZEN",
+    resume_align_label: "Fortsetzen bei", resume_align_exact: "Genau dort", resume_align_bar: "Taktanfang", resume_align_section: "Anfang des Abschnitts",
+    resume_align_hint: "Bei den letzten beiden Optionen springt Live beim STOP kurz zurück (die Musik springt einen Moment zurück, bevor sie anhält); danach startet die Wiedergabe mit einem kurzen Auftakt: Der erste Schlag fällt auf das Ende des Einzählers. Ein Titel ohne Abschnitte fällt auf den Takt zurück.",
     language: "Sprache", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "Spur", type: "Typ", channel: "Kanal", choose: "Wählen",
     master_track: "MAIN", master_volume_label: "VOLUME", master_cue_label: "CUE OUT",
@@ -3224,7 +3395,7 @@ const I18N = {
     song_count_one: "Song", song_count_many: "Songs", filter_songs_placeholder: "Song filtern…",
     grid_empty_title: "Deine Setlist ist leer", grid_empty_hint: "Öffne die Bibliothek, um die Songs für dieses Konzert auszuwählen.", grid_empty_hint_readonly: "Bitte den Administrator, zuerst die Songs für dieses Konzert auszuwählen.", grid_empty_btn: "Bibliothek ansehen",
     lib_add_all: "Alle hinzufügen", lib_remove_all: "Alle entfernen", lib_remove_all_confirm: "Bestätigen?",
-    offline_reconnecting: "Verbindung verloren — Wiederverbindung…", ableton_unresponsive: "Ableton reagiert nicht mehr", foreign_loop_warning: "Ableton-Loop ist aktiv – der Song endet nicht. In Ableton ausschalten.",
+    offline_reconnecting: "Verbindung verloren — Wiederverbindung…", ableton_unresponsive: "Ableton reagiert nicht mehr", foreign_loop_warning: "Ableton-Loop ist aktiv – der Song endet nicht. In Ableton ausschalten.", no_markers_banner: "Keine Locators: Lädt Ableton gerade ein Projekt?",
     solo: "SOLO", mute: "MUTE", muted: "STUMM", io_tooltip: "Eingänge / Ausgänge", expand_collapse_all_songs: "Alle auf-/zuklappen",
     no_options: "Keine Optionen verfügbar", input_section: "EINGANG", output_section: "AUSGANG",
     confirm_title: "Bestätigung", cancel: "Abbrechen", remove: "Entfernen", save: "Speichern", load_preset_label: "Voreinstellung laden",
@@ -3281,6 +3452,14 @@ const I18N = {
     loading: "Carregando…", appearance: "Aparência", theme_dark: "Escuro", theme_light: "Claro",
     beat_indicator_label: "Indicador de batida", beat_indicator_immersive: "Imersivo", beat_indicator_compact: "Discreto",
     visual_offset_label: "Atraso visual", visual_offset_hint: "Atrasa o indicador de batida, a contagem regressiva e o pré-roll para coincidirem com o som realmente ouvido neste aparelho.",
+    kbd_shortcuts_title: "Atalhos de teclado", kbd_shortcuts_hint: "Espaço: PLAY / STOP · ← →: anterior / próxima · L: LOOP SECTION (Visualização ao vivo). Uma tecla faz o mesmo que o botão correspondente na tela.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "PLAY após um STOP", resume_mode_restart: "Recomeça a música", resume_mode_resume: "Continua de onde parou", resume_preroll_label: "Contagem antes de retomar (compassos)", resume_preroll_same: "Como o pré-roll", resume_preroll_none: "Nenhuma",
+    resume_hint: "«Recomeça a música»: o PLAY volta a lançar a música desde o início (como antes). «Continua de onde parou»: depois de um STOP durante a reprodução, o PLAY continua exatamente onde a reprodução parou, depois da contagem escolhida; um segundo STOP, ou escolher outra música, cancela a pausa.",
+    resume_unavailable_hint: "Indisponível enquanto uma segunda máquina estiver emparelhada (redundância): o PLAY recomeça sempre a música.",
+    paused_label: "Em pausa", resume_play: "RETOMAR",
+    resume_align_label: "Retomar em", resume_align_exact: "O instante exato", resume_align_bar: "Início do compasso", resume_align_section: "Início da seção",
+    resume_align_hint: "Nas duas últimas opções, o Live recua um instante ao pressionar STOP (a música salta para trás por um momento antes de parar) e a reprodução recomeça com uma breve anacruse: o primeiro tempo cai no fim da contagem. Uma música sem seções volta ao compasso.",
     language: "Idioma", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "Faixa", type: "Tipo", channel: "Canal", choose: "Escolher",
     master_track: "MAIN", master_volume_label: "VOLUME", master_cue_label: "CUE OUT",
@@ -3288,7 +3467,7 @@ const I18N = {
     song_count_one: "música", song_count_many: "músicas", filter_songs_placeholder: "Filtrar uma música…",
     grid_empty_title: "Sua setlist está vazia", grid_empty_hint: "Abra a biblioteca para escolher as músicas deste show.", grid_empty_hint_readonly: "Peça ao administrador para escolher primeiro as músicas do show.", grid_empty_btn: "Ver biblioteca",
     lib_add_all: "Adicionar todas", lib_remove_all: "Remover todas", lib_remove_all_confirm: "Confirmar?",
-    offline_reconnecting: "Conexão perdida — reconectando…", ableton_unresponsive: "O Ableton não está respondendo", foreign_loop_warning: "Loop do Ableton ativo — a música não vai terminar. Desligue-o no Ableton.",
+    offline_reconnecting: "Conexão perdida — reconectando…", ableton_unresponsive: "O Ableton não está respondendo", foreign_loop_warning: "Loop do Ableton ativo — a música não vai terminar. Desligue-o no Ableton.", no_markers_banner: "Nenhum locator: o Ableton está carregando um projeto?",
     solo: "SOLO", mute: "MUTE", muted: "MUTADO", io_tooltip: "Entradas / Saídas", expand_collapse_all_songs: "Expandir / recolher tudo",
     no_options: "Nenhuma opção disponível", input_section: "ENTRADA", output_section: "SAÍDA",
     confirm_title: "Confirmação", cancel: "Cancelar", remove: "Remover", save: "Salvar", load_preset_label: "Carregar uma predefinição",
@@ -3345,6 +3524,14 @@ const I18N = {
     loading: "불러오는 중…", appearance: "화면 테마", theme_dark: "다크", theme_light: "라이트",
     beat_indicator_label: "박자 표시", beat_indicator_immersive: "몰입형", beat_indicator_compact: "심플",
     visual_offset_label: "시각 지연", visual_offset_hint: "이 기기에서 실제로 들리는 소리와 맞도록 박자 표시, 카운트다운, 프리롤을 지연시킵니다.",
+    kbd_shortcuts_title: "키보드 단축키", kbd_shortcuts_hint: "스페이스바: PLAY / STOP · ← →: 이전 / 다음 · L: LOOP SECTION (라이브 뷰). 키를 누르면 화면의 해당 버튼을 누른 것과 같아요.",
+    // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
+    resume_after_stop_label: "STOP 후 PLAY", resume_mode_restart: "곡을 처음부터", resume_mode_resume: "멈춘 곳에서 이어서", resume_preroll_label: "재개 전 카운트 (마디)", resume_preroll_same: "프리롤과 같게", resume_preroll_none: "없음",
+    resume_hint: "“곡을 처음부터”: PLAY가 곡을 처음부터 다시 시작합니다(기존 방식). “멈춘 곳에서 이어서”: 재생 중 STOP 후 PLAY가 선택한 카운트 뒤에 재생이 멈춘 바로 그 지점부터 이어집니다. STOP을 한 번 더 누르거나 다른 곡을 고르면 일시정지가 취소됩니다.",
+    resume_unavailable_hint: "두 번째 컴퓨터가 연결된 동안(이중화)에는 사용할 수 없습니다. PLAY는 항상 곡을 처음부터 시작합니다.",
+    paused_label: "일시정지", resume_play: "재개",
+    resume_align_label: "재개 위치", resume_align_exact: "멈춘 지점 그대로", resume_align_bar: "마디 처음", resume_align_section: "섹션 처음",
+    resume_align_hint: "마지막 두 선택지에서는 STOP을 누를 때 Live가 잠시 뒤로 물러납니다(멈추기 전에 음악이 잠깐 뒤로 점프). 이후 짧은 도입과 함께 재생이 시작되어 첫 박이 카운트가 끝나는 지점에 떨어집니다. 섹션이 없는 곡은 마디 기준으로 처리됩니다.",
     language: "언어", lang_fr: "Français", lang_en: "English", lang_es: "Español", lang_de: "Deutsch", lang_pt: "Português", lang_ko: "한국어",
     track_default: "트랙", type: "유형", channel: "채널", choose: "선택",
     master_track: "MAIN", master_volume_label: "볼륨", master_cue_label: "CUE OUT",
@@ -3352,7 +3539,7 @@ const I18N = {
     song_count_one: "곡", song_count_many: "곡", filter_songs_placeholder: "곡 검색…",
     grid_empty_title: "셋리스트가 비어 있습니다", grid_empty_hint: "라이브러리를 열어 이번 공연의 곡을 선택하세요.", grid_empty_hint_readonly: "관리자에게 먼저 공연 곡을 선택해 달라고 요청하세요.", grid_empty_btn: "라이브러리 보기",
     lib_add_all: "모두 추가", lib_remove_all: "모두 제거", lib_remove_all_confirm: "확인?",
-    offline_reconnecting: "연결이 끊어졌어요 — 다시 연결 중…", ableton_unresponsive: "Ableton이 응답하지 않습니다", foreign_loop_warning: "Ableton 루프가 켜져 있어 곡이 끝나지 않습니다. Ableton에서 꺼 주세요.",
+    offline_reconnecting: "연결이 끊어졌어요 — 다시 연결 중…", ableton_unresponsive: "Ableton이 응답하지 않습니다", foreign_loop_warning: "Ableton 루프가 켜져 있어 곡이 끝나지 않습니다. Ableton에서 꺼 주세요.", no_markers_banner: "로케이터가 없습니다. Ableton이 프로젝트를 불러오는 중인가요?",
     solo: "SOLO", mute: "MUTE", muted: "음소거됨", io_tooltip: "입력 / 출력", expand_collapse_all_songs: "전체 펼치기/접기",
     no_options: "사용 가능한 옵션이 없어요", input_section: "입력", output_section: "출력",
     confirm_title: "확인", cancel: "취소", remove: "제거", save: "저장", load_preset_label: "프리셋 불러오기",
@@ -3749,7 +3936,7 @@ document.getElementById('transport-view-toggle-btn').onpointerdown = () => {
 // refreshStatusCurrentBanner() (état "actif" identique, `active`).
 function refreshTransportCurrentSong(){
     if(!transportViewActive) return;
-    document.getElementById('transport-current-song').textContent = active || '';
+    fillSongName(document.getElementById('transport-current-song'), active || '');
 }
 // Bouton RELÂCHER de #quick-toggles-bar (14/09, deux demandes explicites
 // successives -- voir #release-loop-btn plus haut pour le détail complet
@@ -3983,7 +4170,7 @@ function loadStatusSetlist(){
         banner.appendChild(fillSpan);
         const nameSpan = document.createElement('span');
         nameSpan.className = 'status-song-name';
-        nameSpan.textContent = name;
+        fillSongName(nameSpan, name);
         banner.appendChild(nameSpan);
         // Durée du MORCEAU entier (markerDurations, déjà poussée une fois
         // au chargement du show, voir set_marker_durations côté serveur --
@@ -4601,7 +4788,7 @@ socket.on('preroll_start', (d) => {
     // setTimeout (même dans la branche "sans nom", auparavant un appel
     // synchrone) pour que ce même point d'application couvre les deux cas.
     if(d.song_name){
-        prerollAnnounceSpan.textContent = d.song_name;
+        fillSongName(prerollAnnounceSpan, d.song_name);
         prerollAnnounceEl.style.display = 'flex';
         prerollTimeout = setTimeout(() => {
             prerollAnnounceEl.style.display = 'none';
@@ -4611,6 +4798,16 @@ socket.on('preroll_start', (d) => {
         prerollAnnounceEl.style.display = 'none';
         prerollTimeout = setTimeout(tick, Math.max(0, visualOffsetMs));
     }
+});
+
+// Pré-roll ANNULÉ (06/11) : STOP, ou un autre morceau choisi (flèches, grille, contrôleur) pendant l'annonce / le décompte -- le serveur n'enverra jamais PLAY à Live.
+// Les deux calques plein écran disparaissent tout de suite et la minuterie du décompte est coupée (sinon le chiffre suivant reviendrait s'afficher par-dessus les
+// titres) ; prerollActive retombe pour que la Vue Live reprenne ses propres annonces.
+socket.on('preroll_cancel', () => {
+    if(prerollTimeout){ clearTimeout(prerollTimeout); prerollTimeout = null; }
+    prerollActive = false;
+    prerollAnnounceEl.style.display = 'none';
+    prerollCountdownEl.style.display = 'none';
 });
 
 function computeMainBeatInfo(numerator, denominator){
@@ -4766,6 +4963,7 @@ function estimateLiveAnchor(d, nowMs){
 // <<< live-anchor-filter
 
 socket.on('live_view_state', (d) => {
+    applyPausedUI(d && d.marker_name && d.is_paused);
     if(!d || !d.marker_name){
         lastLiveState = null;
         liveEmptyEl.style.display = 'flex';
@@ -4829,7 +5027,7 @@ socket.on('live_view_state', (d) => {
     liveMetaTempoEl.textContent = d.tempo ? Math.round(d.tempo) : '—';
 
     if(d.marker_name !== lastLiveMarkerName){
-        liveNameEl.textContent = d.marker_name;
+        fillSongName(liveNameEl, d.marker_name);
         // Repères de sous-markers RETIRÉS (21/08) : depuis que la barre
         // représente le sous-marker EN COURS (voir animateLive() plus bas)
         // et non plus le morceau entier, ses 0%/100% se déplacent au fil
@@ -5535,6 +5733,71 @@ livePrerollBtn.onpointerdown = () => {
     socket.volatile.emit('cycle_preroll', {});
 };
 
+// --- « PLAY après un STOP » (07/11, étape A de la « vraie pause ») -----------------------------------------------------------------------------------------------
+// Réglage de la MACHINE (enregistré côté app, partagé par toutes les tablettes) : le serveur rediffuse son état dans `state` (resume_mode, resume_preroll,
+// resume_available) ; la page ne fait que l'afficher et envoyer `set_resume_settings`. « resume_preroll » : None = comme le pré-roll habituel, sinon 0 / 1 / 2 / 4 mesures.
+let resumeMode = 'restart', resumePreroll = null, resumeAvailable = true, resumeCustomizable = true, resumeAlign = 'exact';
+function refreshResumeSettingsUI(){
+    document.querySelectorAll('[data-resume-mode-value]').forEach(el => el.classList.toggle('selected', el.dataset.resumeModeValue === resumeMode));
+    const prerollValue = resumePreroll === null ? 'same' : String(resumePreroll);
+    document.querySelectorAll('[data-resume-preroll-value]').forEach(el => el.classList.toggle('selected', el.dataset.resumePrerollValue === prerollValue));
+    // Le décompte de la reprise n'a de sens qu'en mode « reprend » ET si la formule laisse modifier la durée du pré-roll (comme le bouton PRÉ-ROLL).
+    document.getElementById('resume-preroll-block').style.display = (resumeMode === 'resume' && resumeCustomizable) ? '' : 'none';
+    document.querySelectorAll('[data-resume-align-value]').forEach(el => el.classList.toggle('selected', el.dataset.resumeAlignValue === resumeAlign));
+    document.getElementById('resume-align-block').style.display = (resumeMode === 'resume') ? '' : 'none';
+    document.getElementById('resume-align-row').classList.toggle('locked', !resumeAvailable);
+    document.getElementById('resume-mode-row').classList.toggle('locked', !resumeAvailable);
+    document.getElementById('resume-preroll-row').classList.toggle('locked', !resumeAvailable);
+    document.getElementById('resume-preroll-row-measures').classList.toggle('locked', !resumeAvailable);
+    document.getElementById('resume-hint').style.display = resumeAvailable ? '' : 'none';
+    document.getElementById('resume-unavailable-hint').style.display = resumeAvailable ? 'none' : '';
+}
+function sendResumeSettings(mode, preroll, align){
+    if(!resumeAvailable) return;
+    socket.emit('set_resume_settings', {mode: mode, preroll: preroll, align: (align === undefined ? resumeAlign : align)});        // pas « volatile » : un réglage enregistré sur disque ne doit pas se perdre en route
+}
+document.querySelectorAll('[data-resume-mode-value]').forEach(el => {
+    el.onpointerdown = () => sendResumeSettings(el.dataset.resumeModeValue, resumePreroll);
+});
+document.querySelectorAll('[data-resume-align-value]').forEach(el => {
+    el.onpointerdown = () => sendResumeSettings(resumeMode, resumePreroll, el.dataset.resumeAlignValue);
+});
+document.querySelectorAll('[data-resume-preroll-value]').forEach(el => {
+    el.onpointerdown = () => { const v = el.dataset.resumePrerollValue; sendResumeSettings(resumeMode, v === 'same' ? null : parseInt(v, 10)); };
+});
+function applyResumeState(d){
+    if(!d || d.resume_mode === undefined) return;
+    resumeMode = d.resume_mode;
+    resumePreroll = (d.resume_preroll === undefined ? null : d.resume_preroll);
+    resumeAvailable = d.resume_available !== false;
+    resumeAlign = (d.resume_align === 'bar' || d.resume_align === 'section') ? d.resume_align : 'exact';
+    resumeCustomizable = d.allow_preroll_customization !== false;           // lu ici : le gestionnaire principal de `state` plus bas passe APRÈS celui-ci
+    refreshResumeSettingsUI();
+}
+socket.on('state', applyResumeState);
+refreshResumeSettingsUI();
+
+// État « EN PAUSE » : le moteur dit (live_view_state.is_paused) qu'un STOP en pleine lecture a laissé une reprise possible. PLAY devient REPRENDRE sur tous les boutons PLAY et
+// l'étiquette « EN COURS » de la Vue Live devient « EN PAUSE » (ambre : un état d'attente, ni lecture ni arrêt). Les libellés passent par data-i18n : un changement de langue
+// pendant la pause reste juste. Rien ne change tant que le réglage est sur « repart du début » : le moteur n'envoie alors jamais is_paused.
+const statusPlayBtn = document.getElementById('status-play-btn');
+const liveEyebrowEl = document.getElementById('live-eyebrow');
+let pausedUiState = null;
+function applyPausedUI(paused){
+    paused = !!paused;
+    if(paused === pausedUiState) return;
+    pausedUiState = paused;
+    [playBtn, statusPlayBtn].forEach(btn => {
+        if(!btn) return;
+        if(paused){ btn.setAttribute('data-i18n', 'resume_play'); btn.textContent = t('resume_play'); }
+        else { btn.removeAttribute('data-i18n'); btn.textContent = 'PLAY'; }
+    });
+    liveEyebrowEl.setAttribute('data-i18n', paused ? 'paused_label' : 'now_playing');
+    liveEyebrowEl.textContent = t(paused ? 'paused_label' : 'now_playing');
+    liveEyebrowEl.classList.toggle('is-paused', paused);
+    document.body.classList.toggle('is-paused', paused);
+}
+
 // --- Bouton "Alerte" (appareil -> hôte uniquement, voir send_alert côté
 // serveur) -- pas de socket.volatile ici, contrairement aux boutons
 // ci-dessus : un envoi PERDU en cas de coupure réseau momentanée serait
@@ -6215,7 +6478,7 @@ function loopPlanBadgeText(mode){ return mode === 'x1' ? 'x1' : mode === 'x2' ? 
 function openLoopPlanModal(name){
     loopPlanSongName = name;
     loopPlanDraft = new Map();
-    document.getElementById('loop-plan-song-name').textContent = name;
+    fillSongName(document.getElementById('loop-plan-song-name'), name);
     document.getElementById('loop-plan-list').innerHTML = '';
     document.getElementById('loop-plan-overlay').style.display = 'flex';
     socket.emit('get_song_sections', {song_name: name});
@@ -6937,7 +7200,30 @@ document.getElementById('open-export').onpointerdown = async () => {
         doc.text(`${i + 1}.`, marginLeft, y);
         doc.setFont(FONT_DISPLAY, FONT_DISPLAY_STYLE);
         doc.setFontSize(16);
-        doc.text(name, marginLeft + 30, y);
+        const nameParts = splitSongName(name);
+        doc.text(nameParts.title, marginLeft + 30, y);
+        // Note du musicien entre accolades (tonalité, capo, tempo... voir
+        // splitSongName, 04/11) : à côté du titre, plus petite et grise,
+        // coupée par "..." avant la colonne des durées (jamais par-dessus).
+        // Les trois points ASCII plutôt que le caractère « … » : la police
+        // embarquée n'est pas garantie de l'avoir, une page imprimée avec un
+        // carré vide à la place est pire qu'une note un peu moins jolie.
+        if(nameParts.meta){
+            const metaX = marginLeft + 30 + doc.getTextWidth(nameParts.title) + 10;
+            const metaMaxWidth = durationsRight - 60 - metaX;
+            if(metaMaxWidth > 40){
+                doc.setFont(FONT_DATA, 'normal');
+                doc.setFontSize(11);
+                doc.setTextColor(110, 110, 110);
+                let metaText = nameParts.meta;
+                if(doc.getTextWidth(metaText) > metaMaxWidth){
+                    while(metaText.length > 1 && doc.getTextWidth(metaText + '...') > metaMaxWidth) metaText = metaText.slice(0, -1);
+                    metaText = metaText.replace(/\s+$/, '') + '...';
+                }
+                doc.text(metaText, metaX, y);
+                doc.setTextColor(20, 20, 20);
+            }
+        }
         // Durée du morceau (voir set_marker_durations côté WebControlServer,
         // 02/09) -- absente pour un morceau dont le tempo n'a pas pu être
         // mesuré (voir _compute_marker_durations côté ui.py) : rien affiché
@@ -7600,7 +7886,7 @@ function render(){
     // anonyme non ciblable en CSS pour ce flex:1. Comportement des badges
     // (positions/gestes/logique) totalement inchangé, seul ce conteneur de
     // nom est nouveau.
-    const nameSpan=document.createElement("span"); nameSpan.className="marker-btn-name"; nameSpan.textContent=name;
+    const nameSpan=document.createElement("span"); nameSpan.className="marker-btn-name"; fillSongName(nameSpan,name);
     // Verrouillé : toucher la ligne SAUTE à ce morceau -> le nom devient un bouton atteignable au clavier (Tab, puis Entrée ou Espace) ; _kbdOwner = l'élément qui porte le geste (voir la couche clavier plus bas).
     // Déverrouillé (édition) : la ligne ne fait rien au toucher simple (glisser seulement), donc pas de faux bouton.
     if(locked){ nameSpan.setAttribute("role","button"); nameSpan.tabIndex=0; nameSpan._kbdOwner=btn; }
@@ -7646,7 +7932,7 @@ function render(){
       loopBadge.textContent="↻";
       // Accessibilité (28/10) : bouton à bascule nommé ; l'appui long de 2 s (boucles par section) a son équivalent clavier, Maj + Entrée -- sans quoi cette fenêtre serait inaccessible sans souris ni doigt.
       loopBadge.setAttribute("role","button"); loopBadge.tabIndex=0;
-      loopBadge.setAttribute("aria-label", t('a11y_loop_song').replace('{name}', name));
+      loopBadge.setAttribute("aria-label", t('a11y_loop_song').replace('{name}', songTitle(name)));
       loopBadge.setAttribute("aria-pressed", songLoopSongs.has(name) ? "true" : "false");
       if(allowLiveView){
         loopBadge.title = t('a11y_loop_hint');
@@ -7702,10 +7988,10 @@ function render(){
       // reste exclu du palier Access, ces trois actions étaient bloquées
       // ensemble par erreur avant le 27/08).
       const del=document.createElement("div");del.className="badge-remove";del.textContent="×";
-      del.setAttribute("role","button"); del.tabIndex=0; del.setAttribute("aria-label", t('a11y_remove_song').replace('{name}', name));
+      del.setAttribute("role","button"); del.tabIndex=0; del.setAttribute("aria-label", t('a11y_remove_song').replace('{name}', songTitle(name)));
       del.onpointerdown=(e)=>{
         e.stopPropagation();
-        openConfirm(t('confirm_remove_message').replace('{name}', name), () => {
+        openConfirm(t('confirm_remove_message').replace('{name}', songTitle(name)), () => {
           socket.emit("remove_marker",{name:name});
         });
       };
@@ -7713,7 +7999,7 @@ function render(){
 
       const chainBadge=document.createElement("div");chainBadge.className="badge-chain"+(chained?" active":"");chainBadge.textContent="→";
       chainBadge.setAttribute("role","button"); chainBadge.tabIndex=0; chainBadge.setAttribute("aria-pressed", chained ? "true" : "false");
-      chainBadge.setAttribute("aria-label", t('a11y_chain_song').replace('{name}', name));
+      chainBadge.setAttribute("aria-label", t('a11y_chain_song').replace('{name}', songTitle(name)));
       chainBadge.onpointerdown=(e)=>{e.stopPropagation();socket.emit("toggle_chain_marker",{name:name});};
       btn.appendChild(chainBadge);
 
@@ -7742,7 +8028,7 @@ function render(){
     }else{
       if(chained){
         const chainBadge=document.createElement("div");chainBadge.className="badge-chain active";chainBadge.textContent="→";
-        chainBadge.setAttribute("role","img"); chainBadge.setAttribute("aria-label", t('a11y_chain_song').replace('{name}', name));
+        chainBadge.setAttribute("role","img"); chainBadge.setAttribute("aria-label", t('a11y_chain_song').replace('{name}', songTitle(name)));
         btn.appendChild(chainBadge);
       }
       btn.onpointerdown=() => {
@@ -8085,7 +8371,7 @@ function renderLib(){
   removeAllBtn.classList.toggle("armed", libRemoveArmed);
   libMarkers.forEach(n=>{
     const b=document.createElement("div");b.className="marker-btn"; b.dataset.name=n;
-    const nameSpan=document.createElement("span"); nameSpan.className="marker-btn-name"; nameSpan.textContent=n;
+    const nameSpan=document.createElement("span"); nameSpan.className="marker-btn-name"; fillSongName(nameSpan,n);
     b.appendChild(nameSpan);
     // Durée du morceau à la place du BPM (demande explicite du 21/09 : "au
     // lieu des bpm dans cette bibliothéque") -- même source que le total
@@ -8248,7 +8534,7 @@ function applyLicenseRestrictions(){
   const alertBtn = document.getElementById('alert-btn');
   if(alertBtn) alertBtn.style.display = allowAlerts ? "" : "none";
 }
-socket.on("state",(d)=>{markers=d.markers||[];allMarkers=d.all_markers||[];active=d.active||null;chainFlags=new Set(d.chain_next||[]);loopPlanSongs=new Set(d.loop_plan_songs||[]);songLoopSongs=new Set(d.song_loop_songs||[]);allowDragDrop=(d.allow_drag_drop!==false);allowTrackControl=(d.allow_track_control!==false);allowPdfExport=(d.allow_pdf_export!==false);allowPreroll=(d.allow_preroll!==false);allowPrerollCustomization=(d.allow_preroll_customization!==false);allowLiveView=(d.allow_live_view!==false);allowLtcView=(d.allow_ltc_view!==false);allowAlerts=(d.allow_alerts!==false);allowSongLoop=(d.allow_song_loop!==false);mixerPinnedTracks=new Set(d.mixer_pinned_tracks||[]);setAbletonUnresponsive(!!d.ableton_unresponsive);setForeignLoop(!!d.foreign_loop);applyLicenseRestrictions();render();if(document.getElementById('lib-overlay').style.display==='flex')renderLib();if(d.next_marker_info)applyNextMarkerInfo(d.next_marker_info);if(d.music_remaining)applyMusicRemaining(d.music_remaining);applyCalibrationStatus(!!d.calibration_active, d.calibration_duration_s, d.calibration_kind);if(d.calibration_active && d.calibration_remaining_s!=null){applyCalibrationCountdown(d.calibration_remaining_s);}refreshStatusCurrentBanner();refreshTransportCurrentSong();refreshReleaseBtn();
+socket.on("state",(d)=>{markers=d.markers||[];allMarkers=d.all_markers||[];active=d.active||null;chainFlags=new Set(d.chain_next||[]);loopPlanSongs=new Set(d.loop_plan_songs||[]);songLoopSongs=new Set(d.song_loop_songs||[]);allowDragDrop=(d.allow_drag_drop!==false);allowTrackControl=(d.allow_track_control!==false);allowPdfExport=(d.allow_pdf_export!==false);allowPreroll=(d.allow_preroll!==false);allowPrerollCustomization=(d.allow_preroll_customization!==false);allowLiveView=(d.allow_live_view!==false);allowLtcView=(d.allow_ltc_view!==false);allowAlerts=(d.allow_alerts!==false);allowSongLoop=(d.allow_song_loop!==false);mixerPinnedTracks=new Set(d.mixer_pinned_tracks||[]);setAbletonUnresponsive(!!d.ableton_unresponsive);setForeignLoop(!!d.foreign_loop);setNoMarkers(!!d.no_markers);applyLicenseRestrictions();render();if(document.getElementById('lib-overlay').style.display==='flex')renderLib();if(d.next_marker_info)applyNextMarkerInfo(d.next_marker_info);if(d.music_remaining)applyMusicRemaining(d.music_remaining);applyCalibrationStatus(!!d.calibration_active, d.calibration_duration_s, d.calibration_kind);if(d.calibration_active && d.calibration_remaining_s!=null){applyCalibrationCountdown(d.calibration_remaining_s);}refreshStatusCurrentBanner();refreshTransportCurrentSong();refreshReleaseBtn();
   // Mixeur (15/09) -- une bascule d'épinglage depuis UNE tablette rebroadcast
   // le state COMPLET à TOUTES (voir toggle_mixer_track_pin côté serveur,
   // _broadcast()) : si le mixeur est ouvert ICI (même tablette qui a
@@ -8500,7 +8786,7 @@ function applyNextMarkerInfo(d){
     return;
   }
   updatePaginationControls();
-  bottomNextEl.textContent=d.name;
+  fillSongName(bottomNextEl, d.name);
   liveSkipBtn.style.display='';
   statusSkipBtn.style.display='';
   nextMarkerSecondsLeft=d.seconds_remaining;
@@ -8845,6 +9131,9 @@ function setAbletonUnresponsive(unresponsive){
 function setForeignLoop(active){
   document.getElementById("foreign-loop-banner").style.display = active ? "flex" : "none";
 }
+function setNoMarkers(active){
+  document.getElementById("no-markers-banner").style.display = active ? "flex" : "none";
+}
 socket.on("permission_changed",(d)=>{
   // notice_key (05/10) : l'avis est une CLÉ i18n résolue ICI, dans la langue de cet appareil -- le serveur
   // l'envoyait avant en français déjà rédigé, quelle que soit la langue de la tablette.
@@ -9098,6 +9387,103 @@ function focusRestore(container, snap){
   window.enhanceControls = enhance;
   enhance(document.body);
   overlays.forEach((ov) => wasOpen.set(ov, isOpen(ov)));
+})();
+
+// ===========================================================================
+// Raccourcis clavier de jeu (04/11) -- piste tirée de l'analyse de la vidéo de Tim Buell : le poste du technicien (ordinateur portable, clavier) pilote sans souris.
+//   Espace = PLAY ou STOP selon l'état RÉEL du moteur  ·  ← / → = morceau précédent / suivant  ·  L = BOUCLE SECTION (Vue Live)
+// PRINCIPE : un raccourci n'est que l'ÉQUIVALENT CLAVIER d'un bouton VISIBLE et ACTIF à l'écran, appuyé par le même chemin que le doigt (pressControl, voir la couche d'accessibilité
+// juste au-dessus). Bouton masqué (coupure réseau, aucun morceau suivant, vue qui ne l'a pas), désactivé, palier sans la fonction, accès en lecture seule : la touche ne fait RIEN.
+// Aucun nouvel évènement vers le serveur, aucune nouvelle règle côté moteur : ce que le serveur refuse à un appui, il le refuse à la touche.
+// GARDE-FOUS -- une touche frappée par erreur ne doit jamais arrêter un morceau :
+//  - jamais dans un champ de saisie, avec Ctrl / Alt / Méta / Maj, en répétition de touche, pendant une composition de texte (clavier IME) ;
+//  - jamais quand une fenêtre superposée est ouverte (réglages, bibliothèque, confirmation, calibration...) ;
+//  - Espace ne prend la main que si le focus est sur la page, OU sur un contrôle qu'on y a mis à la souris / au toucher (le bouton cliqué garde le focus) ; quand le focus a été
+//    placé au clavier (Tab), Espace garde son sens d'activer le contrôle focalisé ;
+//  - rien pendant la frappe : 1,2 s après une lettre tapée (chercher un morceau sans avoir cliqué dans le champ), Espace et L sont ignorés ;
+//  - ← / → seulement quand la setlist est verrouillée (en édition, toucher une ligne ne saute pas non plus) ;
+//  - deux appuis rapprochés = un seul envoi, le temps que l'état revienne du moteur (le « suivant » connu serait périmé : un second saut viserait un mauvais morceau).
+// Pas de flèche bas (« section suivante ») : sauter DANS le morceau est une action du moteur qui n'existe pas (les CUE de section partent à la fin de la section) -- voir CHANGELOG.
+// ===========================================================================
+(function(){
+  const FIELD = /^(INPUT|TEXTAREA|SELECT)$/;
+  const CONTROL = 'button, a[href], summary, [role="button"], [tabindex="0"]';
+  const TYPING_PAUSE_MS = 1200, REPEAT_GUARD_MS = 400, JUMP_GUARD_MS = 900;
+  const visibleById = (id) => {
+    const el = document.getElementById(id);
+    return (el && el.isConnected && el.getClientRects().length > 0) ? el : null;
+  };
+  const firstVisible = (ids) => {
+    for(const id of ids){ const el = visibleById(id); if(el) return el; }
+    return null;
+  };
+  // Le message de l'administrateur (plein écran, bouton OK focalisé) est bâti à part et n'a pas la classe .overlay : à compter aussi, sinon Espace pour le fermer lancerait ou arrêterait la lecture.
+  const anyOverlayOpen = () => {
+    if(Array.from(document.querySelectorAll('.overlay')).some((ov) => getComputedStyle(ov).display !== 'none')) return true;
+    const adminMessage = document.getElementById('admin-message-overlay');
+    return !!(adminMessage && getComputedStyle(adminMessage).display !== 'none');
+  };
+  let keyboardNav = false, lastTypingAt = -1e9, swallowSpaceUp = false, jumpSeenInfo = null;
+  const lastAt = {space: -1e9, loop: -1e9, jump: -1e9};
+
+  document.addEventListener('pointerdown', (e) => { if(e.isTrusted) keyboardNav = false; }, true);
+  // Le clic d'Espace sur un bouton natif part au RELÂCHEMENT (selon le navigateur) : le relâchement d'un Espace pris comme raccourci est avalé aussi.
+  document.addEventListener('keyup', (e) => {
+    if(e.code === 'Space' && swallowSpaceUp){ e.preventDefault(); swallowSpaceUp = false; }
+  }, true);
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Tab'){ keyboardNav = true; return; }
+    const code = e.code;
+    if(code !== 'Space' && code !== 'ArrowLeft' && code !== 'ArrowRight' && code !== 'KeyL'){
+      // Entrée sur un contrôle focalisé : on le manœuvre au clavier, donc Espace y garde le même sens (activer), même si le focus n'y est pas arrivé par Tab.
+      if(e.key === 'Enter' && e.target && e.target.nodeType === 1 && e.target.matches && e.target.matches(CONTROL)) keyboardNav = true;
+      if(e.key && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) lastTypingAt = performance.now();
+      return;
+    }
+    if(e.defaultPrevented || e.repeat || e.isComposing) return;
+    if(e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    const target = e.target;
+    if(target && target.nodeType === 1 && (FIELD.test(target.tagName) || target.isContentEditable)) return;
+    if(anyOverlayOpen()) return;
+    const now = performance.now();
+
+    if(code === 'Space'){
+      const onControl = !!(target && target.nodeType === 1 && target.matches && target.matches(CONTROL));
+      if(onControl && keyboardNav) return;
+      if(now - lastTypingAt < TYPING_PAUSE_MS) return;
+      const playing = !!(lastLiveState && lastLiveState.is_playing);
+      const button = playing ? firstVisible(['stop-btn', 'status-stop-btn']) : firstVisible(['play-btn', 'status-play-btn']);
+      if(!button) return;
+      e.preventDefault();
+      swallowSpaceUp = true;
+      if(now - lastAt.space < REPEAT_GUARD_MS) return;
+      lastAt.space = now;
+      window.pressControl(button);
+      return;
+    }
+
+    if(code === 'ArrowLeft' || code === 'ArrowRight'){
+      if(!locked) return;
+      const button = code === 'ArrowRight' ? firstVisible(['live-skip-btn', 'status-next-btn']) : firstVisible(['live-prev-btn', 'status-prev-btn']);
+      if(!button) return;
+      e.preventDefault();
+      if(lastNextMarkerInfo === jumpSeenInfo && now - lastAt.jump < JUMP_GUARD_MS) return;
+      jumpSeenInfo = lastNextMarkerInfo;
+      lastAt.jump = now;
+      window.pressControl(button);
+      return;
+    }
+
+    if(code === 'KeyL'){
+      if(now - lastTypingAt < TYPING_PAUSE_MS) return;
+      const button = visibleById('live-loop-btn');
+      if(!button) return;
+      e.preventDefault();
+      if(now - lastAt.loop < REPEAT_GUARD_MS) return;
+      lastAt.loop = now;
+      window.pressControl(button);
+    }
+  }, true);   // phase de CAPTURE : un faux bouton (ligne de morceau, badge...) cliqué à la souris garde le focus, et l'activation par Espace de la couche d'accessibilité (phase de bulle, plus haut) le déclencherait une seconde fois -- re-saut sur le même morceau -- avant que le raccourci ne soit vu. Ici le raccourci passe d'abord et, en prenant la touche (preventDefault), empêche cette activation.
 })();
 let wakeLock = null;
 

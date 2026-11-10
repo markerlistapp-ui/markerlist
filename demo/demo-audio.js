@@ -408,8 +408,12 @@
     fadeEpoch(old, at);
   }
   /* coupe ce qui n'a pas encore sonné à partir de l'instant de simulation `simT` */
-  function cancelFrom(simT, nowAudio) {
+  function cancelFrom(simT, nowAudio, simNow) {
     var cut = Math.max(nowAudio + 0.004, simT - 0.02 + A.offset);       // le visiteur a pu agir juste après le pas précédent : on coupe dès cet instant-là
+    /* Aucun tronçon programmé n'a encore commencé (le PLAY est annulé pendant le décompte : application 1.8.0, voir Server._cancelPending) : rien ne sonne, tout ce qui est programmé est à venir, donc on coupe
+       TOUT DE SUITE. Sinon le fondu ne commence que 20 ms avant la première note, qui sort alors à ~18 % de son niveau (la grosse caisse et le clic du premier temps, mesurés à -19 dB au pic dans Chrome). */
+    var started = A.runs.some(function (r) { return r.t0 <= simNow + 1e-9; });
+    if (!started) { cut = nowAudio + 0.004; }
     cutAll(cut);
     A.cancels += 1;
     A.runs = A.runs.filter(function (r) { return r.t0 < simT - 1e-9; });
@@ -463,7 +467,7 @@
     }
     var fc = server.forecast(LOOKAHEAD);
     var tDiv = divergence(A.runs, fc.runs, simNow, A.until);
-    if (tDiv !== null) { cancelFrom(tDiv, now); }
+    if (tDiv !== null) { cancelFrom(tDiv, now, simNow); }
     A.runs = A.runs.filter(function (r) { return r.sched !== undefined || r.t0 <= simNow + 1e-9; });       // un tronçon pas encore programmé (démarrage après le pré-roll...) n'engage à rien : la prévision actuelle le remplace
     merge(fc.runs);
     var end = simNow + LOOKAHEAD, at = function (simTime) { return simTime + A.offset; };
@@ -600,7 +604,7 @@
     _debug: function () { return A; },
     _setLog: function (list) { A.log = list; },
     _setVoiceLog: function (list) { A.voiceLog = list; },
-    constants: { LOOKAHEAD: LOOKAHEAD, START_DELAY: START_DELAY, RESYNC: RESYNC, DIVERGENCE_BEATS: DIVERGENCE_BEATS, VOICE_LEVEL: VOICE_LEVEL, VOICE_DUCK: VOICE_DUCK, VOICE_FADE: VOICE_FADE }
+    constants: { LOOKAHEAD: LOOKAHEAD, START_DELAY: START_DELAY, CANCEL_FADE: CANCEL_FADE, RESYNC: RESYNC, DIVERGENCE_BEATS: DIVERGENCE_BEATS, VOICE_LEVEL: VOICE_LEVEL, VOICE_DUCK: VOICE_DUCK, VOICE_FADE: VOICE_FADE }
   };
   global.MarkerListDemoAudio = API;
   if (global.addEventListener) { global.addEventListener('pagehide', function () { API.dispose(); }); }

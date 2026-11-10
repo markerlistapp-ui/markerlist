@@ -122,7 +122,7 @@
     this.loop = null;                       // boucle ARMÉE : {section_name, start_beats, end, mode, remaining, releasing}
     this.prerollMeasures = 1;
     this.metronome = true;
-    this.pending = null;                    // lecture demandée, en préparation : {at, stopAfter}
+    this.pending = null;                    // lecture demandée, en préparation : {at, commitAt, stopAfter, jumpTo} (voir on_transport_play)
     this.pinned = [];                       // pistes épinglées au mixeur
     this.trackState = TRACKS.map(function () { return { muted: false, soloed: false, volume: 0.85 }; });
     this.master = { volume: 0.85, cue: 0.85 };
@@ -132,7 +132,6 @@
     this.autoArmed = {};                    // sections / morceaux dont l'armement automatique est « décidé » pour cette sélection de morceau (EngineThread._auto_armed_sections)
     this.tempoSeen = SONGS[0].tempo;        // dernier tempo envoyé aux tablettes (le vrai moteur le sonde toutes les ~1 s et n'envoie que les changements)
     this.voiceFired = null;                 // clé « morceau|section|début » de la section dont l'annonce vocale est déjà partie (EngineThread._tts_announce_fired_for)
-    this.voiceLikeApp = false;              // true : ne remet PAS voiceFired à zéro au PLAY ni au saut de morceau, comme l'application (les tests de parité avec le vrai moteur en ont besoin)
     this.voiceLog = [];                     // les dernières annonces {at, state, name, song, pos} (tests, mesures)
     this._acc = { live: 0, slow: 0, meter: 0 };
     this._started = {};                     // première utilisation de chaque fonction (mesure d'usage, voir notify)
@@ -194,7 +193,9 @@
       mixer_pinned_tracks: this.pinned.slice().sort(), next_marker_info: this.nextMarkerInfo(), music_remaining: this.musicRemaining(),
       calibration_active: false, calibration_duration_s: null, calibration_remaining_s: null, calibration_kind: 'osc', preroll_measures: this.prerollMeasures, loop_state: this.loopPayload(),
       allow_drag_drop: true, allow_track_control: true, allow_pdf_export: false, allow_preroll: true, allow_preroll_customization: true, allow_live_view: true, allow_ltc_view: false,
-      allow_alerts: false, allow_song_loop: true, ableton_unresponsive: false, foreign_loop: false, peer_address: null, is_standby: false
+      allow_alerts: false, allow_song_loop: true, ableton_unresponsive: false, foreign_loop: false, peer_address: null, is_standby: false,
+      /* ajoutés par l'application 1.8.0 : Live répond « 0 repère » (bandeau « Aucun repère »), et le réglage « PLAY après un STOP » -- la démo le masque et ne simule aucune pause, ses valeurs sont celles d'une installation neuve */
+      no_markers: false, resume_mode: 'restart', resume_align: 'exact', resume_preroll: null, resume_available: true
     };
   };
 
@@ -384,7 +385,7 @@
     if (!song) { return; }
     if (this.loop && name !== this.active) { this._setLoop(null); }     // EngineThread._set_active_marker : la boucle n'est oubliée que si le morceau CHANGE (relancer le même morceau la garde)
     this.autoArmed = {};
-    if (!this.voiceLikeApp) { this.voiceFired = null; }                 // un saut est une approche neuve (voir _voiceTick : sur ce point la démo s'écarte exprès de l'application)
+    this.voiceFired = null;                                             // un saut est une approche neuve (voir _voiceTick : comme l'application depuis la 1.8.0)
     this._setActive(name);
     this._setPosition(song.start);
     if (!keepPlaying) { this.playing = false; }
@@ -414,10 +415,13 @@
     var i;
     // actions différées (démarrage de la lecture après le pré-roll...)
     if (this.pending && this.simNow >= this.pending.at) {
-      var stopAfter = this.pending.stopAfter;
+      var late = this.pending;
       this.pending = null;
       this._startPlaying();
-      if (stopAfter) { this._stopPlaying(); }
+      /* ce que le visiteur a demandé APRÈS l'engagement du PLAY (trop tard pour l'annuler : voir on_transport_stop, on_trigger_marker) s'exécute maintenant que le PLAY est fini : le morceau choisi d'abord (la
+         lecture saute), l'arrêt ensuite -- dans les deux ordres d'arrivée on finit arrêté sur le morceau choisi */
+      if (late.jumpTo) { this._goToSong(late.jumpTo, true); this._lastBeat = Math.floor(this.position()); this.emit('beat', { downbeat: true }); }
+      if (late.stopAfter) { this._stopPlaying(); }
     }
     if (this.playing) { this._advanceTransport(); }
     if (this.playing) { this._voiceTick(); }                          // après les franchissements du pas (boucle, cue, morceau), comme le bloc TTS de EngineThread.run()
@@ -527,9 +531,9 @@
        - Remise à zéro de voiceFired : à chaque bouclage natif (chaque tour est une entrée neuve) et à chaque changement d'état de la boucle par le visiteur (armée, x1 -> x2, x2 -> infini, relâche).
        - « Last time » part tout de suite quand on relâche une boucle (sans attendre les 3 mesures), et marque la section comme annoncée pour que le déclenchement normal ne le répète pas.
        - STOP (manuel, fin de morceau non chaîné, fin du set) coupe l'annonce en cours.
-     Un seul écart VOULU avec l'application : voiceFired est aussi remis à zéro à chaque PLAY et à chaque saut de morceau. L'application ne le fait pas (sa clé « morceau, section, début » ne change pas si l'on
-     rejoue le même morceau depuis le début après avoir arrêté juste après l'annonce de sa première section : cette annonce est alors muette la seconde fois) ; sur un site où le visiteur appuie sur PLAY, STOP, PLAY
-     c'est le cas courant, et il donnerait l'impression d'une voix capricieuse.
+     voiceFired est aussi remis à zéro à chaque PLAY et à chaque saut de morceau, comme l'application depuis la 1.8.0 (point 1.5 : EngineThread remet son mémo « déjà annoncé » à zéro à chaque PLAY qui relance le
+     morceau et au changement de morceau). Avant, sa clé « morceau, section, début » ne changeait pas si l'on rejouait le même morceau depuis le début après avoir arrêté juste après l'annonce de sa première section :
+     cette annonce était muette la seconde fois, et la démo s'en écartait exprès (sur un site où le visiteur appuie sur PLAY, STOP, PLAY c'est le cas courant). L'application a rejoint la démo : plus aucun écart.
      Le simulateur ne joue aucun son : il prévient (onVoice) et le moteur sonore (demo-audio.js) joue le clip. onVoice({state, name, at}) : state = null | 'looping' | 'final_loop_fixed' | 'final_loop_infinite',
      name = nom de section ou null, at = secondes de simulation. */
   Server.prototype._voiceAnnounce = function (state, name) {
@@ -595,25 +599,43 @@
     if (this.playing || this.pending) { return; }
     this.notify('play');
     this.autoArmed = {};
-    if (!this.voiceLikeApp) { this.voiceFired = null; }               // chaque lecture repart d'une approche neuve (voir _voiceTick)
+    this.voiceFired = null;                                           // chaque lecture repart d'une approche neuve (voir _voiceTick : comme l'application depuis la 1.8.0)
     var song = this.activeSong();
+    /* at : la lecture vue partie par la tablette ; commitAt : l'« engagement » du PLAY (ui.py, EngineThread.handle_play_request : « dernier point d'annulation », la fin de l'annonce et du décompte), START_LATENCY_S avant at.
+       Sans pré-roll le PLAY s'engage tout de suite (commitAt = maintenant) : aucun STOP ni choix de morceau ne peut arriver avant, la fenêtre de START_LATENCY_S est « trop tard ». */
     if (this.prerollMeasures > 0) {
       var beats = this.prerollMeasures * SIGNATURE;
       this.emit('preroll_start', { beats: beats, tempo: song.tempo, song_name: song.name });
-      this.pending = { at: this.simNow + PREROLL_ANNOUNCE_S + beats * 60 / song.tempo + START_LATENCY_S, stopAfter: false };
+      var commitAt = this.simNow + PREROLL_ANNOUNCE_S + beats * 60 / song.tempo;
+      this.pending = { at: commitAt + START_LATENCY_S, commitAt: commitAt, stopAfter: false, jumpTo: null };
     } else {
-      this.pending = { at: this.simNow + START_LATENCY_S, stopAfter: false };
+      this.pending = { at: this.simNow + START_LATENCY_S, commitAt: this.simNow, stopAfter: false, jumpTo: null };
     }
   };
 
+  /* Application 1.8.0 (06/11, EngineThread.cancel_pending_play) : un STOP, ou un AUTRE morceau choisi, pendant l'annonce / le décompte d'un PLAY l'annule -- Live ne joue jamais et le calque disparaît des tablettes
+     (`preroll_cancel`). Passé l'engagement du PLAY (commitAt) c'est trop tard, comme avant : voir on_transport_stop et on_trigger_marker. */
+  Server.prototype._cancelPending = function () {
+    this.pending = null;
+    this.emit('preroll_cancel', {});
+  };
+
   Server.prototype.on_transport_stop = function () {
-    if (this.pending) { this.pending.stopAfter = true; return; }       // comme le vrai moteur : le décompte va à son terme, l'arrêt est exécuté juste après
+    if (this.pending) {
+      if (this.simNow < this.pending.commitAt) { this._cancelPending(); }       // le STOP est CONSOMMÉ : rien d'autre (pas de « double-stop »)
+      else { this.pending.stopAfter = true; }                                    // trop tard : le PLAY va à son terme, l'arrêt est exécuté juste après le départ
+      return;
+    }
     this._stopPlaying();
   };
 
   Server.prototype.on_trigger_marker = function (data) {
     if (!songByName(data.name) || this.visible.indexOf(data.name) < 0) { return; }
     this.notify('jump');
+    if (this.pending) {
+      if (this.simNow >= this.pending.commitAt) { this.pending.jumpTo = data.name; return; }       // trop tard pour annuler : le choix attend la fin du PLAY (verrou de transport), puis saute pendant la lecture
+      this._cancelPending();                                                                          // sinon le PLAY est annulé, puis le morceau est choisi à l'arrêt
+    }
     this._goToSong(data.name, this.playing);
     if (this.playing) { this._lastBeat = Math.floor(this.position()); this.emit('beat', { downbeat: true }); }
   };
@@ -808,13 +830,16 @@
      Une action du visiteur change la prévision au pas suivant : le son compare alors la nouvelle prévision à celle qu'il suivait et reprend là où elles divergent.
      Retour : {now, runs: [{t0, b0, t1, b1, song, loop, contiguous}]}. t0 / t1 : secondes de simulation (t1 === null : le tronçon se poursuit au-delà de l'horizon) ; b0 : position (en temps) à t0 ; b1 : position à t1 ;
      song : morceau actif au départ du tronçon ; loop : boucle armée à ce moment-là (copie) ; contiguous : le tronçon prolonge le précédent sans saut (changement d'état seulement : boucle relâchée, morceau chaîné).
-     Pendant le pré-roll la prévision commence au VRAI démarrage de la musique : START_LATENCY_S avant la reprise que la tablette affiche (la première position vue est déjà ~1 temps après le début du morceau). */
+     Pendant le pré-roll la prévision commence au VRAI démarrage de la musique : START_LATENCY_S avant la reprise que la tablette affiche (la première position vue est déjà ~1 temps après le début du morceau).
+     Un PLAY annulé (STOP ou autre morceau choisi avant son engagement, voir _cancelPending) ne laisse rien à prévoir. Un morceau choisi APRÈS l'engagement saute à la fin du PLAY : la musique du morceau d'origine joue
+     jusque-là, puis un nouveau tronçon part au début du morceau choisi. */
   Server.prototype.forecast = function (horizon) {
     var now = this.simNow, end = now + horizon, runs = [], t, pos;
-    var active = this.active, loop = this.loop ? clone(this.loop) : null, cues = clone(this.cues[active] || []), stopAt = null;
+    var active = this.active, loop = this.loop ? clone(this.loop) : null, cues = clone(this.cues[active] || []), stopAt = null, jumpAt = null, jumpTo = null;
     if (this.pending) {
       t = this.pending.at - START_LATENCY_S; pos = this.activeSong().start;
       if (this.pending.stopAfter) { stopAt = this.pending.at; }
+      if (this.pending.jumpTo) { jumpAt = this.pending.at; jumpTo = this.pending.jumpTo; }       // un morceau choisi trop tard pour annuler le PLAY : la lecture y saute quand le PLAY est fini (voir _step)
     } else if (this.playing) {
       t = now; pos = this.position();
     } else {
@@ -838,6 +863,12 @@
       if (!handled.S) { candidates.push({ kind: 2, key: 'S', beat: last }); }
       candidates.sort(function (a, b) { return a.beat - b.beat || a.kind - b.kind; });
       var c = candidates[0], tEv = t + (c.beat > pos ? secondsBetween(pos, c.beat) : 0);
+      if (jumpAt !== null && jumpAt <= Math.min(end, tEv)) {            // comme _goToSong(jumpTo, true) : la boucle n'est oubliée que si le morceau change, les cues sont ceux du morceau choisi
+        close(jumpAt, advance(pos, jumpAt - t));
+        if (jumpTo !== active) { loop = null; }
+        active = jumpTo; cues = clone(this.cues[active] || []); armed = {};
+        t = jumpAt; pos = songByName(active).start; open(t, pos, false); handled = {}; tie = false; jumpAt = null; continue;
+      }
       if (stopAt !== null && stopAt <= Math.min(end, tEv)) { close(stopAt, advance(pos, stopAt - t)); break; }
       if (tEv >= end) { break; }
       t = tEv; pos = c.beat;
@@ -882,5 +913,5 @@
   global.MarkerListDemoServer = Server;
   global.MarkerListDemo = server;
   /* ce que le son (demo-music.js, demo-audio.js) a besoin de connaître du jeu de démonstration : mêmes morceaux, mêmes tempos, mêmes conversions temps <-> secondes que le simulateur */
-  global.MarkerListDemoCore = { SONGS: SONGS, TRACKS: TRACKS, SIGNATURE: SIGNATURE, SONG_BEATS: SONG_BEATS, END_BEAT: END_BEAT, START_LATENCY_S: START_LATENCY_S, VOICE_LEAD_BARS: VOICE_LEAD_BARS, advance: advance, secondsBetween: secondsBetween, songAt: songAt, sectionsOf: sectionsOf };
+  global.MarkerListDemoCore = { SONGS: SONGS, TRACKS: TRACKS, SIGNATURE: SIGNATURE, SONG_BEATS: SONG_BEATS, END_BEAT: END_BEAT, START_LATENCY_S: START_LATENCY_S, PREROLL_ANNOUNCE_S: PREROLL_ANNOUNCE_S, VOICE_LEAD_BARS: VOICE_LEAD_BARS, advance: advance, secondsBetween: secondsBetween, songAt: songAt, sectionsOf: sectionsOf };
 })(window);
