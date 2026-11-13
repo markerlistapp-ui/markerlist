@@ -1,0 +1,21 @@
+Subject: [PATCH 1/2] compat/wctype.h: read <wchar.h> before the iswXXX macros exist (Emscripten / musl)
+
+musl declares iswalnum() and friends in <wchar.h> as well. When <wctype.h> (this shim) was included first, its macros rewrote those
+declarations into conflicting redeclarations of ucd_isalnum() and friends, and src/libespeak-ng/dictionary.c did not compile for WebAssembly.
+
+---
+diff --git a/src/include/compat/wctype.h b/src/include/compat/wctype.h
+index e0d2c64..ac23aea 100644
+--- a/src/include/compat/wctype.h
++++ b/src/include/compat/wctype.h
+@@ -30,6 +30,10 @@
+ #include_next <wctype.h>
+ #endif
+ 
++/* Emscripten (musl) declares iswalnum() and friends in <wchar.h> as well: that header has to be read BEFORE the macros below exist,
++ * otherwise its declarations are rewritten into conflicting redeclarations of ucd_isalnum() and friends. */
++#include <wchar.h>
++
+ #include <ucd/ucd.h>
+ 
+ #define iswalnum  ucd_isalnum

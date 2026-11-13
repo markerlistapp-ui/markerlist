@@ -1,0 +1,4 @@
+Kokoro-82M, ONNX conversion by onnx-community (Apache-2.0, see ../../../licenses/Apache-2.0.txt and ../../../credits.html).
+Original files: https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX (onnx/model_quantized.onnx, tokenizer.json, voices/af_heart.bin), unmodified.
+onnx/model_quantized.onnx (92361116 bytes, SHA-256 fbae9257e1e05ffc727e951ef9b9c98418e6d79f1c9b6b13bd59f5c9028a1478) is cut in 5 parts of at most 20000000 bytes, only so that it can be uploaded with a browser;
+model.json lists the parts and their SHA-256. The page puts them back together and refuses the result unless its SHA-256 is the one above.

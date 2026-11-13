@@ -1,0 +1,32 @@
+{
+ "file": "onnx/model_quantized.onnx",
+ "bytes": 92361116,
+ "sha256": "fbae9257e1e05ffc727e951ef9b9c98418e6d79f1c9b6b13bd59f5c9028a1478",
+ "parts": [
+  {
+   "file": "onnx/model_quantized.onnx.part1",
+   "bytes": 20000000,
+   "sha256": "30ff751285af891f31dde7b25ea90e45908c0019a4db989ef3fb83b1187cae5e"
+  },
+  {
+   "file": "onnx/model_quantized.onnx.part2",
+   "bytes": 20000000,
+   "sha256": "48be732f79c4efc16ae491ce3c34c4c0d2e6a5ea1852b14035d95b4584e0247e"
+  },
+  {
+   "file": "onnx/model_quantized.onnx.part3",
+   "bytes": 20000000,
+   "sha256": "050f69da0d988488003adc2fccc2f4ad1a779a3d87811eea11bbcad86fb4e080"
+  },
+  {
+   "file": "onnx/model_quantized.onnx.part4",
+   "bytes": 20000000,
+   "sha256": "1047b538695b86bdaaa66681134db83ede40b70a8229f16934a9da93b27f8a6d"
+  },
+  {
+   "file": "onnx/model_quantized.onnx.part5",
+   "bytes": 12361116,
+   "sha256": "3b999b04b0664a865b3eed4c625b8e7c522026546bc5a42e6d0f9ef3d268afc9"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+BUILD-INFO for vendor/espeak-ng/ (written 12/11/2026). Rebuild with ./build.sh; it checks its result against the sha256 lines below.
+
+source        eSpeak NG 1.52.0, tag 1.52.0, commit 4870adfa25b1a32b4361592f1be8a40337c58d6c, https://github.com/espeak-ng/espeak-ng (GPL-3.0-or-later)
+source-archive espeak-ng-1.52.0-source.tar.gz, sha256 f93ebf3d8ff2a0d5bdf8833af9b5bb65c59e4b6f3ad6ff6ea26194447e187c02 (git archive of the tag, unmodified)
+patches       2 patches applied to that source: see patches/ (compat/wctype.h include order for musl; compact IPA in emscripten/espeakng_glue.cpp)
+toolchain     Emscripten 7.0.0 (emsdk commit 1693ce7359fc9694f198694f902a2cc061239b86, release 6afbd83493d647051772d491124187d4e9a0cda9)
+build tools   cmake 4.4.4 (PyPI wheel), Apple clang (native build, only to compile the data files)
+unused dep    sonic (commit fbf75c3d6d846bad3bb3d456cbc5d07d9fd8c104): fetched by eSpeak NG's CMake even when switched off; not part of the binary (USE_LIBSONIC=OFF)
+languages     en fr es pt (dictionaries); all voice descriptions
+link flags    see build.sh
+
+sha256 patches/0001-compat-wctype-include-wchar-first-for-musl.patch 8f1529357f9cd13d0f3a7826e71bebe61d05173e47a8704c2677293b7e954c6c
+sha256 patches/0002-glue-compact-ipa-no-separator.patch d374ac2f0d96759d91c279dc1fad9525f84e3e8f9fe2217d43245b0fabe99ac4
+sha256 espeakng.js a764f8172fc160d55084e2df6d4feff562d4a0d031ea2f71c5818e7cb9efa29f
+sha256 espeakng.wasm d7a17419a86cc48e239ffadb42ab3c3416a593f25dfe542320a0df4319161f10
+sha256 espeakng.data e83681296034ae42847ffe1ff74c591dd94d10dd72e401d106ea41f24ed35f15

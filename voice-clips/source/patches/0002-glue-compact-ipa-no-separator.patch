@@ -1,0 +1,18 @@
+Subject: [PATCH 2/2] emscripten/espeakng_glue.cpp: compact IPA output (no separator between phonemes)
+
+synth_ipa_() asked espeak for a space between every two phonemes ("k ˈɔː ɹ ə s"). Kokoro expects the compact form eSpeak NG prints with --ipa ("kˈɔːɹəs").
+
+---
+diff --git a/emscripten/espeakng_glue.cpp b/emscripten/espeakng_glue.cpp
+index 24398dc..732dd75 100644
+--- a/emscripten/espeakng_glue.cpp
++++ b/emscripten/espeakng_glue.cpp
+@@ -62,7 +62,7 @@ public:
+         
+     int phoneme_options               = (1 << 1); // Use IPA
+     int use_custom_phoneme_separator  = (0 << 7);
+-    int phonemes_separator            = ' '; // Use a default value
++    int phonemes_separator            = 0;   // none: compact IPA, as `espeak-ng --ipa` prints it (a space here puts a space between every two phonemes)
+ 
+     int phoneme_conf                  = phoneme_options | (phonemes_separator << 8);
+     
