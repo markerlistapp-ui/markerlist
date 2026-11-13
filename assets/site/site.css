@@ -593,3 +593,9 @@ a[hidden]{display:none!important}
 .try-link .ico{display:inline-grid;place-items:center;flex:none;width:28px;height:28px;border-radius:50%;background:var(--blue);fill:#fff}
 .try-link .ico svg{width:12px;height:12px;margin-left:2px;fill:#fff}
 .demo-try{margin-top:6px;justify-self:start}
+
+/* 13/11/2026 : septième lien du menu (outil de voix). Avec des libellés longs (« Fonctionnalités », « Clips vocaux ») le menu et les pastilles de langue ne tenaient plus ensemble :
+   sur les pages d'accueil (en-tête .has-menu) les pastilles deviennent le menu de langue compact à 1240 px (1100 avant) et le menu se replie à 1040 px (900 avant) ; le pied de page porte le même lien.
+   Mesuré de 880 à 1320 px, dans les 5 langues, avec et sans barre de défilement de 17 px : aucun lien sur deux lignes, rien au-delà du bord utile, 12 px au moins entre la marque, le menu et le bloc de droite. */
+@media (max-width:1240px){.nav.has-menu .lang-chips{display:none}.nav.has-menu .lang-menu{display:block}}
+@media (max-width:1040px){.nav.has-menu .menu{display:none}}
