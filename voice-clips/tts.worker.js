@@ -67,10 +67,13 @@ async function keepBytes(cache, url, bytes) {
   }
 }
 
-// Downloads one file. onChunk(n, total) says that n more bytes arrived (total: the size announced by the server, 0 if it did not say).
+// Downloads one file. onChunk(n, total) says that n more bytes arrived (total: the size announced by the server, 0 if it did not say or if the number can not be compared).
+// A host that compresses (GitHub Pages sends EVERY file with Content-Encoding: gzip) announces in Content-Length the size of the COMPRESSED body, while the browser hands us the decoded bytes:
+// the two numbers can only be compared when the body is not encoded. Whatever the host does, whoever keeps the bytes checks them (size and SHA-256 of each part, then of the whole model, SHA-256 of the voice).
 async function download(url, onChunk) {
   const res = await get(url);
-  const total = Number(res.headers.get("content-length")) || 0;
+  const encoded = (res.headers.get("content-encoding") || "identity").trim().toLowerCase() !== "identity";
+  const total = encoded ? 0 : Number(res.headers.get("content-length")) || 0;
   const reader = res.body.getReader();
   const chunks = [];
   let loaded = 0;
@@ -169,7 +172,7 @@ async function fetchModel(msg, onProgress) {
 
 async function loadVoice(name) {
   if (!voices.has(name)) {
-    const { bytes } = await fetchBytes(`${config.voicesBase}${name}.bin`, () => {});
+    const { bytes } = await fetchBytes(`${config.voicesBase}${name}.bin`, () => {}, (config.voiceSha256 && config.voiceSha256[name]) || null); // a voice that does not match its fingerprint is never used nor kept
     voices.set(name, new Float32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 4));
   }
   return voices.get(name);

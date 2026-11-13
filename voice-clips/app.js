@@ -17,6 +17,7 @@ const ENGINE_CONFIG = {
   voicesBase: new URL("voices/", MODEL_ROOT).href,
   defaultVoice: "af_heart",
   modelSha256: "fbae9257e1e05ffc727e951ef9b9c98418e6d79f1c9b6b13bd59f5c9028a1478", // the page refuses a model file that does not match this fingerprint
+  voiceSha256: { af_heart: "d583ccff3cdca2f7fae535cb998ac07e9fcb90f09737b9a41fa2734ec44a8f0b" }, // same for the voice files (a host that compresses gives no size to compare: the fingerprint is what proves a file is whole)
 };
 const VOICES = { en: "af_heart" }; // language -> voice. The other languages need a phonemizer the prototype does not have.
 const KIND_LABEL = { title: "Title", section: "Section", loop: "Loop word", free: "Typed" };
