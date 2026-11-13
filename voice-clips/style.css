@@ -1,0 +1,159 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+/* Styles of the voice clips tool (index.html, credits.html). On the Markerlist website they come AFTER the site's own stylesheet and use its tokens (--ink, --line, --blue, --display...),
+   so the tool looks like the rest of the site. Opened on their own (tests, local files) the layer below gives the same tokens. Every rule is tied to a class of the tool
+   (vc-*, or an id, or a class the script writes) so that nothing of the site around it is restyled. */
+
+@layer vc-standalone {
+  :root {
+    color-scheme: light;
+    --bg: #F4F5F9; --bg-2: #ECEEF5; --surface: #FFFFFF; --surface-2: #F0F2F8; --line: #E1E4EE; --line-2: #CBD0E0;
+    --ink: #10131B; --ink-2: #434A5C; --ink-3: #626A7E; --blue: #3064F6; --blue-2: #2450D6; --amber: #E2A542; --amber-text: #865509;
+    --green: #3CC17F; --green-text: #0F6F4E; --red: #EA5A5F; --red-text: #C23840; --focus: #2450D6; --accent-label: #2450D6;
+    --display: 'Bebas Neue', 'Arial Narrow', Impact, sans-serif; --text: 'Barlow Semi Condensed', 'Arial Narrow', system-ui, sans-serif;
+    --h-weight: 400; --h-track: .012em; --r-btn: 6px; --r-card: 8px; --btn-bg: var(--blue); --btn-ink: #fff; --btn-bg-hover: #2450D6;
+    --with-bg: #E9EEFD; --with-line: #BCCBF8; --ghost-hover: #E9ECF4; --gutter: clamp(16px, 4.2vw, 40px); --wrap: 1240px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--text); font-size: 19.5px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+  h1, h2, p, ul { margin: 0; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 4px; }
+}
+
+/* ---- tokens of the tool: soft tints for the states, solid colours (no transparency) ---- */
+.vc {
+  --vc-ok-bg: #E4F6EC;
+  --vc-warn-bg: #FBF0D9;
+  --vc-bad-bg: #FCE8E9;
+  --vc-bad-line: #EBB4B7;
+  --vc-bad-ink: #B02F37;
+  --vc-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  display: block;
+}
+.vc [hidden] { display: none !important; } /* an author rule such as display:grid must never win over the hidden attribute */
+.vc .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ---- width and hero (same recipe as the site's pages) ---- */
+.vc-wrap { width: 100%; max-width: calc(var(--wrap) + 2 * var(--gutter)); margin-inline: auto; padding-inline: max(var(--gutter), env(safe-area-inset-left, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px)); }
+.vc-hero { padding-block: clamp(28px, 4vw, 56px) clamp(24px, 3vw, 40px); }
+.vc-hero .vc-wrap { display: grid; gap: clamp(14px, 1.8vw, 22px); justify-items: start; }
+.vc-chip { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; font: 500 17px/1.2 var(--text); color: var(--ink-2); }
+.vc-chip b { display: inline-grid; place-items: center; height: 26px; padding: 0 9px; border-radius: 3px; background: var(--blue); color: #fff; font: 700 13.5px/1 var(--text); letter-spacing: .02em; white-space: nowrap; flex: none; }
+.vc-hero h1 { font-family: var(--display); font-weight: var(--h-weight); font-size: clamp(46px, 6vw, 88px); line-height: .92; text-transform: uppercase; letter-spacing: var(--h-track); text-wrap: balance; max-width: 13em; }
+.vc-lead { font-size: clamp(19px, 1.75vw, 22px); line-height: 1.45; color: var(--ink-2); max-width: 40em; }
+.vc-lead a, .vc-legal a, .vc-flow a { color: var(--blue-2); text-underline-offset: 3px; }
+.vc-lead a { white-space: nowrap; }
+.vc-fine { font-size: 15px; line-height: 1.45; color: var(--ink-3); max-width: 44em; }
+
+/* ---- the four steps: one panel each, a locator flag marks the step like the site's timeline ---- */
+.vc-flow { display: grid; gap: 20px; padding-bottom: clamp(40px, 6vw, 72px); min-width: 0; }
+.vc-step { display: grid; gap: 18px; min-width: 0; padding: clamp(18px, 2.6vw, 32px); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); align-content: start; }
+.vc-step-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+.vc-n { display: inline-flex; align-items: center; gap: 9px; font: 600 16px/1 var(--text); color: var(--accent-label); }
+.vc-n::before { content: ""; width: 14px; height: 14px; background: var(--blue); clip-path: polygon(0 0, 100% 0, 100% 55%, 50% 100%, 0 55%); }
+.vc-step h2, .vc-prose h2 { font-family: var(--display); font-weight: var(--h-weight); font-size: clamp(32px, 3.4vw, 44px); line-height: 1; text-transform: uppercase; letter-spacing: var(--h-track); color: var(--ink); }
+.vc-step strong { font-weight: 600; color: var(--ink); }
+
+.vc-flow .grid2 { display: grid; gap: clamp(16px, 2.4vw, 28px); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.vc-flow .grid2 > div { display: grid; gap: 12px; min-width: 0; align-content: start; }
+.vc-flow .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.vc-flow .hint { font-size: 15.5px; line-height: 1.45; color: var(--ink-3); }
+.vc-flow .hint strong { color: var(--ink-2); }
+.vc-flow .limit { margin-top: -4px; }
+.vc-flow code, .vc-prose code { font: 500 14.5px/1.4 var(--vc-mono); color: var(--ink); background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; overflow-wrap: anywhere; }
+
+/* ---- step 1: the drop zone, the typed names ---- */
+.vc-flow #drop { position: relative; display: grid; place-content: center; justify-items: center; gap: 8px; min-height: 160px; padding: 24px 16px; text-align: center; background: var(--surface-2); border: 1px dashed var(--line-2); border-radius: var(--r-card); cursor: pointer; transition: border-color .16s, background-color .16s; }
+.vc-flow #drop strong { font-family: var(--display); font-weight: var(--h-weight); font-size: clamp(26px, 2.6vw, 34px); line-height: 1; text-transform: uppercase; letter-spacing: var(--h-track); color: var(--ink); }
+.vc-flow #drop span { font-size: 17px; color: var(--ink-2); }
+.vc-flow #drop:hover, .vc-flow #drop.over { border-color: var(--blue); background: var(--with-bg); }
+.vc-flow #drop input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.vc-flow textarea, .vc-flow select, .vc-flow input[type="text"] { width: 100%; min-height: 44px; padding: 9px 12px; font: 500 17px/1.3 var(--text); color: var(--ink); background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-btn); }
+.vc-flow textarea { min-height: 124px; resize: vertical; font: 500 16px/1.45 var(--vc-mono); }
+.vc-flow select { width: auto; padding-right: 8px; }
+.vc-flow textarea:hover, .vc-flow select:hover, .vc-flow input[type="text"]:hover { border-color: var(--ink-3); }
+.vc-flow #drop:focus-visible, .vc-flow textarea:focus-visible, .vc-flow select:focus-visible, .vc-flow input:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* ---- buttons: the site's buttons (flat, 6 px corners, 600 weight) ---- */
+.vc-flow button { min-height: 46px; padding: 0 20px; font: 600 17px/1.1 var(--text); letter-spacing: .015em; color: var(--ink); background: transparent; border: 1px solid var(--line-2); border-radius: var(--r-btn); cursor: pointer; transition: background-color .16s, border-color .16s, color .16s; }
+.vc-flow button:hover:not(:disabled) { border-color: var(--ink-3); background: var(--ghost-hover); }
+.vc-flow button:active:not(:disabled) { transform: translateY(1px); }
+.vc-flow button.primary { min-height: 50px; padding: 0 24px; font-size: 18px; color: var(--btn-ink); background: var(--btn-bg); border-color: var(--btn-bg); }
+.vc-flow button.primary:hover:not(:disabled) { background: var(--btn-bg-hover); border-color: var(--btn-bg-hover); }
+.vc-flow button:disabled { opacity: .45; cursor: not-allowed; }
+.vc-flow button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+/* ---- step 2: the voice ---- */
+.vc-flow #voiceName { font-size: 18px; color: var(--ink-2); }
+.vc-flow .bar { flex: 1 1 200px; min-width: 120px; height: 8px; overflow: hidden; background: var(--line); border-radius: 2px; }
+.vc-flow .bar > i { display: block; width: 0; height: 100%; background: var(--blue); transition: width .2s; }
+
+/* ---- step 3: what was found, the table, the actions ---- */
+.vc-flow .errorbox { padding: 12px 16px; font-weight: 600; color: var(--vc-bad-ink); background: var(--vc-bad-bg); border: 1px solid var(--vc-bad-line); border-radius: var(--r-card); }
+.vc-flow .detected { display: grid; gap: 6px; padding: 14px 16px; background: var(--with-bg); border: 1px solid var(--with-line); border-radius: var(--r-card); }
+.vc-flow .detected p { font-size: 17px; line-height: 1.45; }
+.vc-flow .detected .src { font-weight: 600; color: var(--ink); overflow-wrap: anywhere; }
+.vc-flow .detected ul { padding-left: 22px; list-style: disc; color: var(--amber-text); font-weight: 500; }
+.vc-flow .detected .tip { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
+.vc-flow #summary { font-size: 16.5px; color: var(--ink-2); }
+.vc-flow .empty { padding: 4px 0; color: var(--ink-3); }
+.vc-flow .tablewrap, .vc-prose .tablewrap { position: relative; overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); } /* position: keeps the .sr label inside the scroller */
+.vc-flow table, .vc-prose table { width: 100%; min-width: 780px; border-collapse: collapse; }
+.vc-prose .credits-table { min-width: 720px; }
+.vc-flow th, .vc-prose th { padding: 12px 14px; text-align: left; font: var(--h-weight) 19px/1.1 var(--display); letter-spacing: .03em; text-transform: uppercase; color: var(--ink-2); background: var(--surface-2); border-bottom: 1px solid var(--line); white-space: nowrap; }
+.vc-flow td, .vc-prose td { padding: 8px 14px; vertical-align: middle; font-size: 17px; line-height: 1.4; border-bottom: 1px solid var(--line); }
+.vc-flow tbody tr:last-child td, .vc-prose tbody tr:last-child td { border-bottom: 0; }
+.vc-flow td.num, .vc-flow th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.vc-flow td.kind { white-space: nowrap; font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+.vc-flow th.act, .vc-flow td.act { width: 1%; padding-inline: 4px; white-space: nowrap; }
+.vc-flow td input[type="text"] { min-width: 150px; padding: 7px 10px; }
+.vc-flow td input[type="text"].problem { border-color: var(--vc-bad-ink); }
+.vc-flow td button.listen, .vc-flow td button.rm { display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0; font-size: 16px; font-weight: 400; }
+.vc-flow td button.listen:not(:disabled) { color: var(--blue-2); }
+.vc-flow td button.rm { color: var(--ink-3); }
+.vc-flow td button.rm:hover { color: var(--vc-bad-ink); border-color: var(--vc-bad-ink); }
+.vc-flow .badge { display: inline-flex; align-items: center; min-height: 26px; padding: 2px 9px; border: 1px solid transparent; border-radius: 3px; font: 700 14px/1.2 var(--text); letter-spacing: .02em; white-space: nowrap; }
+.vc-flow .badge.have { color: var(--green-text); background: var(--vc-ok-bg); }
+.vc-flow .badge.todo { color: var(--amber-text); background: var(--vc-warn-bg); }
+.vc-flow .badge.work { color: var(--blue-2); background: var(--with-bg); }
+.vc-flow .badge.done { color: #fff; background: var(--green-text); }
+.vc-flow .badge.bad { color: var(--vc-bad-ink); background: var(--vc-bad-bg); }
+.vc-flow .badge.na { color: var(--ink-3); border-color: var(--line-2); }
+.vc-flow #list .row { margin-top: 2px; }
+.vc-flow #genProgress { flex: 1 1 240px; }
+.vc-flow #log { max-height: 180px; overflow: auto; padding: 10px 12px; font: 14px/1.5 var(--vc-mono); color: var(--ink-2); white-space: pre; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-btn); }
+.vc-flow #log:empty { display: none; }
+
+/* ---- step 4 ---- */
+.vc-flow .path { max-width: 62em; }
+
+/* ---- the licence line closing the tool, and the credits page ---- */
+.vc-legal { display: grid; gap: 8px; padding-bottom: clamp(40px, 6vw, 72px); font-size: 15px; line-height: 1.5; color: var(--ink-3); }
+.vc-legal p { max-width: 62em; }
+.vc-legal a { color: var(--ink-2); }
+.vc-prose { gap: 0; } /* same width as the hero: the left edges line up; the paragraphs keep their own measure (46em) */
+.vc-prose section { display: grid; gap: 12px; min-width: 0; padding-block: clamp(22px, 3vw, 34px); border-top: 1px solid var(--line); }
+.vc-prose section:first-child { border-top: 0; padding-top: 0; }
+.vc-prose p { max-width: 46em; font-size: 18px; line-height: 1.55; color: var(--ink-2); }
+.vc-prose a { color: var(--blue-2); text-underline-offset: 3px; }
+.vc-prose #components { max-width: none; }
+.vc-prose .credits-table td { vertical-align: top; }
+.vc-prose .credits-table td:first-child { min-width: 180px; font-weight: 600; color: var(--ink); }
+.vc-prose .credits-table .sub { display: block; font-weight: 400; font-size: 15.5px; color: var(--ink-3); overflow-wrap: anywhere; }
+.vc-prose .lic { white-space: nowrap; }
+.vc-prose .links { display: grid; gap: 2px; }
+.vc-prose ul.plain { display: grid; gap: 6px; padding-left: 22px; list-style: disc; color: var(--ink-3); font-size: 18px; }
+.vc-prose ul.plain li { padding-left: 4px; color: var(--ink-2); }
+
+/* ---- narrow screens ---- */
+@media (max-width: 768px) {
+  /* the links of the credits table stand alone in their cells (not inside a sentence): on a phone each one is a target of 44 px at least */
+  .vc-prose td a { display: inline-flex; align-items: center; min-width: 44px; min-height: 44px; }
+}
+@media (max-width: 760px) {
+  .vc-flow .grid2 { grid-template-columns: 1fr; }
+  .vc-hero h1 { font-size: clamp(42px, 13vw, 72px); }
+}
+@media (max-width: 520px) {
+  .vc-flow button:not(.listen):not(.rm) { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) { .vc-flow *, .vc-flow *::before { transition: none !important; } }
