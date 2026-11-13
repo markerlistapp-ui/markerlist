@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 -- must run BEFORE GTM/gtag below, so no analytics cookie is set until the visitor explicitly accepts via the banner (#consentBanner). -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
+<!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credits and licences | Markerlist voice clips</title>
+<meta name="description" content="The free software behind the Markerlist voice clips tool: Kokoro, ONNX Runtime and eSpeak NG, their licences, and where to find the complete source.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F5F9">
+<meta property="og:title" content="Credits and licences | Markerlist voice clips">
+<meta property="og:description" content="The free software behind the Markerlist voice clips tool: Kokoro, ONNX Runtime and eSpeak NG, their licences, and where to find the complete source.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markerlist.app/voice-clips/credits.html">
+<meta property="og:site_name" content="Markerlist">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261103a">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Credits and licences | Markerlist voice clips">
+<meta name="twitter:description" content="The free software behind the Markerlist voice clips tool: Kokoro, ONNX Runtime and eSpeak NG, their licences, and where to find the complete source.">
+<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261103a">
+<meta name="twitter:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
+<link rel="canonical" href="https://markerlist.app/voice-clips/credits.html">
+
+<!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="preload" as="font" type="font/woff" href="../assets/site/fonts/BebasNeue-Regular.woff?v=20261103a" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="../assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261103a" crossorigin>
+<link rel="stylesheet" href="../assets/site/site.css?v=20261103a">
+<link rel="stylesheet" href="style.css?v=20261103a">
+</head>
+<body class="voice">
+<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Markerlist, back to top"><img src="../assets/site/img/logo-96.webp" width="96" height="96" alt=""><span>Markerlist</span></a>
+    <div class="nav-end"><a class="btn btn-primary btn-sm" id="voice-nav-dl" href="/#discovery">Download</a></div>
+  </div>
+</header>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<main id="main" class="vc">
+  <div class="vc-hero">
+    <div class="vc-wrap">
+      <p class="vc-chip"><b>Free software</b> GPL-3.0-or-later, with the complete source</p>
+      <h1>Credits and licences.</h1>
+      <p class="vc-lead">MarkerList voice clips is free software, and it stands on the work of the projects listed here. <a href="index.html">Back to the tool</a></p>
+    </div>
+  </div>
+
+  <div class="vc-wrap vc-flow vc-prose">
+  <section id="privacy" class="stack" aria-labelledby="h-privacy">
+    <h2 id="h-privacy">What stays on your computer</h2>
+    <p>Your Live set, the names in it and the texts you type are read and spoken inside this browser tab. They are never uploaded. The only large download is the voice model (about 92 MB), fetched once and then kept by your browser. This tool puts no restriction of its own on how you use the clips you create.</p>
+    <p class="vc-site-note">This page counts visits like the rest of the website, and only if you accept cookies. Your set and your texts are never part of that. <a href="../confidentialite_en.html">Privacy policy</a>.</p>
+  </section>
+
+  <section id="free-software" class="stack" aria-labelledby="h-free">
+    <h2 id="h-free">This tool is free software</h2>
+    <p>This page and its scripts (<code>index.html</code>, <code>credits.html</code>, <code>app.js</code>, <code>tts.worker.js</code>, <code>config.js</code>, <code>style.css</code> and the files in <code>lib/</code>) are released under the <a href="licenses/GPL-3.0.txt">GNU General Public License, version 3 or (at your option) any later version</a>. You may use, study, change and share them under those terms. They come with no warranty.</p>
+    <p>Apart from the third-party libraries listed below, nothing here is compiled or minified: the files your browser receives are the source. Use “view source”, or save the folder.</p>
+    <p>The tool is offered under the GPL because it includes eSpeak NG, which is licensed under the GPL version 3 or later (see below). The MarkerList application is a separate program: it does not contain any of this code and is not covered by this licence.</p>
+  </section>
+
+  <section id="components" aria-labelledby="h-components">
+    <h2 id="h-components">What it is made of</h2>
+    <div class="tablewrap">
+      <table class="credits-table">
+        <thead><tr><th>Component</th><th>What it does here</th><th>Licence</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Kokoro-82M<span class="sub">by Hexgrad</span></td>
+            <td>The voice model and its “Heart” voice. We use the ONNX conversion by onnx-community (<code>model_quantized.onnx</code>, 8-bit).</td>
+            <td class="lic"><a href="licenses/Apache-2.0.txt">Apache-2.0</a></td>
+            <td><span class="links"><a href="https://huggingface.co/hexgrad/Kokoro-82M">Model card</a><a href="https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX">ONNX conversion</a></span></td>
+          </tr>
+          <tr>
+            <td>kokoro-js<span class="sub">by Hexgrad</span></td>
+            <td>The reference JavaScript implementation of the voice. The English text clean-up in <code>lib/text_en.js</code> is a port of its code.</td>
+            <td class="lic"><a href="licenses/Apache-2.0.txt">Apache-2.0</a></td>
+            <td><a href="https://github.com/hexgrad/kokoro/tree/main/kokoro.js">github.com/hexgrad/kokoro</a></td>
+          </tr>
+          <tr>
+            <td>ONNX Runtime Web<span class="sub">v1.22.0-dev.20250409-89f8206ba4, by Microsoft</span></td>
+            <td>Runs the model in your browser, with WebAssembly. Files: <code>vendor/onnxruntime-web/</code>.</td>
+            <td class="lic"><a href="licenses/MIT-onnxruntime.txt">MIT</a></td>
+            <td><span class="links"><a href="https://github.com/microsoft/onnxruntime">github.com/microsoft/onnxruntime</a><a href="https://github.com/microsoft/onnxruntime/blob/main/ThirdPartyNotices.txt">Third-party notices</a></span></td>
+          </tr>
+          <tr>
+            <td>eSpeak NG<span class="sub">1.52.0, the eSpeak NG project</span></td>
+            <td>The text-to-phoneme engine, compiled to WebAssembly for this tool from the 1.52.0 source and two small patches. Files: <code>vendor/espeak-ng/</code>.</td>
+            <td class="lic"><a href="licenses/GPL-3.0.txt">GPL-3.0-or-later</a></td>
+            <td><span class="links"><a href="https://github.com/espeak-ng/espeak-ng">github.com/espeak-ng/espeak-ng</a><a href="source/BUILD-INFO.txt">Our build: source and recipe</a></span></td>
+          </tr>
+          <tr>
+            <td>Emscripten, musl, libc++<span class="sub">Emscripten 7.0.0</span></td>
+            <td>The compiler runtime and the C and C++ libraries inside the compiled eSpeak NG module.</td>
+            <td class="lic"><a href="licenses/Emscripten-LICENSE.txt">MIT / NCSA</a>, <a href="licenses/musl-COPYRIGHT.txt">MIT (musl)</a>, <a href="licenses/LLVM-libcxx-LICENSE.txt">Apache-2.0 with LLVM exceptions</a></td>
+            <td><a href="https://github.com/emscripten-core/emscripten">github.com/emscripten-core/emscripten</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="espeak" class="stack" aria-labelledby="h-espeak">
+    <h2 id="h-espeak">eSpeak NG and its source</h2>
+    <p><code>vendor/espeak-ng/</code> holds eSpeak NG 1.52.0, compiled to WebAssembly by this project. eSpeak NG, with the ucd-tools and speechPlayer libraries it contains, is licensed under the GNU General Public License, version 3 or later, and that licence applies to this tool as a whole.</p>
+    <p>The complete corresponding source is available from this site: the unmodified source of the 1.52.0 tag (commit <code>4870adfa25b1a32b4361592f1be8a40337c58d6c</code>) as <a href="source/espeak-ng-1.52.0-source.tar.gz">espeak-ng-1.52.0-source.tar.gz</a> (also at <a href="https://github.com/espeak-ng/espeak-ng">github.com/espeak-ng/espeak-ng</a>), our two patches (<a href="source/patches/0001-compat-wctype-include-wchar-first-for-musl.patch">one</a>, <a href="source/patches/0002-glue-compact-ipa-no-separator.patch">two</a>), the <a href="source/build.sh">build script</a> and the exact versions of the tools in <a href="source/BUILD-INFO.txt">BUILD-INFO.txt</a> (see also the <a href="source/README.md">explanation</a>). Running the script rebuilds the three files of <code>vendor/espeak-ng/</code>, and it checks them against the SHA-256 values recorded there.</p>
+    <p>The character data used by ucd-tools is © 1991-2014 Unicode, Inc., under the <a href="licenses/Unicode-UCD.txt">Unicode terms of use</a>.</p>
+  </section>
+
+  <section id="data" class="stack" aria-labelledby="h-data">
+    <h2 id="h-data">Training data</h2>
+    <p>The Kokoro model card states that the training data of Kokoro v1.0 included audio licensed under Creative Commons Attribution: the <a href="https://datashare.ed.ac.uk/handle/10283/2353">SIWIS</a> French speech database (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, under 11 hours) and Koniwa’s <a href="https://github.com/koniwa/koniwa"><code>tnc</code></a> corpus (<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, under 1 hour). With thanks to their authors.</p>
+  </section>
+
+  <section id="texts" class="stack" aria-labelledby="h-texts">
+    <h2 id="h-texts">Licence texts</h2>
+    <ul class="plain">
+      <li><a href="licenses/GPL-3.0.txt">GNU General Public License, version 3</a></li>
+      <li><a href="licenses/Apache-2.0.txt">Apache License, version 2.0</a></li>
+      <li><a href="licenses/MIT-onnxruntime.txt">MIT License (ONNX Runtime)</a></li>
+      <li><a href="licenses/Unicode-UCD.txt">Unicode terms of use (character data)</a></li>
+      <li><a href="licenses/Emscripten-LICENSE.txt">Emscripten (MIT and University of Illinois/NCSA)</a></li>
+      <li><a href="licenses/musl-COPYRIGHT.txt">musl libc (MIT)</a></li>
+      <li><a href="licenses/LLVM-libcxx-LICENSE.txt">LLVM libc++ (Apache-2.0 with LLVM exceptions)</a></li>
+    </ul>
+    <p>MarkerList is not affiliated with, and is not endorsed by, Hexgrad, Microsoft, the eSpeak NG project, the Emscripten project or any other project named on this page.</p>
+  </section>
+
+  </div>
+</main>
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Footer"><a href="../try.html">Try the demo</a><a href="/#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="../confidentialite_en.html">Privacy</a></nav><nav class="foot-guides" aria-label="Guides"><span>Guides</span><a href="../control-ableton-from-phone.html">Control Ableton from your phone</a><a href="../ableton-ipad-controller.html">Ableton iPad controller</a><a href="../ableton-live-set-controller.html">Ableton Live set controller</a><a href="../ableton-arrangement-view-controller.html">Ableton Arrangement View controller</a><a href="../how-to-use-ableton-locators-for-live-performance.html">Ableton locators for live performance</a></nav></div></footer>
+<div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>We use cookies to understand how visitors use this site. You can accept or decline. See our <a href="../confidentialite_en.html">Privacy Policy</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Decline</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accept</button></div></div>
+<script src="../assets/site/site.js?v=20261103a" defer></script>
+</body>
+</html>

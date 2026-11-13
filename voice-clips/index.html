@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!-- Consent Mode v2 -- must run BEFORE GTM/gtag below, so no analytics cookie is set until the visitor explicitly accepts via the banner (#consentBanner). -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5L7K9KDB');</script>
+<!-- End Google Tag Manager -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice clips for your Ableton Live set | Markerlist</title>
+<meta name="description" content="Free tool: drop your Ableton Live set, hear your song and section names spoken, and get the voice clips MarkerList announces on stage. It runs in your browser.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F5F9">
+<meta property="og:title" content="Voice clips for your Ableton Live set | Markerlist">
+<meta property="og:description" content="Drop your Ableton Live set and get the spoken song and section names MarkerList announces on stage. Free, runs in your browser, nothing is uploaded.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://markerlist.app/voice-clips/">
+<meta property="og:site_name" content="Markerlist">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261103a">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Voice clips for your Ableton Live set | Markerlist">
+<meta name="twitter:description" content="Drop your Ableton Live set and get the spoken song and section names MarkerList announces on stage. Free, runs in your browser, nothing is uploaded.">
+<meta name="twitter:image" content="https://markerlist.app/assets/site/img/og-en.jpg?v=20261103a">
+<meta name="twitter:image:alt" content="Markerlist: an Ableton Live arrangement with the same sections on a tablet and a phone">
+<link rel="canonical" href="https://markerlist.app/voice-clips/">
+
+<!-- Favicon: the logo Google shows next to the site in search results and in the browser tab. Files live at the site root. -->
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+<link rel="preload" as="font" type="font/woff" href="../assets/site/fonts/BebasNeue-Regular.woff?v=20261103a" crossorigin>
+<link rel="preload" as="font" type="font/woff" href="../assets/site/fonts/BarlowSemiCondensed-Regular.woff?v=20261103a" crossorigin>
+<link rel="stylesheet" href="../assets/site/site.css?v=20261103a">
+<link rel="stylesheet" href="style.css?v=20261103a">
+</head>
+<body class="voice">
+<!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5L7K9KDB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Markerlist, back to top"><img src="../assets/site/img/logo-96.webp" width="96" height="96" alt=""><span>Markerlist</span></a>
+    <div class="nav-end"><a class="btn btn-primary btn-sm" id="voice-nav-dl" href="/#discovery">Download</a></div>
+  </div>
+</header>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<main id="main" class="vc">
+  <div class="vc-hero">
+    <div class="vc-wrap">
+      <p class="vc-chip"><b>Free tool</b> Runs in your browser, nothing to upload</p>
+      <h1>Spoken titles and sections for your set.</h1>
+      <p class="vc-lead">Drop your Ableton Live set. This page lists the song and section names MarkerList can announce, speaks the ones the app does not already have, and gives you a ZIP to drop into the app's voice folder.</p>
+      <p class="vc-fine">Your set, your names and the voice stay in this tab: none of it is uploaded.</p>
+      <noscript><p class="vc-fine">This tool needs JavaScript. Turn it on for this page to use it.</p></noscript>
+    </div>
+  </div>
+
+  <div class="vc-wrap vc-flow">
+    <section id="source" class="vc-step" aria-labelledby="h-source">
+      <div class="vc-step-head"><span class="vc-n">Step 1</span><h2 id="h-source">Your names</h2></div>
+      <div class="grid2">
+        <div>
+          <label id="drop" tabindex="0" for="file">
+            <strong>Drop your .als file here</strong>
+            <span>or click to choose it</span>
+            <input id="file" type="file" accept=".als,application/gzip,application/x-gzip">
+          </label>
+          <p class="hint">Song titles are the locators (END_LIVE excluded). Sections are the clips of the track named SECTION. This page reads the <strong>saved</strong> file: save your set in Live first (Cmd/Ctrl+S).</p>
+        </div>
+        <div>
+          <label for="typed" class="hint">Or type names, one per line. Optional: <code>file name | spoken text</code></label>
+          <textarea id="typed" spellcheck="false" placeholder="Bridge 2&#10;READY? | Ready&#10;Big Finish | Big finish"></textarea>
+          <div class="row">
+            <button id="typedAdd" type="button">Add to the list</button>
+            <button id="clear" type="button">Clear the list</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="engine" class="vc-step" aria-labelledby="h-engine">
+      <div class="vc-step-head"><span class="vc-n">Step 2</span><h2 id="h-engine">Voice</h2></div>
+      <div class="row">
+        <span id="voiceName"><strong>Heart</strong> · English (US), female · Kokoro-82M</span>
+        <span class="bar" aria-hidden="true"><i id="engineBar"></i></span>
+        <span id="engineStatus" class="hint" role="status" aria-live="polite">Not loaded yet (about 92 MB, downloaded once, then kept by the browser).</span>
+      </div>
+      <p class="hint limit">Announcements are short by design: a clip can last 2 seconds at most. A longer one is refused, never cut.</p>
+    </section>
+
+    <section id="list" class="vc-step" aria-labelledby="h-list">
+      <div class="vc-step-head"><span class="vc-n">Step 3</span><h2 id="h-list">Announcements</h2></div>
+      <p id="detectedError" class="errorbox" role="alert" hidden></p>
+      <div id="detected" class="detected" hidden>
+        <p id="detectedSource" class="src"></p>
+        <p id="detectedCounts"></p>
+        <ul id="detectedWarnings"></ul>
+        <p class="tip">This is the last saved state of your set. If you renamed something in Live since, save the set and drop the file again. You can rename or remove any row below: MarkerList finds a clip by its exact file name, so a renamed row only works if the song or section has the same name in Ableton.</p>
+      </div>
+      <p id="summary" class="hint" role="status" aria-live="polite">No names yet.</p>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Type</th><th>File name</th><th>Spoken text</th><th>State</th><th class="num">Length</th><th class="act"><span class="sr">Play</span></th><th class="act"><span class="sr">Remove</span></th></tr></thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+      <p id="empty" class="empty">Drop a set or type some names to see what can be announced.</p>
+      <div class="row">
+        <button id="genMissing" class="primary" type="button" disabled>Create the missing clips</button>
+        <button id="genAll" type="button" disabled>Create all of them</button>
+        <button id="stop" type="button" hidden>Stop</button>
+        <button id="restore" type="button" hidden>Restore removed rows</button>
+        <span id="genProgress" class="hint" role="status" aria-live="polite"></span>
+      </div>
+      <div id="log" aria-label="Timings"></div>
+    </section>
+
+    <section id="export" class="vc-step" aria-labelledby="h-export">
+      <div class="vc-step-head"><span class="vc-n">Step 4</span><h2 id="h-export">Download</h2></div>
+      <div class="row">
+        <label class="hint" for="system">File names for</label>
+        <select id="system">
+          <option value="mac">macOS</option>
+          <option value="windows">Windows</option>
+        </select>
+        <button id="download" class="primary" type="button" disabled>Download the ZIP</button>
+        <span id="downloadInfo" class="hint"></span>
+      </div>
+      <p class="path hint" id="path">Unzip it and put the files in the app's <code>tts_custom</code> folder: <code>~/Library/Application Support/MarkerList/tts_custom</code> on macOS, <code>%APPDATA%\MarkerList\tts_custom</code> on Windows. MarkerList finds a clip by its file name, so keep the names as they are.</p>
+    </section>
+  </div>
+
+  <div class="vc-wrap vc-legal">
+    <p>Free software under the <a href="licenses/GPL-3.0.txt">GNU General Public License, version 3 or later</a>, with no warranty. Your set and your texts never leave this tab. <a href="credits.html">Credits and licences</a>. MarkerList is not affiliated with the projects credited there.</p>
+    <p class="vc-site-note">This page counts visits like the rest of the website, and only if you accept cookies. Your set and your texts are never part of that. <a href="../confidentialite_en.html">Privacy policy</a>.</p>
+  </div>
+<section class="sec alt" aria-labelledby="vc-closing-h">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="h2" id="vc-closing-h">Made for MarkerList.</h2><p class="sub">MarkerList runs your Ableton Live setlist from the stage: choose the song, loop a section, start and stop from a phone, a tablet or a MIDI pedal. It announces the next section out loud, and the clips you make here are the ones it plays for your own section names.</p></div>
+    <div class="cta-row"><a class="btn btn-primary" id="voice-cta-demo" href="../try.html">Try the demo in your browser</a><a class="btn btn-ghost" id="voice-cta-trial" href="/#discovery">Download the free trial</a></div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap foot"><span>© 2026 Markerlist</span><nav aria-label="Footer"><a href="../try.html">Try the demo</a><a href="/#faq">FAQ</a><a href="https://www.youtube.com/@MarkerList" target="_blank" rel="noopener">YouTube</a><a href="mailto:contact@markerlist.app">Contact</a><a href="../confidentialite_en.html">Privacy</a></nav><nav class="foot-guides" aria-label="Guides"><span>Guides</span><a href="../control-ableton-from-phone.html">Control Ableton from your phone</a><a href="../ableton-ipad-controller.html">Ableton iPad controller</a><a href="../ableton-live-set-controller.html">Ableton Live set controller</a><a href="../ableton-arrangement-view-controller.html">Ableton Arrangement View controller</a><a href="../how-to-use-ableton-locators-for-live-performance.html">Ableton locators for live performance</a></nav></div></footer>
+<div id="consentBanner" class="consent" role="region" aria-label="Cookies" hidden><p>We use cookies to understand how visitors use this site. You can accept or decline. See our <a href="../confidentialite_en.html">Privacy Policy</a>.</p><div class="consent-actions"><button id="consentDecline" class="btn btn-ghost btn-sm" type="button">Decline</button><button id="consentAccept" class="btn btn-primary btn-sm" type="button">Accept</button></div></div>
+<script src="../assets/site/site.js?v=20261103a" defer></script>
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
