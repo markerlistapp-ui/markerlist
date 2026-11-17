@@ -33,6 +33,7 @@
   var VOICE_DUCK = 0.35;                    // gain de la musique pendant que la voix parle (-9 dB ; 1 = pas d'atténuation) : sans cela la voix se noie dans le refrain d'un petit haut-parleur, le compresseur
                                             // de sortie rattrapant tout niveau de voix supplémentaire (+6 dB de voix ne donnent que +1,4 dB à l'oreille)
   var VOICE_FADE = 0.03;                    // s : fondu d'une annonce coupée par un STOP
+  var STEM_FADE = 0.003;                    // s : fondu d'entrée et de sortie de chaque lecture de piste enregistrée (anti-clic ; un retour de boucle devient un court fondu enchaîné)
   var VOICE_PHRASES = { looping: 'loop', final_loop_fixed: 'one more time', final_loop_infinite: 'last time' };       // tts_engine.DEFAULT_LOOP_PHRASE / DEFAULT_ONE_MORE_TIME_PHRASE / DEFAULT_FINAL_LOOP_PHRASE (casse ignorée)
 
   // ------------------------------------------------------------------ outils
@@ -78,6 +79,7 @@
   function makeEpoch(G) {
     var e = { gains: [] };
     for (var i = 0; i < G.buses.length; i++) { var g = G.ctx.createGain(); g.connect(G.buses[i]); e.gains.push(g); }
+    for (var j = 0; j < (G.dryBuses ? G.dryBuses.length : 0); j++) { var dg = G.ctx.createGain(); dg.connect(G.dryBuses[j]); e.gains.push(dg); }          // indices 6 à 11 : les pistes enregistrées (sans réverbération)
     return e;
   }
 
@@ -111,6 +113,9 @@
       bus.connect(send); send.connect(G.verbIn);
       G.buses.push(bus); G.track.push(bus);
     }
+    G.dryBuses = [];                                                    // les pistes ENREGISTRÉES : mêmes mute / solo / volume que la synthèse, mais pas d'envoi de réverbération (elles ont leur propre espace)
+    for (var d = 0; d < 6; d++) { var dryBus = ctx.createGain(); dryBus.connect(G.mix); G.dryBuses.push(dryBus); }
+    G.noStems = !!global.__demoNoStems; G.stemList = [];
     G.epoch = makeEpoch(G);
     return G;
   }
@@ -358,10 +363,210 @@
       var audible = !st.muted && (!anySolo || st.soloed);
       var target = audible ? faderGain(st.volume) * TRIM[i] : 0;
       if (smooth) { G.buses[i].gain.setTargetAtTime(target, when, 0.012); } else { G.buses[i].gain.value = target; }
+      if (G.dryBuses) { if (smooth) { G.dryBuses[i].gain.setTargetAtTime(target, when, 0.012); } else { G.dryBuses[i].gain.value = target; } }
     }
     var click = mix.metronome ? 1 : 0, master = MASTER_TRIM * faderGain(mix.master.volume);
     if (smooth) { G.clickGate.gain.setTargetAtTime(click, when, 0.005); G.out.gain.setTargetAtTime(master, when, 0.02); }
     else { G.clickGate.gain.value = click; G.out.gain.value = master; }
+  }
+
+  // ------------------------------------------------------------------ les pistes enregistrées (stems)
+  /* Un morceau de la démo peut se jouer à partir de PISTES ENREGISTRÉES au lieu des notes de la partition : une lecture par groupe de stems (DRUMS, BASS, KEYS, GUITARS, VOX), qui passe par la même
+     console (mute, solo, volume) mais PAS par la réverbération de synthèse (l'enregistrement a son propre espace). Le clic reste synthétisé, comme les annonces vocales.
+     Les données (AAC en base64 : la page n'a droit à aucune requête, comme pour demo-voice.js) sont dans UN script par morceau, demo-stems-N.js, que ce fichier n'injecte qu'À LA DEMANDE (le morceau
+     actif et le suivant de la setlist) : l'adresse de chacun est dans l'index window.MarkerListDemoStemsIndex (demo-stems.js, généré par tools/export_web_demo.py). Un morceau décodé occupe ~100 à
+     135 Mo : au plus STEM_RESIDENT morceaux restent en mémoire. Tant que les pistes d'un morceau ne sont pas prêtes (ou n'ont pu l'être : navigateur sans AAC, script absent), la partition synthétisée
+     joue à leur place ; les pistes prennent le relais dès qu'elles sont prêtes (au milieu d'un tronçon : elles y rejoignent l'enregistrement là où il en est).
+     Une lecture est un AudioBufferSource lancé à l'instant audio du début du tronçon, À LA POSITION du morceau où se trouve la tête de lecture ; elle dure jusqu'à la fin du morceau, ou jusqu'à la fin
+     du tronçon dès que la prévision la connaît (boucle, saut, arrêt : closeStems). Un saut ou un STOP du visiteur : l'époque est coupée en fondu comme pour les notes (cutAll). Chaque lecture a un
+     fondu d'entrée et de sortie de STEM_FADE : un retour de boucle est donc un court fondu enchaîné, sans coupure sèche. */
+  var STEMS = null;                                                       // {songs: [{index, name, start, end, tempo, shift, trim, frames, rate, url, groups, state, promise, used, pinned}]}
+  var STEM_RESIDENT = 2;                                                  // morceaux décodés gardés en mémoire (l'actif et le suivant)
+  var stemClock = 0;
+
+  function stemWarn(text, error) { if (global.console) { console.warn('[démo] ' + text, error || ''); } }
+  /* les morceaux « à pistes » : un par entrée de l'index ; leurs données ne sont chargées qu'à la demande */
+  function stemSongs() {
+    if (STEMS) { return STEMS; }
+    var index = global.MarkerListDemoStemsIndex;
+    if (!index || !index.songs) { return null; }
+    var songs = [];
+    index.songs.forEach(function (entry) {
+      var base = Core.SONGS[entry.index];
+      if (!base || base.tempo !== entry.tempo) { stemWarn('pistes ignorées : le morceau ' + entry.index + ' n\'a pas le tempo des enregistrements'); return; }
+      songs.push({ index: entry.index, name: base.name, start: base.start, end: base.start + Core.SONG_BEATS, tempo: base.tempo, shift: 0, trim: entry.trim === undefined ? 1 : entry.trim,
+                   frames: entry.frames, rate: entry.rate, url: entry.url, groups: null, state: 'idle', promise: null, used: 0, pinned: false });
+    });
+    if (songs.length) { STEMS = { songs: songs }; }
+    return STEMS;
+  }
+  function stemSet(G) { return G.noStems ? null : stemSongs(); }
+  function stemSong(G, index) {
+    var S = stemSet(G);
+    for (var i = 0; S && i < S.songs.length; i++) { if (S.songs[i].index === index) { return S.songs[i]; } }
+    return null;
+  }
+  /* le temps `beat` est-il joué par des pistes ? (seulement quand elles sont PRÊTES : sinon la partition synthétisée joue) */
+  function stemCovered(G, beat) {
+    var S = stemSet(G);
+    if (!S) { return false; }
+    for (var i = 0; i < S.songs.length; i++) { var s = S.songs[i]; if (s.state === 'ready' && beat >= s.start - 1e-9 && beat < s.end - 1e-9) { return true; } }
+    return false;
+  }
+  function endedStem(G, entry) {
+    return function () {
+      var k = G.stemList.indexOf(entry);
+      if (k >= 0) { G.stemList.splice(k, 1); }
+      try { entry.gain.disconnect(); } catch (error) { /* déjà détaché */ }
+    };
+  }
+  /* lance les lectures de tous les groupes du morceau à partir du temps `a` du set ; elles iraient jusqu'à la fin du morceau (fondu final compris) */
+  function startStemSources(G, run, song, state, a, at, nowAudio, log) {
+    var ctx = G.ctx, spb = 60 / song.tempo;
+    var simT = run.t0 + (run.shift || 0) + Core.secondsBetween(run.b0, Math.max(run.b0, a)), when = at(simT);
+    var offset = (a - song.start) * spb + song.shift, dur = (song.end - a) * spb;
+    var late = 0;
+    if (when < nowAudio + 0.002) { late = nowAudio + 0.002 - when; when += late; offset += late; dur -= late; simT += late; }          // départ en retard (programmateur lent, ou musique déjà partie avant l'engagement du PLAY) : on rejoint l'enregistrement là où il en est
+    if (!(dur > 0.01)) { return 0; }
+    var count = 0;
+    for (var i = 0; i < song.groups.length; i++) {
+      var g = song.groups[i];
+      if (TRACK_INDEX[g.track] === undefined) { continue; }
+      var level = g.level * song.trim, src = ctx.createBufferSource(), gain = ctx.createGain();
+      var entry = { kind: 'stem', track: g.track, song: song.index, shift: run.shift || 0, beat: a + late * song.tempo / 60, sim: simT, at: when, offset: offset, dur: dur, stopAt: null, src: src, gain: gain, epoch: G.epoch, level: level };
+      src.buffer = g.buffer;
+      gain.gain.setValueAtTime(0, when); gain.gain.linearRampToValueAtTime(level, when + STEM_FADE);
+      gain.gain.setValueAtTime(level, when + dur - STEM_FADE); gain.gain.linearRampToValueAtTime(0, when + dur);               // fin du morceau : fondu
+      src.connect(gain); gain.connect(G.epoch.gains[6 + TRACK_INDEX[g.track]]);
+      src.onended = endedStem(G, entry);
+      src.start(when, offset, dur);
+      G.stemList.push(entry); state.sources.push(entry);
+      if (log) { log.push(entry); }
+      count += 1;
+    }
+    return count;
+  }
+  /* arrête les lectures d'un tronçon à l'instant audio tStop (fondu de STEM_FADE : celui qui suit se fond avec lui) */
+  function stopStemSources(state, tStop) {
+    state.sources.forEach(function (e) {
+      if (e.stopAt !== null) { return; }                                                   // déjà arrêtée (coupure d'époque) : le fondu de l'époque a la priorité
+      e.stopAt = tStop + STEM_FADE; e.stopKind = 'run';
+      try {
+        e.gain.gain.cancelScheduledValues(tStop); e.gain.gain.setValueAtTime(e.level, tStop); e.gain.gain.linearRampToValueAtTime(0, tStop + STEM_FADE);
+        e.src.stop(tStop + STEM_FADE + 0.002);
+      } catch (error) { /* déjà terminée */ }
+    });
+  }
+  /* une époque coupée (cutAll) : ses lectures sont déjà à zéro (fondu de l'époque) ; on les arrête pour qu'elles ne tournent pas dans le vide jusqu'à la fin du morceau */
+  function stopStemsOf(G, epoch, when) {
+    if (!G.stemList) { return; }
+    G.stemList.slice().forEach(function (e) {
+      if (e.epoch !== epoch) { return; }
+      if (e.stopAt === null || e.stopAt > when) { e.stopAt = when; e.stopKind = 'cut'; }
+      try { e.src.stop(when); } catch (error) { /* déjà terminée */ }
+    });
+  }
+  /* appelée par schedulePart pour chaque portion [from, to) d'un tronçon : au premier passage dans un morceau « à pistes » prêt, lance ses lectures. Renvoie le nombre de lectures lancées. */
+  function scheduleStems(G, run, from, to, at, nowAudio, log) {
+    var S = stemSet(G), count = 0;
+    if (!S) { return 0; }
+    for (var k = 0; k < S.songs.length; k++) {
+      var song = S.songs[k];
+      if (song.state !== 'ready' || to <= song.start + 1e-9 || from >= song.end - 1e-9) { continue; }
+      run.stems = run.stems || {};
+      var state = run.stems[song.index];
+      if (!state) { state = run.stems[song.index] = { sources: [], stopped: false }; count += startStemSources(G, run, song, state, Math.max(from, song.start), at, nowAudio, log); }
+    }
+    closeStems(G, run, at);
+    return count;
+  }
+  /* La fin d'un tronçon devient connue (la prévision la voit venir) : si elle tombe dans le morceau, les pistes de CE tronçon s'arrêtent là. Appelée par pump pour TOUS les tronçons suivis, pas
+     seulement ceux dont une portion reste à programmer : un tronçon peut avoir déjà été programmé au-delà de sa fin (la boucle n'était pas encore connue), il n'aura alors plus de portion. */
+  function closeStems(G, run, at) {
+    if (!run.stems || run.t1 === null || run.t1 === undefined) { return; }
+    for (var key in run.stems) {
+      var state = run.stems[key], song = stemSong(G, Number(key));
+      if (state.stopped || !song) { continue; }
+      state.stopped = true;
+      if (run.b1 < song.end - 1e-9) { stopStemSources(state, at(run.t0 + (run.shift || 0) + Core.secondsBetween(run.b0, run.b1))); }
+    }
+  }
+  function base64ToBuffer(text) {
+    var binary = global.atob(text), bytes = new Uint8Array(binary.length);
+    for (var i = 0; i < binary.length; i++) { bytes[i] = binary.charCodeAt(i); }
+    return bytes.buffer;
+  }
+  function decodeBuffer(ctx, data) {
+    return new Promise(function (resolve, reject) {
+      var promise = ctx.decodeAudioData(data, resolve, reject);                      // forme à rappels : Safari avant 14.1 n'a pas la forme à promesse
+      if (promise && promise.catch) { promise.catch(reject); }
+    });
+  }
+  /* les données d'un morceau (le script demo-stems-N.js, injecté une seule fois : il se déclare dans window.MarkerListDemoStemsData[N]) */
+  function stemData(song) {
+    var registry = global.MarkerListDemoStemsData = global.MarkerListDemoStemsData || {};
+    if (registry[song.index]) { return Promise.resolve(registry[song.index]); }
+    return new Promise(function (resolve, reject) {
+      var doc = global.document;
+      if (!doc || !song.url) { reject(new Error('pas de script de pistes pour le morceau ' + song.index)); return; }
+      var tag = doc.createElement('script');
+      tag.async = true;
+      tag.onload = function () { if (registry[song.index]) { resolve(registry[song.index]); } else { reject(new Error('le script de pistes du morceau ' + song.index + ' ne contient rien')); } };
+      tag.onerror = function () { reject(new Error('script de pistes introuvable : ' + song.url)); };
+      tag.src = song.url;
+      (doc.head || doc.documentElement).appendChild(tag);
+    });
+  }
+  function decodeStemSong(ctx, song, data) {
+    var groups = [];
+    return Promise.all(data.groups.map(function (g, i) {
+      return decodeBuffer(ctx, base64ToBuffer(g.data)).then(function (buffer) { groups[i] = { track: g.track, level: g.level === undefined ? 1 : g.level, buffer: buffer }; });
+    })).then(function () {
+      var expected = Math.round(song.frames * ctx.sampleRate / song.rate);          // un décodeur qui ne retire pas l'amorce AAC allonge le tampon : on lit ce surplus en moins
+      var deltas = groups.map(function (g) { return g.buffer.length - expected; }).sort(function (a, b) { return a - b; }), delta = deltas[Math.floor(deltas.length / 2)];
+      song.shift = 0;
+      if (delta > 2 && delta < 0.1 * ctx.sampleRate) { song.shift = delta / ctx.sampleRate; }
+      else if (Math.abs(delta) > 2) { stemWarn('pistes : longueur décodée inattendue (' + delta + ' images d\'écart), lecture sans correction'); }
+      song.groups = groups;
+    });
+  }
+  function evictStemSong(song) { song.groups = null; song.state = 'idle'; song.promise = null; song.shift = 0; }
+  /* au plus STEM_RESIDENT morceaux décodés : on rend la mémoire du moins récemment demandé (jamais celui qui vient d'arriver, ni un morceau « épinglé » par un rendu hors ligne) */
+  function evictStemSongs(keep) {
+    var ready = STEMS.songs.filter(function (s) { return s.state === 'ready' && !s.pinned; });
+    while (ready.length > STEM_RESIDENT) {
+      var oldest = ready.filter(function (s) { return s !== keep; }).sort(function (a, b) { return a.used - b.used; })[0];
+      if (!oldest) { break; }
+      evictStemSong(oldest);
+      ready.splice(ready.indexOf(oldest), 1);
+    }
+  }
+  /* demande les pistes d'un morceau (une seule fois) : script, décodage ; en cas d'échec le morceau reste synthétisé */
+  function requestStemSong(ctx, song) {
+    song.used = ++stemClock;
+    if (song.state !== 'idle') { return song.promise || Promise.resolve(song); }
+    song.state = 'loading';
+    song.promise = stemData(song).then(function (data) { return decodeStemSong(ctx, song, data); }).then(function () {
+      song.state = 'ready'; evictStemSongs(song); return song;
+    }, function (error) { song.state = 'failed'; song.groups = null; stemWarn('pistes du morceau ' + song.index + ' indisponibles, on garde la synthèse', error); return song; });
+    return song.promise;
+  }
+  /* le morceau actif du simulateur et le suivant de la setlist : leurs pistes doivent être prêtes AVANT qu'on y joue (le PLAY a un pré-roll de ~4 s) */
+  function wantStems(server) {
+    var S = stemSongs();
+    if (!S || !A.ctx || !server) { return; }
+    var active = server.active, next = server.nextVisible ? server.nextVisible(active) : null, key = active + '|' + next;
+    if (A.stemWanted === key) { return; }
+    A.stemWanted = key;
+    [active, next].forEach(function (name) {
+      for (var i = 0; name && i < S.songs.length; i++) { if (S.songs[i].name === name) { requestStemSong(A.ctx, S.songs[i]); } }
+    });
+  }
+  /* hors ligne (tests, rendus) : décode TOUS les morceaux et les épingle en mémoire. Promesse. */
+  function loadStems(ctx) {
+    var S = stemSongs();
+    if (!S || !ctx || !ctx.decodeAudioData) { return Promise.resolve(null); }
+    return Promise.all(S.songs.map(function (song) { song.pinned = true; return requestStemSong(ctx, song); })).then(function () { return S; });
   }
 
   // ------------------------------------------------------------------ programmation d'une portion de tronçon
@@ -369,17 +574,17 @@
      on y ajoute les notes déjà tenues à cet endroit. Renvoie le nombre d'évènements programmés. */
   function schedulePart(G, run, from, to, fresh, at, nowAudio, log) {
     var count = 0, list = [], i;
-    if (fresh) {
+    if (fresh && !stemCovered(G, from)) {                                                       // un morceau joué par ses pistes enregistrées n'a pas de notes à rejouer (voir scheduleStems)
       var held = Music.sustainedAt(from);
       for (i = 0; i < held.length; i++) { list.push({ ev: held[i], beat: from, rest: held[i].beat + held[i].dur - from }); }
     }
     var evs = Music.eventsBetween(from, to);
-    for (i = 0; i < evs.length; i++) { list.push({ ev: evs[i], beat: evs[i].beat, rest: evs[i].dur }); }
+    for (i = 0; i < evs.length; i++) { if (stemCovered(G, evs[i].beat)) { continue; } list.push({ ev: evs[i], beat: evs[i].beat, rest: evs[i].dur }); }
     for (var b = Math.ceil(from); b < to && b < Core.END_BEAT; b++) {                               // le clic : un par temps, accentué sur le premier de la mesure (bornes EXACTES : le même nombre sert de fin à une portion et de début à la suivante)
       list.push({ ev: { track: 'click', kind: 'click', vel: b % Core.SIGNATURE === 0 ? 1 : 0.7 }, beat: b, rest: 0.1 });
     }
     for (i = 0; i < list.length; i++) {
-      var item = list[i], when = at(run.t0 + Core.secondsBetween(run.b0, Math.max(run.b0, item.beat)));
+      var item = list[i], when = at(run.t0 + (run.shift || 0) + Core.secondsBetween(run.b0, Math.max(run.b0, item.beat)));
       if (when < nowAudio - 0.002) { continue; }                                                     // déjà passé (onglet figé...) : on ne rattrape pas
       when = Math.max(when, nowAudio + 0.002);
       var secs = item.rest * 60 / tempoAt(item.beat);
@@ -387,6 +592,7 @@
       if (log) { log.push({ at: when, beat: item.beat, track: item.ev.track, kind: item.ev.kind, midi: item.ev.midi, vel: item.ev.vel, sim: run.t0 + Core.secondsBetween(run.b0, Math.max(run.b0, item.beat)) }); }
       count += 1;
     }
+    count += scheduleStems(G, run, from, to, at, nowAudio, log);
     return count;
   }
 
@@ -406,6 +612,7 @@
     var old = A.G.epoch;
     A.G.epoch = makeEpoch(A.G);
     fadeEpoch(old, at);
+    stopStemsOf(A.G, old, at + CANCEL_FADE + 0.01);
   }
   /* coupe ce qui n'a pas encore sonné à partir de l'instant de simulation `simT` */
   function cancelFrom(simT, nowAudio, simNow) {
@@ -444,7 +651,18 @@
         else if (c.t0 <= f.t0 + 1e-9 && (c.t1 === null || c.t1 > f.t0 - 1e-9) && Math.abs(Core.advance(c.b0, f.t0 - c.t0) - f.b0) <= DIVERGENCE_BEATS && (f.contiguous || f === fcRuns[0])) { found = c; }   // prolongement
       }
       if (found) { found.t1 = f.t1; found.b1 = f.b1; lastMatched = found; }
-      else { A.runs.push({ t0: f.t0, b0: f.b0, t1: f.t1, b1: f.b1, sched: undefined, closed: false }); lastMatched = A.runs[A.runs.length - 1]; }
+      else {
+        var shift = 0;
+        /* Un tronçon qui suit directement un autre DANS LA MÊME PRÉVISION (retour de boucle, cue, morceau chaîné) PART de l'instant où l'AUDIO du précédent s'arrête, pas de celui que la prévision lui donne :
+           l'origine d'un tronçon est prise à son premier passage, parfois avant le vrai démarrage du simulateur (PLAY engagé en milieu de pas : jusqu'à ~20 ms d'avance sur la ligne de temps que la prévision
+           voit ensuite). Sans ce raccord, une piste enregistrée aurait un trou de cette durée à chaque retour de boucle, et le clic un à-coup. Le décalage (`shift`, secondes) ne s'applique qu'à la
+           PROGRAMMATION (notes, clic, pistes) : t0 reste la ligne de temps du simulateur, celle que compare la détection de divergence. */
+        if (lastMatched && lastMatched.t1 !== null && lastMatched.t1 !== undefined && Math.abs(lastMatched.t1 - f.t0) < 1e-6) {
+          var chained = lastMatched.t0 + (lastMatched.shift || 0) + Core.secondsBetween(lastMatched.b0, lastMatched.b1);
+          if (Math.abs(chained - f.t0) < 0.03) { shift = chained - f.t0; }
+        }
+        A.runs.push({ t0: f.t0, b0: f.b0, t1: f.t1, b1: f.b1, shift: shift, sched: undefined, closed: false }); lastMatched = A.runs[A.runs.length - 1];
+      }
     });
   }
 
@@ -453,6 +671,7 @@
     if (!A.enabled || !ctx || ctx.state !== 'running') { return; }
     var G = A.G, now = ctx.currentTime, simNow = server.simNow;
     if (!(now > 0)) { return; }                                                                    // l'horloge audio n'a pas encore démarré (le matériel s'initialise) : rien à programmer
+    wantStems(server);
     var mixState = { trackState: server.trackState, master: server.master, metronome: server.metronome };
     var key = JSON.stringify(mixState);
     if (key !== A.lastMix) { applyMix(G, mixState, now, true); A.lastMix = key; }
@@ -471,6 +690,7 @@
     A.runs = A.runs.filter(function (r) { return r.sched !== undefined || r.t0 <= simNow + 1e-9; });       // un tronçon pas encore programmé (démarrage après le pré-roll...) n'engage à rien : la prévision actuelle le remplace
     merge(fc.runs);
     var end = simNow + LOOKAHEAD, at = function (simTime) { return simTime + A.offset; };
+    for (var m = 0; m < A.runs.length; m++) { closeStems(G, A.runs[m], at); }                        // fin de tronçon connue : arrêt des pistes enregistrées
     for (var i = 0; i < A.runs.length; i++) {
       var r = A.runs[i];
       if (r.done || r.t0 >= end) { continue; }
@@ -527,6 +747,7 @@
     var ctx = newContext();
     if (!ctx) { return false; }
     A.ctx = ctx; A.G = buildGraph(ctx); ctx.onstatechange = onState;
+    wantStems(A.server);                                       // les pistes enregistrées du morceau actif (et du suivant) se chargent en tâche de fond : tant qu'elles ne sont pas prêtes, la synthèse joue
     return true;
   }
   function addGestureHandlers() {
@@ -579,7 +800,8 @@
       A.enabled = false;
       if (A.server) { A.server.onFrame = null; A.server.onVoice = null; A.server.onVoiceStop = null; }
       removeGestureHandlers();
-      A.ctx = null; A.G = null; A.runs = []; A.offset = null;
+      A.ctx = null; A.G = null; A.runs = []; A.offset = null; A.stemWanted = null;
+      if (STEMS) { STEMS.songs.forEach(evictStemSong); }                                       // la mémoire des pistes décodées est rendue avec le contexte
       if (ctx && ctx.close) { try { var closing = ctx.close(); if (closing && closing.catch) { closing.catch(function () { /* déjà fermé */ }); } } catch (error) { /* tant pis */ } }
     },
     /* hors ligne : rend les temps [from, to) d'un morceau en audio (tests, écoute, export) -- mêmes instruments, même console. opts : {from, to, sampleRate, tail, click, mix, trackState} */
@@ -588,6 +810,7 @@
       var from = opts.from, to = opts.to, sr = opts.sampleRate || 44100, tail = opts.tail === undefined ? 2.5 : opts.tail, lead = 0.05;
       var seconds = Core.secondsBetween(from, to) + tail + lead;
       var ctx = new Offline(2, Math.ceil(seconds * sr), sr), G = buildGraph(ctx);
+      if (opts.stems === false) { G.noStems = true; }
       if (opts.voiceLevel !== undefined) { G.voice.gain.value = opts.voiceLevel; }                                                              // réglages d'essai (web_demo/audio_voice_check.mjs)
       if (opts.duck !== undefined) { G.duckAmount = opts.duck; }
       if (opts.dry) { G.comp.ratio.value = 1; G.limiter.ratio.value = 1; G.limiter.threshold.value = 0; G.comp.threshold.value = 0; }      // sans compresseur ni limiteur : les niveaux mesurés sont ceux des instruments
@@ -596,11 +819,17 @@
       if (opts.trackState) { mix.trackState = opts.trackState; }
       applyMix(G, mix, 0, false);
       if (opts.dry) { G.out.gain.value = 1; }                                                                                              // et sans l'atténuation du volume principal : on mesure les instruments eux-mêmes
-      var run = { t0: lead, b0: from }, count = schedulePart(G, run, from, to, true, function (t) { return t; }, 0, opts.log || null);
+      var run = { t0: lead, b0: from, t1: lead + Core.secondsBetween(from, to), b1: to }, count = schedulePart(G, run, from, to, true, function (t) { return t; }, 0, opts.log || null);
       (opts.voices || []).forEach(function (v) { playVoice(G, String(v.text).toLowerCase(), lead + v.at, opts.voiceLog || null); });       // annonces : [{text, at}] (secondes depuis `from`)
       return ctx.startRendering().then(function (buffer) { buffer.eventCount = count; return buffer; });
     },
     _pump: pump,
+    /* les pistes enregistrées : loadStems(ctx) décode (et épingle) TOUS les morceaux, pour les rendus hors ligne et les essais ; stemsState() : l'état de chaque morceau (idle / loading / ready / failed) */
+    loadStems: loadStems,
+    stemsState: function () { var S = stemSongs(); return S ? S.songs.map(function (s) { return { index: s.index, state: s.state }; }) : []; },
+    _setStemsForTest: function (songs) {
+      STEMS = songs ? { songs: songs.map(function (s) { s.state = 'ready'; s.pinned = true; s.used = s.used || 0; if (s.name === undefined) { s.name = Core.SONGS[s.index].name; } return s; }) } : null;
+    },
     _debug: function () { return A; },
     _setLog: function (list) { A.log = list; },
     _setVoiceLog: function (list) { A.voiceLog = list; },

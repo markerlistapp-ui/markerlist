@@ -1,0 +1,77 @@
+{
+  "app_version": "1.8.3",
+  "languages": [
+    "fr",
+    "en",
+    "es",
+    "de",
+    "pt",
+    "ko"
+  ],
+  "files": {
+    "tablet.html": {
+      "sha256": "841f3b554214235e472c307e7a595b9e0c8f4f4414d198738e0c96f3620dad3e",
+      "bytes": 654711
+    },
+    "demo-socket.js": {
+      "sha256": "b9d00e9b9cb07590d07e16f1e6e28c5ce47a3596521377ff259cafe61997ce58",
+      "bytes": 5864
+    },
+    "demo-engine.js": {
+      "sha256": "5226f7247ef8d9f0c69e7e87695e5e59026b33d1cbd7328ad233c3587a7514cd",
+      "bytes": 65050
+    },
+    "demo-music.js": {
+      "sha256": "76ba0f73e173509a53552729e3cff61a6aeda82cf50496f34c0cd951c154c823",
+      "bytes": 23552
+    },
+    "demo-audio.js": {
+      "sha256": "a4f0edab6055262d3c6885947b3d1c24f1e10f76918e9adebbd5c8f5a80b7fec",
+      "bytes": 61288
+    },
+    "demo-voice.js": {
+      "sha256": "dfe3d9db6fce35ee5b04ff3c87acf60946af90c1e25cb9178026251544926fc0",
+      "bytes": 563625
+    },
+    "demo-stems-0.js": {
+      "sha256": "763d0c84b7f44ada8474aaf32c95672731600746a61c1e330753b934179b876b",
+      "bytes": 3965692
+    },
+    "demo-stems-1.js": {
+      "sha256": "79c8ce66f8ff4c6992405c136cd4bc353a7bc1b187231e605d19b8e780db4c05",
+      "bytes": 5506425
+    },
+    "demo-stems-2.js": {
+      "sha256": "330232e0c7265237a21043c94e0932c8a462ba88eddc5d370f2cf643c182588f",
+      "bytes": 3541889
+    },
+    "demo-stems.js": {
+      "sha256": "60b42c486cd311c030c673dcb528cdbba2dc1cb813c07676bd1070e214e73825",
+      "bytes": 890
+    },
+    "logo.png": {
+      "sha256": "6afbd0372208985547a724fcee9d63c46eb37f8b7cbb485c4bb0542bec8e1c46",
+      "bytes": 28530
+    },
+    "fonts/BarlowSemiCondensed-Bold.ttf": {
+      "sha256": "5bd6757e459a110da81b44532f0f43058e2dab2401688abca84f2fdbde193cbb",
+      "bytes": 111772
+    },
+    "fonts/BarlowSemiCondensed-Medium.ttf": {
+      "sha256": "4998b693a190b76f2b11315844345a8546c1e2e6a320905507a9eed04edf8b48",
+      "bytes": 105560
+    },
+    "fonts/BarlowSemiCondensed-Regular.ttf": {
+      "sha256": "e8c7242f612b13d026e18a94b63b0fd079e91a3faf009d1b6981dbb5f16d1153",
+      "bytes": 105776
+    },
+    "fonts/BarlowSemiCondensed-SemiBold.ttf": {
+      "sha256": "bd299f4bc5b44d30be8d42e9bad3a5df7d66af1cd55d0ed72a8b8916360a1424",
+      "bytes": 109772
+    },
+    "fonts/BebasNeue-Regular.ttf": {
+      "sha256": "4bcafdf6db45151fbe7722191d2eed9ef959e55ba1e01982499d0378d895426f",
+      "bytes": 56136
+    }
+  }
+}
