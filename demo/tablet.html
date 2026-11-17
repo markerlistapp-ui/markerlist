@@ -23,7 +23,7 @@
 @font-face{font-family:'Barlow Semi Condensed';src:url('fonts/BarlowSemiCondensed-Bold.ttf') format('truetype');font-weight:700;font-display:swap;}
 </style>
 <script src="demo-socket.js?v=b9d00e9b9c"></script>
-<script src="demo-engine.js?v=67363b6628"></script>
+<script src="demo-engine.js?v=5226f7247e"></script>
 <script src="demo-music.js?v=76ba0f73e1"></script>
 <script src="demo-audio.js?v=ac45956def"></script>
 <script defer src="demo-voice.js?v=dfe3d9db6f"></script>
@@ -518,7 +518,10 @@ body.live-mode #tempo{display:none;}
    reste inchangé -- seules l'animation et l'interaction de bascule au tap
    ont été retirées, voir aussi animateLive() côté JS pour le reste. */
 html[data-theme="light"] .live-stat{background:var(--bg-panel); border-color:var(--border);}
-.live-stat-label{font-size:0.6rem; font-family:var(--font-data); font-weight:400; letter-spacing:0.09em; color:var(--text-faint); text-transform:uppercase;}
+/* Étiquettes et pastilles : Bebas Neue (15/11 ; l'utilisateur a choisi « C » dans le comparatif des polices -- les petites capitales espacées en Barlow « faisaient trop IA »). */
+/* line-height fixée à l'ancienne hauteur de ligne (12 px) : la police plus grande ne grossit PAS les cartes SIGNATURE / TEMPO de la Vue Live. Seul le bandeau « Prochaine chanson / Set restant » reprend la hauteur
+   naturelle (maquette validée). */
+.live-stat-label{font-size:0.86rem; line-height:0.75rem; font-family:var(--font-display); font-weight:400; letter-spacing:0.04em; color:var(--text-faint); text-transform:uppercase;}
 html[data-theme="light"] .live-stat-label{color:var(--text-faint);}
 .live-stat-value{font-size:1rem; font-weight:900; color:var(--text-primary); letter-spacing:0.01em; line-height:1.1; font-family:var(--font-data);}
 html[data-theme="light"] .live-stat-value{color:var(--text-primary);}
@@ -1009,7 +1012,7 @@ html[data-theme="light"] .status-transport-btn.status-stop{color:#fff;}
 #live-bottom-bar{display:flex; width:100%; max-width:500px; align-items:stretch; justify-content:space-between; gap:8px; box-sizing:border-box; margin:0 auto 14px; background:var(--bg-panel); border:1px solid var(--border); border-radius:10px; padding:12px 20px;}
 #live-bottom-bar .live-stat{background:transparent; border:none; box-shadow:none; padding:0; flex:0 1 auto; align-items:flex-start;}
 #live-bottom-bar .live-stat:last-child{align-items:flex-end; text-align:right;}
-#live-bottom-bar .live-stat-label{font-size:0.62rem;}
+#live-bottom-bar .live-stat-label{font-size:0.86rem; line-height:normal;}
 #live-bottom-bar .live-stat-value{font-size:1.05rem;}
 /* Nom du morceau (21/09, écart signalé) -- police display (Bebas Neue),
    comme .strip .col .val.songname sur la maquette : c'est un TITRE de
@@ -1092,7 +1095,7 @@ html[data-theme="light"] #live-bottom-bar{background:var(--bg-panel); border-col
 /* Texte simple, vert, sans pastille (21/09, écart signalé -- la maquette
    "Vue Live" n'a jamais eu de pilule bleue ici : .nowplaying .eyebrow y
    est juste du texte -- couleur PLAY, pas d'accent générique). */
-#live-eyebrow{display:block; text-align:center; margin:0 auto 4px; font-size:0.62rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--play); font-family:var(--font-data);}
+#live-eyebrow{display:block; text-align:center; margin:0 auto 4px; font-size:0.86rem; line-height:0.75rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; color:var(--play); font-family:var(--font-display);}
 #live-eyebrow.is-paused{color:var(--accent-orange);}
 /* font-size 2.6rem (était 2rem) + poids retiré (était 900) -- 21/09, écart
    signalé : .nowplaying .name sur la maquette, même raisonnement que
@@ -1527,6 +1530,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
     .info-container{margin-top:0;}
     .transport{margin:6px auto 8px;}
     #live-bottom-bar{padding-top:8px; padding-bottom:8px; margin-bottom:8px;}
+    #live-bottom-bar .live-stat-label{line-height:0.75rem;}   /* 15/11 : étiquettes en Bebas Neue -- le bandeau garde ici l'ancienne hauteur de ligne (12 px) : 4 px de plus faisaient passer les boutons de page sous le bas d'un écran de 553 px */
     #quick-toggles-bar{margin-bottom:6px;}
     .grid-card{padding-top:8px;}
 }
@@ -1662,9 +1666,22 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    vert pour le morceau EN COURS (fonction PLAY), ambre pour SUIVANT (même
    registre que CUE/sélection générique) -- jamais les couleurs de
    CLICK/PRÉ-ROLL/boucle (bleu), qui n'ont rien à voir ici. */
-.marker-btn-tag{flex-shrink:0; font-family:var(--font-data); font-size:0.58rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:2px 7px; border-radius:4px;}
+.marker-btn-tag{flex-shrink:0; font-family:var(--font-display); font-size:0.86rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; padding:3px 8px 1px; border-radius:4px;}
 .marker-btn-tag.tag-now{background:rgba(var(--play-rgb), 0.16); color:var(--play);}
 .marker-btn-tag.tag-next{background:var(--accent-orange-soft); color:var(--accent-orange);}
+/* ---- Garde-fous de scène (15/11, points 2.2 / 2.3 / 2.4 de la feuille de route ; maquettes validées par l'utilisateur, étiquettes en Bebas Neue : choix « C ») ---- */
+/* 2.4 : morceau déjà joué -- ligne et bandeau estompés (opacité .42), étiquette neutre « Joué » de la même famille que « En cours » / « Suivant ». Le réglage « Masqués » retire la ligne de la liste. */
+.marker-btn-tag.tag-played{background:var(--border); color:var(--text-secondary);}
+.marker-btn.played, .status-song-banner.played{opacity:.42;}
+/* 2.2 : pastille du dépassement de l'heure de fin, à gauche du « Set restant ». Orange (jusqu'à +5:00) et rouge reprennent les teintes d'« Suivant » et de STOP ; la marge n'est qu'un chiffre discret. */
+.overshoot-pill{display:inline-flex; align-items:center; white-space:nowrap; font-variant-numeric:tabular-nums; margin:-2px 0;}   /* marges négatives : la pastille (20 px) ne grandit pas la ligne du temps restant (18 px) -- le bandeau garde sa hauteur */
+.overshoot-pill[hidden]{display:none !important;}
+.overshoot-pill .est{opacity:.8; margin-left:6px;}
+.overshoot-pill.warn{background:var(--accent-orange-soft); color:var(--accent-orange);}
+.overshoot-pill.alert{background:var(--stop-soft); color:var(--stop);}
+.overshoot-pill.margin{font-family:var(--font-display); font-size:0.86rem; letter-spacing:0.04em; color:var(--text-secondary);}
+#live-bottom-bar .live-stat:last-child .live-stat-value-row{align-items:center;}
+.played-reset-btn{width:100%; margin-top:10px;}
 /* Dégradé (pas un lavis plat) -- maquette "Setlist" .row.now : gradient
    90deg qui s'estompe vers transparent à 60%, PAS un fond uni. --play-rgb
    (pas la valeur hex figée de la maquette, jamais vérifiée en clair côté
@@ -2498,7 +2515,12 @@ html[data-theme="light"] .picker-option.selected{border-color:var(--play); backg
         </div>
         <div class="live-stat">
             <div class="live-stat-label" data-i18n="set_remaining_short">SET RESTANT</div>
-            <div class="live-stat-value" id="live-bottom-set-remaining">—</div>
+            <!-- 2.2 (15/11) : à gauche du temps de musique restant, la pastille du dépassement de l'heure de fin (« +4:40 estimé », orange puis rouge) ou, s'il reste de la marge, « −16:40 » discret.
+                 Cachée tant qu'aucune heure de fin n'est réglée ou que le temps restant est inconnu -- voir updateOvershoot. -->
+            <div class="live-stat-value-row">
+                <span id="overshoot-pill" class="overshoot-pill" role="img" hidden></span>
+                <div class="live-stat-value" id="live-bottom-set-remaining">—</div>
+            </div>
         </div>
     </div>
     <div id="quick-toggles-bar">
@@ -2853,6 +2875,14 @@ html[data-theme="light"] .picker-option.selected{border-color:var(--play); backg
         <div class="theme-choice" id="beat-indicator-choice-immersive" data-beat-indicator-value="immersive"><span data-i18n="beat_indicator_immersive">Immersif</span></div>
         <div class="theme-choice" id="beat-indicator-choice-compact" data-beat-indicator-value="compact"><span data-i18n="beat_indicator_compact">Discret</span></div>
     </div>
+    <!-- Morceaux déjà joués (2.4, 15/11) : « Grisés » (défaut : la ligne reste, estompée, avec l'étiquette « Joué ») ou « Masqués » (la ligne disparaît de la liste, en mode verrouillé). Choix LOCAL à
+         l'appareil (localStorage, comme le style d'indicateur ci-dessus) ; le bouton, lui, efface la liste côté serveur : toutes les tablettes la voient repartir de zéro. -->
+    <div class="settings-label" data-i18n="played_songs_label">Morceaux déjà joués</div>
+    <div class="theme-choice-row">
+        <div class="theme-choice" id="played-mode-choice-dim" data-played-mode-value="dim"><span data-i18n="played_mode_dim">Grisés</span></div>
+        <div class="theme-choice" id="played-mode-choice-hide" data-played-mode-value="hide"><span data-i18n="played_mode_hide">Masqués</span></div>
+    </div>
+    <button type="button" id="played-reset-btn" class="btn-menu played-reset-btn" data-i18n="played_reset">Réinitialiser les morceaux joués</button>
     <!-- Décalage visuel réglable (28/09, décalage métronome visuel signalé
          par l'utilisateur) -- compense la latence de la CHAÎNE AUDIO de
          l'appareil (haut-parleurs/retour, souvent bien plus lente que le
@@ -3106,7 +3136,9 @@ socket.on("state", (d) => {
 const playBtn=document.getElementById('play-btn'), stopBtn=document.getElementById('stop-btn');
 const lockPath=document.getElementById("lock-path");
 const lockIcon=document.getElementById("lock-icon");
-let markers=[],allMarkers=[],active=null,locked=true,draggingEl=null,placeholder=null,dragOffset={x:0,y:0},chainFlags=new Set(),loopPlanSongs=new Set(),songLoopSongs=new Set(),draggingName=null,pageFlipTimer=null,allowDragDrop=true,allowTrackControl=true,allowPdfExport=true,allowPreroll=true,allowPrerollCustomization=true,allowLiveView=true,allowLtcView=true,allowAlerts=true,allowSongLoop=true,mixerPinnedTracks=new Set();
+let markers=[],allMarkers=[],active=null,locked=true,draggingEl=null,placeholder=null,dragOffset={x:0,y:0},chainFlags=new Set(),loopPlanSongs=new Set(),songLoopSongs=new Set(),draggingName=null,pageFlipTimer=null,allowDragDrop=true,allowTrackControl=true,allowPdfExport=true,allowPreroll=true,allowPrerollCustomization=true,allowLiveView=true,allowLtcView=true,allowAlerts=true,allowSongLoop=true,mixerPinnedTracks=new Set(),playedSongs=new Set(),playedMode='dim',endOfSetSecondsLeft=null,musicRemainingSecondsLeft=null;
+// Seuil du garde-fou de scène 2.2 (15/11) : JUMEAU de web_control.OVERSHOOT_ORANGE_MAX_SECONDS (test_overshoot_alert.py vérifie l'égalité).
+const OVERSHOOT_ORANGE_MAX_SECONDS=300;
 
 // --- Nom d'un repère = titre + note entre accolades (04/11) ---
 // Ce qui est écrit ENTRE ACCOLADES dans le nom d'un repère Ableton est une NOTE du
@@ -3163,6 +3195,8 @@ const I18N = {
     menu_section_tools: "Outils",
     loading: "Chargement…", appearance: "Apparence", theme_dark: "Sombre", theme_light: "Clair",
     beat_indicator_label: "Indicateur de battement", beat_indicator_immersive: "Immersif", beat_indicator_compact: "Discret",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "Morceaux déjà joués", played_mode_dim: "Grisés", played_mode_hide: "Masqués", played_reset: "Réinitialiser les morceaux joués", played_reset_done: "Morceaux joués réinitialisés", played_tag: "Joué", overshoot_est: "estimé", overshoot_title: "Dépassement estimé de l'heure de fin : {time}", overshoot_margin_title: "Marge estimée avant l'heure de fin : {time}",
     visual_offset_label: "Décalage visuel", visual_offset_hint: "Retarde l'indicateur de battement, le décompte et le pré-roll pour les faire coïncider avec le son réellement entendu sur cet appareil.",
     kbd_shortcuts_title: "Raccourcis clavier", kbd_shortcuts_hint: "Espace : PLAY / STOP · ← → : précédent / suivant · L : BOUCLE SECTION (Vue Live). Une touche fait ce que fait le bouton correspondant à l'écran.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3235,6 +3269,8 @@ const I18N = {
     menu_section_tools: "Tools",
     loading: "Loading…", appearance: "Appearance", theme_dark: "Dark", theme_light: "Light",
     beat_indicator_label: "Beat indicator", beat_indicator_immersive: "Immersive", beat_indicator_compact: "Compact",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "Songs already played", played_mode_dim: "Dimmed", played_mode_hide: "Hidden", played_reset: "Reset played songs", played_reset_done: "Played songs reset", played_tag: "Played", overshoot_est: "estimated", overshoot_title: "Estimated overrun past the end time: {time}", overshoot_margin_title: "Estimated spare time before the end time: {time}",
     visual_offset_label: "Visual offset", visual_offset_hint: "Delays the beat indicator, the countdown and the pre-roll to match the sound you actually hear on this device.",
     kbd_shortcuts_title: "Keyboard shortcuts", kbd_shortcuts_hint: "Space: PLAY / STOP · ← →: previous / next · L: LOOP SECTION (Live view). A key does what the matching on-screen button does.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3307,6 +3343,8 @@ const I18N = {
     menu_section_tools: "Herramientas",
     loading: "Cargando…", appearance: "Apariencia", theme_dark: "Oscuro", theme_light: "Claro",
     beat_indicator_label: "Indicador de tiempo", beat_indicator_immersive: "Inmersivo", beat_indicator_compact: "Discreto",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "Canciones ya tocadas", played_mode_dim: "Atenuadas", played_mode_hide: "Ocultas", played_reset: "Restablecer las canciones tocadas", played_reset_done: "Canciones tocadas restablecidas", played_tag: "Tocada", overshoot_est: "estimado", overshoot_title: "Exceso estimado sobre la hora de fin: {time}", overshoot_margin_title: "Margen estimado antes de la hora de fin: {time}",
     visual_offset_label: "Desfase visual", visual_offset_hint: "Retrasa el indicador de tiempo, la cuenta atrás y el pre-roll para que coincidan con el sonido que realmente se oye en este dispositivo.",
     kbd_shortcuts_title: "Atajos de teclado", kbd_shortcuts_hint: "Espacio: PLAY / STOP · ← →: anterior / siguiente · L: LOOP SECTION (Vista en directo). Una tecla hace lo mismo que el botón correspondiente en pantalla.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3379,6 +3417,8 @@ const I18N = {
     menu_section_tools: "Werkzeuge",
     loading: "Lädt…", appearance: "Erscheinungsbild", theme_dark: "Dunkel", theme_light: "Hell",
     beat_indicator_label: "Taktanzeige", beat_indicator_immersive: "Immersiv", beat_indicator_compact: "Dezent",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "Bereits gespielte Songs", played_mode_dim: "Abgeblendet", played_mode_hide: "Ausgeblendet", played_reset: "Gespielte Songs zurücksetzen", played_reset_done: "Gespielte Songs zurückgesetzt", played_tag: "Gespielt", overshoot_est: "geschätzt", overshoot_title: "Geschätzte Überziehung der Endzeit: {time}", overshoot_margin_title: "Geschätzter Puffer bis zur Endzeit: {time}",
     visual_offset_label: "Visueller Versatz", visual_offset_hint: "Verzögert die Taktanzeige, den Countdown und den Preroll, damit sie mit dem auf diesem Gerät tatsächlich gehörten Klang übereinstimmen.",
     kbd_shortcuts_title: "Tastenkürzel", kbd_shortcuts_hint: "Leertaste: PLAY / STOP · ← →: vorheriger / nächster · L: LOOP SECTION (Live-Ansicht). Eine Taste tut dasselbe wie die passende Schaltfläche auf dem Bildschirm.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3451,6 +3491,8 @@ const I18N = {
     menu_section_tools: "Ferramentas",
     loading: "Carregando…", appearance: "Aparência", theme_dark: "Escuro", theme_light: "Claro",
     beat_indicator_label: "Indicador de batida", beat_indicator_immersive: "Imersivo", beat_indicator_compact: "Discreto",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "Músicas já tocadas", played_mode_dim: "Esmaecidas", played_mode_hide: "Ocultas", played_reset: "Redefinir as músicas tocadas", played_reset_done: "Músicas tocadas redefinidas", played_tag: "Tocada", overshoot_est: "estimado", overshoot_title: "Excesso estimado além da hora de término: {time}", overshoot_margin_title: "Margem estimada antes da hora de término: {time}",
     visual_offset_label: "Atraso visual", visual_offset_hint: "Atrasa o indicador de batida, a contagem regressiva e o pré-roll para coincidirem com o som realmente ouvido neste aparelho.",
     kbd_shortcuts_title: "Atalhos de teclado", kbd_shortcuts_hint: "Espaço: PLAY / STOP · ← →: anterior / próxima · L: LOOP SECTION (Visualização ao vivo). Uma tecla faz o mesmo que o botão correspondente na tela.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3523,6 +3565,8 @@ const I18N = {
     menu_section_tools: "도구",
     loading: "불러오는 중…", appearance: "화면 테마", theme_dark: "다크", theme_light: "라이트",
     beat_indicator_label: "박자 표시", beat_indicator_immersive: "몰입형", beat_indicator_compact: "심플",
+    // Garde-fous de scène (15/11) : 2.2 dépassement, 2.3 charge de Live, 2.4 morceaux joués.
+    played_songs_label: "이미 연주한 곡", played_mode_dim: "흐리게", played_mode_hide: "숨김", played_reset: "연주한 곡 초기화", played_reset_done: "연주한 곡이 초기화되었습니다", played_tag: "연주함", overshoot_est: "추정", overshoot_title: "종료 시간 초과 예상: {time}", overshoot_margin_title: "종료 시간까지 예상 여유: {time}",
     visual_offset_label: "시각 지연", visual_offset_hint: "이 기기에서 실제로 들리는 소리와 맞도록 박자 표시, 카운트다운, 프리롤을 지연시킵니다.",
     kbd_shortcuts_title: "키보드 단축키", kbd_shortcuts_hint: "스페이스바: PLAY / STOP · ← →: 이전 / 다음 · L: LOOP SECTION (라이브 뷰). 키를 누르면 화면의 해당 버튼을 누른 것과 같아요.",
     // « PLAY après un STOP » (07/11, réglage de reprise) -- voir #resume-settings-block et applyPausedUI.
@@ -3641,6 +3685,7 @@ function applyTranslations(){
   // sans ce ré-appel, un changement de langue laisserait l'ancien
   // libellé alors que le reste de la page a changé.
   if(typeof applyPrerollMeasures === 'function') applyPrerollMeasures(prerollMeasures);
+  if(window.refreshGuardrailLabels) window.refreshGuardrailLabels();   // pastilles 2.2 / 2.3 (écrites par le JS, pas par data-i18n)
   refreshLangChoiceUI();
 }
 function setLang(value){
@@ -4159,7 +4204,7 @@ function loadStatusSetlist(){
     refreshStatusExpandAllIcon();
     filteredStatusMarkers.forEach(name => {
         const banner = document.createElement('div');
-        banner.className = 'status-song-banner' + (name === active ? ' current' : '') + (statusCollapsedSongs.has(name) ? ' collapsed' : '');
+        banner.className = 'status-song-banner' + (name === active ? ' current' : '') + (statusCollapsedSongs.has(name) ? ' collapsed' : '') + (isPlayedSong(name) ? ' played' : '');
         banner.dataset.song = name;
         // Barre de remplissage MORCEAU (demande explicite, 14/09 : "avoir la
         // barre de remplissage du morceau en cours") -- créée à 0% pour tous
@@ -4790,10 +4835,13 @@ socket.on('preroll_start', (d) => {
     if(d.song_name){
         fillSongName(prerollAnnounceSpan, d.song_name);
         prerollAnnounceEl.style.display = 'flex';
+        // Durée de l'annonce (11/11) : celle que le serveur indique quand le TITRE est prononcé (le décompte attend la fin de la voix, voir announce_seconds de
+        // start_preroll), sinon les 2 secondes habituelles. Une valeur absente, non numérique ou hors bornes retombe sur la durée habituelle ; plafonnée à 10 s.
+        const announceMs = (typeof d.announce_s === 'number' && isFinite(d.announce_s) && d.announce_s > 0) ? Math.min(d.announce_s, 10) * 1000 : PREROLL_ANNOUNCE_MS;
         prerollTimeout = setTimeout(() => {
             prerollAnnounceEl.style.display = 'none';
             tick();
-        }, Math.max(0, PREROLL_ANNOUNCE_MS + visualOffsetMs));
+        }, Math.max(0, announceMs + visualOffsetMs));
     } else {
         prerollAnnounceEl.style.display = 'none';
         prerollTimeout = setTimeout(tick, Math.max(0, visualOffsetMs));
@@ -7841,9 +7889,12 @@ refreshTimeFormatChoiceUI();
 // cas particulier.
 let gridFilterQuery = "";
 function getFilteredMarkers(){
-  if(!gridFilterQuery) return markers;
+  // 2.4 (15/11) : réglage « Masqués » -- les morceaux déjà joués quittent la liste (avant la pagination), SEULEMENT en mode verrouillé : pendant l'édition, le sous-ensemble affiché ne correspondrait plus
+  // aux index réels de `markers` (même raison que le filtre texte, voir plus haut).
+  const list = (playedMode==='hide' && locked) ? markers.filter(n => !isPlayedDimmed(n)) : markers;
+  if(!gridFilterQuery) return list;
   const q = gridFilterQuery.toLowerCase();
-  return markers.filter(n => n.toLowerCase().includes(q));
+  return list.filter(n => n.toLowerCase().includes(q));
 }
 function render(){
   const focusSnap = focusSnapshot(grid);
@@ -7868,7 +7919,7 @@ function render(){
   const pageMarkers = filteredMarkers.slice(startIdx, startIdx + itemsPerPage);
   pageMarkers.forEach((name, i)=>{
     if(name===draggingName) return; // affiché séparément (élément flottant), pas ici
-    const btn=document.createElement("div"); btn.className="marker-btn"+(name===active?" active":"");
+    const btn=document.createElement("div"); btn.className="marker-btn"+(name===active?" active":"")+(isPlayedDimmed(name)?" played":"");
     btn.dataset.name=name;
     // Accessibilité (28/10) : la liste est une vraie liste pour un lecteur d'écran, le morceau en cours est signalé (aria-current).
     btn.setAttribute("role","listitem");
@@ -7900,6 +7951,10 @@ function render(){
         btn.appendChild(tag);
     }else if(lastNextMarkerInfo && lastNextMarkerInfo.name===name){
         const tag=document.createElement("span"); tag.className="marker-btn-tag tag-next"; tag.textContent=t('skip_to_next');
+        btn.appendChild(tag);
+    }else if(isPlayedDimmed(name)){
+        // 2.4 (15/11) : déjà joué -- même place et même famille que « En cours » / « Suivant ».
+        const tag=document.createElement("span"); tag.className="marker-btn-tag tag-played"; tag.textContent=t('played_tag');
         btn.appendChild(tag);
     }
     // Signature + BPM retirés de la tuile (22/09, demande explicite --
@@ -8534,7 +8589,7 @@ function applyLicenseRestrictions(){
   const alertBtn = document.getElementById('alert-btn');
   if(alertBtn) alertBtn.style.display = allowAlerts ? "" : "none";
 }
-socket.on("state",(d)=>{markers=d.markers||[];allMarkers=d.all_markers||[];active=d.active||null;chainFlags=new Set(d.chain_next||[]);loopPlanSongs=new Set(d.loop_plan_songs||[]);songLoopSongs=new Set(d.song_loop_songs||[]);allowDragDrop=(d.allow_drag_drop!==false);allowTrackControl=(d.allow_track_control!==false);allowPdfExport=(d.allow_pdf_export!==false);allowPreroll=(d.allow_preroll!==false);allowPrerollCustomization=(d.allow_preroll_customization!==false);allowLiveView=(d.allow_live_view!==false);allowLtcView=(d.allow_ltc_view!==false);allowAlerts=(d.allow_alerts!==false);allowSongLoop=(d.allow_song_loop!==false);mixerPinnedTracks=new Set(d.mixer_pinned_tracks||[]);setAbletonUnresponsive(!!d.ableton_unresponsive);setForeignLoop(!!d.foreign_loop);setNoMarkers(!!d.no_markers);applyLicenseRestrictions();render();if(document.getElementById('lib-overlay').style.display==='flex')renderLib();if(d.next_marker_info)applyNextMarkerInfo(d.next_marker_info);if(d.music_remaining)applyMusicRemaining(d.music_remaining);applyCalibrationStatus(!!d.calibration_active, d.calibration_duration_s, d.calibration_kind);if(d.calibration_active && d.calibration_remaining_s!=null){applyCalibrationCountdown(d.calibration_remaining_s);}refreshStatusCurrentBanner();refreshTransportCurrentSong();refreshReleaseBtn();
+socket.on("state",(d)=>{markers=d.markers||[];allMarkers=d.all_markers||[];active=d.active||null;playedSongs=new Set(d.played_songs||[]);chainFlags=new Set(d.chain_next||[]);loopPlanSongs=new Set(d.loop_plan_songs||[]);songLoopSongs=new Set(d.song_loop_songs||[]);allowDragDrop=(d.allow_drag_drop!==false);allowTrackControl=(d.allow_track_control!==false);allowPdfExport=(d.allow_pdf_export!==false);allowPreroll=(d.allow_preroll!==false);allowPrerollCustomization=(d.allow_preroll_customization!==false);allowLiveView=(d.allow_live_view!==false);allowLtcView=(d.allow_ltc_view!==false);allowAlerts=(d.allow_alerts!==false);allowSongLoop=(d.allow_song_loop!==false);mixerPinnedTracks=new Set(d.mixer_pinned_tracks||[]);setAbletonUnresponsive(!!d.ableton_unresponsive);setForeignLoop(!!d.foreign_loop);setNoMarkers(!!d.no_markers);applyLicenseRestrictions();render();if(document.getElementById('lib-overlay').style.display==='flex')renderLib();if(d.next_marker_info)applyNextMarkerInfo(d.next_marker_info);if(d.music_remaining)applyMusicRemaining(d.music_remaining);applyCalibrationStatus(!!d.calibration_active, d.calibration_duration_s, d.calibration_kind);if(d.calibration_active && d.calibration_remaining_s!=null){applyCalibrationCountdown(d.calibration_remaining_s);}refreshStatusCurrentBanner();refreshStatusPlayed();refreshTransportCurrentSong();refreshReleaseBtn();
   // Mixeur (15/09) -- une bascule d'épinglage depuis UNE tablette rebroadcast
   // le state COMPLET à TOUTES (voir toggle_mixer_track_pin côté serveur,
   // _broadcast()) : si le mixeur est ouvert ICI (même tablette qui a
@@ -8553,6 +8608,7 @@ socket.on("marker_active",(d)=>{
     currentPage=Math.floor(idx/itemsPerPage);
   }
   refreshStatusCurrentBanner();
+  refreshStatusPlayed();
   refreshTransportCurrentSong();
   render();
 });
@@ -8757,7 +8813,11 @@ function formatSetlistTotalDuration(s){
 }
 let lastNextMarkerInfo = null;
 function applyNextMarkerInfo(d){
+  const previousNextName = lastNextMarkerInfo ? lastNextMarkerInfo.name : null;
   lastNextMarkerInfo = d;
+  // 2.4 (15/11) : le morceau SUIVANT n'est jamais estompé ni masqué, même déjà joué -- la liste doit donc se redessiner quand le suivant change et que l'un des deux (l'ancien, le nouveau) est un morceau joué.
+  // Seulement dans ce cas : le message arrive chaque seconde, la liste ne doit pas être reconstruite à chaque fois.
+  if(d && d.name !== previousNextName && (playedSongs.has(previousNextName) || playedSongs.has(d.name))) render();
   const bottomRemainingEl=document.getElementById("live-bottom-remaining");
   const bottomNextEl=document.getElementById("live-bottom-next");
   const liveSkipBtn=document.getElementById("live-skip-btn");
@@ -8910,11 +8970,11 @@ function applyEndTime(timeStr){
   const timeEl=document.getElementById("end-of-set-time");
   const timerEl=document.getElementById("end-of-set-timer");
   if(endOfSetTimerInterval){clearInterval(endOfSetTimerInterval);endOfSetTimerInterval=null;}
-  if(!timeStr){preview.style.display="none";updatePaginationControls();return;}
+  if(!timeStr){preview.style.display="none";endOfSetSecondsLeft=null;updateOvershoot();updatePaginationControls();return;}
   const parts=timeStr.split(":");
-  if(parts.length!==2){preview.style.display="none";updatePaginationControls();return;}
+  if(parts.length!==2){preview.style.display="none";endOfSetSecondsLeft=null;updateOvershoot();updatePaginationControls();return;}
   const hh=parseInt(parts[0],10), mm=parseInt(parts[1],10);
-  if(isNaN(hh)||isNaN(mm)){preview.style.display="none";updatePaginationControls();return;}
+  if(isNaN(hh)||isNaN(mm)){preview.style.display="none";endOfSetSecondsLeft=null;updateOvershoot();updatePaginationControls();return;}
   let target=new Date();
   target.setHours(hh,mm,0,0);
   // Si l'heure cible semble déjà bien passée (plus de 12h dans le passé), on
@@ -8933,6 +8993,8 @@ function applyEndTime(timeStr){
     // décompte par morceau (formatCountdown, dépasser 60 minutes y reste
     // rarissime, voir son propre commentaire).
     timerEl.textContent=formatSetlistTotalDuration(secondsLeft);
+    endOfSetSecondsLeft=secondsLeft;
+    updateOvershoot();
   }
   tick();
   endOfSetTimerInterval=setInterval(tick,1000);
@@ -8997,19 +9059,84 @@ socket.on("marker_meta",(d)=>{ markerMeta = d.meta || {}; render(); });
 // Musique restante : estimation calculée côté serveur (jusqu'au dernier
 // marker connu), affichée à côté de l'heure de fin fixe pour comparer.
 let musicRemainingInterval=null;
-let musicRemainingSecondsLeft=null;
 function applyMusicRemaining(d){
   const timerEl=document.getElementById("live-bottom-set-remaining");
   if(musicRemainingInterval){clearInterval(musicRemainingInterval);musicRemainingInterval=null;}
-  if(d.seconds_remaining==null){timerEl.textContent="—";return;}
+  if(d.seconds_remaining==null){timerEl.textContent="—";musicRemainingSecondsLeft=null;updateOvershoot();return;}
   musicRemainingSecondsLeft=d.seconds_remaining;
   timerEl.textContent=formatCountdown(musicRemainingSecondsLeft);
+  updateOvershoot();
   musicRemainingInterval=setInterval(()=>{
     musicRemainingSecondsLeft=Math.max(0,musicRemainingSecondsLeft-1);
     timerEl.textContent=formatCountdown(musicRemainingSecondsLeft);
+    updateOvershoot();
   },1000);
 }
 socket.on("music_remaining",applyMusicRemaining);
+// ---- 2.2 : alerte de dépassement de l'heure de fin (15/11) -------------------------------------------------------------------------------------------------------------
+// Compare le temps de MUSIQUE restant (estimation du serveur, voir applyMusicRemaining) au temps restant AVANT l'heure de fin réglée (voir applyEndTime). Dépassement = musique - temps avant la fin :
+// pastille orange jusqu'à +5:00, rouge au-delà ; s'il reste de la marge, un chiffre discret « −16:40 ». « estimé » : le temps de musique vient d'un sondage de tempo (il ne lit pas l'automation du tempo).
+// Rien n'est affiché tant qu'aucune heure de fin n'est réglée ou que le temps de musique restant est inconnu.
+function overshootInfo(musicSeconds, endSeconds){
+  if(musicSeconds==null||endSeconds==null||!isFinite(musicSeconds)||!isFinite(endSeconds)) return null;
+  const over=Math.floor(musicSeconds)-Math.floor(endSeconds);
+  if(over>0) return {kind: over<=OVERSHOOT_ORANGE_MAX_SECONDS ? "warn" : "alert", seconds: over};
+  return {kind:"margin", seconds:-over};
+}
+function updateOvershoot(){
+  const pill=document.getElementById("overshoot-pill");
+  if(!pill) return;
+  const info=overshootInfo(musicRemainingSecondsLeft,endOfSetSecondsLeft);
+  if(!info){pill.hidden=true;return;}
+  const time=formatSetlistTotalDuration(info.seconds);
+  if(info.kind==="margin"){
+    pill.className="overshoot-pill margin";
+    pill.textContent=(info.seconds>0?"−":"")+time;
+    pill.title=t('overshoot_margin_title').replace('{time}',time);
+  }else{
+    pill.className="marker-btn-tag overshoot-pill "+info.kind;
+    pill.textContent="+"+time;
+    const word=document.createElement("span"); word.className="est"; word.textContent=t('overshoot_est');
+    pill.appendChild(word);
+    pill.title=t('overshoot_title').replace('{time}',time);
+  }
+  pill.setAttribute("aria-label",pill.title);
+  pill.hidden=false;
+}
+window.refreshGuardrailLabels=function(){updateOvershoot();};
+// ---- 2.4 : morceaux déjà joués (15/11) ----------------------------------------------------------------------------------------------------------------------------------
+// La liste est celle du SERVEUR (partagée par toutes les tablettes ; remise à zéro au démarrage de l'app ou par le bouton des Réglages) ; seul le choix « Grisés / Masqués » est local à l'appareil.
+// Le morceau EN COURS n'est jamais « joué » (ni estompé ni masqué) ; le morceau SUIVANT non plus dans la liste : on y va, même s'il a déjà été joué (rappel, reprise).
+function isPlayedSong(name){ return playedSongs.has(name) && name!==active; }
+function isPlayedDimmed(name){ return isPlayedSong(name) && !(lastNextMarkerInfo && lastNextMarkerInfo.name===name); }
+function refreshStatusPlayed(){
+  document.querySelectorAll('.status-song-banner').forEach(el => { el.classList.toggle('played', isPlayedSong(el.dataset.song)); });
+}
+socket.on("played_songs",(d)=>{
+  playedSongs=new Set((d&&d.songs)||[]);
+  refreshStatusPlayed();
+  render();
+});
+function refreshPlayedChoiceUI(){
+  document.getElementById('played-mode-choice-dim').classList.toggle('selected', playedMode==='dim');
+  document.getElementById('played-mode-choice-hide').classList.toggle('selected', playedMode==='hide');
+}
+function setPlayedMode(value){
+  playedMode = value==='hide' ? 'hide' : 'dim';
+  try{ localStorage.setItem('smb-played-mode', playedMode); }catch(e){}
+  refreshPlayedChoiceUI();
+  render();
+}
+document.getElementById('played-mode-choice-dim').onpointerdown = () => setPlayedMode('dim');
+document.getElementById('played-mode-choice-hide').onpointerdown = () => setPlayedMode('hide');
+document.getElementById('played-reset-btn').addEventListener('click', () => {
+  socket.emit('reset_played_songs');
+  showToast(t('played_reset_done'));
+});
+(function(){
+  try{ playedMode = localStorage.getItem('smb-played-mode')==='hide' ? 'hide' : 'dim'; }catch(e){}
+})();
+refreshPlayedChoiceUI();
 socket.on("disconnect",()=>{document.getElementById("status-dot").style.background="var(--stop)"; setOfflineLock(true);});
 
 // "Qui est en ligne ?" (19/08) -- toast autonome (créé en JS, pas besoin

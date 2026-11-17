@@ -117,6 +117,7 @@
     this.visible = SONGS.map(function (s) { return s.name; });
     this.chain = [];                        // morceaux « chaînés » (ils enchaînent sur le suivant au lieu de s'arrêter)
     this.songLoops = [];                    // morceaux dont le badge « boucle de morceau » est allumé
+    this.played = [];                       // morceaux « déjà joués » (application 1.8.1, WebControlServer._played_songs) : ceux que la lecture a quittés ou dont l'arrêt de fin a eu lieu, dans l'ordre
     this.plans = {};                        // song -> [{section_name, position_beats, mode}] (boucles préparées d'avance)
     this.cues = {};                         // song -> [{source_name, source_start_beats, target_name, target_start_beats}]
     this.loop = null;                       // boucle ARMÉE : {section_name, start_beats, end, mode, remaining, releasing}
@@ -195,7 +196,9 @@
       allow_drag_drop: true, allow_track_control: true, allow_pdf_export: false, allow_preroll: true, allow_preroll_customization: true, allow_live_view: true, allow_ltc_view: false,
       allow_alerts: false, allow_song_loop: true, ableton_unresponsive: false, foreign_loop: false, peer_address: null, is_standby: false,
       /* ajoutés par l'application 1.8.0 : Live répond « 0 repère » (bandeau « Aucun repère »), et le réglage « PLAY après un STOP » -- la démo le masque et ne simule aucune pause, ses valeurs sont celles d'une installation neuve */
-      no_markers: false, resume_mode: 'restart', resume_align: 'exact', resume_preroll: null, resume_available: true
+      no_markers: false, resume_mode: 'restart', resume_align: 'exact', resume_preroll: null, resume_available: true,
+      /* ajoutés par l'application 1.8.1 : les morceaux déjà joués (grisés ou masqués dans la liste) */
+      played_songs: this.played.slice()
     };
   };
 
@@ -373,6 +376,14 @@
     this.emit('marker_active', { name: name });
   };
 
+  /* Morceaux déjà joués (application 1.8.1 ; EngineThread._note_song_played + WebControlServer.mark_song_played) : un morceau est marqué quand la lecture le QUITTE (enchaînement, saut PENDANT la lecture) ou que son
+     arrêt de fin a lieu (dernier morceau compris) ; choisir un morceau à l'arrêt, ou arrêter en cours de morceau, ne marque rien. Une fois par morceau, dans l'ordre ; le message porte la liste COMPLÈTE. */
+  Server.prototype._markPlayed = function (name) {
+    if (!name || this.played.indexOf(name) >= 0 || !songByName(name)) { return; }
+    this.played.push(name);
+    this.emit('played_songs', { songs: this.played.slice() });
+  };
+
   /* le vrai moteur interroge le tempo d'Ableton toutes les ~1 s (TEMPO_CHECK_INTERVAL) et n'envoie « tempo » que s'il a changé : l'en-tête de la tablette suit donc avec un léger retard */
   Server.prototype._checkTempo = function () {
     var bpm = songAt(this.position()).tempo;
@@ -386,7 +397,9 @@
     if (this.loop && name !== this.active) { this._setLoop(null); }     // EngineThread._set_active_marker : la boucle n'est oubliée que si le morceau CHANGE (relancer le même morceau la garde)
     this.autoArmed = {};
     this.voiceFired = null;                                             // un saut est une approche neuve (voir _voiceTick : comme l'application depuis la 1.8.0)
+    var left = this.active;
     this._setActive(name);
+    if (keepPlaying && left && left !== name) { this._markPlayed(left); }      // le saut PENDANT la lecture quitte le morceau en cours : il est « joué »
     this._setPosition(song.start);
     if (!keepPlaying) { this.playing = false; }
     this.emit('live_view_state', this.liveViewState());
@@ -437,7 +450,7 @@
     }
   };
 
-  /* franchissements entre deux pas : temps (beat), armement automatique, fin de boucle, cue, fin de morceau, fin du set */
+  /* franchissements entre deux pas : temps (beat), retour de boucle, armement automatique (puis sortie d'une boucle relâchée), cue, fin de morceau, fin du set */
   Server.prototype._advanceTransport = function () {
     var prev = this.lastPos, p = this.position(), i;
     // 1. temps (battements)
@@ -447,24 +460,26 @@
       this._lastBeat += 1;
       this.emit('beat', { downbeat: this._lastBeat % SIGNATURE === 0 });
     }
-    // 2. armement automatique (plan de la section, boucle de morceau), puis fin de la boucle armée : retour au début (x1 / x2 / infini) ou sortie (relâchée, ou compte épuisé)
-    this._autoArm(p);
+    // 2. fin de la boucle armée qui REVIENT au début (x1 / x2 / infini), AVANT l'armement automatique : Ableton boucle nativement, la tête de lecture ne franchit jamais la fin de la section et n'entre donc pas dans la suivante,
+    //    dont le plan préparé ne s'arme qu'à l'entrée réelle (relevé sur le vrai moteur : scénarios AG et AH). Le simulateur franchit la fin au pas près (jusqu'à 20 ms au-delà) : sans cet ordre, l'armement verrait la section
+    //    suivante et REMPLACERAIT la boucle.
     var L = this.loop;
-    if (L && prev < L.end && p >= L.end) {
-      var over = p - L.end;
-      if (L.releasing) {
-        this._setLoop(null);                                          // pas de retour : la lecture continue après la section
-      } else if (L.mode === 'infinite' || L.remaining > 0) {
-        this._setPosition(L.start_beats + over);
-        this.voiceFired = null;                                       // chaque bouclage natif est une entrée neuve dans un nouveau tour : l'annonce redevient possible
-        if (L.mode === 'fixed') { L.remaining -= 1; }
-        this._setLoop(L.mode === 'fixed' && L.remaining <= 0 ? null : L);
-        this._lastBeat = Math.floor(this.position());
-        this.emit('live_view_state', this.liveViewState());
-        this._acc.live = 0;
-        return;                                                       // revenu en arrière : rien d'autre à franchir dans ce pas
-      }
+    if (L && prev < L.end && p >= L.end && !L.releasing && (L.mode === 'infinite' || L.remaining > 0)) {
+      this._setPosition(L.start_beats + (p - L.end));
+      this.voiceFired = null;                                         // chaque bouclage natif est une entrée neuve dans un nouveau tour : l'annonce redevient possible
+      if (L.mode === 'fixed') { L.remaining -= 1; }
+      this._setLoop(L.mode === 'fixed' && L.remaining <= 0 ? null : L);
+      this._lastBeat = Math.floor(this.position());
+      this.emit('live_view_state', this.liveViewState());
+      this._acc.live = 0;
+      return;                                                         // revenu en arrière : rien d'autre à franchir dans ce pas
     }
+    // 2 bis. armement automatique (plan de la section, boucle de morceau), puis sortie d'une boucle RELÂCHÉE (Ableton ne boucle plus : la lecture entre vraiment dans la section suivante). Comme le vrai moteur (armement, puis
+    //    constat de la sortie), le plan préparé de cette section REMPLACE la boucle relâchée avant qu'elle ne soit nettoyée : un seul loop_state, sans « aucune boucle » entre les deux (scénario AI). Devant un cue de section
+    //    (étape 3) le vrai moteur arme tantôt ce plan avant le saut, tantôt non (instant d'un sondage, relevé deux fois, deux résultats) : le simulateur l'arme toujours, non épinglé.
+    this._autoArm(p);
+    L = this.loop;
+    if (L && L.releasing && prev < L.end && p >= L.end) { this._setLoop(null); }       // pas de retour : la lecture continue après la section
     var song = this.activeSong();
     // 3. cue de section armé : à la fin de la section source, saut au début de la cible (le cue est consommé)
     var cues = this.cues[song.name] || [];
@@ -482,9 +497,10 @@
       }
     }
     // 4. fin du set / fin de morceau
-    if (p >= END_BEAT) { this._endOfSet(); return; }
+    if (p >= END_BEAT) { this._markPlayed(song.name); this._endOfSet(); return; }      // le dernier morceau n'est jamais « quitté » : c'est son arrêt de fin (END_LIVE) qui le marque
     if (p >= songEnd(song)) {
       var next = this.nextVisible(song.name);
+      this._markPlayed(song.name);                                      // la fin du morceau est atteinte (enchaînement compris, dernier morceau compris)
       if (next && this.chain.indexOf(song.name) >= 0) {
         // morceau « chaîné » : la lecture continue sur le morceau suivant de la setlist visible
         var target = songByName(next), past2 = p - songEnd(song);
@@ -738,6 +754,12 @@
     this.emit('state', this.stateEvent());
   };
 
+  /* « Réinitialiser les morceaux joués » (Réglages) : la liste est vidée pour toutes les tablettes ; rien n'est envoyé s'il n'y avait rien à effacer (WebControlServer.reset_played_songs). */
+  Server.prototype.on_reset_played_songs = function () {
+    if (!this.played.length) { return; }
+    this.played = [];
+    this.emit('played_songs', { songs: [] });
+  };
   Server.prototype.on_remove_marker = function (data) { this._remove([data.name]); };
   Server.prototype.on_remove_markers = function (data) { this._remove(Array.isArray(data.names) ? data.names : []); };
   /* retire des morceaux de la setlist visible (WebControlServer._remove_markers_from_setlist) : leurs drapeaux « par morceau » (chaînage, boucle de morceau, plan, cues) sont nettoyés ; la
@@ -873,8 +895,9 @@
       if (tEv >= end) { break; }
       t = tEv; pos = c.beat;
       if (c.kind === 0) {                                                // fin de la boucle armée
-        /* dans un pas du simulateur l'armement AUTOMATIQUE passe avant la fin de boucle : si la section qui suit a une boucle préparée, elle REMPLACE celle-ci et la lecture ne revient pas en arrière */
-        var following = sectionAt(song, c.beat + 1e-6), akey = following ? song.name + '|' + following.position_beats : null;
+        /* seule une boucle RELÂCHÉE laisse la lecture entrer dans la section qui suit : l'armement AUTOMATIQUE la voit alors avant que la boucle ne soit nettoyée (comme un pas du simulateur, comme le vrai moteur), et si elle a une
+           boucle préparée, celle-ci REMPLACE la boucle relâchée. Une boucle qui revient en arrière (Ableton boucle nativement) ne laisse jamais la tête de lecture y entrer : le plan de la section suivante ne s'arme pas */
+        var following = loop.releasing ? sectionAt(song, c.beat + 1e-6) : null, akey = following ? song.name + '|' + following.position_beats : null;
         if (following && !armed[akey]) {
           var entry = this._planEntry(song, following);
           if (!entry || (loop.section_name === following.name && Math.abs(loop.start_beats - following.position_beats) <= 0.1)) { armed[akey] = true; }
