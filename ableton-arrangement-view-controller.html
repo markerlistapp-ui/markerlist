@@ -673,6 +673,22 @@ nav .brand{order:1}
 nav .btn-primary{order:2}
 nav .lang{order:3;flex:1 1 100%;justify-content:flex-start}
 }
+/* en-tête des guides (23/11) : téléchargements Mac et Windows + démo ; sur écran tactile : démo et lien envoyé par e-mail (rien à installer sur un téléphone) */
+.hero-dl .seo-dl{display:inline-flex;align-items:center;min-height:44px}
+.hero-dl .seo-mail{display:none}
+.hero-dl .seo-demo{flex:1 1 100%;display:inline-flex;align-items:center;gap:8px;min-height:44px;font-size:15px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.hero-dl .seo-demo::before{content:"";border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent currentColor}
+.hero-fine{margin-top:10px;font-size:13px;line-height:1.55;color:var(--ink-soft);max-width:62ch}
+.hero-fine-touch{display:none}
+@media (hover:none) and (pointer:coarse){
+.hero-dl .seo-dl{display:none}
+.hero-dl .seo-mail{display:inline-flex;align-items:center;justify-content:center;flex:1 1 100%;min-height:44px;background:transparent;color:var(--ink);border:1px solid var(--ink)}
+.hero-dl .seo-demo{order:-1;flex:1 1 100%;justify-content:center;padding:0 20px;background:var(--ink);color:#fff;border-radius:8px;text-decoration:none}
+.hero-dl .btn-ghost{flex:1 1 100%;justify-content:center;min-height:44px}
+.hero-dl .seo-demo::before{display:none}
+.hero-fine-desk{display:none}
+.hero-fine-touch{display:block}
+}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Markerlist", "url": "https://markerlist.app/", "description": "Control an Ableton Arrangement View set from the stage. Use locators, navigate sections and manage playback from a phone, tablet or computer.", "applicationCategory": "MusicApplication", "operatingSystem": "Windows 10, Windows 11, macOS"}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an Ableton Arrangement View controller?", "acceptedAnswer": {"@type": "Answer", "text": "It is a control interface designed to operate an Ableton Live session built in Arrangement View without requiring the performer to stay at the main computer. Markerlist uses the structure of the Arrangement, including locators, to provide live controls from another device."}}, {"@type": "Question", "name": "Can Markerlist control Ableton Arrangement View?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Markerlist is designed specifically around Arrangement View live sets and can navigate and control the show using the structure already present in the Ableton session."}}, {"@type": "Question", "name": "Can I control Ableton Arrangement View from an iPad?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Markerlist's control interface runs in a browser, so an iPad can be used as a control device on the same local network."}}, {"@type": "Question", "name": "Does Markerlist modify my Ableton project?", "acceptedAnswer": {"@type": "Answer", "text": "No. Markerlist operates externally and does not write changes into the original Ableton project."}}, {"@type": "Question", "name": "Do I need Max for Live?", "acceptedAnswer": {"@type": "Answer", "text": "No. Markerlist is not a Max for Live device and does not require a Markerlist plugin to be loaded into the Ableton project."}}, {"@type": "Question", "name": "How many devices can control one Ableton set?", "acceptedAnswer": {"@type": "Answer", "text": "The number depends on the plan. A device is counted per opened browser window. Closing that browser window frees the device slot."}}]}</script>
@@ -690,7 +706,7 @@ nav .lang{order:3;flex:1 1 100%;justify-content:flex-start}
 <div class="eyebrow">ABLETON ARRANGEMENT VIEW</div>
 <h1>Control Ableton Arrangement View from the stage.</h1>
 <p class="seo-lead">Markerlist turns the locators and structure of your Ableton Arrangement into a clear live control surface. Navigate songs and sections, control playback, run loops and keep the show moving from a phone, tablet or computer.</p>
-<div class="seo-cta-row"><a href="index.html#pricing" class="btn-primary">Try Markerlist free</a><a href="index.html" class="btn-ghost">See how Markerlist works</a></div>
+<div class="seo-cta-row hero-dl"><a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList.dmg" class="btn-primary seo-dl">Download for Mac</a><a href="https://pub-98f4277386c246f7819571c7290db6ca.r2.dev/MarkerList-Setup.exe" class="btn-primary seo-dl">Download for Windows 10 &amp; 11</a><a href="mailto:?subject=MarkerList%3A%20free%20trial%20for%20my%20computer&amp;body=Open%20this%20link%20on%20your%20computer%20to%20download%20the%20free%20trial%3A%0D%0A%0D%0Ahttps%3A%2F%2Fmarkerlist.app%2F%3Futm_source%3Dmobile_reminder%26utm_medium%3Demail_self%26utm_campaign%3Dsend_link%26utm_content%3Dguide_arrangement" class="btn-primary seo-mail">Open email draft with the download link</a><a href="index.html" class="btn-ghost">See how Markerlist works</a><a href="try.html?utm_source=site_guide&amp;utm_medium=internal&amp;utm_campaign=arrangement&amp;utm_content=hero_demo" class="seo-demo">Try it in your browser, no install</a></div><p class="hero-fine hero-fine-desk">Free, with no time limit: sessions of up to 15 minutes, a pause of 5 minutes between them, up to 5 sessions per 24 hours. No account or credit card.</p><p class="hero-fine hero-fine-touch">MarkerList runs on a Windows PC or a Mac. This opens an email draft with the download link to open on your computer.</p>
 </div></section>
 
 <section class="seo-section alt" id="features"><div class="wrap">
