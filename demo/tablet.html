@@ -91,22 +91,21 @@ button, input, select, textarea {
     --text-secondary:#A3A3AB;
     --text-faint:#6B6B73;
     --accent-blue:#6E93C2; --accent-blue-rgb:110,147,194; --accent-blue-soft:#1E2A38;
-    /* --accent-orange (10/09, historique) : voir le bug documenté à
-       l'époque -- cette variable a manqué dans CE bloc une fois, une var()
-       invalide échoue silencieusement (aucune erreur visible), donc bien
-       vérifier sa présence dans les 4 blocs racine (PIN+app x sombre+clair)
-       à chaque fois qu'elle change. Repointée ici vers l'ambre retenu pour
-       la refonte visuelle (15/09) -- porte déjà la sémantique CUE/section,
-       pas besoin d'une nouvelle variable, juste une nouvelle valeur. */
-    --accent-orange:#E2A542; --accent-orange-rgb:226,165,66; --accent-orange-soft:#4A3A1F;
+    /* --accent-ink (18/11, ex-« --accent-orange » : « il faut enlever les couleurs jaunes dans l'app, ça fait trop IA », direction A « Blanc inversé » validée sur la
+       planche comparative) : l'ENCRE de la page -- blanc en sombre, noir en clair -- à la place de l'ambre. Elle porte la sémantique CUE / section / « à vérifier » ;
+       --accent-ink-soft est son fond doux (CUE posé, étiquette « suivant », pastille de marge, bandeaux) et --accent-ink-on le texte posé SUR l'encre pleine. (10/09,
+       historique : cette variable a manqué dans CE bloc une fois ; une var() invalide échoue silencieusement, aucune erreur visible -- donc bien vérifier sa présence
+       dans les 4 blocs racine, PIN+app x sombre+clair, à chaque fois qu'elle change : test_palette_without_yellow.py le verrouille.) Les commentaires plus bas qui
+       parlent d'« ambre » ou d'« orange » racontent l'histoire : ils désignent ce jeton. */
+    --accent-ink:#EDEDEF; --accent-ink-rgb:237,237,239; --accent-ink-soft:#2A2A2E; --accent-ink-on:#0B0B0D;
     --play:#3FBF7F; --play-rgb:63,191,127; --play-strong:#2E9A63; --play-soft:#173A28;
     --stop:#E5534B; --stop-rgb:229,83,75; --stop-strong:#C93B32; --stop-soft:#3E1C19;
     --chip-bg:rgba(110,147,194,0.14); --chip-text:#A9C2E0; --chip-border:rgba(110,147,194,0.35);
     --marker-bg:rgba(110,147,194,0.14); --marker-text:#A9C2E0; --marker-border:rgba(110,147,194,0.35);
-    /* Teinte de la NOTE sous le titre d'un morceau annoncé en grand (06/11) : ambre adouci, déclaré ici et dans le bloc clair juste en dessous (page de l'app
+    /* Teinte de la NOTE sous le titre d'un morceau annoncé en grand (06/11) : gris clair (18/11, ex-ambre adouci), déclaré ici et dans le bloc clair juste en dessous (page de l'app
        seulement -- la page du code PIN n'affiche aucun nom de morceau). Solide, pas de color-mix() : les vieilles tablettes (Safari 15) ne le comprennent pas et la note
-       prendrait alors la couleur du titre. Contraste 10,3:1 sur le fond de page sombre (le gris --text-secondary : 7,9:1). */
-    --song-note:#DDB672;
+       prendrait alors la couleur du titre. Contraste 11,3:1 sur le fond de page sombre (le gris --text-secondary : 7,9:1). */
+    --song-note:#C4C4CB;
     /* Barre de remplissage MORCEAU de la vue Statut (demande explicite,
        14/09 : "avoir la barre de remplissage du morceau en cours... Trouver
        une autre couleur que vert et bleu") -- vert (--play) est déjà pris
@@ -129,12 +128,12 @@ html[data-theme="light"]{
     --text-secondary:#5C5A54;
     --text-faint:#8B887F;
     --accent-blue:#3E6DA0; --accent-blue-rgb:62,109,160; --accent-blue-soft:#DCE6F0;
-    --accent-orange:#B4791F; --accent-orange-rgb:180,121,31; --accent-orange-soft:#F3E3C7;
+    --accent-ink:#181714; --accent-ink-rgb:24,23,20; --accent-ink-soft:#E6E3DB; --accent-ink-on:#FAF9F6;
     --play:#1E9A5C; --play-rgb:30,154,92; --play-strong:#166F43; --play-soft:#DCF3E7;
     --stop:#C93B32; --stop-rgb:201,59,50; --stop-strong:#A32E27; --stop-soft:#F8DEDC;
     --chip-bg:#DCE6F0; --chip-text:#2C5177; --chip-border:#C3D5E5;
     --marker-bg:#F3F1EC; --marker-text:#3A3833; --marker-border:#DEDBD3;
-    --song-note:#8B5F1D;     /* ambre foncé : 5,3:1 sur le fond de page clair (#FAF9F6) */
+    --song-note:#4A4A52;     /* gris foncé : 8,3:1 sur le fond de page clair (#FAF9F6) */
     --accent-purple:#7A4DE0; --accent-purple-rgb:122,77,224;
 }
 /* Bandeaux blancs constatés en conditions réelles (14/09, iPhone à encoche/
@@ -188,12 +187,14 @@ header{position: sticky; top: 0; z-index: 1000; background: var(--bg-page); disp
    s'empilent naturellement si les deux sont vraies en même temps, sans
    logique de décalage dédiée. */
 #ableton-offline-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1600; background:var(--stop); color:#fff; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
-#foreign-loop-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1590; background:var(--accent-orange); color:#1b1306; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
-#foreign-loop-banner .offline-dot{background:#1b1306;}
-/* Live répond « 0 repère » (09/11, point 1.1) : même langage visuel que le bandeau « Boucle Ableton active » (orange, sticky, non bloquant). Le réglage de la setlist est GARDÉ : ce bandeau
+/* Bandeaux « Boucle Ableton active » et « 0 repère » (18/11, fin de l'ambre) : encre sur fond doux avec un filet d'encre, plutôt qu'un aplat blanc qui éblouirait sur une scène sombre
+   et passerait devant le bandeau rouge « Ableton ne répond plus ». */
+#foreign-loop-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1590; background:var(--accent-ink-soft); color:var(--accent-ink); border-bottom:1px solid var(--accent-ink); font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
+#foreign-loop-banner .offline-dot{background:var(--accent-ink);}
+/* Live répond « 0 repère » (09/11, point 1.1) : même langage visuel que le bandeau « Boucle Ableton active » (encre sur fond doux, sticky, non bloquant). Le réglage de la setlist est GARDÉ : ce bandeau
    explique seulement pourquoi la grille est vide. */
-#no-markers-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1585; background:var(--accent-orange); color:#1b1306; font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
-#no-markers-banner .offline-dot{background:#1b1306;}
+#no-markers-banner{display:none; align-items:center; justify-content:center; gap:8px; position:sticky; top:0; z-index:1585; background:var(--accent-ink-soft); color:var(--accent-ink); border-bottom:1px solid var(--accent-ink); font-weight:700; font-size:0.78rem; letter-spacing:0.02em; padding:7px 10px; text-align:center;}
+#no-markers-banner .offline-dot{background:var(--accent-ink);}
 .page-flip-edge{position:fixed; top:0; bottom:0; width:70px; max-width:33vw; pointer-events:none; z-index:1500; opacity:0; transition:opacity 0.12s;}
 .page-flip-edge.left{left:0; background:linear-gradient(to right, rgba(var(--accent-blue-rgb),0.4), transparent);}
 .page-flip-edge.right{right:0; background:linear-gradient(to left, rgba(var(--accent-blue-rgb),0.4), transparent);}
@@ -218,7 +219,7 @@ header{position: sticky; top: 0; z-index: 1000; background: var(--bg-page); disp
 #master-meter-label{flex-shrink:0; font-size:0.68rem; font-weight:900; letter-spacing:0.05em; color:var(--text-secondary);}
 #master-meter-track{position:relative; flex:1; height:8px; border-radius:999px; background:var(--border); overflow:hidden;}
 #master-meter-fill{position:absolute; top:0; bottom:0; left:0; width:0%; border-radius:999px;
-    background:linear-gradient(to right, var(--play) 0%, var(--play) 70%, #f0c419 88%, var(--stop) 100%);}
+    background:linear-gradient(to right, var(--play) 0%, var(--play) 88%, var(--stop) 88%, var(--stop) 100%);}
 #master-meter-value{flex-shrink:0; font-size:0.68rem; font-weight:800; color:var(--play); font-variant-numeric:tabular-nums; font-family:var(--font-data); min-width:3.6em; text-align:right;}
 /* Taille/graisse/espacement + barre décorative retirés (21/09, écart
    signalé -- la maquette "Vue Live" n'a jamais eu ce soulignement, et son
@@ -1097,7 +1098,7 @@ html[data-theme="light"] #live-bottom-bar{background:var(--bg-panel); border-col
    "Vue Live" n'a jamais eu de pilule bleue ici : .nowplaying .eyebrow y
    est juste du texte -- couleur PLAY, pas d'accent générique). */
 #live-eyebrow{display:block; text-align:center; margin:0 auto 4px; font-size:0.86rem; line-height:0.75rem; font-weight:400; letter-spacing:0.06em; text-transform:uppercase; color:var(--play); font-family:var(--font-display);}
-#live-eyebrow.is-paused{color:var(--accent-orange);}
+#live-eyebrow.is-paused{color:var(--accent-ink);}
 /* font-size 2.6rem (était 2rem) + poids retiré (était 900) -- 21/09, écart
    signalé : .nowplaying .name sur la maquette, même raisonnement que
    .band-name/.section-row-name (Bebas Neue porte déjà ce poids visuel
@@ -1191,7 +1192,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    côte à côte avec la maquette "Vue Live", qui n'a jamais eu de barre
    continue : voir .progress .seg, reprise ici à l'identique). Coloré à
    chaque frame par animateLive() (played=--text-secondary, current=
-   --accent-orange, à venir=--border) selon currentPos comparée aux
+   --accent-ink, à venir=--border) selon currentPos comparée aux
    bornes propres de chaque section (sm.position_beats/sm.end_beats) --
    plus besoin de segment_start_beats/segment_end_beats (bornes du morceau
    entier) pour ce calcul, contrairement à l'ancienne barre proportionnelle. */
@@ -1199,7 +1200,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
 #live-song-segments{display:flex; gap:2px; width:100%;}
 .live-song-seg{height:6px; border-radius:2px; background:var(--border); flex:1 1 0; min-width:0;}
 .live-song-seg.played{background:var(--text-faint);}
-.live-song-seg.current{background:var(--accent-orange);}
+.live-song-seg.current{background:var(--accent-ink);}
 /* Liste des sections du morceau EN COURS sous la barre bleue, avec durée
    et boucle indépendante par ligne (demande explicite, 02/09) -- même
    langage visuel que #live-loop-btn (neutre au repos, bleu ACTIF) pour
@@ -1341,9 +1342,9 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    voir le commentaire au-dessus) : juste ses deux extrémités adoucies en
    lavis/neutre plutôt que plein-orange/neutre. */
 .section-row-cue-btn{position:relative; z-index:1; flex:0 0 auto; width:34px; height:26px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--text-faint); font-family:var(--font-data); font-size:0.55rem; font-weight:600; letter-spacing:0.04em; cursor:pointer; -webkit-tap-highlight-color:transparent; display:flex; align-items:center; justify-content:center; padding:0;}
-.section-row-cue-btn.arming{background:transparent; border-color:var(--accent-orange); color:var(--accent-orange);}
+.section-row-cue-btn.arming{background:transparent; border-color:var(--accent-ink); color:var(--accent-ink);}
 @keyframes cueBlinkBtn{
-    0%, 49% { background:var(--accent-orange-soft); border-color:var(--accent-orange); color:var(--accent-orange); }
+    0%, 49% { background:var(--accent-ink-soft); border-color:var(--accent-ink); color:var(--accent-ink); }
     50%, 100% { background:transparent; border-color:var(--border); color:var(--text-secondary); }
 }
 .section-row-cue-btn.configured{animation:cueBlinkBtn 1s steps(1,start) infinite;}
@@ -1356,7 +1357,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    flex-shrink:0 + white-space:nowrap : ce texte ne doit jamais se
    tronquer/passer à la ligne, quitte à forcer nameSpan (lui, tronquable) à
    rétrécir davantage. */
-.section-row-next-cue{display:none; font-family:var(--font-data); font-size:0.62rem; font-weight:800; letter-spacing:0.03em; color:var(--accent-orange); text-transform:uppercase; white-space:nowrap; flex:0 0 auto;}
+.section-row-next-cue{display:none; font-family:var(--font-data); font-size:0.62rem; font-weight:800; letter-spacing:0.03em; color:var(--accent-ink); text-transform:uppercase; white-space:nowrap; flex:0 0 auto;}
 /* Vue Live SEULEMENT (maquette .srow .nextcue) : libellé compact "→ CIBLE"
    au lieu du texte "PROCHAIN CUE : ..." de la Vue Statut (jamais spécifié
    par la maquette Vue Live -- gardé tel quel côté Statut, pas dans le
@@ -1409,13 +1410,13 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    pour rester DANS la ligne plutôt que déborder sur ses voisines (lignes
    collées les unes aux autres dans la liste, pas d'espace entre elles). */
 @keyframes cueTargetBlink{
-    0%, 49% { outline-color:var(--accent-orange); }
+    0%, 49% { outline-color:var(--accent-ink); }
     50%, 100% { outline-color:transparent; }
 }
 /* 3px -> 1px (22/09, demande explicite -- "trop épais, réduire au moins
    x3") ; outline-offset resserré à l'identique pour rester collé au bord
    intérieur de la ligne, pas juste l'épaisseur du trait. */
-.live-section-row.cue-target-active{outline:1px solid var(--accent-orange); outline-offset:-1px; animation:cueTargetBlink 1s steps(1,start) infinite;}
+.live-section-row.cue-target-active{outline:1px solid var(--accent-ink); outline-offset:-1px; animation:cueTargetBlink 1s steps(1,start) infinite;}
 /* Ancien bouton "Passer" (02/09), pill plate distincte de .btn-nav -- ce
    bloc vivait à l'origine DANS #live-bottom-bar, avant que #live-skip-btn/
    #live-prev-btn ne deviennent les boutons de transport PRÉCÉDENT/SUIVANT
@@ -1638,7 +1639,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    place, c'est elle qui est coupée la première (elle vient après le titre). */
 .song-meta{font-family:var(--font-data); font-size:0.58em; font-weight:500; letter-spacing:0.03em; text-transform:none; color:var(--text-secondary); margin-left:0.5em;}
 /* Là où le morceau est ANNONCÉ en grand (titre de la Vue Live, titre de la Vue Transport, annonce plein écran du pré-roll), la note passe SOUS le titre, centrée,
-   dans une teinte ambre douce (--song-note) qui la détache du gris des textes secondaires sans la faire crier (06/11, retour de l'utilisateur : « le texte ajouté
+   dans un gris clair (--song-note, ex-ambre doux) qui la détache du gris des textes secondaires sans la faire crier (06/11, retour de l'utilisateur : « le texte ajouté
    [doit être] en dessous du titre quand il est annoncé avec une couleur qui le fasse ressortir mais sans être trop violent visuellement »). Dans les LISTES (grille,
    bibliothèque, bandeaux de la Vue Statut, plan de boucles, « prochaine chanson ») elle reste à côté du titre : une ligne de plus par morceau y coûterait trop de place.
    Taille : la moitié du titre, sans jamais descendre sous 0,85 rem (en Vue Live sur un petit écran le titre tombe à 1 rem : 0,5 em ferait 8 px). */
@@ -1647,7 +1648,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
 #preroll-announce .song-meta{display:block; margin:0.42em 0 0; font-size:max(0.5em, 0.85rem); font-weight:600; line-height:1.2; color:var(--song-note);}
 /* Le calque du pré-roll est SOMBRE dans les deux thèmes (fond rgba(12,12,14,.86), titre en #fff) : la teinte du thème clair y serait illisible. Teinte sombre, en dur
    comme le #fff du titre. */
-#preroll-announce .song-meta{color:#DDB672;}
+#preroll-announce .song-meta{color:#C4C4CB;}
 /* Durée d'un morceau (Bibliothèque, voir renderLib()) OU BPM (Vue Grille,
    voir render() -- réutilisée telle quelle le 21/09 pour combler l'écart
    avec la maquette "Setlist" : même traitement visuel qu'une durée, les
@@ -1669,16 +1670,16 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    CLICK/PRÉ-ROLL/boucle (bleu), qui n'ont rien à voir ici. */
 .marker-btn-tag{flex-shrink:0; font-family:var(--font-display); font-size:0.86rem; font-weight:400; letter-spacing:0.04em; text-transform:uppercase; padding:3px 8px 1px; border-radius:4px;}
 .marker-btn-tag.tag-now{background:rgba(var(--play-rgb), 0.16); color:var(--play);}
-.marker-btn-tag.tag-next{background:var(--accent-orange-soft); color:var(--accent-orange);}
+.marker-btn-tag.tag-next{background:var(--accent-ink-soft); color:var(--accent-ink);}
 /* ---- Garde-fous de scène (15/11, points 2.2 / 2.3 / 2.4 de la feuille de route ; maquettes validées par l'utilisateur, étiquettes en Bebas Neue : choix « C ») ---- */
 /* 2.4 : morceau déjà joué -- ligne et bandeau estompés (opacité .42), étiquette neutre « Joué » de la même famille que « En cours » / « Suivant ». Le réglage « Masqués » retire la ligne de la liste. */
 .marker-btn-tag.tag-played{background:var(--border); color:var(--text-secondary);}
 .marker-btn.played, .status-song-banner.played{opacity:.42;}
-/* 2.2 : pastille du dépassement de l'heure de fin, à gauche du « Set restant ». Orange (jusqu'à +5:00) et rouge reprennent les teintes d'« Suivant » et de STOP ; la marge n'est qu'un chiffre discret. */
+/* 2.2 : pastille du dépassement de l'heure de fin, à gauche du « Set restant ». Orange, c'est-à-dire l'encre depuis le 18/11 (jusqu'à +5:00), et rouge reprennent les teintes d'« Suivant » et de STOP ; la marge n'est qu'un chiffre discret. */
 .overshoot-pill{display:inline-flex; align-items:center; white-space:nowrap; font-variant-numeric:tabular-nums; margin:-2px 0;}   /* marges négatives : la pastille (20 px) ne grandit pas la ligne du temps restant (18 px) -- le bandeau garde sa hauteur */
 .overshoot-pill[hidden]{display:none !important;}
 .overshoot-pill .est{opacity:.8; margin-left:6px;}
-.overshoot-pill.warn{background:var(--accent-orange-soft); color:var(--accent-orange);}
+.overshoot-pill.warn{background:var(--accent-ink-soft); color:var(--accent-ink);}
 .overshoot-pill.alert{background:var(--stop-soft); color:var(--stop);}
 .overshoot-pill.margin{font-family:var(--font-display); font-size:0.86rem; letter-spacing:0.04em; color:var(--text-secondary);}
 #live-bottom-bar .live-stat:last-child .live-stat-value-row{align-items:center;}
@@ -1848,7 +1849,7 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
    ouvrir pour une valeur qu'on ajuste par petits pas en écoutant. */
 .visual-offset-row{display:flex; align-items:stretch; gap:10px;}
 .visual-offset-btn{width:48px; flex-shrink:0; background:var(--bg-card); border:1px solid var(--border); border-radius:9px; color:var(--text-primary); font-family:var(--font-display); font-size:1.3rem; cursor:pointer; -webkit-tap-highlight-color:transparent;}
-.visual-offset-btn:active{background:var(--accent-orange-soft); border-color:var(--accent-orange); color:var(--accent-orange);}
+.visual-offset-btn:active{background:var(--accent-ink-soft); border-color:var(--accent-ink); color:var(--accent-ink);}
 .visual-offset-value{flex:1; display:flex; align-items:center; justify-content:center; gap:4px; background:var(--bg-card); border:1px solid var(--border); border-radius:9px; font-family:var(--font-data); font-size:1rem; color:var(--text-primary); font-variant-numeric:tabular-nums;}
 .settings-hint{font-family:var(--font-data); font-size:0.86rem; color:var(--text-faint); margin:-2px 0 0; line-height:1.45;}
 /* La fenêtre RÉGLAGES s'adapte à l'écran (09/11, remarque de l'utilisateur après l'essai de la 1.8.0 : « la fenêtre est fine, il faudrait l'adapter à la taille de l'écran pour que ça soit plus
@@ -1873,14 +1874,14 @@ html[data-theme="light"] #live-progress-track{background:var(--border);}
     #settings-overlay .pin-display{font-size:1.5rem;}
 }
 .live-view-btn{display:block; text-align:center; background:linear-gradient(145deg, var(--play), var(--play-strong)); color:#fff; text-decoration:none; font-weight:800; padding:14px 8px; border-radius:12px; font-family:var(--font-display);}
-/* Vert (--play) remplacé par ambre (--accent-orange, 21/09) : le vert est
+/* Vert (--play) remplacé par ambre (--accent-ink, 21/09) : le vert est
    réservé à PLAY dans le nouveau système de couleurs par fonction de la
    refonte visuelle, pas à "option sélectionnée" en général -- ambre est
    déjà l'accent d'interface générique ailleurs (CUE, bouton AJOUTER de la
-   Bibliothèque). Lavis ajouté (--accent-orange-rgb, déclaré dans les 4
+   Bibliothèque). Lavis ajouté (--accent-ink-rgb, déclaré dans les 4
    blocs racine depuis l'ajout des colonnes BPM/Sig. de la Vue Grille) --
    même traitement que .pill.selected sur la maquette Menu/Réglages. */
-.theme-choice.selected{background:var(--accent-orange-soft); border-color:var(--accent-orange); color:var(--accent-orange);}
+.theme-choice.selected{background:var(--accent-ink-soft); border-color:var(--accent-ink); color:var(--accent-ink);}
 /* Réglage indisponible (reprise après un STOP : deux machines appairées) : visible mais inactif, avec la raison juste dessous. */
 .theme-choice-row.locked{opacity:0.45; pointer-events:none;}
 .theme-swatch{width:100%; height:36px; border-radius:12px; margin-bottom:8px; border:1px solid rgba(255,255,255,0.15);}
@@ -2000,7 +2001,7 @@ html[data-theme="light"] .vmeter-track{background:var(--border);}
    valeur reçue s'affiche maintenant instantanément, comme le veut déjà le
    commentaire JS depuis le début. */
 .vmeter-fill{position:absolute; left:0; right:0; bottom:0; height:0%; border-radius:999px;
-    background:linear-gradient(to top, var(--play) 0%, var(--play) 70%, #f0c419 88%, var(--stop) 100%);}
+    background:linear-gradient(to top, var(--play) 0%, var(--play) 88%, var(--stop) 88%, var(--stop) 100%);}
 .vmeter-scale{position:relative; width:20px; height:220px;}
 .vmeter-tick{position:absolute; left:2px; transform:translateY(50%); font-size:0.56rem; font-weight:700; color:var(--text-secondary); line-height:1; white-space:nowrap; pointer-events:none;}
 html[data-theme="light"] .vmeter-tick{color:var(--text-secondary);}
@@ -2105,8 +2106,8 @@ html[data-theme="light"] .vmeter-tick{color:var(--text-secondary);}
    DESTRUCTIVE (retirer un marqueur), inadaptée à "Enregistrer" ici. */
 .confirm-btn-save{background:linear-gradient(145deg, var(--play), var(--play-strong));}
 .io-section{margin-bottom:16px; padding:14px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid var(--border); border-left:4px solid var(--border);}
-.io-section-input{border-left-color:#2e86de;}
-.io-section-output{border-left-color:#e08e0b;}
+.io-section-input{border-left-color:var(--accent-blue);}
+.io-section-output{border-left-color:var(--accent-ink);}
 /* Piste MAIN (Master) : pas de routage d'ENTRÉE (voir openMasterIoModal
    côté JS) -- masque la section plutôt que de l'afficher vide/trompeuse. */
 #track-io-modal.master-mode .io-section-input{display:none;}
@@ -2227,7 +2228,7 @@ html[data-theme="light"] .badge-loop-plan.has-plan{background:var(--play); borde
 html[data-theme="light"] .settings-label{color:var(--text-faint);}
 html[data-theme="light"] .theme-choice{background:var(--bg-card); border-color:var(--border); color:var(--text-primary);}
 html[data-theme="light"] .pin-display{background:var(--bg-card); border-color:var(--border); color:var(--text-primary);}
-html[data-theme="light"] .theme-choice.selected{border-color:var(--accent-orange); color:var(--accent-orange);}
+html[data-theme="light"] .theme-choice.selected{border-color:var(--accent-ink); color:var(--accent-ink);}
 html[data-theme="light"] .track-row{border-bottom-color:var(--border);}
 html[data-theme="light"] .track-name{color:var(--text-primary);}
 html[data-theme="light"] .track-mute-btn{background:var(--bg-card); border-color:var(--border); color:var(--text-secondary);}
@@ -3247,7 +3248,7 @@ const I18N = {
     admin_notice_readonly: "L'administrateur t'a mis en lecture seule.",
     admin_notice_blocked: "L'administrateur t'a bloqué. Tu peux te reconnecter si tu es débloqué plus tard.",
     pdf_preview_title: "Aperçu",
-    toast_readonly: "Lecture seule -- contacte l'administrateur pour plus de droits.", toast_offline: "Hors ligne -- reconnexion en cours...",
+    toast_readonly: "Lecture seule — contacte l'administrateur pour plus de droits.", toast_offline: "Hors ligne — reconnexion en cours...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "Envoyer une alerte à l'ordinateur de contrôle",
     a11y_menu: "Menu",
@@ -3321,7 +3322,7 @@ const I18N = {
     admin_notice_readonly: "The administrator switched you to read-only.",
     admin_notice_blocked: "The administrator blocked you. You can reconnect if you're unblocked later.",
     pdf_preview_title: "Preview",
-    toast_readonly: "Read-only -- contact the administrator for more rights.", toast_offline: "Offline -- reconnecting...",
+    toast_readonly: "Read-only — contact the administrator for more rights.", toast_offline: "Offline — reconnecting...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "Send an alert to the control computer",
     a11y_menu: "Menu",
@@ -3395,7 +3396,7 @@ const I18N = {
     admin_notice_readonly: "El administrador te ha puesto en solo lectura.",
     admin_notice_blocked: "El administrador te ha bloqueado. Podrás volver a conectarte si te desbloquea más tarde.",
     pdf_preview_title: "Vista previa",
-    toast_readonly: "Solo lectura -- contacta con el administrador para obtener más permisos.", toast_offline: "Sin conexión -- reconectando...",
+    toast_readonly: "Solo lectura — contacta con el administrador para obtener más permisos.", toast_offline: "Sin conexión — reconectando...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "Enviar una alerta al ordenador de control",
     a11y_menu: "Menú",
@@ -3469,7 +3470,7 @@ const I18N = {
     admin_notice_readonly: "Der Administrator hat dich auf „Nur Lesen“ gestellt.",
     admin_notice_blocked: "Der Administrator hat dich gesperrt. Du kannst dich wieder verbinden, wenn du später entsperrt wirst.",
     pdf_preview_title: "Vorschau",
-    toast_readonly: "Nur Lesen -- wende dich an den Administrator, um mehr Rechte zu erhalten.", toast_offline: "Offline -- Verbindung wird wiederhergestellt...",
+    toast_readonly: "Nur Lesen — wende dich an den Administrator, um mehr Rechte zu erhalten.", toast_offline: "Offline — Verbindung wird wiederhergestellt...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "Alarm an den Steuerungscomputer senden",
     a11y_menu: "Menü",
@@ -3543,7 +3544,7 @@ const I18N = {
     admin_notice_readonly: "O administrador colocou você em somente leitura.",
     admin_notice_blocked: "O administrador bloqueou você. Você poderá se reconectar se for desbloqueado mais tarde.",
     pdf_preview_title: "Visualização",
-    toast_readonly: "Somente leitura -- fale com o administrador para ter mais permissões.", toast_offline: "Offline -- reconectando...",
+    toast_readonly: "Somente leitura — fale com o administrador para ter mais permissões.", toast_offline: "Offline — reconectando...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "Enviar um alerta ao computador de controle",
     a11y_menu: "Menu",
@@ -3617,7 +3618,7 @@ const I18N = {
     admin_notice_readonly: "관리자가 읽기 전용으로 바꿨어요.",
     admin_notice_blocked: "관리자가 접속을 차단했어요. 나중에 차단이 해제되면 다시 연결할 수 있어요.",
     pdf_preview_title: "미리보기",
-    toast_readonly: "읽기 전용이에요 -- 권한이 더 필요하면 관리자에게 문의하세요.", toast_offline: "오프라인이에요 -- 다시 연결 중...",
+    toast_readonly: "읽기 전용이에요 — 권한이 더 필요하면 관리자에게 문의하세요.", toast_offline: "오프라인이에요 — 다시 연결 중...",
     // Libellés d'accessibilité (28/10) : noms des boutons sans texte, des listes et des actions au clavier.
     a11y_alert: "제어용 컴퓨터에 알림 보내기",
     a11y_menu: "메뉴",
